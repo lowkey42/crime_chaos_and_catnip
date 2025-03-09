@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="CardSummon" load_steps=2 format=3 uid="uid://cxk2dmo6atpcu"]
+
+[ext_resource type="Script" uid="uid://la07fs1sg4bg" path="res://cards/CardSummon.cs" id="1_cwb2s"]
+
+[resource]
+script = ExtResource("1_cwb2s")
+Name = "Cat Burglar"
+metadata/_custom_type_script = "uid://la07fs1sg4bg"

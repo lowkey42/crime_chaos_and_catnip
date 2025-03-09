@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="CardMove" load_steps=2 format=3 uid="uid://bl5r6qrxgsgo3"]
+
+[ext_resource type="Script" uid="uid://d0vrl7d4sx35b" path="res://cards/CardMove.cs" id="1_glwmr"]
+
+[resource]
+script = ExtResource("1_glwmr")
+Name = "Run"
+metadata/_custom_type_script = "uid://d0vrl7d4sx35b"
