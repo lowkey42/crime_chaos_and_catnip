@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dyy10ipmv4lgt"]
+
+[ext_resource type="Texture2D" uid="uid://cw4qn5ngn6ax5" path="res://gameplay/cards/instances/card_move_10.png" id="1_bkvhe"]
+[ext_resource type="Script" uid="uid://bsk73plvk6at0" path="res://gameplay/board_objects/units/PlayerUnitCat.cs" id="1_gv5m6"]
+
+[node name="PlayerUnitCat" type="Node3D"]
+script = ExtResource("1_gv5m6")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.095, 0, 0, 0, 0.095, 0, 0, 0, 0.095, 0, 0.5, 0)
+texture = ExtResource("1_bkvhe")

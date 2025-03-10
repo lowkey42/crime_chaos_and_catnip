@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://mb4i47wd66wh"]
+
+[ext_resource type="Script" uid="uid://p2ts3wh3dtq1" path="res://gameplay/board_objects/Loot.cs" id="1_5x2y6"]
+
+[node name="Loot" type="Node3D"]
+script = ExtResource("1_5x2y6")

@@ -28,7 +28,7 @@ public partial class Board : Node {
 	}
 
 	public static Vector2I ToBoardPosition(Vector3 position) {
-		return new Vector2I((int) MathF.Round(position.X), (int) MathF.Round(position.Z));
+		return new Vector2I((int) (position.X + 0.5f), (int) (position.Z + 0.5f));
 	}
 
 	public void AddObject(Vector2I boardPosition, BoardObject obj) {
