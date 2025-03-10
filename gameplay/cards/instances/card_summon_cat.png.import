@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cw4qn5ngn6ax5"
-path="res://.godot/imported/card_move_10.png-a94121449dae7bd29bd1ed404d1aba07.ctex"
+uid="uid://d33sktg0wyxci"
+path="res://.godot/imported/card_summon_cat.png-5d9a755e9026c03f5c63f12b8c76b297.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://cards/instances/card_move_10.png"
-dest_files=["res://.godot/imported/card_move_10.png-a94121449dae7bd29bd1ed404d1aba07.ctex"]
+source_file="res://gameplay/cards/instances/card_summon_cat.png"
+dest_files=["res://.godot/imported/card_summon_cat.png-5d9a755e9026c03f5c63f12b8c76b297.ctex"]
 
 [params]
 

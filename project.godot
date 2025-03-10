@@ -34,6 +34,10 @@ window/vsync/vsync_mode=3
 
 project/assembly_name="CrimeChaosAndCatnip"
 
+[global_group]
+
+Board="The playing field on which units act and cards are played"
+
 [gui]
 
 theme/custom="res://ui/theme.tres"
