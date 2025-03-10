@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bhmi15nw6utp5" path="res://scenes/level/level_01.tscn" id="6_5jhce"]
 [ext_resource type="Resource" uid="uid://bl5r6qrxgsgo3" path="res://gameplay/cards/instances/card_move_10.tres" id="6_iid22"]
 [ext_resource type="Script" uid="uid://o5q4p0foouv3" path="res://gameplay/Gameplay.cs" id="6_juwkt"]
-[ext_resource type="PackedScene" uid="uid://c8fvd606ep5u" path="res://ui/held_card.tscn" id="6_vus8m"]
+[ext_resource type="PackedScene" path="res://ui/held_card.tscn" id="6_vus8m"]
 [ext_resource type="Script" uid="uid://bt7r7nusxbpsv" path="res://gameplay/DeckEntry.cs" id="7_2vs8u"]
 [ext_resource type="Script" uid="uid://bp64cwdqrlygr" path="res://gameplay/Deck.cs" id="7_ilpo5"]
 [ext_resource type="Resource" uid="uid://cxk2dmo6atpcu" path="res://gameplay/cards/instances/card_summon_cat.tres" id="8_juwkt"]
@@ -38,11 +38,10 @@ unique_name_in_owner = true
 process_mode = 2
 visible = false
 
-[node name="Gameplay" type="Node" parent="." node_paths=PackedStringArray("_deck", "_hand", "_board") groups=["Gameplay"]]
+[node name="Gameplay" type="Node" parent="." node_paths=PackedStringArray("_deck", "_hand") groups=["Gameplay"]]
 script = ExtResource("6_juwkt")
 _deck = NodePath("Deck")
-_hand = NodePath("PlayerHand")
-_board = NodePath("Level01/Board")
+_hand = NodePath("")
 
 [node name="Deck" type="Node" parent="Gameplay"]
 script = ExtResource("7_ilpo5")
@@ -52,9 +51,8 @@ metadata/_custom_type_script = "uid://bp64cwdqrlygr"
 
 [node name="Level01" parent="Gameplay" instance=ExtResource("6_5jhce")]
 
-[node name="PlayerHand" type="Node" parent="Gameplay" node_paths=PackedStringArray("_deck")]
+[node name="PlayerHand" type="Node2D" parent="Gameplay" node_paths=PackedStringArray("_deck")]
 script = ExtResource("10_etwux")
 _deck = NodePath("../Deck")
-metadata/_custom_type_script = "uid://cidnfcxxq2ctp"
 
 [editable path="Gameplay/Level01"]
