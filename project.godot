@@ -37,6 +37,7 @@ project/assembly_name="CrimeChaosAndCatnip"
 [global_group]
 
 Board="The playing field on which units act and cards are played"
+Gameplay="Root node that manages the core game loop"
 
 [gui]
 

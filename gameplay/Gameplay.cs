@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Godot;
 
@@ -35,6 +37,9 @@ public partial class Gameplay : Node {
 	[Signal]
 	public delegate void GameOverEventHandler();
 
+	[Signal]
+	public delegate void UnitExitedEventHandler(int loot);
+
 
 	[Export] private Deck _deck;
 
@@ -42,7 +47,14 @@ public partial class Gameplay : Node {
 
 	[Export] private Board _board;
 
+	[Export] private float _stepTime = 0.5f;
+
+	[Export] public int Score { get; private set; }
+
 	private State _currentState = State.Shuffle;
+
+	private readonly List<Unit> _unitsMovingInNextStep = [];
+	private int[,] _unitsMoveTargets;
 
 	public bool CanEndTurn() {
 		return _currentState == State.PlayingCards && _hand.CanEndTurn();
@@ -67,13 +79,109 @@ public partial class Gameplay : Node {
 		_currentState = State.Acting;
 		EmitSignalActing();
 
-		await Task.Delay(100); // TODO[gameplay]: placeholder for unit movement
+		_unitsMoveTargets = _board.ResizeToBoardDimensions(_unitsMoveTargets);
+		
+		var didAnyUnitAct = false;
+		do {
+			await Task.Delay(TimeSpan.FromSeconds(_stepTime));
+			
+			didAnyUnitAct = false;
+			_unitsMovingInNextStep.Clear();
+			foreach (var unit in _board.GetUnits()) {
+				if (unit.Stunned) // skip stunned units
+					continue;
+				
+				var cell = _board.GetCell(unit.BoardPosition);
 
-		// Turn is over => next turn
+				// check if the unit is controlled by the player and the cell is an exit
+				if (unit is PlayerUnit playerUnit && cell.Objects.Any(obj => obj is Exit)) {
+					Score += playerUnit.CollectedLoot;
+					EmitSignalUnitExited(playerUnit.CollectedLoot);
+					unit.Stunned = true;
+					unit.QueueFree();
+				}
+
+				// check if there is an actionable card/object on the units field
+				var index = cell.Objects.FindLastIndex(obj => obj.TryInteract(unit));
+				if (index != -1) {
+					didAnyUnitAct = true;
+				} else if(unit.WantsToMove) {
+					didAnyUnitAct = true;
+					_unitsMovingInNextStep.Add(unit);
+				}
+			}
+
+			MoveUnits();
+		} while (didAnyUnitAct);
+
 		EmitSignalTurnDone();
+		
+		// remove stunned status from all units after the turn
+		foreach (var unit in _board.GetUnits()) {
+			unit.Stunned = false;
+		}
+
 		EmitSignalTurnStarted();
 
 		await Draw();
+	}
+
+	private void MoveUnits() {
+		if (_unitsMovingInNextStep.Count == 0)
+			return;
+			
+		// remove all movers, whose target field is occupied by a non-mover
+		// repeat, until there are no more such movers left
+		var removed = 0;
+		do {
+			removed = 0;
+			for (var i = _unitsMovingInNextStep.Count - 1; i >= 0; i--) {
+				var unit = _unitsMovingInNextStep[i];
+				if (_board.IsBlocked(unit.BoardPosition, _unitsMovingInNextStep)) {
+					unit.Stunned = true;
+					_unitsMovingInNextStep.RemoveAt(i);
+					removed++;
+				}
+			}
+		} while (removed > 0);
+
+		if (_unitsMovingInNextStep.Count == 0)
+			return;
+			
+		// clear previous mover targets
+		for (var x = 0; x < _unitsMoveTargets.GetLength(0); x++) {
+			for (var y = 0; y < _unitsMoveTargets.GetLength(1); y++) {
+				_unitsMoveTargets[x, y] = 0;
+			}
+		}
+
+		// mark all target fields of movers
+		foreach (var unit in _unitsMovingInNextStep) {
+			var target = unit.MoveTarget;
+			_unitsMoveTargets[target.X, target.Y]++;
+		}
+			
+		// stun all movers whose target field has multiple members, mark their origin as occupied and remove them
+		do {
+			removed = 0;
+			for (var i = _unitsMovingInNextStep.Count - 1; i >= 0; i--) {
+				var unit = _unitsMovingInNextStep[i];
+				var target = unit.MoveTarget;
+				if (_unitsMoveTargets[target.X, target.Y] > 1) {
+					unit.Stunned = true;
+					_unitsMoveTargets[unit.BoardPosition.X, unit.BoardPosition.Y]++;
+					_unitsMovingInNextStep.RemoveAt(i);
+					removed++;
+				}
+			}
+		} while (removed > 0);
+
+		// execute movements
+		var moveTween = CreateTween();
+		foreach (var unit in _unitsMovingInNextStep) {
+			var target = _board.GetCell(unit.MoveTarget).Position;
+			moveTween.TweenProperty(unit, "position", target, _stepTime);
+		}
 	}
 
 	private async Task Draw() {
@@ -83,8 +191,7 @@ public partial class Gameplay : Node {
 		_currentState = State.Drawing;
 		EmitSignalDrawing();
 
-		if (!await _hand.TryDrawCards(_deck)) {
-			// TODO: game over, not enough cards
+		if (!await _hand.TryDrawCards(_deck)) { // game over, not enough cards
 			_currentState = State.GameOver;
 			EmitSignalGameOver();
 			return;

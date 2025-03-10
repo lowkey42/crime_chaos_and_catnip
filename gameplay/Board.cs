@@ -1,5 +1,7 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 namespace CrimeChaosAndCatnip;
@@ -15,9 +17,18 @@ public partial class Board : Node {
 		public readonly Vector2I BoardPosition = ToBoardPosition(position);
 		public readonly List<BoardObject> Objects = [];
 
+		public bool TryStack(BoardObject obj) {
+			foreach(var existingObj in Objects)
+				if (existingObj.TryStack(obj))
+					return true;
+			return false;
+		}
+
 	}
 
 	private Cell[,] _cells;
+
+	private readonly List<Unit> _units = [];
 
 	public override void _Ready() {
 		base._Ready();
@@ -27,18 +38,34 @@ public partial class Board : Node {
 			_cells[x, y] = new Cell(new Vector3(x, 0, y)); // TODO: determine height (3D Y) from map?
 	}
 
+	public T[,] ResizeToBoardDimensions<T>(T[,] previous) {
+		if(previous!=null && previous.GetLength(0)>=_cells.GetLength(0) && previous.GetLength(1)>=_cells.GetLength(1))
+			return previous;
+		
+		return new T[_cells.GetLength(0), _cells.GetLength(1)];
+	} 
+	
 	public static Vector2I ToBoardPosition(Vector3 position) {
 		return new Vector2I((int) (position.X + 0.5f), (int) (position.Z + 0.5f));
 	}
 
 	public void AddObject(Vector2I boardPosition, BoardObject obj) {
 		ValidateBoardPosition(boardPosition);
-		_cells[boardPosition.X, boardPosition.Y].Objects.Add(obj);
+
+		var cell = _cells[boardPosition.X, boardPosition.Y];
+		if(cell.TryStack(obj))
+			return;
+		
+		cell.Objects.Add(obj);
+		if(obj is Unit unit)
+			_units.Add(unit);
 	}
 
 	public void RemoveObject(Vector2I boardPosition, BoardObject obj) {
 		ValidateBoardPosition(boardPosition);
 		_cells[boardPosition.X, boardPosition.Y].Objects.Remove(obj);
+		if(obj is Unit unit)
+			_units.Remove(unit);
 	}
 
 	public void MoveObject(Vector2I oldBoardPosition, Vector2I newBoardPosition, BoardObject obj) {
@@ -48,7 +75,11 @@ public partial class Board : Node {
 			return;
 
 		_cells[oldBoardPosition.X, oldBoardPosition.Y].Objects.Remove(obj);
-		_cells[newBoardPosition.X, newBoardPosition.Y].Objects.Add(obj);
+		
+		var cell = _cells[newBoardPosition.X, newBoardPosition.Y];
+		if(cell.TryStack(obj))
+			return;
+		cell.Objects.Add(obj);
 	}
 
 	public Cell GetCell(Vector2I boardPosition) {
@@ -62,6 +93,19 @@ public partial class Board : Node {
 			throw new ArgumentException("Invalid board position");
 		if (boardPosition.X > _maxGridSize.X || boardPosition.Y > _maxGridSize.Y)
 			throw new ArgumentException("Invalid board position");
+	}
+
+	public IEnumerable<Unit> GetUnits() {
+		return _units;
+	}
+
+	public bool IsBlocked(Vector2I boardPosition, IEnumerable<BoardObject> exclude) {
+		var cell = GetCell(boardPosition);
+		foreach(var obj in cell.Objects)
+			if (obj.BlocksField && !exclude.Contains(obj))
+				return true;
+
+		return false;
 	}
 
 }

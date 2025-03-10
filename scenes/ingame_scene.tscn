@@ -22,21 +22,21 @@ unique_name_in_owner = true
 process_mode = 2
 visible = false
 
-[node name="gameplay" type="Node" parent="." node_paths=PackedStringArray("_deck", "_hand", "_board")]
+[node name="Gameplay" type="Node" parent="." node_paths=PackedStringArray("_deck", "_hand", "_board") groups=["Gameplay"]]
 script = ExtResource("6_juwkt")
 _deck = NodePath("Deck")
 _hand = NodePath("PlayerHand")
 _board = NodePath("Level01/Board")
 
-[node name="Deck" type="Node" parent="gameplay"]
+[node name="Deck" type="Node" parent="Gameplay"]
 script = ExtResource("7_ilpo5")
 metadata/_custom_type_script = "uid://bp64cwdqrlygr"
 
-[node name="Level01" parent="gameplay" instance=ExtResource("6_5jhce")]
+[node name="Level01" parent="Gameplay" instance=ExtResource("6_5jhce")]
 
-[node name="PlayerHand" type="Node" parent="gameplay" node_paths=PackedStringArray("_deck")]
+[node name="PlayerHand" type="Node" parent="Gameplay" node_paths=PackedStringArray("_deck")]
 script = ExtResource("10_etwux")
 _deck = NodePath("../Deck")
 metadata/_custom_type_script = "uid://cidnfcxxq2ctp"
 
-[editable path="gameplay/Level01"]
+[editable path="Gameplay/Level01"]

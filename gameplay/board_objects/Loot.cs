@@ -9,4 +9,18 @@ public partial class Loot : BoardObject {
 
 	public override bool BlocksField => false;
 
+	public override bool TryStack(BoardObject otherObject) {
+		if (otherObject is Loot loot) {
+			Value += loot.Value;
+			return true;
+		}
+
+		return false;
+	}
+
+	public override bool TryInteract(Unit unit) {
+		unit.IncreaseLoot(Value);
+		return true;
+	}
+
 }
