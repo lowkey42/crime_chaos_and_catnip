@@ -56,6 +56,16 @@ public partial class Gameplay : Node {
 	private readonly List<Unit> _unitsMovingInNextStep = [];
 	private int[,] _unitsMoveTargets;
 
+	public override void _Ready() {
+		_ = Warmup();
+	}
+
+	private async Task Warmup() {
+		_currentState = State.Shuffle;
+		await _deck.ShuffleAnimation();
+		await Draw();
+	}
+
 	public bool CanEndTurn() {
 		return _currentState == State.PlayingCards && _hand.CanEndTurn();
 	}
