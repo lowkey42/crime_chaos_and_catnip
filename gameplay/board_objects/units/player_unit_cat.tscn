@@ -1,11 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://dyy10ipmv4lgt"]
+[gd_scene load_steps=4 format=3 uid="uid://dyy10ipmv4lgt"]
 
 [ext_resource type="Texture2D" uid="uid://cw4qn5ngn6ax5" path="res://gameplay/cards/instances/card_move_10.png" id="1_bkvhe"]
 [ext_resource type="Script" uid="uid://bsk73plvk6at0" path="res://gameplay/board_objects/units/PlayerUnitCat.cs" id="1_gv5m6"]
+[ext_resource type="PackedScene" uid="uid://dlxygdiwxxpui" path="res://assets/3D/small things/cardholder-neon.glb" id="2_dxnya"]
 
 [node name="PlayerUnitCat" type="Node3D"]
 script = ExtResource("1_gv5m6")
 
-[node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(0.095, 0, 0, 0, 0.095, 0, 0, 0, 0.095, 0, 0.5, 0)
+[node name="cardholder-neon" parent="." instance=ExtResource("2_dxnya")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+
+[node name="front" type="Sprite3D" parent="."]
+transform = Transform3D(0.125, 0, 0, 0, 0.125, 0, 0, 0, 0.125, 0, 0.7, 0)
+shaded = true
+double_sided = false
+texture = ExtResource("1_bkvhe")
+
+[node name="back" type="Sprite3D" parent="."]
+transform = Transform3D(-0.125, 0, -1.09278e-08, 0, 0.125, 0, 1.09278e-08, 0, -0.125, 0, 0.7, 0)
+shaded = true
+double_sided = false
 texture = ExtResource("1_bkvhe")
