@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cik30de5gaaah"]
+[gd_scene load_steps=15 format=3 uid="uid://cik30de5gaaah"]
 
 [ext_resource type="Script" uid="uid://dmeymco117qmu" path="res://scenes/ingame_scene.gd" id="1_objyc"]
 [ext_resource type="PackedScene" uid="uid://bkk87o2ooo6at" path="res://ui/overlays/fade_overlay.tscn" id="1_y6ebv"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://dxqlp36pvreje" path="res://scenes/gameplay/BoardState.cs" id="9_1sh3m"]
 [ext_resource type="Script" uid="uid://bt7r7nusxbpsv" path="res://cards/DeckEntry.cs" id="9_4d8mm"]
 [ext_resource type="Resource" uid="uid://cxk2dmo6atpcu" path="res://cards/instances/card_summon_cat.tres" id="10_th7mp"]
+[ext_resource type="Script" uid="uid://bf661tpm2k0ry" path="res://camera/CameraControl.cs" id="12_2vs8u"]
 
 [sub_resource type="Resource" id="Resource_q7kwb"]
 script = ExtResource("9_4d8mm")
@@ -55,3 +56,16 @@ metadata/_custom_type_script = "uid://bp64cwdqrlygr"
 script = ExtResource("9_1sh3m")
 
 [node name="Level01" parent="gameplay" instance=ExtResource("6_5jhce")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.819152, 0.573576, 0, -0.573576, 0.819152, -2, 10, 20)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.819152, 0.573576, 0, -0.573576, 0.819152, -1.7182, 8.25861, 13.945)
+
+[node name="CameraControl" type="Node" parent="." node_paths=PackedStringArray("Camera")]
+script = ExtResource("12_2vs8u")
+BaseCameraMove = Vector3(0, -1500, 2500)
+RotationDegree = 40.0
+Camera = NodePath("../Camera3D")
+RotationSpeed = 0.005
