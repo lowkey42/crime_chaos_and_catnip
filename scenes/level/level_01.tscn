@@ -1,3 +1,9 @@
-[gd_scene format=3 uid="uid://bhmi15nw6utp5"]
+[gd_scene load_steps=2 format=3 uid="uid://bhmi15nw6utp5"]
+
+[ext_resource type="Script" uid="uid://b4tr0lmx326c7" path="res://gameplay/Board.cs" id="1_2r62q"]
 
 [node name="Level01" type="Node"]
+
+[node name="Board" type="Node3D" parent="." groups=["Board"]]
+script = ExtResource("1_2r62q")
+_maxGridSize = Vector2i(64, 64)

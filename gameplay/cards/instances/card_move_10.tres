@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CardMove" load_steps=3 format=3 uid="uid://bl5r6qrxgsgo3"]
+
+[ext_resource type="Texture2D" uid="uid://cw4qn5ngn6ax5" path="res://gameplay/cards/instances/card_move_10.png" id="1_6o8pv"]
+[ext_resource type="Script" uid="uid://d0vrl7d4sx35b" path="res://gameplay/cards/CardMove.cs" id="1_glwmr"]
+
+[resource]
+script = ExtResource("1_glwmr")
+Name = "Run"
+Description = ""
+CardSprite = ExtResource("1_6o8pv")
+metadata/_custom_type_script = "uid://d0vrl7d4sx35b"
