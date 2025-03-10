@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 using Godot;
 
 namespace CrimeChaosAndCatnip;
@@ -32,6 +33,10 @@ public partial class Deck : Node {
 
 		// TODO[gameplay]: smarter shuffle, to ensure that the first hand contains at least X summonable units
 		Random.Shared.Shuffle(CollectionsMarshal.AsSpan(_liveCards));
+	}
+
+	public async Task ShuffleAnimation() {
+		await Task.Delay(100); // TODO
 	}
 
 	public HeldCard? TryDrawCard() {
