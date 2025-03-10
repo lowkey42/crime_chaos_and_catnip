@@ -10,9 +10,9 @@ public partial class PlayerHand : Node2D
     [Export] public int HandRadius = 100; 
     [Export] private float CardAngleLimit = 90.0f; 
     [Export] private float MaxCardSpreadAngle = 20f; 
-    [Export] private Deck _deck; 
+    [Export] private Deck _deck;
 
-    private List<HeldCard> _heldCards = new List<HeldCard>(); 
+    private readonly List<HeldCard> _heldCards = [];
     
     [Export] private int _maxCardCount = 5;
     [Export] private int _maxCardAtTurnEnd = 3;
@@ -97,14 +97,14 @@ public partial class PlayerHand : Node2D
     public async Task DiscardCard(HeldCard card)
     {
         _heldCards.Remove(card);
-        RemoveChild(card);
         await Task.Delay(100); // Platzhalter für Animation
+        card.QueueFree();
         RepositionCards();
     }
 
     // Überprüft, ob der Spieler seinen Zug beenden kann
     public bool CanEndTurn()
     {
-        return _heldCards.Count <= 3; // Beispiel: Maximal 3 Karten am Ende des Zuges
+        return _heldCards.Count <= _maxCardAtTurnEnd;
     }
 }
