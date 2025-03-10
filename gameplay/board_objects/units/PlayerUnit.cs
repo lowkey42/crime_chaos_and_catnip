@@ -1,3 +1,5 @@
 namespace CrimeChaosAndCatnip;
 
-public partial class PlayerUnit : Unit { }
+public partial class PlayerUnit : Unit {
+
+}
