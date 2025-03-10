@@ -35,7 +35,6 @@ size = 13.334
 
 [node name="Entity" parent="Players" node_paths=PackedStringArray("GridMap") instance=ExtResource("1_hlu4m")]
 GridMap = NodePath("../../Environmentmap/GridMap")
-StepDuration = 0.8
 
 [node name="Environmentmap" type="Node3D" parent="."]
 

@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://d3tbf6lk6xgiu"]
+
+[ext_resource type="Script" uid="uid://yfh1q10a7fkx" path="res://gameplay/Hand.cs" id="1_kbr1x"]
+[ext_resource type="PackedScene" uid="uid://bgf747cndbtvf" path="res://gameplay/card_filler.tscn" id="2_b3v1d"]
+[ext_resource type="Script" uid="uid://ducu2kng5aotl" path="res://gameplay/cards/HeldCard.cs" id="3_7re8o"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b3v1d"]
+
+[node name="DrawCardScene" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="CardsInHand" type="Node2D" parent="CanvasLayer"]
+script = ExtResource("1_kbr1x")
+
+[node name="DebugShape" type="CollisionShape2D" parent="CanvasLayer/CardsInHand"]
+position = Vector2(650, 1500)
+scale = Vector2(100, 100)
+shape = SubResource("CircleShape2D_b3v1d")
+
+[node name="FillerCard" parent="." instance=ExtResource("2_b3v1d")]
+light_mask = 2
+visibility_layer = 2
+script = ExtResource("3_7re8o")
