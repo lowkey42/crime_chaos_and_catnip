@@ -65,7 +65,8 @@ transform = Transform3D(1, 0, 0, 0, 0.819152, 0.573576, 0, -0.573576, 0.819152, 
 
 [node name="CameraControl" type="Node" parent="." node_paths=PackedStringArray("Camera")]
 script = ExtResource("12_2vs8u")
-BaseCameraMove = Vector3(0, -1500, 2500)
+BaseCameraMove = Vector3(0, -10, 10)
 RotationDegree = 40.0
 Camera = NodePath("../Camera3D")
 RotationSpeed = 0.005
+EdgeSensitivity = 20.0

@@ -13,69 +13,89 @@ public partial class CameraControl : Node
 	[Export] public float ZoomSpeed = 5.0f;
 	[Export] public float ZoomMin = 5.0f;
 	[Export] public float ZoomMax = 5.0f;
+	[Export] public float EdgeSensitivity = 100.0f;
 	private float CurrentZoomHeight;
 
 	// Toggle Isometric to Topdown
-	public bool isometric = false;
+	private bool _isometric = false;
 
 	private Vector3 _targetPosition;
 	private Vector3 _targetRotation;
 	[Export] public float LerpSpeed = 5.0f;
-	private Vector3 _originalPosition;
-	private Vector3 _originalRotation;
 
 	public override void _Ready()
 	{
 		_targetPosition = Camera.Position;
 		_targetRotation = Camera.Rotation;
-		_originalPosition = Camera.Position;
-		_originalRotation = Camera.Rotation;
 	}
 
 	public override void _Input(InputEvent @event)
 	{
 		if (@event.IsActionPressed("toggle_isometric"))
 		{
-			if (isometric)
+			if (_isometric)
 			{
-				isometric = !isometric;
+				_isometric = !_isometric;
 				_targetRotation.X += Mathf.DegToRad(RotationDegree);  
 				_targetPosition += BaseCameraMove;
 			}
 			else
 			{
-				isometric = !isometric;
+				_isometric = !_isometric;
 				_targetRotation.X -= Mathf.DegToRad(RotationDegree); 
 				_targetPosition -= BaseCameraMove;
 			}
 
 			GD.Print("Isometric toggled!");
 		}
-
 		
-
-		if (@event.IsActionPressed("zoom_in"))
+		if (@event is InputEventMouseButton mouseEvent)
 		{
-			GD.Print("Zoom in");
-		}
+	
+			if ((int)mouseEvent.ButtonIndex == 4)
+			{
+				Camera.Position = new Vector3(Camera.Position.X, Camera.Position.Y - 0.1f, Camera.Position.Z);
+			}
 
-		if (@event.IsActionPressed("zoom_out"))
-		{
-			GD.Print("Zoom out");
+			else if ((int)mouseEvent.ButtonIndex == 5)
+			{
+				Camera.Position = new Vector3(Camera.Position.X, Camera.Position.Y + 0.1f, Camera.Position.Z);
+			}
 		}
 	}
 
 	public override void _Process(double delta)
 	{
-		Camera.Position = Camera.Position.Lerp(_targetPosition, (float)(LerpSpeed * delta));
-		Camera.Rotation = new Vector3(
-			Mathf.LerpAngle(Camera.Rotation.X, _targetRotation.X, (float)(LerpSpeed * delta)),
-			Mathf.LerpAngle(Camera.Rotation.Y, _targetRotation.Y, (float)(LerpSpeed * delta)),
-			Mathf.LerpAngle(Camera.Rotation.Z, _targetRotation.Z, (float)(LerpSpeed * delta))
-		);
-		
 		Vector3 movement = Vector3.Zero;
 		
+		
+		Vector2 mousePos = GetViewport().GetMousePosition();
+		Rect2 screenSize = GetViewport().GetVisibleRect();
+
+		
+		
+
+		if (mousePos.X <= EdgeSensitivity)
+		{
+			movement.X -= CameraSpeed * (float)delta;
+		}
+
+		else if (mousePos.X >= screenSize.Size.X - EdgeSensitivity)
+		{
+			movement.X += CameraSpeed * (float)delta;
+		}
+
+
+		if (mousePos.Y <= EdgeSensitivity)
+		{
+			movement.Z -= CameraSpeed * (float)delta;
+		}
+		else if (mousePos.Y >= screenSize.Size.Y - EdgeSensitivity)
+		{
+			movement.Z += CameraSpeed * (float)delta;
+		}
+		
+
 		if (Input.IsActionPressed("move_camera_down")) {
 			movement.Z += 1;
 		}
@@ -88,11 +108,25 @@ public partial class CameraControl : Node
 		if (Input.IsActionPressed("move_camera_right")) {
 			movement.X += 1;
 		}
-		
+		if (Input.IsActionPressed("zoom_in")) {
+			movement.Y += 1;
+		}
+
+		if (Input.IsActionPressed("zoom_out")) {
+			movement.Y -= 1;
+		}
 
 		Camera.Position += movement.Normalized() * CameraSpeed * (float)delta;
-		
+
+
 		_targetPosition = Camera.Position;
-		
+
+
+		Camera.Position = Camera.Position.Lerp(_targetPosition, (float)(LerpSpeed * delta));
+		Camera.Rotation = new Vector3(
+			Mathf.LerpAngle(Camera.Rotation.X, _targetRotation.X, (float)(LerpSpeed * delta)),
+			Mathf.LerpAngle(Camera.Rotation.Y, _targetRotation.Y, (float)(LerpSpeed * delta)),
+			Mathf.LerpAngle(Camera.Rotation.Z, _targetRotation.Z, (float)(LerpSpeed * delta))
+		);
 	}
 }
