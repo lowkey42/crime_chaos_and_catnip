@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://c8fvd606ep5u"]
+[gd_scene load_steps=8 format=3 uid="uid://c8fvd606ep5u"]
 
 [ext_resource type="Script" uid="uid://ducu2kng5aotl" path="res://gameplay/cards/HeldCard.cs" id="1_dxi6h"]
 [ext_resource type="Texture2D" uid="uid://cw4qn5ngn6ax5" path="res://gameplay/cards/instances/card_move_10.png" id="2_omqpp"]
 [ext_resource type="Script" uid="uid://d0vrl7d4sx35b" path="res://gameplay/cards/CardMove.cs" id="3_esxd3"]
 [ext_resource type="Shader" path="res://addons/outline.gdshader" id="4_esxd3"]
+[ext_resource type="Script" uid="uid://bn0wyw5lpfmgm" path="res://addons/addons/draggablesprite2d/src/draggablesprite2d.gd" id="5_7t26j"]
 
 [sub_resource type="Resource" id="Resource_7t26j"]
 script = ExtResource("3_esxd3")
@@ -11,12 +12,13 @@ Distance = 10
 Name = "Move 10"
 Description = "ziehe 10 felder"
 CardSprite = ExtResource("2_omqpp")
+RequiresOrientation = false
 metadata/_custom_type_script = "uid://d0vrl7d4sx35b"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7t26j"]
 shader = ExtResource("4_esxd3")
-shader_parameter/color = Color(0.658584, 0.191174, 0.233349, 1)
-shader_parameter/width = 2.966
+shader_parameter/color = Color(0.79096, 0.185889, 0.596654, 1)
+shader_parameter/width = 3.159
 shader_parameter/pattern = 0
 shader_parameter/inside = false
 shader_parameter/add_margins = true
@@ -25,10 +27,24 @@ shader_parameter/number_of_images = Vector2(1, 1)
 [node name="HeldCard" type="Node2D" node_paths=PackedStringArray("_sprite")]
 script = ExtResource("1_dxi6h")
 Card = SubResource("Resource_7t26j")
-_sprite = NodePath("Sprite2D")
+_sprite = NodePath("DraggableSprite2D/Sprite2D")
 metadata/_custom_type_script = "uid://ducu2kng5aotl"
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="DraggableSprite2D" type="Area2D" parent="." node_paths=PackedStringArray("sprite")]
+texture_filter = 3
+scale = Vector2(0.15, 0.15)
+script = ExtResource("5_7t26j")
+centerDrag = true
+return_to_origin = true
+sprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="DraggableSprite2D"]
 material = SubResource("ShaderMaterial_7t26j")
-scale = Vector2(0.121333, 0.126667)
 texture = ExtResource("2_omqpp")
+
+[connection signal="MouseEntered" from="." to="DraggableSprite2D" method="_on_mouse_entered"]
+[connection signal="MouseExited" from="." to="DraggableSprite2D" method="_on_mouse_exited"]
+[connection signal="grabbed" from="DraggableSprite2D" to="." method="onGrabbed"]
+[connection signal="mouse_entered" from="DraggableSprite2D" to="." method="OnArea2DMouseEntered"]
+[connection signal="mouse_exited" from="DraggableSprite2D" to="." method="OnArea2DMouseExited"]
+[connection signal="released" from="DraggableSprite2D" to="." method="OnDropped"]

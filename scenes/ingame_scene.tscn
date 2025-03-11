@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cik30de5gaaah"]
+[gd_scene load_steps=20 format=3 uid="uid://cik30de5gaaah"]
 
 [ext_resource type="Script" uid="uid://dmeymco117qmu" path="res://scenes/ingame_scene.gd" id="1_objyc"]
 [ext_resource type="PackedScene" uid="uid://bkk87o2ooo6at" path="res://ui/overlays/fade_overlay.tscn" id="1_y6ebv"]
@@ -14,6 +14,15 @@
 [ext_resource type="Script" uid="uid://cidnfcxxq2ctp" path="res://gameplay/PlayerHand.cs" id="10_etwux"]
 [ext_resource type="Script" uid="uid://blo6ehy0rkpy5" path="res://gameplay/cards/CardDrawButton.cs" id="12_2vs8u"]
 [ext_resource type="PackedScene" uid="uid://b4ufa4onh1vrb" path="res://camera/cameras.tscn" id="14_ilpo5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ilpo5"]
+size = Vector2(889, 178)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pxehq"]
+size = Vector2(154, 185.5)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ilpo5"]
+size = Vector2(20, 20)
 
 [sub_resource type="Resource" id="Resource_juwkt"]
 script = ExtResource("7_2vs8u")
@@ -49,16 +58,36 @@ _board = NodePath("Level01/Board")
 
 [node name="CardOverlay" type="CanvasLayer" parent="Gameplay"]
 
-[node name="PlayerHand" type="Node2D" parent="Gameplay/CardOverlay" node_paths=PackedStringArray("_deck")]
-position = Vector2(634, 719)
+[node name="PlayerHand" type="Node2D" parent="Gameplay/CardOverlay" node_paths=PackedStringArray("_deck", "_discardArea")]
+position = Vector2(627, 848)
 script = ExtResource("10_etwux")
+HandRadius = 300
+MaxCardSpreadAngle = 10.0
 _deck = NodePath("../../Deck")
+_discardArea = NodePath("DropPossibleArea/DiscardZoneArea")
 
 [node name="Sprite2D" type="Sprite2D" parent="Gameplay/CardOverlay/PlayerHand"]
+position = Vector2(0, 66)
 texture = ExtResource("6_ilpo5")
 
+[node name="DropPossibleArea" type="Area2D" parent="Gameplay/CardOverlay/PlayerHand"]
+position = Vector2(-51, -23)
+
+[node name="CantDropArea" type="CollisionShape2D" parent="Gameplay/CardOverlay/PlayerHand/DropPossibleArea"]
+position = Vector2(57.5, -205)
+shape = SubResource("RectangleShape2D_ilpo5")
+
+[node name="DiscardZoneArea" type="CollisionShape2D" parent="Gameplay/CardOverlay/PlayerHand/DropPossibleArea"]
+position = Vector2(595, -206.25)
+shape = SubResource("RectangleShape2D_pxehq")
+
+[node name="Sprite2D" type="Sprite2D" parent="Gameplay/CardOverlay/PlayerHand/DropPossibleArea/DiscardZoneArea"]
+position = Vector2(-1.00004, -2.25001)
+scale = Vector2(7.8, 9.65)
+texture = SubResource("PlaceholderTexture2D_ilpo5")
+
 [node name="Deck" type="Node2D" parent="Gameplay"]
-position = Vector2(187, 652)
+position = Vector2(120, 640)
 script = ExtResource("7_ilpo5")
 _cards = [SubResource("Resource_juwkt"), SubResource("Resource_ilpo5")]
 _heldCardScene = ExtResource("6_vus8m")

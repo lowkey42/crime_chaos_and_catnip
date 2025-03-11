@@ -9,29 +9,50 @@ namespace CrimeChaosAndCatnip;
 public partial class PlayerHand : Node2D {
 
 	[Export] private int HandRadius = 200;
-    [Export] private float CardAngleLimit = 90.0f; 
-    [Export] private float MaxCardSpreadAngle = 20f; 
-    [Export] private Deck _deck = null!;
-    [Export] private Board? _board;
+	[Export] private float CardAngleLimit = 90.0f;
+	[Export] private float MaxCardSpreadAngle = 20f;
+	[Export] private Deck _deck = null!;
+	[Export] private Board? _board;
 
-    private readonly List<HeldCard> _heldCards = [];
-    private readonly List<HeldCard> _touchedCards = []; // Liste der berührten Karten
-    
-    private int _currentSelectedCardIndex = -1; // Index der aktuell ausgewählten Karte
+	private readonly List<HeldCard> _heldCards = [];
+	private readonly List<HeldCard> _touchedCards = [];
 
+	private int _currentSelectedCardIndex = -1;
+	private HeldCard? _highlightedCard = null;
 
-    
-    [Export] private int _maxCardCount = 5;
-    [Export] private int _maxCardAtTurnEnd = 3;
-
-    public override void _Ready()
-    {
-        RepositionCards();
-    }
-    
+	[Export] public CollisionShape2D _discardArea = null!;
 
 
-    // Fügt eine Karte zur Hand hinzu
+	[Export] private int _maxCardCount = 5;
+	[Export] private int _maxCardAtTurnEnd = 3;
+
+	public override void _Ready() {
+		RepositionCards();
+	}
+
+	public override void _Process(double delta) {
+		// Entferne Highlight von allen Karten
+		foreach (var card in _heldCards) {
+			card.Unhighlight();
+		}
+
+		// Hebe nur die oberste Karte hervor
+		if (_touchedCards.Count > 0) {
+			// Finde die oberste Karte (die zuletzt berührte Karte)
+			_currentSelectedCardIndex = _heldCards.FindLastIndex(card => _touchedCards.Contains(card));
+			if (_currentSelectedCardIndex != -1)
+				_heldCards[_currentSelectedCardIndex].Highlight();
+		} else {
+			_currentSelectedCardIndex = -1; // Keine Karte ausgewählt
+		}
+	}
+
+	public CollisionShape2D GetCollisionShape2D() {
+		return _discardArea;
+	}
+
+
+// Fügt eine Karte zur Hand hinzu
     public void AddCard(HeldCard card)
     {
         _heldCards.Add(card);
@@ -140,5 +161,22 @@ public partial class PlayerHand : Node2D {
 	    else
 		    GD.PrintErr("Couldn't play card, because the PlayerHand state isn't fully initialized!");
     }
+    
+    public void HandleCardHovered(HeldCard card)
+    {
+	    if (!_touchedCards.Contains(card))
+	    {
+		    _touchedCards.Add(card);
+	    }
+    }
 
+    public void HandleCardUnhovered(HeldCard card)
+    {
+	    if (_touchedCards.Contains(card))
+	    {
+		    _touchedCards.Remove(card); 
+	    }
+    }
+
+    
 }
