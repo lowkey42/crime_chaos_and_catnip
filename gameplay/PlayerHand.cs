@@ -5,14 +5,19 @@ using Godot;
 namespace CrimeChaosAndCatnip;
 
 [GlobalClass]
-public partial class PlayerHand : Node2D
-{
-    [Export] public int HandRadius = 100; 
+public partial class PlayerHand : Node2D {
+
+	[Export] private int HandRadius = 200;
     [Export] private float CardAngleLimit = 90.0f; 
     [Export] private float MaxCardSpreadAngle = 20f; 
     [Export] private Deck _deck;
 
     private readonly List<HeldCard> _heldCards = [];
+    private readonly List<HeldCard> _touchedCards = []; // Liste der berührten Karten
+    
+    private int _currentSelectedCardIndex = -1; // Index der aktuell ausgewählten Karte
+
+
     
     [Export] private int _maxCardCount = 5;
     [Export] private int _maxCardAtTurnEnd = 3;
@@ -21,6 +26,8 @@ public partial class PlayerHand : Node2D
     {
         RepositionCards();
     }
+    
+
 
     // Fügt eine Karte zur Hand hinzu
     public void AddCard(HeldCard card)
@@ -33,35 +40,38 @@ public partial class PlayerHand : Node2D
     // Positioniert die Karten neu
     private void RepositionCards()
     {
-        if (_heldCards.Count == 0) return;
+	    if (_heldCards.Count == 0) return;
 
-        // Berechne den Winkelabstand zwischen den Karten
-        float cardSpread = Mathf.Min(CardAngleLimit / _heldCards.Count, MaxCardSpreadAngle);
-        float currentAngle = -((cardSpread * _heldCards.Count) / 2) - 90; // Startwinkel
+	    // Berechne den Winkelabstand zwischen den Karten
+	    float cardSpread = Mathf.Min(CardAngleLimit / _heldCards.Count, MaxCardSpreadAngle);
+	    float currentAngle = -((cardSpread * (_heldCards.Count - 1)) / 2) - 90; // Startwinkel
+	    GD.Print("CardSpread" + cardSpread);
 
-        foreach (var card in _heldCards)
-        {
-            UpdateCardTransform(card, currentAngle);
-            currentAngle += cardSpread;
-        }
+	    foreach (var card in _heldCards)
+	    {
+		    UpdateCardTransform(card, currentAngle);
+		    currentAngle += cardSpread;
+	    }
+    }
+    
+    private Vector2 GetCardPosition(float angleInDegrees)
+    {
+		    float angleInRadians = Mathf.DegToRad(angleInDegrees);
+		    float x =  HandRadius * Mathf.Cos(angleInRadians);
+		    float y =  HandRadius * Mathf.Sin(angleInRadians);
+		    
+
+		    return new Vector2(x, y);
     }
 
     // Aktualisiert die Position und Rotation einer Karte
     private void UpdateCardTransform(HeldCard card, float angleInDegrees)
     {
-        float angleInRadians = Mathf.DegToRad(angleInDegrees);
-        card.Position = GetCardPosition(angleInRadians);
-        card.Rotation = angleInRadians + Mathf.Pi / 2; // Karten um 90 Grad drehen
+        card.Position = GetCardPosition(angleInDegrees);
+        card.Rotation = -card.Position.AngleTo(Vector2.Up);
+        card.Rotation = card.Position.Angle() + Mathf.Pi / 2;
     }
-
-    // Berechnet die Position einer Karte basierend auf dem Winkel
-    private Vector2 GetCardPosition(float angleInRadians)
-    {
-        float x = HandRadius * Mathf.Cos(angleInRadians);
-        float y = HandRadius * Mathf.Sin(angleInRadians);
-        return new Vector2(x, y);
-    }
-
+    
     // Zieht eine Karte vom Deck und fügt sie zur Hand hinzu
     public async Task DrawCard()
     {

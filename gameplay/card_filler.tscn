@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bgf747cndbtvf"]
-
-[ext_resource type="Texture2D" uid="uid://d33sktg0wyxci" path="res://gameplay/cards/instances/card_summon_cat.png" id="1_mf7im"]
-
-[node name="Node2D" type="Node2D"]
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("1_mf7im")

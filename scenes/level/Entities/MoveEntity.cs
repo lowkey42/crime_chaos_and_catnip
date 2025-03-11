@@ -5,9 +5,9 @@ using CrimeChaosAndCatnip.Level.Entities;
 
 public partial class MoveEntity : Control
 {
-	[Export] public Player Player; 
-	[Export] public Vector3 MoveDirection; 
-	[Export] public int MoveSteps; 
+	[Export] private Player Player; 
+	[Export] private Vector3 MoveDirection; 
+	[Export] private int MoveSteps; 
 
 	private void Pressed()
 	{

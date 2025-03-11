@@ -57,10 +57,10 @@ public partial class Gameplay : Node {
 	private int[,] _unitsMoveTargets;
 
 	public override void _Ready() {
-		_ = Warmup();
+		//_ = Warmup();
 	}
 
-	private async Task Warmup() {
+	public async Task Warmup() {
 		_currentState = State.Shuffle;
 		await _deck.ShuffleAnimation();
 		await Draw();
