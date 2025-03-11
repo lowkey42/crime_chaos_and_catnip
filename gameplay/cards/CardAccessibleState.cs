@@ -1,11 +1,12 @@
+#nullable enable
 namespace CrimeChaosAndCatnip;
 
 public class CardAccessibleState {
 
-	public Board.Cell TargetCell;
+	public required Board.Cell TargetCell;
 
-	public Board Board;
+	public required Board Board;
 
-	public PlayerHand PlayerHand;
+	public required PlayerHand PlayerHand;
 
 }

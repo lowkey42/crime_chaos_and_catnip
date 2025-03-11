@@ -103,7 +103,9 @@ public partial class Gameplay : Node {
 				if (unit.IsQueuedForDeletion() || unit.Stunned) // skip stunned units
 					continue;
 				
-				var cell = _board.GetCell(unit.BoardPosition);
+				var cell = _board.TryGetCell(unit.BoardPosition);
+				if (cell == null)
+					continue; // ignore units outside board area
 
 				// check if the unit is controlled by the player and the cell is an exit
 				if (unit is PlayerUnit playerUnit && cell.Objects.Any(obj => obj is Exit)) {
@@ -148,7 +150,7 @@ public partial class Gameplay : Node {
 			removed = 0;
 			for (var i = _unitsMovingInNextStep.Count - 1; i >= 0; i--) {
 				var unit = _unitsMovingInNextStep[i];
-				if (_board.IsBlocked(unit.BoardPosition, _unitsMovingInNextStep)) {
+				if (_board.IsBlocked(unit.MoveTarget, _unitsMovingInNextStep)) {
 					if(unit.Stun())
 						_unitsStunnedInNextStep.Add(unit);
 					_unitsMovingInNextStep.RemoveAt(i);

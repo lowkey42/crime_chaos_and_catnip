@@ -14,4 +14,11 @@ public partial class HeldCard : Node2D {
 		_sprite?.SetTexture(Card?.CardSprite);
 	}
 
+	public bool CanBePlayedAt(Vector2I boardPosition) {
+		return GetParentOrNull<PlayerHand>()?.CanBePlayedAt(this, boardPosition) ?? false;
+	}
+	public void PlayAt(Vector2I boardPosition) {
+		GetParentOrNull<PlayerHand>()?.PlayAt(this, boardPosition);
+	}
+
 }

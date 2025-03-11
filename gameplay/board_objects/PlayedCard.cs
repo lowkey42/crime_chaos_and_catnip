@@ -1,4 +1,3 @@
-using System;
 using Godot;
 
 namespace CrimeChaosAndCatnip;
@@ -8,7 +7,7 @@ public partial class PlayedCard : BoardObject {
 
 	public BoardOrientation BoardOrientation { get; private set; }
 
-	[Export] public CardBase Card { get; private set; }
+	[Export] public CardBase Card { get; set; }
 
 	[Export] private Sprite3D _sprite;
 
