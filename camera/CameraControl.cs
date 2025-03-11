@@ -34,6 +34,8 @@ public partial class CameraControl : Node
 	[Export] public float EdgeSensitivity = 100.0f;
 	private float _shiftFactor = 1.0f;
 
+	[Export] public bool EnableMouseCameraMovement = true;
+
 	[Export] public RayCast3D CameraRaycast;
 	
 	private CameraState _currentCameraState = CameraState.Isometric;
@@ -125,20 +127,21 @@ public partial class CameraControl : Node
 			var mousePos = GetViewport().GetMousePosition();
 			var screenSize = GetViewport().GetVisibleRect();
 
+			if(EnableMouseCameraMovement)
+			{
+				if (mousePos.X <= EdgeSensitivity) {
+					movement.X -= CameraSpeed * (float) delta;
+				} else if (mousePos.X >= screenSize.Size.X - EdgeSensitivity) {
+					movement.X += CameraSpeed * (float) delta;
+				}
 
-			if (mousePos.X <= EdgeSensitivity) {
-				movement.X -= CameraSpeed * (float) delta;
-			} else if (mousePos.X >= screenSize.Size.X - EdgeSensitivity) {
-				movement.X += CameraSpeed * (float) delta;
+
+				if (mousePos.Y <= EdgeSensitivity) {
+					movement.Z -= CameraSpeed * (float) delta;
+				} else if (mousePos.Y >= screenSize.Size.Y - EdgeSensitivity) {
+					movement.Z += CameraSpeed * (float) delta;
+				}
 			}
-
-
-			if (mousePos.Y <= EdgeSensitivity) {
-				movement.Z -= CameraSpeed * (float) delta;
-			} else if (mousePos.Y >= screenSize.Size.Y - EdgeSensitivity) {
-				movement.Z += CameraSpeed * (float) delta;
-			}
-
 			if (Input.IsActionPressed("rotate_camera_right"))
 			{
 				_targetRotation.Y -= Mathf.DegToRad(0.1f);
