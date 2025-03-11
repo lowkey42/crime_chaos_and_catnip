@@ -102,40 +102,45 @@ public partial class CameraControl : Node
 
 	public override void _Process(double delta)
 	{
-		if(_currentCameraState == CameraState.Isometric)
-		{
-			Vector3 movement = Vector3.Zero;
+		Vector3 movement = Vector3.Zero;
+		
+		if (_currentCameraState == CameraState.Isometric) {
 			
-			
-			
+
+
+
 			//Configures that the Camera moves on the borders of the screen.
 
 			Vector2 mousePos = GetViewport().GetMousePosition();
 			Rect2 screenSize = GetViewport().GetVisibleRect();
-			
-			
-			if (mousePos.X <= EdgeSensitivity)
-			{
-				movement.X -= CameraSpeed * (float)delta;
-			}
 
-			else if (mousePos.X >= screenSize.Size.X - EdgeSensitivity)
-			{
-				movement.X += CameraSpeed * (float)delta;
+
+			if (mousePos.X <= EdgeSensitivity) {
+				movement.X -= CameraSpeed * (float) delta;
+			} else if (mousePos.X >= screenSize.Size.X - EdgeSensitivity) {
+				movement.X += CameraSpeed * (float) delta;
 			}
 
 
-			if (mousePos.Y <= EdgeSensitivity)
-			{
-				movement.Z -= CameraSpeed * (float)delta;
-			}
-			else if (mousePos.Y >= screenSize.Size.Y - EdgeSensitivity)
-			{
-				movement.Z += CameraSpeed * (float)delta;
+			if (mousePos.Y <= EdgeSensitivity) {
+				movement.Z -= CameraSpeed * (float) delta;
+			} else if (mousePos.Y >= screenSize.Size.Y - EdgeSensitivity) {
+				movement.Z += CameraSpeed * (float) delta;
 			}
 			
-			
-			//Moves the camera on the correct axis with WASD
+			if (Input.IsActionPressed("rotate_camera_right"))
+			{
+				_targetRotation.Y -= Mathf.DegToRad(0.1f);
+			}
+
+			if (Input.IsActionPressed("rotate_camera_left"))
+			{
+				_targetRotation.Y += Mathf.DegToRad(0.1f);
+			}
+
+		}
+
+		//Moves the camera on the correct axis with WASD
 
 			if (Input.IsActionPressed("move_camera_down"))
 			{
@@ -165,31 +170,39 @@ public partial class CameraControl : Node
 				movement.Y -= 1;
 			}
 
-			
-			//Rotate the Camera 
-			
-			if (Input.IsActionPressed("rotate_camera_right"))
-			{
-				_targetRotation.Y -= Mathf.DegToRad(0.1f);
-			}
-
-			if (Input.IsActionPressed("rotate_camera_left"))
-			{
-				_targetRotation.Y += Mathf.DegToRad(0.1f);
-			}
-
-
 			Transform3D cameraTransform = IsometricCamera.GlobalTransform;
 
-			Vector3 localMovement = cameraTransform.Basis * (movement.Normalized() * CameraSpeed * (float)delta);
+			Vector3 movementDirection = movement.Normalized();
+			movementDirection.Y = 0;
+
+			Vector3 forward = cameraTransform.Basis.Z;
+			Vector3 right = cameraTransform.Basis.X;
 
 
-			IsometricCamera.Position += localMovement;
+			forward.Y = 0;
+			right.Y = 0;
 
-			_targetPosition = IsometricCamera.Position;
+			forward = forward.Normalized();
+			right = right.Normalized();
 
-			IsometricCamera.Rotation = _targetRotation;
-		}
+			Vector3 localMovement = (right * movementDirection.X + forward * movementDirection.Z) * CameraSpeed * (float)delta;
+
+			
+			
+			if (_currentCameraState == CameraState.Isometric) {
+				IsometricCamera.Position += localMovement;
+				_targetPosition = IsometricCamera.Position;
+				IsometricCamera.Rotation = _targetRotation;
+			} else {
+				TopDownCamera.Position += localMovement;
+				_targetPosition = TopDownCamera.Position;
+			}
+
+
+			
+
+			
+
 
 	}
 }
