@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4ufa4onh1vrb"]
+
+[ext_resource type="Script" uid="uid://bf661tpm2k0ry" path="res://camera/CameraControl.cs" id="1_a2eoo"]
+
+[node name="Cameras" type="Node"]
+
+[node name="FreeCamera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.819152, 0.573576, 0, -0.573576, 0.819152, -2, 10, 20)
+
+[node name="TopDownCamera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.173648, 0.984808, 0, -0.984808, 0.173648, -2, 22, 10)
+
+[node name="CameraControl" type="Node" parent="." node_paths=PackedStringArray("IsometricCamera", "TopDownCamera")]
+script = ExtResource("1_a2eoo")
+BaseCameraMove = Vector3(0, -10, 10)
+RotationDegree = 40.0
+IsometricCamera = NodePath("../FreeCamera")
+TopDownCamera = NodePath("../TopDownCamera")
+RotationSpeed = 0.005
+EdgeSensitivity = 5.0
