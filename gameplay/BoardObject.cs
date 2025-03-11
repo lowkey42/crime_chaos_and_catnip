@@ -5,7 +5,7 @@ using Godot;
 namespace CrimeChaosAndCatnip;
 
 public abstract partial class BoardObject : Node3D {
-
+	
 	[Flags] public enum InteractResult {
 
 		Ignored = 0,

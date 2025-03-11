@@ -11,6 +11,9 @@ namespace CrimeChaosAndCatnip;
 [GlobalClass]
 public partial class Board : Node {
 
+	[Signal]
+	public delegate void BoardChangedEventHandler(Vector2I boardPosition);
+
 	[Export] private Vector2I _maxGridSize;
 
 	public class Cell(Vector3 position) {
@@ -87,6 +90,7 @@ public partial class Board : Node {
 		cell.Objects.Add(obj);
 		if(obj is Unit unit)
 			_units.Add(unit);
+		EmitSignalBoardChanged(boardPosition);
 	}
 
 	public void RemoveObject(Vector2I boardPosition, BoardObject obj) {
@@ -95,6 +99,7 @@ public partial class Board : Node {
 		_cells[boardPosition.X, boardPosition.Y].Objects.Remove(obj);
 		if(obj is Unit unit)
 			_units.Remove(unit);
+		EmitSignalBoardChanged(boardPosition);
 	}
 
 	public void MoveObject(Vector2I oldBoardPosition, Vector2I newBoardPosition, BoardObject obj) {
@@ -110,6 +115,8 @@ public partial class Board : Node {
 		if(cell.TryStack(obj))
 			return;
 		cell.Objects.Add(obj);
+		EmitSignalBoardChanged(oldBoardPosition);
+		EmitSignalBoardChanged(newBoardPosition);
 	}
 
 	public Cell GetCell(Vector2I boardPosition) {
