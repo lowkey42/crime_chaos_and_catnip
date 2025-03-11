@@ -1,8 +1,25 @@
 using Godot;
 using System;
 
+
 public partial class CameraControl : Node
 {
+	private enum CameraState {
+		Isometric,
+		TopDown,
+	}
+
+	private class CameraView {
+
+		public Vector3 Position { get; private set; } = Vector3.Zero;
+		public Vector3 Rotation { get; private set; } = Vector3.Zero;
+
+		public void SetView(Vector3 position, Vector3 rotation) {
+			Position = position;
+			Rotation = rotation;
+		}
+
+	}
 	[Export] public Vector3 BaseCameraMove;
 	[Export] public float RotationDegree;
 
@@ -15,44 +32,29 @@ public partial class CameraControl : Node
 	[Export] public float ZoomMin = 5.0f;
 	[Export] public float ZoomMax = 5.0f;
 	[Export] public float EdgeSensitivity = 100.0f;
-	private float CurrentZoomHeight;
+	private float _shiftFactor = 1.0f;
 
+	[Export] public bool EnableMouseCameraMovement = true;
 
-	private enum CameraState {
-		Isometric,
-		TopDown,
-	}
-
-	private class CameraView {
-
-		public Vector3 Position { get; set; } = Vector3.Zero;
-		public Vector3 Rotation { get; set; } = Vector3.Zero;
-
-		public void SetView(Vector3 position, Vector3 rotation) {
-			Position = position;
-			Rotation = rotation;
-		}
-
-	}
+	[Export] public RayCast3D CameraRaycast;
+	
 	private CameraState _currentCameraState = CameraState.Isometric;
 
 	private Vector3 _targetPosition;
 	private Vector3 _targetRotation;
 	[Export] public float LerpSpeed = 5.0f;
 
-	private CameraView _targetView;
 	private CameraView _originalIsometricView;
 	private CameraView _originalTopDownView;
+	
+	private bool _isRightMouseButtonPressed;
 
-
-
+	
 	public override void _Ready() {
 		
 		_originalIsometricView = new CameraView();
 		_originalTopDownView = new CameraView();
-		_targetView = new CameraView();
 		
-		_targetPosition = IsometricCamera.Position;
 		_targetRotation = IsometricCamera.Rotation;
 
 		_originalIsometricView.SetView(IsometricCamera.Position, IsometricCamera.Rotation);
@@ -64,78 +66,102 @@ public partial class CameraControl : Node
 
 	public override void _Input(InputEvent @event)
 	{
-		if (@event.IsActionPressed("toggle_isometric"))
-		{
-			if (_currentCameraState == CameraState.TopDown)
-			{
-				IsometricCamera.MakeCurrent();
+		if (@event.IsActionPressed("toggle_isometric")) {
+			switch (_currentCameraState) {
+				case CameraState.TopDown:
+					IsometricCamera.MakeCurrent();
 				
-				IsometricCamera.Position = _originalIsometricView.Position;
-				IsometricCamera.Rotation = _originalIsometricView.Rotation;
+					IsometricCamera.Position = _originalIsometricView.Position;
+					IsometricCamera.Rotation = _originalIsometricView.Rotation;
 				
-				_currentCameraState = CameraState.Isometric;
-			}
-			else if(_currentCameraState == CameraState.Isometric)
-			{
-				TopDownCamera.MakeCurrent();
-				_currentCameraState = CameraState.TopDown;
-				TopDownCamera.Position = _originalTopDownView.Position;
-				TopDownCamera.Rotation = _originalTopDownView.Rotation;
+					_currentCameraState = CameraState.Isometric;
+					break;
+				case CameraState.Isometric:
+					TopDownCamera.MakeCurrent();
+					_currentCameraState = CameraState.TopDown;
+					TopDownCamera.Position = _originalTopDownView.Position;
+					TopDownCamera.Rotation = _originalTopDownView.Rotation;
+					break;
+				default:
+					throw new ArgumentOutOfRangeException();
 			}
 
 			GD.Print("Isometric toggled!");
 		}
 
+
 		
-		if (@event is InputEventMouseButton mouseEvent && _currentCameraState == CameraState.Isometric)
-		{
-			if ((int)mouseEvent.ButtonIndex == 4)
-			{
-				IsometricCamera.Position = new Vector3(IsometricCamera.Position.X, IsometricCamera.Position.Y - 0.1f, IsometricCamera.Position.Z);
+		if (@event is InputEventMouseButton mouseEvent && _currentCameraState == CameraState.Isometric) {
+			switch ((int)mouseEvent.ButtonIndex) {
+				case 4:
+					IsometricCamera.Position = new Vector3(IsometricCamera.Position.X, IsometricCamera.Position.Y - 0.1f, IsometricCamera.Position.Z);
+					break;
+				case 5:
+					IsometricCamera.Position = new Vector3(IsometricCamera.Position.X, IsometricCamera.Position.Y + 0.1f, IsometricCamera.Position.Z);
+					break;
+				case 2:
+					break;
 			}
-			else if ((int)mouseEvent.ButtonIndex == 5)
-			{
-				IsometricCamera.Position = new Vector3(IsometricCamera.Position.X, IsometricCamera.Position.Y + 0.1f, IsometricCamera.Position.Z);
+		}
+		
+		switch (@event) {
+			case InputEventMouseButton { ButtonIndex: MouseButton.Right } mouseEvent2:
+				_isRightMouseButtonPressed = mouseEvent2.Pressed;
+				break;
+			case InputEventMouseMotion mouseMotionEvent when _isRightMouseButtonPressed: {
+				var rotationAmount = -mouseMotionEvent.Relative.X * 0.005f;
+				_targetRotation.Y += rotationAmount;
+				break;
 			}
 		}
 	}
 
 	public override void _Process(double delta)
 	{
-		if(_currentCameraState == CameraState.Isometric)
-		{
-			Vector3 movement = Vector3.Zero;
-			
-			
+		var movement = Vector3.Zero;
+		
+		if (_currentCameraState == CameraState.Isometric) {
 			
 			//Configures that the Camera moves on the borders of the screen.
 
-			Vector2 mousePos = GetViewport().GetMousePosition();
-			Rect2 screenSize = GetViewport().GetVisibleRect();
-			
-			
-			if (mousePos.X <= EdgeSensitivity)
-			{
-				movement.X -= CameraSpeed * (float)delta;
-			}
+			var mousePos = GetViewport().GetMousePosition();
+			var screenSize = GetViewport().GetVisibleRect();
 
-			else if (mousePos.X >= screenSize.Size.X - EdgeSensitivity)
+			if(EnableMouseCameraMovement)
 			{
-				movement.X += CameraSpeed * (float)delta;
-			}
+				if (mousePos.X <= EdgeSensitivity) {
+					movement.X -= CameraSpeed * (float) delta;
+				} else if (mousePos.X >= screenSize.Size.X - EdgeSensitivity) {
+					movement.X += CameraSpeed * (float) delta;
+				}
 
 
-			if (mousePos.Y <= EdgeSensitivity)
-			{
-				movement.Z -= CameraSpeed * (float)delta;
+				if (mousePos.Y <= EdgeSensitivity) {
+					movement.Z -= CameraSpeed * (float) delta;
+				} else if (mousePos.Y >= screenSize.Size.Y - EdgeSensitivity) {
+					movement.Z += CameraSpeed * (float) delta;
+				}
 			}
-			else if (mousePos.Y >= screenSize.Size.Y - EdgeSensitivity)
+			if (Input.IsActionPressed("rotate_camera_right"))
 			{
-				movement.Z += CameraSpeed * (float)delta;
+				_targetRotation.Y -= Mathf.DegToRad(0.1f);
 			}
-			
-			
-			//Moves the camera on the correct axis with WASD
+
+			if (Input.IsActionPressed("rotate_camera_left"))
+			{
+				_targetRotation.Y += Mathf.DegToRad(0.1f);
+			}
+
+		}
+		
+		if (Input.IsActionPressed("speedup_movement")) {
+			_shiftFactor = 3.0f;
+		}
+		else if (Input.IsActionJustReleased("speedup_movement")){
+			_shiftFactor = 1.0f;
+		}
+
+		//Moves the camera on the axis with WASD
 
 			if (Input.IsActionPressed("move_camera_down"))
 			{
@@ -165,31 +191,41 @@ public partial class CameraControl : Node
 				movement.Y -= 1;
 			}
 
-			
-			//Rotate the Camera 
-			
-			if (Input.IsActionPressed("rotate_camera_right"))
-			{
-				_targetRotation.Y -= Mathf.DegToRad(0.1f);
+			var cameraTransform = IsometricCamera.GlobalTransform;
+
+			var movementDirection = movement.Normalized();
+			movementDirection.Y = 0;
+
+			var forward = cameraTransform.Basis.Z;
+			var right = cameraTransform.Basis.X;
+
+
+			forward.Y = 0;
+			right.Y = 0;
+
+			forward = forward.Normalized();
+			right = right.Normalized();
+
+			var localMovement = (right * movementDirection.X + forward * movementDirection.Z) * CameraSpeed *  _shiftFactor *(float)delta;
+
+			CameraRaycast.GlobalPosition = IsometricCamera.Position;
+			CameraRaycast.TargetPosition = movement.Normalized() * 1.5f;
+			CameraRaycast.Rotation = IsometricCamera.Rotation;
+			CameraRaycast.ForceRaycastUpdate();
+
+			if (!CameraRaycast.IsColliding()) {
+				if (_currentCameraState == CameraState.Isometric) {
+					IsometricCamera.Position += localMovement;
+					_targetPosition = IsometricCamera.Position;
+					IsometricCamera.Rotation = _targetRotation;
+				} else {
+					localMovement = new Vector3(movement.X, 0, movement.Z) * CameraSpeed * _shiftFactor * (float)delta;
+
+					TopDownCamera.Position += localMovement;
+					_targetPosition = TopDownCamera.Position;
+				}
+				
 			}
-
-			if (Input.IsActionPressed("rotate_camera_left"))
-			{
-				_targetRotation.Y += Mathf.DegToRad(0.1f);
-			}
-
-
-			Transform3D cameraTransform = IsometricCamera.GlobalTransform;
-
-			Vector3 localMovement = cameraTransform.Basis * (movement.Normalized() * CameraSpeed * (float)delta);
-
-
-			IsometricCamera.Position += localMovement;
-
-			_targetPosition = IsometricCamera.Position;
-
-			IsometricCamera.Rotation = _targetRotation;
-		}
 
 	}
 }

@@ -1,35 +1,74 @@
-[gd_scene load_steps=5 format=3 uid="uid://g4qhvbvdm62w"]
+[gd_scene load_steps=7 format=3 uid="uid://g4qhvbvdm62w"]
 
 [ext_resource type="Script" uid="uid://cgakdkyg2lchh" path="res://scenes/game_settings_scene.gd" id="1_3764u"]
 [ext_resource type="PackedScene" uid="uid://bkk87o2ooo6at" path="res://ui/overlays/fade_overlay.tscn" id="1_w6tmj"]
+[ext_resource type="Texture2D" uid="uid://dt2fgehf87ng4" path="res://ui/menu_background.png" id="2_3hjmb"]
 [ext_resource type="PackedScene" uid="uid://nbaodrlopo7y" path="res://ui/components/game_settings.tscn" id="2_qsqie"]
 [ext_resource type="Theme" uid="uid://d22mpqutkotsu" path="res://ui/theme.tres" id="3_unbh4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ykg1"]
+content_margin_left = 50.0
+content_margin_top = 50.0
+content_margin_right = 50.0
+content_margin_bottom = 50.0
+bg_color = Color(1, 1, 0.788235, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.8, 0.545098, 0.8, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
 [node name="GameSettingsScene" type="Node2D"]
 script = ExtResource("1_3764u")
 
 [node name="UI" type="CanvasLayer" parent="."]
 
-[node name="CenterContainer" type="CenterContainer" parent="UI"]
+[node name="TextureRect" type="TextureRect" parent="UI"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("2_3hjmb")
+expand_mode = 5
+stretch_mode = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/CenterContainer"]
+[node name="Panel" type="PanelContainer" parent="UI"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -322.0
+offset_top = -188.0
+offset_right = 340.0
+offset_bottom = 146.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_styles/panel = SubResource("StyleBoxFlat_1ykg1")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Panel"]
 layout_mode = 2
 theme_override_constants/separation = 20
+alignment = 1
 
-[node name="SettingsLabel" type="Label" parent="UI/CenterContainer/VBoxContainer"]
+[node name="SettingsLabel" type="Label" parent="UI/Panel/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"HeaderLarge"
-text = "settings"
+text = "SETTINGS"
 
-[node name="GameSettings" parent="UI/CenterContainer/VBoxContainer" instance=ExtResource("2_qsqie")]
+[node name="GameSettings" parent="UI/Panel/VBoxContainer" instance=ExtResource("2_qsqie")]
 layout_mode = 2
 
-[node name="ReturnButton" type="Button" parent="UI/CenterContainer/VBoxContainer"]
+[node name="ReturnButton" type="Button" parent="UI/Panel/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("3_unbh4")
