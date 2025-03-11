@@ -16,7 +16,6 @@ public partial class CameraControl : Node
 	[Export] public float ZoomMin = 5.0f;
 	[Export] public float ZoomMax = 5.0f;
 	[Export] public float EdgeSensitivity = 100.0f;
-	private float _currentZoomHeight;
 	private float _shiftFactor = 1.0f;
 
 
@@ -27,8 +26,8 @@ public partial class CameraControl : Node
 
 	private class CameraView {
 
-		public Vector3 Position { get; set; } = Vector3.Zero;
-		public Vector3 Rotation { get; set; } = Vector3.Zero;
+		public Vector3 Position { get; private set; } = Vector3.Zero;
+		public Vector3 Rotation { get; private set; } = Vector3.Zero;
 
 		public void SetView(Vector3 position, Vector3 rotation) {
 			Position = position;
@@ -42,11 +41,10 @@ public partial class CameraControl : Node
 	private Vector3 _targetRotation;
 	[Export] public float LerpSpeed = 5.0f;
 
-	private CameraView _targetView;
 	private CameraView _originalIsometricView;
 	private CameraView _originalTopDownView;
 	
-	private bool _isRightMouseButtonPressed = false;
+	private bool _isRightMouseButtonPressed;
 
 
 
@@ -54,7 +52,6 @@ public partial class CameraControl : Node
 		
 		_originalIsometricView = new CameraView();
 		_originalTopDownView = new CameraView();
-		_targetView = new CameraView();
 		
 		_targetRotation = IsometricCamera.Rotation;
 
@@ -161,23 +158,23 @@ public partial class CameraControl : Node
 			_shiftFactor = 1.0f;
 		}
 
-		//Moves the camera on the correct axis with WASD
+		//Moves the camera on the axis with WASD
 
 			if (Input.IsActionPressed("move_camera_down"))
 			{
-				movement.Z += 1  * _shiftFactor;
+				movement.Z += 1;
 			}
 			if (Input.IsActionPressed("move_camera_up"))
 			{
-				movement.Z -= 1  * _shiftFactor;
+				movement.Z -= 1;
 			}
 			if (Input.IsActionPressed("move_camera_left"))
 			{
-				movement.X -= 1  * _shiftFactor;
+				movement.X -= 1;
 			}
 			if (Input.IsActionPressed("move_camera_right"))
 			{
-				movement.X += 1  * _shiftFactor;
+				movement.X += 1;
 			}
 			
 			//Implements Zoom
@@ -206,7 +203,7 @@ public partial class CameraControl : Node
 			forward = forward.Normalized();
 			right = right.Normalized();
 
-			Vector3 localMovement = (right * movementDirection.X + forward * movementDirection.Z) * CameraSpeed * (float)delta;
+			Vector3 localMovement = (right * movementDirection.X + forward * movementDirection.Z) * CameraSpeed *  _shiftFactor *(float)delta;
 
 			
 			
@@ -215,7 +212,7 @@ public partial class CameraControl : Node
 				_targetPosition = IsometricCamera.Position;
 				IsometricCamera.Rotation = _targetRotation;
 			} else {
-				localMovement = new Vector3(movement.X, 0, movement.Z) * CameraSpeed * (float)delta;
+				localMovement = new Vector3(movement.X, 0, movement.Z) * CameraSpeed * _shiftFactor * (float)delta;
 
 				TopDownCamera.Position += localMovement;
 				_targetPosition = TopDownCamera.Position;
