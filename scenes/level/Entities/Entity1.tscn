@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://b5wlrovcs7af5"]
+
+[ext_resource type="Script" uid="uid://bld2u7tj2co7j" path="res://scenes/level/Entities/Player.cs" id="1_jw5a0"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1vjg5"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_1vjg5"]
+
+[node name="Entity" type="Node3D"]
+script = ExtResource("1_jw5a0")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+axis_lock_linear_y = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("CapsuleShape3D_1vjg5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D/CollisionShape3D"]
+mesh = SubResource("CapsuleMesh_1vjg5")
+skeleton = NodePath("../../..")

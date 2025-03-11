@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://wb4eswywuje4"]
+
+[ext_resource type="Script" uid="uid://dm8wpijh82ynv" path="res://gameplay/board_objects/Obstacle.cs" id="1_bnm6d"]
+
+[node name="InvisibleObstacle" type="Node3D"]
+script = ExtResource("1_bnm6d")

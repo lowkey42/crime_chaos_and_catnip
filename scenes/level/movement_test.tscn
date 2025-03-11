@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://dnppihids23cj"]
+
+[ext_resource type="PackedScene" uid="uid://b5wlrovcs7af5" path="res://scenes/level/Entities/Entity1.tscn" id="1_hlu4m"]
+[ext_resource type="MeshLibrary" uid="uid://d03bpy71uqqwv" path="res://gridsystem/grid_base_tile.tres" id="2_l3mq8"]
+[ext_resource type="PackedScene" uid="uid://vckgd66or4ru" path="res://ui/components/overlay_test.tscn" id="3_6onwk"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_l3mq8"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_6onwk"]
+sky_material = SubResource("ProceduralSkyMaterial_l3mq8")
+
+[sub_resource type="Environment" id="Environment_8rgik"]
+background_mode = 2
+sky = SubResource("Sky_6onwk")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="movement_test" type="Node"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_8rgik")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 4.45261, 6.16782)
+projection = 1
+size = 13.334
+
+[node name="Players" type="Node" parent="."]
+
+[node name="Entity" parent="Players" node_paths=PackedStringArray("GridMap") instance=ExtResource("1_hlu4m")]
+GridMap = NodePath("../../Environmentmap/GridMap")
+
+[node name="Environmentmap" type="Node3D" parent="."]
+
+[node name="GridMap" type="GridMap" parent="Environmentmap"]
+mesh_library = ExtResource("2_l3mq8")
+cell_size = Vector3(1, 1, 1)
+data = {
+"cells": PackedInt32Array(0, 0, 327680, 0, 1, 327680, 0, 2, 327680, 0, 3, 327680, 65531, 5, 327680, 65532, 5, 327680, 65533, 5, 327680, 65534, 4, 327680, 65535, 4, 327680, 0, 4, 327680, 1, 3, 327680, 2, 3, 327680, 2, 2, 327680, 3, 2, 327680, 4, 1, 327680, 3, 3, 327680, 2, 4, 327680, 1, 4, 327680, 1, 5, 327680, 0, 5, 327680, 65535, 5, 327680, 65534, 5, 327680, 1, 0, 327680, 1, 1, 327680, 1, 2, 327680, 65535, 1, 327680, 65535, 2, 327680, 65535, 3, 327680, 65534, 3, 327680, 65534, 2, 327680, 65534, 1, 327680, 65533, 1, 327680, 65533, 2, 327680, 65533, 3, 327680, 65532, 3, 327680, 65532, 4, 327680, 65531, 4, 327680, 65531, 3, 327680, 65532, 2, 327680, 65531, 2, 327680, 65533, 4, 327680, 65531, 0, 327680, 65532, 0, 327680, 65533, 0, 327680, 65534, 0, 327680, 65535, 0, 327680, 65535, 65535, 327680, 0, 65535, 327680, 2, 0, 327680, 3, 0, 327680, 3, 1, 327680, 2, 1, 327680, 4, 2, 327680, 4, 3, 327680, 3, 4, 327680, 2, 5, 327680, 3, 5, 327680, 4, 5, 327680, 4, 4, 327680, 4, 0, 327680, 5, 0, 327680, 5, 65535, 327680, 4, 65535, 327680, 3, 65535, 327680, 2, 65535, 327680, 1, 65535, 327680, 65534, 65535, 327680, 65533, 65535, 327680, 65532, 65535, 327680, 65531, 65535, 327680, 65530, 65535, 327680, 65530, 0, 327680, 65529, 65535, 327680, 65530, 1, 327680, 65530, 2, 327680, 65530, 3, 327680, 65530, 4, 327680, 65530, 5, 327680, 65529, 0, 327680, 65529, 1, 327680, 65531, 1, 327680, 65532, 1, 327680, 65529, 2, 327680, 65529, 3, 327680, 5, 1, 327680)
+}
+
+[node name="Control" parent="." node_paths=PackedStringArray("Player") instance=ExtResource("3_6onwk")]
+Player = NodePath("../Players/Entity")
+MoveDirection = Vector3(1, 0, 0)
+MoveSteps = 6

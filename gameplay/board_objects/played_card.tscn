@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkfm8wp8c8y0r"]
+
+[ext_resource type="Script" uid="uid://b67fjbuuyo5p2" path="res://gameplay/board_objects/PlayedCard.cs" id="1_l1kc4"]
+[ext_resource type="Texture2D" uid="uid://cw4qn5ngn6ax5" path="res://gameplay/cards/instances/card_move_10.png" id="2_mkp7v"]
+
+[node name="PlayedCard" type="Node3D" node_paths=PackedStringArray("_sprite")]
+script = ExtResource("1_l1kc4")
+_sprite = NodePath("Sprite3D")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.095, 0, 0, 0, -4.15258e-09, 0.095, 0, -0.095, -4.15258e-09, 0, 0, 0)
+shaded = true
+texture = ExtResource("2_mkp7v")

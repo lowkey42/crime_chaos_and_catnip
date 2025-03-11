@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8fvd606ep5u"]
+
+[ext_resource type="Script" uid="uid://ducu2kng5aotl" path="res://gameplay/cards/HeldCard.cs" id="1_dxi6h"]
+
+[node name="HeldCard" type="Node2D" node_paths=PackedStringArray("_sprite")]
+script = ExtResource("1_dxi6h")
+_sprite = NodePath("Sprite2D")
+metadata/_custom_type_script = "uid://ducu2kng5aotl"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]

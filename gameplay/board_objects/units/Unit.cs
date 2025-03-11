@@ -1,0 +1,62 @@
+using System;
+using Godot;
+
+namespace CrimeChaosAndCatnip;
+
+[GlobalClass]
+public partial class Unit : BoardObject {
+
+	[Signal]
+	public delegate void LootCollectedEventHandler(int value);
+	
+	[Signal]
+	public delegate void StunAddedEventHandler();
+	
+	[Signal]
+	public delegate void StunClearedEventHandler();
+	
+	
+	[Export] public BoardOrientation MovementDirection = BoardOrientation.North;
+
+	[Export] public int MovementLeft = 0;
+
+	public override bool BlocksField => false;
+
+	public bool WantsToMove => MovementLeft > 0;
+
+	public int CollectedLoot { get; private set; } = 0;
+
+	public bool Stunned { get; private set; } = false;
+
+	public Vector2I MoveTarget => !WantsToMove
+		? Vector2I.Zero
+		: MovementDirection switch {
+			BoardOrientation.North => BoardPosition + new Vector2I(0, 1),
+			BoardOrientation.South => BoardPosition + new Vector2I(0, 1),
+			BoardOrientation.East => BoardPosition + new Vector2I(1, 0),
+			BoardOrientation.West => BoardPosition + new Vector2I(-1, 0),
+			_ => throw new ArgumentOutOfRangeException()
+		};
+
+	public void IncreaseLoot(int value) {
+		CollectedLoot += value;
+		EmitSignalLootCollected(value);
+	}
+
+	public void ClearStunned() {
+		if(Stunned)
+			EmitSignalStunCleared();
+		
+		Stunned = false;
+	}
+
+	public bool Stun() {
+		if (Stunned)
+			return false;
+		
+		EmitSignalStunAdded();
+		Stunned = true;
+		return true;
+	}
+
+}
