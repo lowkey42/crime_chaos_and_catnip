@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://bhmi15nw6utp5"]
+[gd_scene load_steps=5 format=3 uid="uid://bhmi15nw6utp5"]
 
 [ext_resource type="Script" uid="uid://b4tr0lmx326c7" path="res://gameplay/Board.cs" id="1_2r62q"]
 [ext_resource type="MeshLibrary" uid="uid://cvv88uq58uueb" path="res://mesh/MeshBib.tres" id="2_v8hvj"]
 [ext_resource type="PackedScene" uid="uid://cpt7ckkgkei2h" path="res://3D-Assets/CityLayoutExample.glb" id="3_83vdy"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_83vdy"]
+radius = 2.74598
 
 [node name="Level01" type="Node"]
 
@@ -16,9 +19,20 @@ cell_size = Vector3(1, 1, 1)
 data = {
 "cells": PackedInt32Array(65535, 1, 1, 65534, 1, 1, 65534, 2, 1, 65535, 2, 1, 0, 2, 1, 1, 2, 1, 2, 2, 1, 3, 2, 1, 4, 2, 1, 4, 1, 1, 5, 1, 1, 5, 0, 1, 5, 65535, 1, 4, 65534, 1, 3, 65534, 1, 2, 65534, 1, 1, 65534, 1, 0, 65534, 1, 65535, 65534, 1, 65534, 65534, 1, 65533, 65534, 1, 65532, 65534, 1, 65532, 65535, 1, 65531, 65535, 1, 65531, 0, 1, 65532, 1, 1, 65532, 2, 1, 65533, 2, 1, 65534, 3, 1, 65535, 3, 1, 0, 3, 1, 1, 3, 1, 2, 3, 1, 3, 3, 1, 4, 3, 1, 5, 2, 1, 4, 0, 1, 3, 0, 1, 2, 0, 1, 1, 65535, 1, 0, 65535, 1, 65535, 65535, 1, 65534, 65535, 1, 65533, 65535, 1, 65532, 0, 1, 65533, 0, 1, 65533, 1, 1, 65534, 0, 1, 65535, 0, 1, 0, 0, 1, 1, 0, 1, 2, 1, 1, 3, 1, 1, 0, 1, 1, 1, 1, 1, 2, 65535, 1, 3, 65535, 1, 4, 65535, 1, 131070, 0, 1, 131071, 0, 1, 65536, 0, 1, 65537, 0, 1, 65538, 0, 1, 65538, 1, 1, 65539, 1, 1, 65537, 1, 1, 65536, 1, 1, 131071, 1, 1, 131070, 1, 1, 196606, 0, 1, 196607, 0, 1, 131072, 0, 1, 131073, 0, 1, 131073, 1, 1, 131072, 1, 1, 196607, 1, 1, 196606, 1, 1, 262142, 0, 1, 262143, 0, 1, 196608, 0, 1, 196608, 1, 1, 262143, 1, 1, 262142, 1, 1)
 }
-metadata/_editor_floor_ = Vector3(0, 3, 0)
+metadata/_editor_floor_ = Vector3(0, 0, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.831557, 0.55544, 0, -0.55544, 0.831557, 0, 6.21321, 7.83379)
 
 [node name="CityLayoutExample" parent="." instance=ExtResource("3_83vdy")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.55355, 9.98619, 10.4124)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.37747, 1.75281, 0)
+shape = SubResource("SphereShape3D_83vdy")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.66802, 2.20512, 0)
+radius = 2.4377

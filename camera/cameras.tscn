@@ -10,7 +10,7 @@ transform = Transform3D(1, 0, 0, 0, 0.819152, 0.573576, 0, -0.573576, 0.819152, 
 [node name="TopDownCamera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.173648, 0.984808, 0, -0.984808, 0.173648, -2, 22, 10)
 
-[node name="CameraControl" type="Node" parent="." node_paths=PackedStringArray("IsometricCamera", "TopDownCamera")]
+[node name="CameraControl" type="Node" parent="." node_paths=PackedStringArray("IsometricCamera", "TopDownCamera", "CameraRaycast")]
 script = ExtResource("1_a2eoo")
 BaseCameraMove = Vector3(0, -10, 10)
 RotationDegree = 40.0
@@ -18,3 +18,7 @@ IsometricCamera = NodePath("../FreeCamera")
 TopDownCamera = NodePath("../TopDownCamera")
 RotationSpeed = 0.005
 EdgeSensitivity = 5.0
+CameraRaycast = NodePath("../RayCast3D")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.02089, 0)

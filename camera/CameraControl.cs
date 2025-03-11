@@ -33,6 +33,8 @@ public partial class CameraControl : Node
 	[Export] public float ZoomMax = 5.0f;
 	[Export] public float EdgeSensitivity = 100.0f;
 	private float _shiftFactor = 1.0f;
+
+	[Export] public RayCast3D CameraRaycast;
 	
 	private CameraState _currentCameraState = CameraState.Isometric;
 
@@ -203,17 +205,24 @@ public partial class CameraControl : Node
 
 			var localMovement = (right * movementDirection.X + forward * movementDirection.Z) * CameraSpeed *  _shiftFactor *(float)delta;
 
-			
-			
-			if (_currentCameraState == CameraState.Isometric) {
-				IsometricCamera.Position += localMovement;
-				_targetPosition = IsometricCamera.Position;
-				IsometricCamera.Rotation = _targetRotation;
-			} else {
-				localMovement = new Vector3(movement.X, 0, movement.Z) * CameraSpeed * _shiftFactor * (float)delta;
+			CameraRaycast.GlobalPosition = IsometricCamera.Position;
+			CameraRaycast.TargetPosition = movement.Normalized() * 1.5f;
+			CameraRaycast.Rotation = IsometricCamera.Rotation;
+			CameraRaycast.ForceRaycastUpdate();
 
-				TopDownCamera.Position += localMovement;
-				_targetPosition = TopDownCamera.Position;
+			if (!CameraRaycast.IsColliding()) {
+				if (_currentCameraState == CameraState.Isometric) {
+					IsometricCamera.Position += localMovement;
+					_targetPosition = IsometricCamera.Position;
+					IsometricCamera.Rotation = _targetRotation;
+				} else {
+					localMovement = new Vector3(movement.X, 0, movement.Z) * CameraSpeed * _shiftFactor * (float)delta;
+
+					TopDownCamera.Position += localMovement;
+					_targetPosition = TopDownCamera.Position;
+				}
+				
 			}
+
 	}
 }
