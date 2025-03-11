@@ -1,24 +1,9 @@
 using Godot;
 using System;
-using System.Diagnostics;
+
 
 public partial class CameraControl : Node
 {
-	[Export] public Vector3 BaseCameraMove;
-	[Export] public float RotationDegree;
-
-	[Export] public Camera3D IsometricCamera;
-	[Export] public Camera3D TopDownCamera;
-	[Export] public float CameraSpeed = 10.0f;
-
-	[Export] public float RotationSpeed = 5.0f;
-	[Export] public float ZoomSpeed = 5.0f;
-	[Export] public float ZoomMin = 5.0f;
-	[Export] public float ZoomMax = 5.0f;
-	[Export] public float EdgeSensitivity = 100.0f;
-	private float _shiftFactor = 1.0f;
-
-
 	private enum CameraState {
 		Isometric,
 		TopDown,
@@ -35,6 +20,20 @@ public partial class CameraControl : Node
 		}
 
 	}
+	[Export] public Vector3 BaseCameraMove;
+	[Export] public float RotationDegree;
+
+	[Export] public Camera3D IsometricCamera;
+	[Export] public Camera3D TopDownCamera;
+	[Export] public float CameraSpeed = 10.0f;
+
+	[Export] public float RotationSpeed = 5.0f;
+	[Export] public float ZoomSpeed = 5.0f;
+	[Export] public float ZoomMin = 5.0f;
+	[Export] public float ZoomMax = 5.0f;
+	[Export] public float EdgeSensitivity = 100.0f;
+	private float _shiftFactor = 1.0f;
+	
 	private CameraState _currentCameraState = CameraState.Isometric;
 
 	private Vector3 _targetPosition;
@@ -46,8 +45,7 @@ public partial class CameraControl : Node
 	
 	private bool _isRightMouseButtonPressed;
 
-
-
+	
 	public override void _Ready() {
 		
 		_originalIsometricView = new CameraView();
@@ -122,8 +120,8 @@ public partial class CameraControl : Node
 			
 			//Configures that the Camera moves on the borders of the screen.
 
-			Vector2 mousePos = GetViewport().GetMousePosition();
-			Rect2 screenSize = GetViewport().GetVisibleRect();
+			var mousePos = GetViewport().GetMousePosition();
+			var screenSize = GetViewport().GetVisibleRect();
 
 
 			if (mousePos.X <= EdgeSensitivity) {
@@ -188,13 +186,13 @@ public partial class CameraControl : Node
 				movement.Y -= 1;
 			}
 
-			Transform3D cameraTransform = IsometricCamera.GlobalTransform;
+			var cameraTransform = IsometricCamera.GlobalTransform;
 
-			Vector3 movementDirection = movement.Normalized();
+			var movementDirection = movement.Normalized();
 			movementDirection.Y = 0;
 
-			Vector3 forward = cameraTransform.Basis.Z;
-			Vector3 right = cameraTransform.Basis.X;
+			var forward = cameraTransform.Basis.Z;
+			var right = cameraTransform.Basis.X;
 
 
 			forward.Y = 0;
@@ -203,7 +201,7 @@ public partial class CameraControl : Node
 			forward = forward.Normalized();
 			right = right.Normalized();
 
-			Vector3 localMovement = (right * movementDirection.X + forward * movementDirection.Z) * CameraSpeed *  _shiftFactor *(float)delta;
+			var localMovement = (right * movementDirection.X + forward * movementDirection.Z) * CameraSpeed *  _shiftFactor *(float)delta;
 
 			
 			
