@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bk0xr0r2g3mtf"
-path="res://.godot/imported/lowpolycar-taxi.glb-ae11467d7fcf9985952f101ebe3cb726.scn"
+uid="uid://phat4lowfbd2"
+path="res://.godot/imported/Gebeude_4.glb-96faa55eb08383dd047fd8dd80949699.scn"
 
 [deps]
 
-source_file="res://assets/3D/cars/lowpolycar-taxi.glb"
-dest_files=["res://.godot/imported/lowpolycar-taxi.glb-ae11467d7fcf9985952f101ebe3cb726.scn"]
+source_file="res://assets/3D/cars/Gebeude_4.glb"
+dest_files=["res://.godot/imported/Gebeude_4.glb-96faa55eb08383dd047fd8dd80949699.scn"]
 
 [params]
 

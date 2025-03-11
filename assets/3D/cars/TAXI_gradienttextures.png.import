@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bh00tosmppdr8"
-path.s3tc="res://.godot/imported/lowpolycar-jeep_gradienttextures.png-675c0a5ec55b8f595a3849e367e88363.s3tc.ctex"
+uid="uid://b010cwsekxcig"
+path.s3tc="res://.godot/imported/TAXI_gradienttextures.png-1932adcdbe45dce2215931f1a581b6e5.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -14,8 +14,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://assets/3D/cars/lowpolycar-jeep_gradienttextures.png"
-dest_files=["res://.godot/imported/lowpolycar-jeep_gradienttextures.png-675c0a5ec55b8f595a3849e367e88363.s3tc.ctex"]
+source_file="res://assets/3D/cars/TAXI_gradienttextures.png"
+dest_files=["res://.godot/imported/TAXI_gradienttextures.png-1932adcdbe45dce2215931f1a581b6e5.s3tc.ctex"]
 
 [params]
 

@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://b8no4lwu22gs7"
-path="res://.godot/imported/Briefkasten.glb-9ce8036b5457352c440f2c83baeebe31.scn"
+uid="uid://b3d8rso31w0ud"
+path="res://.godot/imported/TAXI.glb-92bd830f817090ca73b7329478cd1be4.scn"
 
 [deps]
 
-source_file="res://assets/3D/small things/Briefkasten.glb"
-dest_files=["res://.godot/imported/Briefkasten.glb-9ce8036b5457352c440f2c83baeebe31.scn"]
+source_file="res://assets/3D/cars/TAXI.glb"
+dest_files=["res://.godot/imported/TAXI.glb-92bd830f817090ca73b7329478cd1be4.scn"]
 
 [params]
 

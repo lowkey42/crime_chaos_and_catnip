@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bn1jtn6jrfq3o"
-path.s3tc="res://.godot/imported/Briefkasten_gradienttextures.png-9cacf66cea97cac8f65252e6ac4a41a6.s3tc.ctex"
+uid="uid://ub21a5018420"
+path.s3tc="res://.godot/imported/lowpolycar-jeep1_gradienttextures.png-8cc49119b550103ae814fea17a457b42.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -14,8 +14,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://assets/3D/small things/Briefkasten_gradienttextures.png"
-dest_files=["res://.godot/imported/Briefkasten_gradienttextures.png-9cacf66cea97cac8f65252e6ac4a41a6.s3tc.ctex"]
+source_file="res://assets/3D/cars/lowpolycar-jeep1_gradienttextures.png"
+dest_files=["res://.godot/imported/lowpolycar-jeep1_gradienttextures.png-8cc49119b550103ae814fea17a457b42.s3tc.ctex"]
 
 [params]
 
