@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://byc6c5ha52ypt"
-path="res://.godot/imported/Polizei.glb-6975aa2d3199735cf37714fbe2d43368.scn"
+uid="uid://c2e6oyoa48pwq"
+path="res://.godot/imported/lowpolycar-jeep1.glb-d548e1b2b2ee6b99908758db9bc7ba8d.scn"
 
 [deps]
 
-source_file="res://assets/3D/cars/Polizei.glb"
-dest_files=["res://.godot/imported/Polizei.glb-6975aa2d3199735cf37714fbe2d43368.scn"]
+source_file="res://assets/3D/cars/lowpolycar-jeep1.glb"
+dest_files=["res://.godot/imported/lowpolycar-jeep1.glb-d548e1b2b2ee6b99908758db9bc7ba8d.scn"]
 
 [params]
 

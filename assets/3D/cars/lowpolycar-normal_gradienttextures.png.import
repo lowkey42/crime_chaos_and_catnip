@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bn1jtn6jrfq3o"
-path.s3tc="res://.godot/imported/Briefkasten_gradienttextures.png-9cacf66cea97cac8f65252e6ac4a41a6.s3tc.ctex"
+uid="uid://dvin2l8l1yj6r"
+path.s3tc="res://.godot/imported/lowpolycar-normal_gradienttextures.png-c1ca7546df30d403d396c6c360d2244a.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -14,8 +14,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://assets/3D/small things/Briefkasten_gradienttextures.png"
-dest_files=["res://.godot/imported/Briefkasten_gradienttextures.png-9cacf66cea97cac8f65252e6ac4a41a6.s3tc.ctex"]
+source_file="res://assets/3D/cars/lowpolycar-normal_gradienttextures.png"
+dest_files=["res://.godot/imported/lowpolycar-normal_gradienttextures.png-c1ca7546df30d403d396c6c360d2244a.s3tc.ctex"]
 
 [params]
 

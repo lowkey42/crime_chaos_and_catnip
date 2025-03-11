@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bn1jtn6jrfq3o"
-path.s3tc="res://.godot/imported/Briefkasten_gradienttextures.png-9cacf66cea97cac8f65252e6ac4a41a6.s3tc.ctex"
+uid="uid://dwrjdva54o7kq"
+path.s3tc="res://.godot/imported/Gebeude_2_gradienttextures.png-1a14f44bbb3586d46ce51402ea15eae8.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "df6e0b0bbfe090b56d39561daf76effd"
+"md5": "649f3b0f3cb84b8fb653b1dd2bdc2381"
 }
 
 [deps]
 
-source_file="res://assets/3D/small things/Briefkasten_gradienttextures.png"
-dest_files=["res://.godot/imported/Briefkasten_gradienttextures.png-9cacf66cea97cac8f65252e6ac4a41a6.s3tc.ctex"]
+source_file="res://assets/3D/cars/Gebeude_2_gradienttextures.png"
+dest_files=["res://.godot/imported/Gebeude_2_gradienttextures.png-1a14f44bbb3586d46ce51402ea15eae8.s3tc.ctex"]
 
 [params]
 

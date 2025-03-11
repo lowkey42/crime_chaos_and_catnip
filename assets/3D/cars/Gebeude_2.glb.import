@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://yp8f7nta60sw"
-path="res://.godot/imported/lowpolycar-jeep.glb-4803a66c0a4516a8b658b4ccc779b27d.scn"
+uid="uid://c64rip6tr4lpx"
+path="res://.godot/imported/Gebeude_2.glb-62f773ae2085517a6f57567af92ecb2e.scn"
 
 [deps]
 
-source_file="res://assets/3D/cars/lowpolycar-jeep.glb"
-dest_files=["res://.godot/imported/lowpolycar-jeep.glb-4803a66c0a4516a8b658b4ccc779b27d.scn"]
+source_file="res://assets/3D/cars/Gebeude_2.glb"
+dest_files=["res://.godot/imported/Gebeude_2.glb-62f773ae2085517a6f57567af92ecb2e.scn"]
 
 [params]
 

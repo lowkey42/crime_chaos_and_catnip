@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bevde8ryb14mm"
-path.s3tc="res://.godot/imported/lowpolycar-small_gradienttextures.png-6e3b844ed93bd27cdde847f600ace7bc.s3tc.ctex"
+uid="uid://betvqbvqxxn1f"
+path.s3tc="res://.godot/imported/Polizei1_gradienttextures.png-a7b955d980d99c7cdad4c442492e2231.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -14,8 +14,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://assets/3D/cars/lowpolycar-small_gradienttextures.png"
-dest_files=["res://.godot/imported/lowpolycar-small_gradienttextures.png-6e3b844ed93bd27cdde847f600ace7bc.s3tc.ctex"]
+source_file="res://assets/3D/cars/Polizei1_gradienttextures.png"
+dest_files=["res://.godot/imported/Polizei1_gradienttextures.png-a7b955d980d99c7cdad4c442492e2231.s3tc.ctex"]
 
 [params]
 
