@@ -54,6 +54,7 @@ public partial class Gameplay : Node {
 	private State _currentState = State.Shuffle;
 
 	private readonly List<Unit> _unitsMovingInNextStep = [];
+	private readonly List<Unit> _unitsStunnedInNextStep = [];
 	private int[,] _unitsMoveTargets;
 
 	public override void _Ready() {
@@ -97,23 +98,25 @@ public partial class Gameplay : Node {
 			
 			didAnyUnitAct = false;
 			_unitsMovingInNextStep.Clear();
+			_unitsStunnedInNextStep.Clear();
 			foreach (var unit in _board.GetUnits()) {
-				if (unit.Stunned) // skip stunned units
+				if (unit.IsQueuedForDeletion() || unit.Stunned) // skip stunned units
 					continue;
 				
-				var cell = _board.GetCell(unit.BoardPosition);
+				var cell = _board.TryGetCell(unit.BoardPosition);
+				if (cell == null)
+					continue; // ignore units outside board area
 
 				// check if the unit is controlled by the player and the cell is an exit
 				if (unit is PlayerUnit playerUnit && cell.Objects.Any(obj => obj is Exit)) {
 					Score += playerUnit.CollectedLoot;
 					EmitSignalUnitExited(playerUnit.CollectedLoot);
-					unit.Stunned = true;
 					unit.QueueFree();
+					continue;
 				}
 
 				// check if there is an actionable card/object on the units field
-				var index = cell.Objects.FindLastIndex(obj => obj.TryInteract(unit));
-				if (index != -1) {
+				if (cell.TryInteract(unit)) {
 					didAnyUnitAct = true;
 				} else if(unit.WantsToMove) {
 					didAnyUnitAct = true;
@@ -128,7 +131,7 @@ public partial class Gameplay : Node {
 		
 		// remove stunned status from all units after the turn
 		foreach (var unit in _board.GetUnits()) {
-			unit.Stunned = false;
+			unit.ClearStunned();
 		}
 
 		EmitSignalTurnStarted();
@@ -147,8 +150,9 @@ public partial class Gameplay : Node {
 			removed = 0;
 			for (var i = _unitsMovingInNextStep.Count - 1; i >= 0; i--) {
 				var unit = _unitsMovingInNextStep[i];
-				if (_board.IsBlocked(unit.BoardPosition, _unitsMovingInNextStep)) {
-					unit.Stunned = true;
+				if (_board.IsBlocked(unit.MoveTarget, _unitsMovingInNextStep)) {
+					if(unit.Stun())
+						_unitsStunnedInNextStep.Add(unit);
 					_unitsMovingInNextStep.RemoveAt(i);
 					removed++;
 				}
@@ -178,7 +182,8 @@ public partial class Gameplay : Node {
 				var unit = _unitsMovingInNextStep[i];
 				var target = unit.MoveTarget;
 				if (_unitsMoveTargets[target.X, target.Y] > 1) {
-					unit.Stunned = true;
+					if(unit.Stun())
+						_unitsStunnedInNextStep.Add(unit);
 					_unitsMoveTargets[unit.BoardPosition.X, unit.BoardPosition.Y]++;
 					_unitsMovingInNextStep.RemoveAt(i);
 					removed++;
@@ -188,9 +193,21 @@ public partial class Gameplay : Node {
 
 		// execute movements
 		var moveTween = CreateTween();
+		moveTween.SetParallel();
 		foreach (var unit in _unitsMovingInNextStep) {
 			var target = _board.GetCell(unit.MoveTarget).Position;
 			moveTween.TweenProperty(unit, "position", target, _stepTime);
+		}
+		// execute half movement + bounce for stunned units
+		foreach (var unit in _unitsStunnedInNextStep) {
+			var currentPosition = unit.Position;
+			var targetPosition = _board.GetCell(unit.MoveTarget).Position;
+			var halfPoint = currentPosition.Lerp(targetPosition, 0.5f);
+
+			var stunTween = unit.CreateTween();
+			stunTween.TweenProperty(unit, "position", halfPoint, _stepTime/3f);
+			stunTween.TweenProperty(unit, "position", currentPosition, _stepTime/3f).SetTrans(Tween.TransitionType.Bounce);
+			moveTween.TweenSubtween(stunTween);
 		}
 	}
 

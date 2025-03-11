@@ -1,3 +1,4 @@
+#nullable enable
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Godot;
@@ -10,7 +11,8 @@ public partial class PlayerHand : Node2D {
 	[Export] private int HandRadius = 200;
     [Export] private float CardAngleLimit = 90.0f; 
     [Export] private float MaxCardSpreadAngle = 20f; 
-    [Export] private Deck _deck;
+    [Export] private Deck _deck = null!;
+    [Export] private Board? _board;
 
     private readonly List<HeldCard> _heldCards = [];
     private readonly List<HeldCard> _touchedCards = []; // Liste der berührten Karten
@@ -108,6 +110,7 @@ public partial class PlayerHand : Node2D {
     {
         _heldCards.Remove(card);
         await Task.Delay(100); // Platzhalter für Animation
+        card.Card?.OnDiscard(this);
         card.QueueFree();
         RepositionCards();
     }
@@ -117,4 +120,25 @@ public partial class PlayerHand : Node2D {
     {
         return _heldCards.Count <= _maxCardAtTurnEnd;
     }
+
+    public bool CanBePlayedAt(HeldCard heldCard, Vector2I boardPosition) {
+	    var state = GetCardAccessibleState(boardPosition);
+	    return state!=null && heldCard.Card.CanBePlayedAt(state);
+    }
+
+    private CardAccessibleState? GetCardAccessibleState(Vector2I boardPosition) {
+	    var cell = _board?.TryGetCell(boardPosition);
+	    return cell == null 
+		    ? null 
+		    : new CardAccessibleState() {Board = _board!, PlayerHand = this, TargetCell = cell};
+    }
+
+    public void PlayAt(HeldCard heldCard, Vector2I boardPosition) {
+	    var state = GetCardAccessibleState(boardPosition);
+	    if(state != null)
+		    heldCard.Card.PlayAt(state);
+	    else
+		    GD.PrintErr("Couldn't play card, because the PlayerHand state isn't fully initialized!");
+    }
+
 }

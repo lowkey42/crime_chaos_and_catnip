@@ -1,10 +1,21 @@
 #nullable enable
+using System;
 using Godot;
 
 namespace CrimeChaosAndCatnip;
 
 public abstract partial class BoardObject : Node3D {
 
+	[Flags] public enum InteractResult {
+
+		Ignored = 0,
+		Interacted = 1,
+		RemoveSelf = 2,
+		BlockFurtherInteraction = 4,
+		BlockMovement = 8
+
+	}
+	
 	public abstract bool BlocksField { get; }
 
 	public Vector2I BoardPosition => Board.ToBoardPosition(GlobalPosition);
@@ -44,8 +55,8 @@ public abstract partial class BoardObject : Node3D {
 	/// <summary>Called when a unit inters this objects cell. Called from top to bottom, if there are multiple objects on the cell</summary>
 	/// <param name="unit">The unit that entered the cell</param>
 	/// <returns>True if this object has been consumed by the unit</returns>
-	public virtual bool TryInteract(Unit unit) {
-		return false;
+	public virtual InteractResult TryInteract(Unit unit) {
+		return InteractResult.Ignored;
 	}
 
 	/// <summary>Called every time another BoardObject is placed on this cell.</summary>

@@ -18,9 +18,9 @@ public partial class Loot : BoardObject {
 		return false;
 	}
 
-	public override bool TryInteract(Unit unit) {
+	public override InteractResult TryInteract(Unit unit) {
 		unit.IncreaseLoot(Value);
-		return true;
+		return InteractResult.Interacted;
 	}
 
 }

@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="CardMove" load_steps=3 format=3 uid="uid://bl5r6qrxgsgo3"]
+[gd_resource type="Resource" script_class="CardMove" load_steps=4 format=3 uid="uid://bl5r6qrxgsgo3"]
 
 [ext_resource type="Texture2D" uid="uid://cw4qn5ngn6ax5" path="res://gameplay/cards/instances/card_move_10.png" id="1_6o8pv"]
 [ext_resource type="Script" uid="uid://d0vrl7d4sx35b" path="res://gameplay/cards/CardMove.cs" id="1_glwmr"]
+[ext_resource type="PackedScene" uid="uid://bkfm8wp8c8y0r" path="res://gameplay/board_objects/played_card.tscn" id="2_sdlny"]
 
 [resource]
 script = ExtResource("1_glwmr")
@@ -9,4 +10,6 @@ Distance = 10
 Name = "Run"
 Description = ""
 CardSprite = ExtResource("1_6o8pv")
+SpawnOnPlay = ExtResource("2_sdlny")
+RequiresOrientation = true
 metadata/_custom_type_script = "uid://d0vrl7d4sx35b"
