@@ -14,4 +14,11 @@ public partial class CardMove : CardBase {
 	public override void PlayAt(CardAccessibleState state) { // TODO
 	}
 
+	public override BoardObject.InteractResult PlayedCardInteraction(PlayedCard card, Unit unit) {
+		unit.MovementLeft = Distance;
+		unit.MovementDirection = card.BoardOrientation;
+		return BoardObject.InteractResult.Interacted | BoardObject.InteractResult.BlockFurtherInteraction |
+		       BoardObject.InteractResult.BlockMovement;
+	}
+
 }

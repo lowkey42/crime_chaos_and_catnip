@@ -17,4 +17,8 @@ public partial class CardBase : Resource {
 
 	public virtual void PlayAt(CardAccessibleState state) { }
 
+	public virtual BoardObject.InteractResult PlayedCardInteraction(PlayedCard card, Unit unit) {
+		return BoardObject.InteractResult.Ignored;
+	}
+
 }

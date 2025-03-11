@@ -19,4 +19,8 @@ public partial class PlayedCard : BoardObject {
 		_sprite?.SetTexture(Card?.CardSprite);
 	}
 
+	public override InteractResult TryInteract(Unit unit) {
+		return Card.PlayedCardInteraction(this, unit);
+	}
+
 }

@@ -24,6 +24,26 @@ public partial class Board : Node {
 			return false;
 		}
 
+		public bool TryInteract(Unit unit) {
+			var movementBlocked = false;
+			
+			for (var i = Objects.Count - 1; i >= 0; i--) {
+				var interactResult = Objects[i].TryInteract(unit);
+				if (interactResult.HasFlag(BoardObject.InteractResult.BlockMovement))
+					movementBlocked = true;
+					
+				if (interactResult.HasFlag(BoardObject.InteractResult.RemoveSelf)) {
+					Objects[i].QueueFree();
+					Objects.RemoveAt(i); // remove immediately so the object can't be consumed by other units during the same tick
+				}
+
+				if (interactResult.HasFlag(BoardObject.InteractResult.BlockFurtherInteraction))
+					break;
+			}
+
+			return movementBlocked;
+		}
+
 	}
 
 	private Cell[,] _cells;

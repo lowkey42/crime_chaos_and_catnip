@@ -9,6 +9,12 @@ public partial class Unit : BoardObject {
 	[Signal]
 	public delegate void LootCollectedEventHandler(int value);
 	
+	[Signal]
+	public delegate void StunAddedEventHandler();
+	
+	[Signal]
+	public delegate void StunClearedEventHandler();
+	
 	
 	[Export] public BoardOrientation MovementDirection = BoardOrientation.North;
 
@@ -20,7 +26,7 @@ public partial class Unit : BoardObject {
 
 	public int CollectedLoot { get; private set; } = 0;
 
-	public bool Stunned = false;
+	public bool Stunned { get; private set; } = false;
 
 	public Vector2I MoveTarget => !WantsToMove
 		? Vector2I.Zero
@@ -35,6 +41,22 @@ public partial class Unit : BoardObject {
 	public void IncreaseLoot(int value) {
 		CollectedLoot += value;
 		EmitSignalLootCollected(value);
+	}
+
+	public void ClearStunned() {
+		if(Stunned)
+			EmitSignalStunCleared();
+		
+		Stunned = false;
+	}
+
+	public bool Stun() {
+		if (Stunned)
+			return false;
+		
+		EmitSignalStunAdded();
+		Stunned = true;
+		return true;
 	}
 
 }
