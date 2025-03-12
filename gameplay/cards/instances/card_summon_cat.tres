@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://d33sktg0wyxci" path="res://gameplay/cards/instances/card_summon_cat.png" id="1_5m7ib"]
 [ext_resource type="Script" uid="uid://la07fs1sg4bg" path="res://gameplay/cards/CardSummon.cs" id="1_cwb2s"]
-[ext_resource type="PackedScene" path="res://gameplay/board_objects/units/player_unit_cat.tscn" id="2_gacqv"]
+[ext_resource type="PackedScene" uid="uid://dyy10ipmv4lgt" path="res://gameplay/board_objects/units/player_unit_cat.tscn" id="2_gacqv"]
 
 [resource]
 script = ExtResource("1_cwb2s")

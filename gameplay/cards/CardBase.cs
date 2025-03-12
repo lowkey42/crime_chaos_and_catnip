@@ -19,9 +19,11 @@ public partial class CardBase : Resource {
 		return !state.TargetCell.IsBlocked;
 	}
 
-	public void PlayAt(CardAccessibleState state) {
+	public BoardObject PlayAt(CardAccessibleState state) {
+		BoardObject spawned = null;
+		
 		if (SpawnOnPlay != null) {
-			var spawned = (BoardObject) SpawnOnPlay.Instantiate();
+			spawned = (BoardObject) SpawnOnPlay.Instantiate();
 			if (spawned is PlayedCard pc)
 				pc.Card = this;
 			state.Board.AddChild(spawned);
@@ -29,6 +31,7 @@ public partial class CardBase : Resource {
 		}
 		
 		OnPlayed(state);
+		return spawned;
 	}
 
 	protected virtual void OnPlayed(CardAccessibleState state) { }
