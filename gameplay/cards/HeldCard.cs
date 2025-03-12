@@ -13,11 +13,15 @@ public partial class HeldCard : Node2D {
 	private CollisionShape2D _discardArea;
 	
 	private CollisionShape2D _snapBackArea;
-	
 
 	[Export] private Sprite2D _sprite;
 	
 	private bool _grabbed = false;
+
+	private Tween _shrinkTween;
+	
+	private bool _canDrop = false;
+	private Timer _dropTimer;
 	
 
 	public override void _Ready() {
@@ -35,6 +39,47 @@ public partial class HeldCard : Node2D {
 		}
 		
 		_sprite?.SetTexture(Card?.CardSprite);
+		
+		
+		_dropTimer = new Timer();
+		AddChild(_dropTimer);
+		_dropTimer.WaitTime = 0.5f;
+		_dropTimer.OneShot = true;
+		_dropTimer.Connect("timeout", new Callable(this, nameof(OnDropTimerTimeout)));
+		
+	}
+	
+	private void OnDropTimerTimeout()
+	{
+		_canDrop = true;
+	}
+
+	public override void _Process(double delta) {
+		base._Process(delta);
+
+		if (_grabbed) {
+			Vector2 globalMousePosition = GetGlobalMousePosition();
+			Vector2 localMousePosition = _snapBackArea.ToLocal(globalMousePosition);
+
+			if (!_snapBackArea.GetShape().GetRect().HasPoint(localMousePosition)) {
+				if (_shrinkTween == null || !_shrinkTween.IsRunning()) {
+					_shrinkTween?.Kill();
+					_shrinkTween = CreateTween();
+					_shrinkTween.TweenProperty(this, "scale", Vector2.One * 0.1f, 0.5f)
+						.SetTrans(Tween.TransitionType.Bounce);
+				}
+			} else {
+				if (_shrinkTween == null || !_shrinkTween.IsRunning()) {
+					_shrinkTween?.Kill();
+					_shrinkTween = CreateTween();
+					_shrinkTween.TweenProperty(this, "scale", Vector2.One, 0.5f)
+						.SetTrans(Tween.TransitionType.Bounce);
+				}
+			}
+			var boardPosition = GetMouseBoardPosition();
+			GetParentOrNull<PlayerHand>()
+				?.MarkHoveredForbidden(boardPosition.HasValue && !CanBePlayedAt(boardPosition.Value));
+		}
 	}
 
 	private void OnMouseEntered()
@@ -72,43 +117,48 @@ public partial class HeldCard : Node2D {
 	}
 
 	public void OnDropped() {
+		if (!_canDrop)
+		{
+			GD.Print("Drop blocked: Timer not finished.");
+			return;
+		}
+		_shrinkTween?.Kill();
+		Scale = Vector2.One;
 		_grabbed = false;
-		GD.Print("Dropped");
-		GD.Print("DiscardArea is set: " + _discardArea.Name);
+		GetParentOrNull<PlayerHand>().MarkHoveredForbidden(false);
 		var globalMousePosition = GetGlobalMousePosition();
 		var localMousePosition = _discardArea.ToLocal(globalMousePosition);
 		if (_discardArea != null && _discardArea.GetShape().GetRect().HasPoint(localMousePosition)) {
-			GD.Print("Discard area");
 			GetParentOrNull<PlayerHand>()?.DiscardCard(this); // Karte verwerfen
+			
+		} else if (!_snapBackArea.GetShape().GetRect().HasPoint(localMousePosition)){
+			GD.Print("AREA: " + _snapBackArea);
+			var boardPosition = GetMouseBoardPosition();
+			if (CanBePlayedAt(boardPosition))
+				PlayAt(boardPosition);
 		} else {
-			GD.Print("No discard area");
+			GD.Print("Is In SnapBackArea" + nameof(_snapBackArea));
 		}
-		
-		if (!_snapBackArea.GetShape().GetRect().HasPoint(localMousePosition)){
-			var camera = GetViewport().GetCamera3D();
-			var mousePosition = GetViewport().GetMousePosition();
-			var rayHit = Plane.PlaneXZ.IntersectsRay(
-				camera.ProjectRayOrigin(mousePosition), 
-				camera.ProjectRayNormal(mousePosition));
-			var _hoveredCell = rayHit != null ? Board.ToBoardPosition(rayHit.Value) : (Vector2I?) null;
-			//Raycast auf die plain und schauen wo es auf dem bord liegt
-			GD.Print("ray position: " + rayHit.ToString());
-			GD.Print("Board position: " + _hoveredCell.ToString());
-			if (CanBePlayedAt(_hoveredCell)) {
-				PlayAt(_hoveredCell);
-				GD.Print("Card played at position: " + _hoveredCell);
-			}
-			else
-			{
-				GD.Print("Card cannot be played at this position.");
-			}
-		}
+	}
 
-}
+	private Vector2I? GetMouseBoardPosition() {
+		var camera = GetViewport().GetCamera3D();
+		var mousePosition = GetViewport().GetMousePosition();
+		var rayHit = Plane.PlaneXZ.IntersectsRay(
+			camera.ProjectRayOrigin(mousePosition), 
+			camera.ProjectRayNormal(mousePosition));
+		return rayHit != null ? Board.ToBoardPosition(rayHit.Value) : null;
+	}
 
 	private void OnGrabbed() {
 		Unhighlight();
 		_grabbed = true;
+		_shrinkTween?.Kill();
+		_shrinkTween = CreateTween();
+		_shrinkTween.TweenProperty(this, "scale", Vector2.One * 0.1f, 0.5f).SetTrans(Tween.TransitionType.Bounce);
+		Scale = Vector2.One * 0.1f;
+		_canDrop = false;
+		_dropTimer.Start();
 	}
 	
 	private void OnArea2DMouseEntered()

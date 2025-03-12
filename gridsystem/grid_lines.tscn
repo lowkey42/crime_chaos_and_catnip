@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://b267dln8bmyc0"]
+
+[ext_resource type="Script" uid="uid://cq6svlprbu125" path="res://gridsystem/GridLines.cs" id="1_yu5jq"]
+[ext_resource type="PackedScene" uid="uid://vq0etraquljv" path="res://gridsystem/grid_lines_cell.tscn" id="2_qook4"]
+
+[node name="GridLines" type="Node3D"]
+script = ExtResource("1_yu5jq")
+_colorBlocked = Color(1, 0.46, 0.46, 0.588235)
+_colorPlayer = Color(0.35, 0.3825, 1, 1)
+_colorEnemy = Color(1, 0.25, 0.25, 1)
+_colorLoot = Color(0.35, 1, 0.490833, 0.784314)
+_colorOther = Color(0.989167, 1, 0.35, 0.784314)
+_colorEmpty = Color(0.81, 0.81, 0.81, 0.588235)
+_lineThicknessHovered = 0.5
+_lineThicknessEmpty = 0.2
+_lineThicknessNoneEmpty = 0.3
+_animationAmountUnit = 0.2
+_animationAmountHover = 0.4
+_animationSpeedHover = 4.0
+_animationSpeedDefault = 1.5
+_hoverOvershoot = 0.5
+_gridCellScene = ExtResource("2_qook4")

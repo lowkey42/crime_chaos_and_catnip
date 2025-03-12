@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://r1l46im0nohs"]
+
+[ext_resource type="Script" uid="uid://cwoylgdtytjwc" path="res://gameplay/board_objects/units/EnemyUnit.cs" id="1_cc84r"]
+[ext_resource type="PackedScene" uid="uid://dlxygdiwxxpui" path="res://assets/3D/small things/cardholder-neon.glb" id="2_dqcqk"]
+[ext_resource type="Texture2D" uid="uid://cw4qn5ngn6ax5" path="res://gameplay/cards/instances/card_move_10.png" id="3_qsffh"]
+
+[node name="EnemyUnitGoose" type="Node3D"]
+script = ExtResource("1_cc84r")
+
+[node name="cardholder-neon" parent="." instance=ExtResource("2_dqcqk")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+
+[node name="front" type="Sprite3D" parent="."]
+transform = Transform3D(0.125, 0, 0, 0, 0.125, 0, 0, 0, 0.125, 0, 0.7, 0)
+shaded = true
+double_sided = false
+texture = ExtResource("3_qsffh")
+
+[node name="back" type="Sprite3D" parent="."]
+transform = Transform3D(-0.125, 0, -1.09278e-08, 0, 0.125, 0, 1.09278e-08, 0, -0.125, 0, 0.7, 0)
+shaded = true
+double_sided = false
+texture = ExtResource("3_qsffh")

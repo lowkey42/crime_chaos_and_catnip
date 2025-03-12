@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bhmi15nw6utp5"]
+[gd_scene load_steps=6 format=3 uid="uid://bhmi15nw6utp5"]
 
 [ext_resource type="Script" uid="uid://b4tr0lmx326c7" path="res://gameplay/Board.cs" id="1_2r62q"]
+[ext_resource type="PackedScene" uid="uid://b267dln8bmyc0" path="res://gridsystem/grid_lines.tscn" id="2_3gack"]
 [ext_resource type="MeshLibrary" uid="uid://cvv88uq58uueb" path="res://mesh/MeshBib.tres" id="2_v8hvj"]
 [ext_resource type="PackedScene" uid="uid://cpt7ckkgkei2h" path="res://3D-Assets/CityLayoutExample.glb" id="3_83vdy"]
 
@@ -9,9 +10,12 @@ radius = 2.74598
 
 [node name="Level01" type="Node"]
 
-[node name="Board" type="Node3D" parent="." groups=["Board"]]
+[node name="Board" type="Node3D" parent="." node_paths=PackedStringArray("GridLines") groups=["Board"]]
 script = ExtResource("1_2r62q")
+GridLines = NodePath("GridLines")
 _maxGridSize = Vector2i(64, 64)
+
+[node name="GridLines" parent="Board" instance=ExtResource("2_3gack")]
 
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = ExtResource("2_v8hvj")

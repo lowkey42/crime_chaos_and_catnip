@@ -11,6 +11,11 @@ namespace CrimeChaosAndCatnip;
 [GlobalClass]
 public partial class Board : Node {
 
+	[Signal]
+	public delegate void BoardChangedEventHandler(Vector2I boardPosition);
+
+	[Export] public GridLines? GridLines { get; private set; }
+	
 	[Export] private Vector2I _maxGridSize;
 
 	public class Cell(Vector3 position) {
@@ -19,7 +24,9 @@ public partial class Board : Node {
 		public readonly Vector2I BoardPosition = ToBoardPosition(position);
 		public readonly List<BoardObject> Objects = [];
 
-		public bool IsBlocked => Objects.Any(obj => obj.BlocksField);
+		public bool AlwaysBlocked = false;
+		
+		public bool IsBlocked => AlwaysBlocked || Objects.Any(obj => obj.BlocksField);
 
 		public bool TryStack(BoardObject obj) {
 			foreach(var existingObj in Objects)
@@ -33,6 +40,10 @@ public partial class Board : Node {
 			
 			for (var i = Objects.Count - 1; i >= 0; i--) {
 				var interactResult = Objects[i].TryInteract(unit);
+				
+				if (interactResult.HasFlag(BoardObject.InteractResult.Interacted))
+					Objects[i].OnInteracted();
+				
 				if (interactResult.HasFlag(BoardObject.InteractResult.BlockMovement))
 					movementBlocked = true;
 					
@@ -54,8 +65,8 @@ public partial class Board : Node {
 
 	private readonly List<Unit> _units = [];
 
-	public override void _Ready() {
-		base._Ready();
+	public override void _EnterTree() {
+		base._EnterTree();
 		_cells = new Cell[_maxGridSize.X, _maxGridSize.Y];
 		for (var x = 0; x < _maxGridSize.X; x++)
 		for (var y = 0; y < _maxGridSize.Y; y++)
@@ -70,12 +81,26 @@ public partial class Board : Node {
 			return previous;
 		
 		return new T[_cells.GetLength(0), _cells.GetLength(1)];
-	} 
+	}
+
+	public static Board? GetBoard(Node node) {
+		foreach (var board in node.GetTree().GetNodesInGroup("Board")) {
+			if (board is Board b) {
+				return b;
+			}
+		}
+		return null;
+	}
 	
 	public static Vector2I ToBoardPosition(Vector3 position) {
 		return new Vector2I((int) (position.X + 0.5f), (int) (position.Z + 0.5f));
 	}
 
+	public Vector2I? ToNullableBoardPosition(Vector3 position) {
+		var boardPosition = ToBoardPosition(position);
+		return TryGetCell(boardPosition) != null ? boardPosition : null;
+	}
+	
 	public void AddObject(Vector2I boardPosition, BoardObject obj) {
 		ValidateBoardPosition(boardPosition);
 
@@ -87,6 +112,7 @@ public partial class Board : Node {
 		cell.Objects.Add(obj);
 		if(obj is Unit unit)
 			_units.Add(unit);
+		EmitSignalBoardChanged(boardPosition);
 	}
 
 	public void RemoveObject(Vector2I boardPosition, BoardObject obj) {
@@ -95,6 +121,7 @@ public partial class Board : Node {
 		_cells[boardPosition.X, boardPosition.Y].Objects.Remove(obj);
 		if(obj is Unit unit)
 			_units.Remove(unit);
+		EmitSignalBoardChanged(boardPosition);
 	}
 
 	public void MoveObject(Vector2I oldBoardPosition, Vector2I newBoardPosition, BoardObject obj) {
@@ -110,6 +137,8 @@ public partial class Board : Node {
 		if(cell.TryStack(obj))
 			return;
 		cell.Objects.Add(obj);
+		EmitSignalBoardChanged(oldBoardPosition);
+		EmitSignalBoardChanged(newBoardPosition);
 	}
 
 	public Cell GetCell(Vector2I boardPosition) {
@@ -120,7 +149,7 @@ public partial class Board : Node {
 	public Cell? TryGetCell(Vector2I boardPosition) {
 		if (boardPosition.X < 0 || boardPosition.Y < 0)
 			return null;
-		if (boardPosition.X > _maxGridSize.X || boardPosition.Y > _maxGridSize.Y)
+		if (boardPosition.X >= _maxGridSize.X || boardPosition.Y >= _maxGridSize.Y)
 			return null;
 		Debug.Assert(_cells != null, nameof(_cells) + " != null");
 		return _cells[boardPosition.X, boardPosition.Y];
@@ -130,7 +159,7 @@ public partial class Board : Node {
 	private void ValidateBoardPosition(Vector2I boardPosition) {
 		if (boardPosition.X < 0 || boardPosition.Y < 0)
 			throw new ArgumentException("Invalid board position");
-		if (boardPosition.X > _maxGridSize.X || boardPosition.Y > _maxGridSize.Y)
+		if (boardPosition.X >= _maxGridSize.X || boardPosition.Y >= _maxGridSize.Y)
 			throw new ArgumentException("Invalid board position");
 		if(_cells==null)
 			throw new NullReferenceException("_cells is null because _Ready() hasn't been called, yet");
@@ -146,6 +175,12 @@ public partial class Board : Node {
 			return true;
 
 		return cell.Objects.Any(obj => obj.BlocksField && !exclude.Contains(obj));
+	}
+
+	public void BoardMarkAsAlwaysBlocked(Vector2I boardPosition) {
+		var cell = TryGetCell(boardPosition);
+		if (cell != null)
+			cell.AlwaysBlocked = true;
 	}
 
 }

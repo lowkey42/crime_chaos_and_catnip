@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://vq0etraquljv"]
+
+[ext_resource type="Shader" uid="uid://cr7mtii4q3hq5" path="res://gridsystem/grid_lines.gdshader" id="1_pe53y"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yu5jq"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("1_pe53y")
+shader_parameter/distance_fade_start = 20.0
+shader_parameter/distance_fade_end = 50.0
+shader_parameter/thickness = 1.0
+shader_parameter/fade_distance = 0.1
+shader_parameter/fade_exp = 2.0
+shader_parameter/grid_color = Color(1, 1, 1, 1)
+shader_parameter/animation_amount = 0.1
+shader_parameter/animation_overshoot = 0.0
+shader_parameter/animation_speed = 4.0
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_bqnmx"]
+size = Vector2(100, 100)
+
+[node name="GridLinesCell" type="Sprite3D"]
+material_override = SubResource("ShaderMaterial_yu5jq")
+axis = 1
+double_sided = false
+alpha_cut = 1
+alpha_scissor_threshold = 0.01
+alpha_antialiasing_mode = 1
+alpha_antialiasing_edge = 1.0
+texture_filter = 5
+texture = SubResource("PlaceholderTexture2D_bqnmx")

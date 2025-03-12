@@ -143,9 +143,12 @@ public partial class PlayerHand : Node2D {
 
     public void PlayAt(HeldCard heldCard, Vector2I boardPosition) {
 	    var state = GetCardAccessibleState(boardPosition);
-	    if(state != null)
+	    if (state != null) {
 		    heldCard.Card.PlayAt(state);
-	    else
+		    _heldCards.Remove(heldCard);
+		    heldCard.QueueFree();
+		    RepositionCards();
+	    } else
 		    GD.PrintErr("Couldn't play card, because the PlayerHand state isn't fully initialized!");
     }
     
@@ -165,5 +168,11 @@ public partial class PlayerHand : Node2D {
 	    }
     }
 
-    
+
+    public void MarkHoveredForbidden(bool forbidden) {
+	    if (_board?.GridLines != null) {
+		    _board.GridLines.HoverForbidden = forbidden;
+	    }
+    }
+
 }

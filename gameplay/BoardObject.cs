@@ -5,7 +5,7 @@ using Godot;
 namespace CrimeChaosAndCatnip;
 
 public abstract partial class BoardObject : Node3D {
-
+	
 	[Flags] public enum InteractResult {
 
 		Ignored = 0,
@@ -16,6 +16,9 @@ public abstract partial class BoardObject : Node3D {
 
 	}
 	
+	[Signal]
+	public delegate void InteractedEventHandler();
+	
 	public abstract bool BlocksField { get; }
 
 	public Vector2I BoardPosition => Board.ToBoardPosition(GlobalPosition);
@@ -24,16 +27,10 @@ public abstract partial class BoardObject : Node3D {
 	
 	private Vector2I _lastBoardPosition;
 
-	public override void _EnterTree() {
-		base._EnterTree();
+	public override void _Ready() {
+		base._Ready();
 
-		// find the board we are on
-		foreach (var board in GetTree().GetNodesInGroup("Board")) {
-			if (board is Board b && IsAncestorOf(board)) {
-				Board = b;
-				break;
-			}
-		}
+		Board = Board.GetBoard(this);
 		
 		Board?.AddObject(BoardPosition, this);
 		_lastBoardPosition = BoardPosition;
@@ -64,5 +61,9 @@ public abstract partial class BoardObject : Node3D {
 	/// <returns>True if the object has been combined with this one and the new object can be discarded</returns>
 	public virtual bool TryStack(BoardObject otherObject) {
 		return false;
+	}
+
+	public void OnInteracted() {
+		EmitSignalInteracted();
 	}
 }
