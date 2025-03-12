@@ -6,13 +6,15 @@ using Godot;
 namespace CrimeChaosAndCatnip;
 
 [GlobalClass]
-public partial class PlayerHand : Node2D {
+public partial class PlayerHand : Control {
 
 	[Export] private int _handRadius = 200;
 	[Export] private float _cardAngleLimit = 90.0f;
 	[Export] private float _maxCardSpreadAngle = 20f;
 	[Export] private Deck _deck = null!;
-	[Export] private Board? _board;
+	
+	[Export] private Control? _discardPile;
+	[Export] private Control? _bottomArea;
 
 	private readonly List<HeldCard> _heldCards = [];
 	private readonly List<HeldCard> _touchedCards = [];
@@ -23,8 +25,11 @@ public partial class PlayerHand : Node2D {
 	[Export] private int _maxCardCount = 5;
 	[Export] private int _maxCardAtTurnEnd = 3;
 
+	private Board? _board;
+	
 	public override void _Ready() {
 		RepositionCards();
+		_board = Board.GetBoard(this);
 	}
 
 	public override void _Process(double delta) {
@@ -43,7 +48,14 @@ public partial class PlayerHand : Node2D {
 			_currentSelectedCardIndex = -1; // Keine Karte ausgewählt
 		}
 	}
-	
+
+	public bool IsInPlayableArea(Vector2 screenPosition) {
+		return _bottomArea!=null && !_bottomArea.GetGlobalRect().HasPoint(screenPosition);
+	}
+	public bool IsInDiscardArea(Vector2 screenPosition) {
+		GD.Print($"Mouse {screenPosition}, Rect: {_discardPile?.GetRect()}, GlobalRect: {_discardPile?.GetGlobalRect()}");
+		return _discardPile!=null && _discardPile.GetGlobalRect().HasPoint(screenPosition);
+	}
 	
     public void AddCard(HeldCard card)
     {

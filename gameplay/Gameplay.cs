@@ -45,7 +45,7 @@ public partial class Gameplay : Node {
 
 	[Export] private PlayerHand _hand;
 
-	[Export] private Board _board;
+	private Board _board;
 
 	[Export] private float _stepTime = 0.5f;
 
@@ -58,7 +58,8 @@ public partial class Gameplay : Node {
 	private int[,] _unitsMoveTargets;
 
 	public override void _Ready() {
-		//_ = Warmup();
+		_board = Board.GetBoard(this);
+		_ = Warmup();
 	}
 
 	public async Task Warmup() {
@@ -84,6 +85,7 @@ public partial class Gameplay : Node {
 	}
 
 	private async Task Act() {
+		GD.Print("Act");
 		if (_currentState != State.PlayingCards)
 			throw new InvalidOperationException($"Invalid state transition from {_currentState} to Acting");
 
@@ -94,6 +96,7 @@ public partial class Gameplay : Node {
 		
 		var didAnyUnitAct = false;
 		do {
+			GD.Print("Step");
 			await Task.Delay(TimeSpan.FromSeconds(_stepTime));
 			
 			didAnyUnitAct = false;
@@ -124,7 +127,9 @@ public partial class Gameplay : Node {
 				}
 			}
 
+			GD.Print("MoveUnits");
 			MoveUnits();
+			GD.Print("Step done");
 		} while (didAnyUnitAct);
 
 		EmitSignalTurnDone();
@@ -136,7 +141,9 @@ public partial class Gameplay : Node {
 
 		EmitSignalTurnStarted();
 
+		GD.Print("Draw");
 		await Draw();
+		GD.Print("Act done");
 	}
 
 	private void MoveUnits() {

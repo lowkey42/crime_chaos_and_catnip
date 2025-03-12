@@ -18,6 +18,8 @@ public partial class Deck : Node2D {
 	private AnimationPlayer _animationPlayer = null!;
 
 	private readonly List<HeldCard> _liveCards = [];
+	
+	public int RemainingCards => _liveCards.Count;
 
 	public override void _EnterTree() {
 		base._EnterTree();
