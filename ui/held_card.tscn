@@ -1,11 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://c8fvd606ep5u"]
+[gd_scene load_steps=12 format=3 uid="uid://c8fvd606ep5u"]
 
 [ext_resource type="Script" uid="uid://ducu2kng5aotl" path="res://gameplay/cards/HeldCard.cs" id="1_dxi6h"]
 [ext_resource type="Texture2D" uid="uid://cw4qn5ngn6ax5" path="res://gameplay/cards/instances/card_move_10.png" id="2_omqpp"]
 [ext_resource type="PackedScene" uid="uid://bkfm8wp8c8y0r" path="res://gameplay/board_objects/played_card.tscn" id="3_7d7q0"]
 [ext_resource type="Script" uid="uid://d0vrl7d4sx35b" path="res://gameplay/cards/CardMove.cs" id="3_esxd3"]
-[ext_resource type="Shader" uid="uid://ci55tqqowoikf" path="res://addons/outline.gdshader" id="4_esxd3"]
 [ext_resource type="Script" uid="uid://bn0wyw5lpfmgm" path="res://addons/addons/draggablesprite2d/src/draggablesprite2d.gd" id="5_7t26j"]
+[ext_resource type="Material" uid="uid://ih1jw1htj5p8" path="res://assets/card_glow.tres" id="5_gy4tq"]
 [ext_resource type="Texture2D" uid="uid://by78uykv1wms5" path="res://gameplay/cards/instances/Cardbackside.png" id="7_gopet"]
 
 [sub_resource type="Resource" id="Resource_7t26j"]
@@ -17,15 +17,6 @@ CardSprite = ExtResource("2_omqpp")
 SpawnOnPlay = ExtResource("3_7d7q0")
 RequiresOrientation = false
 metadata/_custom_type_script = "uid://d0vrl7d4sx35b"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7t26j"]
-shader = ExtResource("4_esxd3")
-shader_parameter/color = Color(0.79096, 0.185889, 0.596654, 1)
-shader_parameter/width = 3.159
-shader_parameter/pattern = 0
-shader_parameter/inside = false
-shader_parameter/add_margins = true
-shader_parameter/number_of_images = Vector2(1, 1)
 
 [sub_resource type="Animation" id="Animation_1s48i"]
 length = 0.001
@@ -153,7 +144,7 @@ sprite = NodePath("FrontSprite")
 
 [node name="FrontSprite" type="Sprite2D" parent="DraggableSprite2D"]
 z_index = -1
-material = SubResource("ShaderMaterial_7t26j")
+material = ExtResource("5_gy4tq")
 texture = ExtResource("2_omqpp")
 
 [node name="BackSprite" type="Sprite2D" parent="DraggableSprite2D"]
