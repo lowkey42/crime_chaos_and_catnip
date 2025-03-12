@@ -15,6 +15,10 @@ public partial class PlayedCard : BoardObject {
 
 	public override void _Ready() {
 		base._Ready();
+		if(_sprite==null) GD.PrintErr("Sprite of PlayedCard not set");
+		if(Card==null) GD.PrintErr("Card of PlayedCard not set");
+		if(Card?.CardSprite==null) GD.PrintErr("Card in PlayedCard has no texture");
+		
 		_sprite?.SetTexture(Card?.CardSprite);
 	}
 
