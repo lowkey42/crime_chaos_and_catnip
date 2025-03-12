@@ -57,29 +57,23 @@ public partial class HeldCard : Node2D {
 	public override void _Process(double delta) {
 		base._Process(delta);
 
+		var targetScale = 1f;
+		
 		if (_grabbed) {
 			Vector2 globalMousePosition = GetGlobalMousePosition();
 			Vector2 localMousePosition = _snapBackArea.ToLocal(globalMousePosition);
 
 			if (!_snapBackArea.GetShape().GetRect().HasPoint(localMousePosition)) {
-				if (_shrinkTween == null || !_shrinkTween.IsRunning()) {
-					_shrinkTween?.Kill();
-					_shrinkTween = CreateTween();
-					_shrinkTween.TweenProperty(this, "scale", Vector2.One * 0.1f, 0.5f)
-						.SetTrans(Tween.TransitionType.Bounce);
-				}
+				targetScale = 0.2f;
 			} else {
-				if (_shrinkTween == null || !_shrinkTween.IsRunning()) {
-					_shrinkTween?.Kill();
-					_shrinkTween = CreateTween();
-					_shrinkTween.TweenProperty(this, "scale", Vector2.One, 0.5f)
-						.SetTrans(Tween.TransitionType.Bounce);
-				}
+				targetScale = 1f;
 			}
 			var boardPosition = GetMouseBoardPosition();
 			GetParentOrNull<PlayerHand>()
 				?.MarkHoveredForbidden(boardPosition.HasValue && !CanBePlayedAt(boardPosition.Value));
 		}
+		
+		Scale = Scale.Lerp(Vector2.One * targetScale, (float) delta / 0.2f);
 	}
 
 	private void OnMouseEntered()
@@ -153,10 +147,6 @@ public partial class HeldCard : Node2D {
 	private void OnGrabbed() {
 		Unhighlight();
 		_grabbed = true;
-		_shrinkTween?.Kill();
-		_shrinkTween = CreateTween();
-		_shrinkTween.TweenProperty(this, "scale", Vector2.One * 0.1f, 0.5f).SetTrans(Tween.TransitionType.Bounce);
-		Scale = Vector2.One * 0.1f;
 		_canDrop = false;
 		_dropTimer.Start();
 	}
