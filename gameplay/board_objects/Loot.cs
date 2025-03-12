@@ -20,7 +20,7 @@ public partial class Loot : BoardObject {
 
 	public override InteractResult TryInteract(Unit unit) {
 		unit.IncreaseLoot(Value);
-		return InteractResult.Interacted;
+		return InteractResult.Interacted | InteractResult.RemoveSelf;
 	}
 
 }

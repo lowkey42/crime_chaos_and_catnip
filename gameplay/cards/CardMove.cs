@@ -11,7 +11,8 @@ public partial class CardMove : CardBase {
 		unit.MovementLeft = Distance;
 		unit.MovementDirection = card.BoardOrientation;
 		return BoardObject.InteractResult.Interacted | BoardObject.InteractResult.BlockFurtherInteraction |
-		       BoardObject.InteractResult.BlockMovement;
+		       BoardObject.InteractResult.BlockMovement |
+		       BoardObject.InteractResult.RemoveSelf;
 	}
 
 }
