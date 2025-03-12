@@ -14,10 +14,8 @@ public partial class HeldCard : Node2D {
 	[Export] public CardBase Card;
 
 	[Export] private Sprite2D _sprite;
-
-	private CollisionShape2D _discardArea;
-
-	private CollisionShape2D _snapBackArea;
+	
+	[Export]private AnimationPlayer _animationPlayer;
 
 	private bool _grabbed = false;
 	private bool _canDrop = false;
@@ -26,11 +24,6 @@ public partial class HeldCard : Node2D {
 
 	public override void _Ready() {
 		base._Ready();
-
-		var discardNodes = GetTree().GetNodesInGroup("discardArea");
-		if (discardNodes.Count > 0) _discardArea = discardNodes[0] as CollisionShape2D;
-		var snapBackNodes = GetTree().GetNodesInGroup("cantDropArea");
-		if (discardNodes.Count > 0) _snapBackArea = snapBackNodes[0] as CollisionShape2D;
 
 		_sprite?.SetTexture(Card?.CardSprite);
 
@@ -51,10 +44,7 @@ public partial class HeldCard : Node2D {
 		var targetScale = 1f;
 
 		if (_grabbed) {
-			var globalMousePosition = GetGlobalMousePosition();
-			var localMousePosition = _snapBackArea.ToLocal(globalMousePosition);
-
-			targetScale = !_snapBackArea.GetShape().GetRect().HasPoint(localMousePosition) ? 0.2f : 1f;
+			targetScale = GetParentOrNull<PlayerHand>()?.IsInPlayableArea(GetGlobalMousePosition()) ?? false ? 0.2f : 1f;
 			
 			var boardPosition = GetMouseBoardPosition();
 			GetParentOrNull<PlayerHand>()
@@ -92,17 +82,19 @@ public partial class HeldCard : Node2D {
 	}
 
 	public void OnDropped() {
-		if (!_canDrop)
-			return;
-
 		Scale = Vector2.One;
 		_grabbed = false;
 		GetParentOrNull<PlayerHand>().MarkHoveredForbidden(false);
-		var globalMousePosition = GetGlobalMousePosition();
-		var localMousePosition = _discardArea.ToLocal(globalMousePosition);
-		if (_discardArea != null && _discardArea.GetShape().GetRect().HasPoint(localMousePosition))
+		
+		if (!_canDrop)
+			return;
+
+		
+		var mousePosition = GetViewport().GetMousePosition();
+		
+		if (GetParentOrNull<PlayerHand>()?.IsInDiscardArea(mousePosition) ?? false)
 			GetParentOrNull<PlayerHand>()?.DiscardCard(this); // Karte verwerfen
-		else if (!_snapBackArea.GetShape().GetRect().HasPoint(localMousePosition)) {
+		else if (GetParentOrNull<PlayerHand>()?.IsInPlayableArea(mousePosition) ?? false) {
 			var boardPosition = GetMouseBoardPosition();
 			if (CanBePlayedAt(boardPosition))
 				PlayAt(boardPosition);
@@ -131,6 +123,13 @@ public partial class HeldCard : Node2D {
 
 	private void OnArea2DMouseExited() {
 		GetParentOrNull<PlayerHand>()?.HandleCardUnhovered(this);
+	}
+
+	public void FlipCard() {
+		if (_animationPlayer != null)
+		{
+			_animationPlayer.Play("card_flip"); // "draw_card" ist der Name der Animation
+		}
 	}
 
 }
