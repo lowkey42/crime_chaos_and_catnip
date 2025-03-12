@@ -147,4 +147,13 @@ public partial class GridLines : Node3D {
 		return _animationSpeedDefault;
 	}
 
+	public void Fade(float alpha) {
+		var targetColor = Color.Color8(255, 255, 255) with {A = alpha};
+		var fadeTween = CreateTween();
+		fadeTween.SetParallel();
+		foreach (var cell in _cells) {
+			fadeTween.TweenProperty(cell, "modulate", targetColor, 0.5f);
+		}
+	}
+
 }
