@@ -206,13 +206,15 @@ public partial class Gameplay : Node {
 		}
 		// execute half movement + bounce for stunned units
 		foreach (var unit in _unitsStunnedInNextStep) {
+			unit.MovementLeft = 0;
+			
 			var currentPosition = unit.Position;
 			var targetPosition = _board.GetCell(unit.MoveTarget).Position;
 			var halfPoint = currentPosition.Lerp(targetPosition, 0.5f);
 
 			var stunTween = unit.CreateTween();
-			stunTween.TweenProperty(unit, "position", halfPoint, _stepTime/3f);
-			stunTween.TweenProperty(unit, "position", currentPosition, _stepTime/3f).SetTrans(Tween.TransitionType.Bounce);
+			stunTween.TweenProperty(unit, "position", halfPoint, _stepTime/2f);
+			stunTween.TweenProperty(unit, "position", currentPosition, _stepTime/2f).SetTrans(Tween.TransitionType.Bounce);
 			moveTween.TweenSubtween(stunTween);
 		}
 	}

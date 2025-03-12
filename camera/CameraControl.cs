@@ -144,12 +144,12 @@ public partial class CameraControl : Node
 			}
 			if (Input.IsActionPressed("rotate_camera_right"))
 			{
-				_targetRotation.Y -= Mathf.DegToRad(0.5f);
+				_targetRotation.Y -= (float) (Mathf.DegToRad(RotationSpeed) * delta);
 			}
 
 			if (Input.IsActionPressed("rotate_camera_left"))
 			{
-				_targetRotation.Y += Mathf.DegToRad(0.5f);
+				_targetRotation.Y += (float) (Mathf.DegToRad(RotationSpeed) * delta);
 			}
 
 		}
