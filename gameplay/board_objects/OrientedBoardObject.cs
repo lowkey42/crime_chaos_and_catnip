@@ -18,8 +18,8 @@ public abstract partial class OrientedBoardObject : BoardObject {
 		return orientation switch {
 				BoardOrientation.North => 0,
 				BoardOrientation.South => 180,
-				BoardOrientation.East => 90,
-				BoardOrientation.West => 270,
+				BoardOrientation.East => 270,
+				BoardOrientation.West => 90,
 				_ => throw new ArgumentOutOfRangeException()
 			};
 	}
