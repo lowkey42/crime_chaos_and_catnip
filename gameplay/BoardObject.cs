@@ -24,12 +24,12 @@ public abstract partial class BoardObject : Node3D {
 	
 	private Vector2I _lastBoardPosition;
 
-	public override void _EnterTree() {
-		base._EnterTree();
+	public override void _Ready() {
+		base._Ready();
 
 		// find the board we are on
 		foreach (var board in GetTree().GetNodesInGroup("Board")) {
-			if (board is Board b && IsAncestorOf(board)) {
+			if (board is Board b) {
 				Board = b;
 				break;
 			}

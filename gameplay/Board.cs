@@ -14,6 +14,8 @@ public partial class Board : Node {
 	[Signal]
 	public delegate void BoardChangedEventHandler(Vector2I boardPosition);
 
+	[Export] public GridLines? GridLines { get; private set; }
+	
 	[Export] private Vector2I _maxGridSize;
 
 	public class Cell(Vector3 position) {
@@ -57,8 +59,8 @@ public partial class Board : Node {
 
 	private readonly List<Unit> _units = [];
 
-	public override void _Ready() {
-		base._Ready();
+	public override void _EnterTree() {
+		base._EnterTree();
 		_cells = new Cell[_maxGridSize.X, _maxGridSize.Y];
 		for (var x = 0; x < _maxGridSize.X; x++)
 		for (var y = 0; y < _maxGridSize.Y; y++)
@@ -79,6 +81,11 @@ public partial class Board : Node {
 		return new Vector2I((int) (position.X + 0.5f), (int) (position.Z + 0.5f));
 	}
 
+	public Vector2I? ToNullableBoardPosition(Vector3 position) {
+		var boardPosition = ToBoardPosition(position);
+		return TryGetCell(boardPosition) != null ? boardPosition : null;
+	}
+	
 	public void AddObject(Vector2I boardPosition, BoardObject obj) {
 		ValidateBoardPosition(boardPosition);
 
