@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://c8fvd606ep5u"]
+[gd_scene load_steps=9 format=3 uid="uid://c8fvd606ep5u"]
 
 [ext_resource type="Script" uid="uid://ducu2kng5aotl" path="res://gameplay/cards/HeldCard.cs" id="1_dxi6h"]
 [ext_resource type="Texture2D" uid="uid://cw4qn5ngn6ax5" path="res://gameplay/cards/instances/card_move_10.png" id="2_omqpp"]
+[ext_resource type="PackedScene" uid="uid://bkfm8wp8c8y0r" path="res://gameplay/board_objects/played_card.tscn" id="3_7d7q0"]
 [ext_resource type="Script" uid="uid://d0vrl7d4sx35b" path="res://gameplay/cards/CardMove.cs" id="3_esxd3"]
 [ext_resource type="Shader" path="res://addons/outline.gdshader" id="4_esxd3"]
 [ext_resource type="Script" uid="uid://bn0wyw5lpfmgm" path="res://addons/addons/draggablesprite2d/src/draggablesprite2d.gd" id="5_7t26j"]
@@ -12,6 +13,7 @@ Distance = 10
 Name = "Move 10"
 Description = "ziehe 10 felder"
 CardSprite = ExtResource("2_omqpp")
+SpawnOnPlay = ExtResource("3_7d7q0")
 RequiresOrientation = false
 metadata/_custom_type_script = "uid://d0vrl7d4sx35b"
 
@@ -44,7 +46,7 @@ texture = ExtResource("2_omqpp")
 
 [connection signal="MouseEntered" from="." to="DraggableSprite2D" method="_on_mouse_entered"]
 [connection signal="MouseExited" from="." to="DraggableSprite2D" method="_on_mouse_exited"]
-[connection signal="grabbed" from="DraggableSprite2D" to="." method="onGrabbed"]
+[connection signal="grabbed" from="DraggableSprite2D" to="." method="OnGrabbed"]
 [connection signal="mouse_entered" from="DraggableSprite2D" to="." method="OnArea2DMouseEntered"]
 [connection signal="mouse_exited" from="DraggableSprite2D" to="." method="OnArea2DMouseExited"]
 [connection signal="released" from="DraggableSprite2D" to="." method="OnDropped"]

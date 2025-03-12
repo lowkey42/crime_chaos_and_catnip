@@ -8,9 +8,9 @@ namespace CrimeChaosAndCatnip;
 [GlobalClass]
 public partial class PlayerHand : Node2D {
 
-	[Export] private int HandRadius = 200;
-	[Export] private float CardAngleLimit = 90.0f;
-	[Export] private float MaxCardSpreadAngle = 20f;
+	[Export] private int _handRadius = 200;
+	[Export] private float _cardAngleLimit = 90.0f;
+	[Export] private float _maxCardSpreadAngle = 20f;
 	[Export] private Deck _deck = null!;
 	[Export] private Board? _board;
 
@@ -58,7 +58,7 @@ public partial class PlayerHand : Node2D {
 	    if (_heldCards.Count == 0) return;
 
 	    // Berechne den Winkelabstand zwischen den Karten
-	    float cardSpread = Mathf.Min(CardAngleLimit / _heldCards.Count, MaxCardSpreadAngle);
+	    float cardSpread = Mathf.Min(_cardAngleLimit / _heldCards.Count, _maxCardSpreadAngle);
 	    float currentAngle = -((cardSpread * (_heldCards.Count - 1)) / 2) - 90;
 
 	    foreach (var card in _heldCards)
@@ -71,8 +71,8 @@ public partial class PlayerHand : Node2D {
     private Vector2 GetCardPosition(float angleInDegrees)
     {
 		    float angleInRadians = Mathf.DegToRad(angleInDegrees);
-		    float x =  HandRadius * Mathf.Cos(angleInRadians);
-		    float y =  HandRadius * Mathf.Sin(angleInRadians);
+		    float x =  _handRadius * Mathf.Cos(angleInRadians);
+		    float y =  _handRadius * Mathf.Sin(angleInRadians);
 		    
 
 		    return new Vector2(x, y);
@@ -115,9 +115,7 @@ public partial class PlayerHand : Node2D {
 
 	    return true;
     }
-
-
-    // Entfernt eine Karte aus der Hand
+    
     public async Task DiscardCard(HeldCard card)
     {
         _heldCards.Remove(card);
@@ -126,8 +124,6 @@ public partial class PlayerHand : Node2D {
         card.QueueFree();
         RepositionCards();
     }
-
-    // Überprüft, ob der Spieler seinen Zug beenden kann
     public bool CanEndTurn()
     {
         return _heldCards.Count <= _maxCardAtTurnEnd;

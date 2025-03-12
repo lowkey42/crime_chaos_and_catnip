@@ -59,7 +59,7 @@ _board = NodePath("Level01/Board")
 [node name="CardOverlay" type="CanvasLayer" parent="Gameplay"]
 
 [node name="PlayerHand" type="Node2D" parent="Gameplay/CardOverlay" node_paths=PackedStringArray("_deck")]
-position = Vector2(627, 848)
+position = Vector2(624, 896)
 script = ExtResource("10_etwux")
 HandRadius = 300
 MaxCardSpreadAngle = 10.0
@@ -70,9 +70,9 @@ position = Vector2(0, 66)
 texture = ExtResource("6_ilpo5")
 
 [node name="DropPossibleArea" type="Area2D" parent="Gameplay/CardOverlay/PlayerHand"]
-position = Vector2(-51, -23)
+position = Vector2(-32, -78)
 
-[node name="CantDropArea" type="CollisionShape2D" parent="Gameplay/CardOverlay/PlayerHand/DropPossibleArea"]
+[node name="CantDropArea" type="CollisionShape2D" parent="Gameplay/CardOverlay/PlayerHand/DropPossibleArea" groups=["cantDropArea"]]
 position = Vector2(57.5, -205)
 shape = SubResource("RectangleShape2D_ilpo5")
 
