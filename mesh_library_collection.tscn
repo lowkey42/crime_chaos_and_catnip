@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dfqiq1n8jev5b"]
+[gd_scene load_steps=14 format=3 uid="uid://dfqiq1n8jev5b"]
 
 [ext_resource type="PackedScene" uid="uid://35gy7oulatfq" path="res://assets/3D/small things/straße/Strasse1.glb" id="1_erb1o"]
 [ext_resource type="PackedScene" uid="uid://qg7qjperkeby" path="res://assets/3D/small things/straße/Strasse2.glb" id="2_gfuuk"]
@@ -11,6 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://phat4lowfbd2" path="res://assets/3D/houses/Gebeude_4.glb" id="9_v6a17"]
 [ext_resource type="PackedScene" uid="uid://bydqftbemt67b" path="res://assets/3D/houses/Gebäude05.glb" id="10_g0uin"]
 [ext_resource type="PackedScene" uid="uid://ct5ttfinnqdny" path="res://assets/3D/houses/Gebäude06.glb" id="11_n5kq3"]
+[ext_resource type="PackedScene" uid="uid://bvxy1lci8ivqw" path="res://assets/3D/GrassTiles/GrassTile00.glb" id="12_3y3xe"]
+[ext_resource type="PackedScene" uid="uid://2dq05iec53y3" path="res://assets/3D/GrassTiles/GrassTile01.glb" id="13_dg7d0"]
 
 [node name="MeshLibraryCollection" type="Node3D"]
 
@@ -35,3 +37,7 @@
 [node name="Gebäude05" parent="." instance=ExtResource("10_g0uin")]
 
 [node name="Gebäude06" parent="." instance=ExtResource("11_n5kq3")]
+
+[node name="GrassTile00" parent="." instance=ExtResource("12_3y3xe")]
+
+[node name="GrassTile01" parent="." instance=ExtResource("13_dg7d0")]

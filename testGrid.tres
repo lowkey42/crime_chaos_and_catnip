@@ -1,6 +1,6 @@
 [gd_resource type="MeshLibrary" load_steps=10 format=4 uid="uid://etib26asb80i"]
 
-[ext_resource type="Texture2D" uid="uid://bhsu7dmhynchh" path="res://assets/3D/small things/Strasse1_gradienttextures.png" id="2_4iq7g"]
+[ext_resource type="Texture2D" uid="uid://bhsu7dmhynchh" path="res://assets/3D/small things/straße/Strasse1_gradienttextures.png" id="2_4iq7g"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_4c2eq"]
 
