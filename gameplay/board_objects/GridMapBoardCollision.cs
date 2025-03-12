@@ -7,27 +7,36 @@ namespace CrimeChaosAndCatnip;
 public partial class GridMapBoardCollision : GridMap {
 
 	[Export] private int[] _nonBlockingItems = [];
+
+	private Board _board;
 	
 	public override void _Ready() {
 		base._Ready();
 		
-		var board = Board.GetBoard(this);
-		if (board == null)
+		_board = Board.GetBoard(this);
+		if (_board == null) {
+			GD.PrintErr("No Board found for GridMapBoardCollision");
 			return;
+		}
 
+		if (_board.IsNodeReady())
+			OnBoardReady();
+		else
+			_board.Ready += OnBoardReady;
+	}
+
+	private void OnBoardReady() {
 		foreach(var gridMapPosition in GetUsedCells()) {
 			if(_nonBlockingItems.Contains(GetCellItem(gridMapPosition)))
 				continue;
 
-			var localPosition = MapToLocal(gridMapPosition);
-			var start = localPosition.Floor(); // TODO[test]: position might be offset, if the cell position isn't the bottom left but the center
-			var end = start + CellSize;
+			var localPosition = ToGlobal(MapToLocal(gridMapPosition));
+			var start = Board.ToBoardPosition(localPosition - CellSize/2);
+			var end = Board.ToBoardPosition(localPosition + CellSize/2);
 
 			for (var x = start.X; x < end.X; x++) {
-				for (var z = start.Z; z < end.Z; z++) {
-					var boardPosition = board.ToNullableBoardPosition(new Vector3(x, 0, z));
-					if (boardPosition != null)
-						board.BoardMarkAsAlwaysBlocked(boardPosition.Value);
+				for (var y = start.Y; y < end.Y; y++) {
+					_board.BoardMarkAsAlwaysBlocked(new Vector2I(x, y));
 				}
 			}
 		}

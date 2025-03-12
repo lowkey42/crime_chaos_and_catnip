@@ -1,4 +1,4 @@
-[gd_scene load_steps=0 format=3 uid="uid://bxb1jsicri3cp"]
+[gd_scene format=3 uid="uid://bxb1jsicri3cp"]
 
 [node name="CardDirectionControl" type="Control"]
 layout_mode = 3
