@@ -9,15 +9,19 @@ ground_curve = 0.0263901
 sun_angle_max = 110.0
 energy_multiplier = 0.1
 
-[sub_resource type="Sky" id="Sky_ilha8"]
+[sub_resource type="Sky" id="Sky_1sw4c"]
 sky_material = SubResource("ProceduralSkyMaterial_1sw4c")
 
 [sub_resource type="Environment" id="Environment_tfq5h"]
 background_mode = 2
-sky = SubResource("Sky_ilha8")
+sky = SubResource("Sky_1sw4c")
 ambient_light_color = Color(0.02, 0.02, 0.03, 1)
 ambient_light_sky_contribution = 0.1
-tonemap_mode = 2
+tonemap_mode = 4
+ssao_enabled = true
+ssil_enabled = true
+sdfgi_enabled = true
+sdfgi_use_occlusion = true
 glow_enabled = true
 glow_intensity = 1.47
 glow_strength = 1.38
@@ -27,7 +31,7 @@ fog_light_energy = 0.33
 fog_density = 0.0
 fog_sky_affect = 0.053
 volumetric_fog_enabled = true
-volumetric_fog_density = 0.01
+volumetric_fog_density = 0.1
 volumetric_fog_length = 256.0
 volumetric_fog_sky_affect = 0.0
 adjustment_enabled = true

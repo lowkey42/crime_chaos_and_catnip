@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://cqdo162bubc58"]
+
+[ext_resource type="Script" uid="uid://b4tr0lmx326c7" path="res://gameplay/Board.cs" id="1_5g03a"]
+[ext_resource type="PackedScene" uid="uid://b267dln8bmyc0" path="res://gridsystem/grid_lines.tscn" id="2_saf3a"]
+[ext_resource type="MeshLibrary" uid="uid://crx7qq1oe5n3w" path="res://CityMeshLibrary.tres" id="4_fm2p5"]
+[ext_resource type="PackedScene" uid="uid://go6gi32bplg6" path="res://assets/3D/cars/TAXI-downsized.glb" id="5_saf3a"]
+
+[node name="Level02" type="Node"]
+
+[node name="Board" type="Node3D" parent="." groups=["Board"]]
+script = ExtResource("1_5g03a")
+_maxGridSize = Vector2i(64, 64)
+
+[node name="GridLines" parent="Board" instance=ExtResource("2_saf3a")]
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource("4_fm2p5")
+cell_size = Vector3(6, 6, 6)
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(2, 1, 1, 2, 2, 3, 2, 0, 3, 2, 3, 1, 2, 4, 0, 2, 65535, 2, 2, 5, 2, 3, 65534, 1441795, 4, 65534, 1441793, 5, 65534, 1441794, 2, 6, 1441795, 3, 5, 1441806, 3, 4, 1441806, 3, 3, 1441806, 3, 2, 1441806, 3, 1, 1441806, 3, 0, 1441806, 3, 65535, 655376, 4, 65535, 655374, 5, 65535, 655374, 4, 5, 655360, 4, 4, 655360, 4, 3, 655360, 4, 2, 655363, 4, 1, 655363, 5, 5, 3, 5, 2, 2, 5, 4, 1, 5, 3, 0, 5, 1, 1, 5, 0, 3, 4, 0, 1048579, 6, 5, 1441806, 6, 4, 1441806, 6, 3, 1441806, 6, 2, 1441806, 6, 1, 1441806, 6, 0, 1441806, 6, 65535, 1441807, 6, 65534, 1441806, 6, 65533, 1441806, 6, 65532, 1441806, 6, 65531, 1441806)
+}
+
+[node name="TAXI-downsized" parent="." instance=ExtResource("5_saf3a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.7989, 0, 1.15946)

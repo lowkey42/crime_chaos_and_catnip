@@ -144,12 +144,12 @@ public partial class CameraControl : Node
 			}
 			if (Input.IsActionPressed("rotate_camera_right"))
 			{
-				_targetRotation.Y -= Mathf.DegToRad(0.1f);
+				_targetRotation.Y -= Mathf.DegToRad(0.5f);
 			}
 
 			if (Input.IsActionPressed("rotate_camera_left"))
 			{
-				_targetRotation.Y += Mathf.DegToRad(0.1f);
+				_targetRotation.Y += Mathf.DegToRad(0.5f);
 			}
 
 		}
@@ -183,12 +183,12 @@ public partial class CameraControl : Node
 			//Implements Zoom
 			if (Input.IsActionPressed("zoom_in"))
 			{
-				movement.Y += 1;
+				movement.Y += 1000;
 			}
 
 			if (Input.IsActionPressed("zoom_out"))
 			{
-				movement.Y -= 1;
+				movement.Y -= 1000;
 			}
 
 			var cameraTransform = IsometricCamera.GlobalTransform;
