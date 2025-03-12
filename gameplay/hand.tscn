@@ -1,29 +1,108 @@
-[gd_scene load_steps=6 format=3 uid="uid://d3tbf6lk6xgiu"]
+[gd_scene load_steps=18 format=3 uid="uid://d3tbf6lk6xgiu"]
 
 [ext_resource type="Script" uid="uid://cidnfcxxq2ctp" path="res://gameplay/PlayerHand.cs" id="1_5j2u5"]
+[ext_resource type="Script" uid="uid://o5q4p0foouv3" path="res://gameplay/Gameplay.cs" id="1_rr2pk"]
 [ext_resource type="Script" uid="uid://bp64cwdqrlygr" path="res://gameplay/Deck.cs" id="2_ljolc"]
 [ext_resource type="Script" uid="uid://bt7r7nusxbpsv" path="res://gameplay/DeckEntry.cs" id="3_eksvm"]
+[ext_resource type="Texture2D" uid="uid://bd6qkpqrdsj1p" path="res://icon.svg" id="3_globg"]
+[ext_resource type="Resource" uid="uid://bl5r6qrxgsgo3" path="res://gameplay/cards/instances/card_move_10.tres" id="5_7ae6i"]
+[ext_resource type="Resource" uid="uid://cxk2dmo6atpcu" path="res://gameplay/cards/instances/card_summon_cat.tres" id="7_q0i0v"]
+[ext_resource type="PackedScene" uid="uid://c8fvd606ep5u" path="res://ui/held_card.tscn" id="8_nnvwr"]
+[ext_resource type="PackedScene" uid="uid://bhmi15nw6utp5" path="res://scenes/level/level_01.tscn" id="9_an04w"]
+[ext_resource type="Script" uid="uid://blo6ehy0rkpy5" path="res://gameplay/cards/CardDrawButton.cs" id="10_7ae6i"]
+[ext_resource type="PackedScene" uid="uid://b4ufa4onh1vrb" path="res://camera/cameras.tscn" id="11_q0i0v"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_b3v1d"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6a6rn"]
+size = Vector2(889, 178)
 
-[sub_resource type="Resource" id="Resource_y6jjf"]
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_sgf85"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p78cg"]
+size = Vector2(154, 185.5)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_d6nw1"]
+size = Vector2(20, 20)
+
+[sub_resource type="Resource" id="Resource_juwkt"]
 script = ExtResource("3_eksvm")
-Count = 1
+Card = ExtResource("5_7ae6i")
+Count = 10
+metadata/_custom_type_script = "uid://bt7r7nusxbpsv"
+
+[sub_resource type="Resource" id="Resource_ilpo5"]
+script = ExtResource("3_eksvm")
+Card = ExtResource("7_q0i0v")
+Count = 10
 metadata/_custom_type_script = "uid://bt7r7nusxbpsv"
 
 [node name="DrawCardScene" type="Node2D"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="CardsInHand" type="Node2D" parent="CanvasLayer"]
+[node name="Gameplay" type="Node" parent="CanvasLayer" node_paths=PackedStringArray("_deck", "_hand") groups=["Gameplay"]]
+script = ExtResource("1_rr2pk")
+_deck = NodePath("Deck")
+_hand = NodePath("CardOverlay/PlayerHand")
+
+[node name="CardOverlay" type="CanvasLayer" parent="CanvasLayer/Gameplay"]
+
+[node name="PlayerHand" type="Node2D" parent="CanvasLayer/Gameplay/CardOverlay" node_paths=PackedStringArray("_deck")]
+position = Vector2(624, 896)
 script = ExtResource("1_5j2u5")
+_deck = NodePath("../../Deck")
 
-[node name="DebugShape" type="CollisionShape2D" parent="CanvasLayer/CardsInHand"]
-position = Vector2(650, 1500)
-scale = Vector2(100, 100)
-shape = SubResource("CircleShape2D_b3v1d")
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Gameplay/CardOverlay/PlayerHand"]
+position = Vector2(0, 66)
+texture = ExtResource("3_globg")
 
-[node name="Deck" type="Node" parent="CanvasLayer"]
+[node name="DropPossibleArea" type="Area2D" parent="CanvasLayer/Gameplay/CardOverlay/PlayerHand"]
+position = Vector2(-32, -78)
+
+[node name="CantDropArea" type="CollisionShape2D" parent="CanvasLayer/Gameplay/CardOverlay/PlayerHand/DropPossibleArea" groups=["cantDropArea"]]
+position = Vector2(57.5, -205)
+shape = SubResource("RectangleShape2D_6a6rn")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Gameplay/CardOverlay/PlayerHand/DropPossibleArea/CantDropArea"]
+position = Vector2(-444.5, -95)
+scale = Vector2(889.657, 184.032)
+texture = SubResource("PlaceholderTexture2D_sgf85")
+
+[node name="DiscardZoneArea" type="CollisionShape2D" parent="CanvasLayer/Gameplay/CardOverlay/PlayerHand/DropPossibleArea" groups=["discardArea"]]
+position = Vector2(595, -206.25)
+shape = SubResource("RectangleShape2D_p78cg")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Gameplay/CardOverlay/PlayerHand/DropPossibleArea/DiscardZoneArea"]
+position = Vector2(-1.00004, -2.25001)
+scale = Vector2(7.8, 9.65)
+texture = SubResource("PlaceholderTexture2D_d6nw1")
+
+[node name="Deck" type="Node2D" parent="CanvasLayer/Gameplay"]
+position = Vector2(120, 640)
 script = ExtResource("2_ljolc")
-_cards = [SubResource("Resource_y6jjf")]
-metadata/_custom_type_script = "uid://bp64cwdqrlygr"
+_cards = [SubResource("Resource_juwkt"), SubResource("Resource_ilpo5")]
+_heldCardScene = ExtResource("8_nnvwr")
+
+[node name="Level01" parent="CanvasLayer/Gameplay" instance=ExtResource("9_an04w")]
+
+[node name="Control" type="Control" parent="." node_paths=PackedStringArray("_gameplay", "_playerHand")]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 51.0
+offset_top = 44.0
+offset_right = 324.0
+offset_bottom = 141.0
+script = ExtResource("10_7ae6i")
+_gameplay = NodePath("../CanvasLayer/Gameplay")
+_playerHand = NodePath("../CanvasLayer/Gameplay/CardOverlay/PlayerHand")
+
+[node name="Button" type="Button" parent="Control"]
+layout_mode = 0
+offset_right = 270.0
+offset_bottom = 91.0
+text = "Draw Cards"
+
+[node name="Cameras" parent="Control" instance=ExtResource("11_q0i0v")]
+
+[connection signal="pressed" from="Control/Button" to="Control" method="Pressed"]
+
+[editable path="CanvasLayer/Gameplay/Level01"]

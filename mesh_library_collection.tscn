@@ -1,0 +1,43 @@
+[gd_scene load_steps=14 format=3 uid="uid://dfqiq1n8jev5b"]
+
+[ext_resource type="PackedScene" uid="uid://35gy7oulatfq" path="res://assets/3D/small things/straße/Strasse1.glb" id="1_erb1o"]
+[ext_resource type="PackedScene" uid="uid://qg7qjperkeby" path="res://assets/3D/small things/straße/Strasse2.glb" id="2_gfuuk"]
+[ext_resource type="PackedScene" uid="uid://c32ytg0fq6hm" path="res://assets/3D/small things/straße/Strasse3.glb" id="3_3y3xe"]
+[ext_resource type="PackedScene" uid="uid://70inhfm7y7c3" path="res://assets/3D/small things/straße/Strasse4.glb" id="4_dg7d0"]
+[ext_resource type="PackedScene" uid="uid://dp13i6ci38jrd" path="res://assets/3D/small things/straße/Strasse5.glb" id="5_6qwck"]
+[ext_resource type="PackedScene" uid="uid://bhqcf80j2wsur" path="res://assets/3D/houses/Gebeude_1.glb" id="6_4s3mu"]
+[ext_resource type="PackedScene" uid="uid://c64rip6tr4lpx" path="res://assets/3D/houses/Gebeude_2.glb" id="7_hk5b1"]
+[ext_resource type="PackedScene" uid="uid://fv50koyxvj31" path="res://assets/3D/houses/Gebeude_3.glb" id="8_37ods"]
+[ext_resource type="PackedScene" uid="uid://phat4lowfbd2" path="res://assets/3D/houses/Gebeude_4.glb" id="9_v6a17"]
+[ext_resource type="PackedScene" uid="uid://bydqftbemt67b" path="res://assets/3D/houses/Gebäude05.glb" id="10_g0uin"]
+[ext_resource type="PackedScene" uid="uid://ct5ttfinnqdny" path="res://assets/3D/houses/Gebäude06.glb" id="11_n5kq3"]
+[ext_resource type="PackedScene" uid="uid://bvxy1lci8ivqw" path="res://assets/3D/GrassTiles/GrassTile00.glb" id="12_3y3xe"]
+[ext_resource type="PackedScene" uid="uid://2dq05iec53y3" path="res://assets/3D/GrassTiles/GrassTile01.glb" id="13_dg7d0"]
+
+[node name="MeshLibraryCollection" type="Node3D"]
+
+[node name="Strasse1" parent="." instance=ExtResource("1_erb1o")]
+
+[node name="Strasse22" parent="." instance=ExtResource("2_gfuuk")]
+
+[node name="Strasse32" parent="." instance=ExtResource("3_3y3xe")]
+
+[node name="Strasse42" parent="." instance=ExtResource("4_dg7d0")]
+
+[node name="Strasse52" parent="." instance=ExtResource("5_6qwck")]
+
+[node name="Gebeude_1" parent="." instance=ExtResource("6_4s3mu")]
+
+[node name="Gebeude_2" parent="." instance=ExtResource("7_hk5b1")]
+
+[node name="Gebeude_3" parent="." instance=ExtResource("8_37ods")]
+
+[node name="Gebeude_4" parent="." instance=ExtResource("9_v6a17")]
+
+[node name="Gebäude05" parent="." instance=ExtResource("10_g0uin")]
+
+[node name="Gebäude06" parent="." instance=ExtResource("11_n5kq3")]
+
+[node name="GrassTile00" parent="." instance=ExtResource("12_3y3xe")]
+
+[node name="GrassTile01" parent="." instance=ExtResource("13_dg7d0")]

@@ -32,7 +32,7 @@ public partial class CameraControl : Node
 	[Export] public float ZoomMin = 5.0f;
 	[Export] public float ZoomMax = 5.0f;
 	[Export] public float EdgeSensitivity = 100.0f;
-	private float _shiftFactor = 1.0f;
+	private float _shiftFactor = 3.0f;
 
 	[Export] public bool EnableMouseCameraMovement = true;
 
@@ -144,21 +144,21 @@ public partial class CameraControl : Node
 			}
 			if (Input.IsActionPressed("rotate_camera_right"))
 			{
-				_targetRotation.Y -= Mathf.DegToRad(0.1f);
+				_targetRotation.Y -= (float) (Mathf.DegToRad(RotationSpeed) * delta);
 			}
 
 			if (Input.IsActionPressed("rotate_camera_left"))
 			{
-				_targetRotation.Y += Mathf.DegToRad(0.1f);
+				_targetRotation.Y += (float) (Mathf.DegToRad(RotationSpeed) * delta);
 			}
 
 		}
 		
 		if (Input.IsActionPressed("speedup_movement")) {
-			_shiftFactor = 3.0f;
+			_shiftFactor = 1.0f;
 		}
 		else if (Input.IsActionJustReleased("speedup_movement")){
-			_shiftFactor = 1.0f;
+			_shiftFactor = 3.0f;
 		}
 
 		//Moves the camera on the axis with WASD
@@ -183,12 +183,12 @@ public partial class CameraControl : Node
 			//Implements Zoom
 			if (Input.IsActionPressed("zoom_in"))
 			{
-				movement.Y += 1;
+				movement.Y += 1000;
 			}
 
 			if (Input.IsActionPressed("zoom_out"))
 			{
-				movement.Y -= 1;
+				movement.Y -= 1000;
 			}
 
 			var cameraTransform = IsometricCamera.GlobalTransform;

@@ -1,0 +1,121 @@
+[gd_scene load_steps=10 format=3 uid="uid://blejwh2rfomwf"]
+
+[ext_resource type="Script" uid="uid://cgakdkyg2lchh" path="res://scenes/game_settings_scene.gd" id="1_1xq4j"]
+[ext_resource type="Texture2D" uid="uid://dt2fgehf87ng4" path="res://ui/menu_background.png" id="2_pfpuo"]
+[ext_resource type="PackedScene" path="res://scenes/game_credits.tscn" id="3_jcp86"]
+[ext_resource type="FontFile" uid="uid://dbmji04vmaq7m" path="res://fonts/American Typewriter Condensed.ttf" id="4_1xq4j"]
+[ext_resource type="PackedScene" uid="uid://bkk87o2ooo6at" path="res://ui/overlays/fade_overlay.tscn" id="5_dgu6b"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ykg1"]
+content_margin_left = 50.0
+content_margin_top = 50.0
+content_margin_right = 50.0
+content_margin_bottom = 50.0
+bg_color = Color(1, 1, 0.788235, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.8, 0.545098, 0.8, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_vm6u3"]
+font_size = 64
+font_color = Color(0.780392, 0.482353, 0.631373, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_pfpuo"]
+font = ExtResource("4_1xq4j")
+font_size = 32
+font_color = Color(0.780392, 0.482353, 0.631373, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_1xq4j"]
+font_size = 32
+font_color = Color(0.780392, 0.482353, 0.631373, 1)
+
+[node name="GameSettingsScene" type="Node2D"]
+script = ExtResource("1_1xq4j")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("2_pfpuo")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="Panel" type="PanelContainer" parent="UI"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -335.0
+offset_top = -344.0
+offset_right = 327.0
+offset_bottom = 345.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_styles/panel = SubResource("StyleBoxFlat_1ykg1")
+
+[node name="game_credits1" parent="UI" instance=ExtResource("3_jcp86")]
+offset_left = 312.0
+offset_top = 204.0
+offset_right = 963.0
+offset_bottom = 556.0
+size_flags_stretch_ratio = 0.0
+
+[node name="Label" type="Label" parent="UI"]
+offset_left = 313.0
+offset_top = 40.0
+offset_right = 960.0
+offset_bottom = 113.0
+text = "Credits"
+label_settings = SubResource("LabelSettings_vm6u3")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Label2" type="Label" parent="UI"]
+offset_left = 310.0
+offset_top = 130.0
+offset_right = 962.0
+offset_bottom = 167.0
+text = "Developers"
+label_settings = SubResource("LabelSettings_pfpuo")
+horizontal_alignment = 1
+
+[node name="Label10" type="Label" parent="UI"]
+offset_left = 309.0
+offset_top = 588.0
+offset_right = 960.0
+offset_bottom = 625.0
+text = "Developed during the Game Dev Week 2025"
+label_settings = SubResource("LabelSettings_1xq4j")
+horizontal_alignment = 1
+
+[node name="ReturnButton" type="Button" parent="UI"]
+unique_name_in_owner = true
+offset_left = 459.0
+offset_top = 633.0
+offset_right = 811.0
+offset_bottom = 679.0
+text = "return_to_main"
+
+[node name="FadeOverlay" parent="UI" instance=ExtResource("5_dgu6b")]
+unique_name_in_owner = true
+visible = false
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+autoplay = true
+bus = &"Music"

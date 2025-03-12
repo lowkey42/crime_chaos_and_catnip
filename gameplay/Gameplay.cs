@@ -45,7 +45,7 @@ public partial class Gameplay : Node {
 
 	[Export] private PlayerHand _hand;
 
-	[Export] private Board _board;
+	private Board _board;
 
 	[Export] private float _stepTime = 0.5f;
 
@@ -58,7 +58,8 @@ public partial class Gameplay : Node {
 	private int[,] _unitsMoveTargets;
 
 	public override void _Ready() {
-		//_ = Warmup();
+		_board = Board.GetBoard(this);
+		_ = Warmup();
 	}
 
 	public async Task Warmup() {
@@ -90,6 +91,8 @@ public partial class Gameplay : Node {
 		_currentState = State.Acting;
 		EmitSignalActing();
 
+		_board.GridLines?.Fade(0.1f);
+		
 		_unitsMoveTargets = _board.ResizeToBoardDimensions(_unitsMoveTargets);
 		
 		var didAnyUnitAct = false;
@@ -133,6 +136,8 @@ public partial class Gameplay : Node {
 		foreach (var unit in _board.GetUnits()) {
 			unit.ClearStunned();
 		}
+
+		_board.GridLines?.Fade(1f);
 
 		EmitSignalTurnStarted();
 
@@ -197,16 +202,19 @@ public partial class Gameplay : Node {
 		foreach (var unit in _unitsMovingInNextStep) {
 			var target = _board.GetCell(unit.MoveTarget).Position;
 			moveTween.TweenProperty(unit, "position", target, _stepTime);
+			unit.MovementLeft--;
 		}
 		// execute half movement + bounce for stunned units
 		foreach (var unit in _unitsStunnedInNextStep) {
+			unit.MovementLeft = 0;
+			
 			var currentPosition = unit.Position;
 			var targetPosition = _board.GetCell(unit.MoveTarget).Position;
 			var halfPoint = currentPosition.Lerp(targetPosition, 0.5f);
 
 			var stunTween = unit.CreateTween();
-			stunTween.TweenProperty(unit, "position", halfPoint, _stepTime/3f);
-			stunTween.TweenProperty(unit, "position", currentPosition, _stepTime/3f).SetTrans(Tween.TransitionType.Bounce);
+			stunTween.TweenProperty(unit, "position", halfPoint, _stepTime/2f);
+			stunTween.TweenProperty(unit, "position", currentPosition, _stepTime/2f).SetTrans(Tween.TransitionType.Bounce);
 			moveTween.TweenSubtween(stunTween);
 		}
 	}
