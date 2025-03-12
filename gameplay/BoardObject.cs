@@ -16,6 +16,9 @@ public abstract partial class BoardObject : Node3D {
 
 	}
 	
+	[Signal]
+	public delegate void InteractedEventHandler();
+	
 	public abstract bool BlocksField { get; }
 
 	public Vector2I BoardPosition => Board.ToBoardPosition(GlobalPosition);
@@ -58,5 +61,9 @@ public abstract partial class BoardObject : Node3D {
 	/// <returns>True if the object has been combined with this one and the new object can be discarded</returns>
 	public virtual bool TryStack(BoardObject otherObject) {
 		return false;
+	}
+
+	public void OnInteracted() {
+		EmitSignalInteracted();
 	}
 }

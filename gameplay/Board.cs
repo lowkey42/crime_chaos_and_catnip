@@ -40,6 +40,10 @@ public partial class Board : Node {
 			
 			for (var i = Objects.Count - 1; i >= 0; i--) {
 				var interactResult = Objects[i].TryInteract(unit);
+				
+				if (interactResult.HasFlag(BoardObject.InteractResult.Interacted))
+					Objects[i].OnInteracted();
+				
 				if (interactResult.HasFlag(BoardObject.InteractResult.BlockMovement))
 					movementBlocked = true;
 					
