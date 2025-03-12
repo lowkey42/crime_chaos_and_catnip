@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cik30de5gaaah"]
+[gd_scene load_steps=23 format=3 uid="uid://cik30de5gaaah"]
 
 [ext_resource type="Script" uid="uid://dmeymco117qmu" path="res://scenes/ingame_scene.gd" id="1_objyc"]
 [ext_resource type="PackedScene" uid="uid://bkk87o2ooo6at" path="res://ui/overlays/fade_overlay.tscn" id="1_y6ebv"]
@@ -14,6 +14,7 @@
 [ext_resource type="Resource" uid="uid://cxk2dmo6atpcu" path="res://gameplay/cards/instances/card_summon_cat.tres" id="8_juwkt"]
 [ext_resource type="Script" uid="uid://cidnfcxxq2ctp" path="res://gameplay/PlayerHand.cs" id="10_etwux"]
 [ext_resource type="Script" uid="uid://blo6ehy0rkpy5" path="res://gameplay/cards/CardDrawButton.cs" id="12_2vs8u"]
+[ext_resource type="Shader" uid="uid://du4mnb6o764np" path="res://assets/card_glow.gdshader" id="13_4d8mm"]
 [ext_resource type="PackedScene" uid="uid://b4ufa4onh1vrb" path="res://camera/cameras.tscn" id="14_ilpo5"]
 
 [sub_resource type="Gradient" id="Gradient_juwkt"]
@@ -39,6 +40,15 @@ script = ExtResource("7_2vs8u")
 Card = ExtResource("8_juwkt")
 Count = 10
 metadata/_custom_type_script = "uid://bt7r7nusxbpsv"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4d8mm"]
+resource_local_to_scene = true
+shader = ExtResource("13_4d8mm")
+shader_parameter/highlight_active = true
+shader_parameter/glow_color = Color(1, 1, 0, 1)
+shader_parameter/glow_thickness = 2.581
+shader_parameter/glow_intensity = 0.499
+shader_parameter/pulse_speed = 1.029
 
 [node name="IngameScene" type="Node2D"]
 script = ExtResource("1_objyc")
@@ -146,6 +156,7 @@ offset_bottom = 50.0
 grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("10_etwux")
+_handRadius = 150
 _deck = NodePath("../MarginContainer/DeckContainer/Deck")
 _discardPile = NodePath("../DiscardPile")
 _bottomArea = NodePath("../BottomBackground")
@@ -172,6 +183,7 @@ _cards = [SubResource("Resource_juwkt"), SubResource("Resource_ilpo5")]
 _heldCardScene = ExtResource("6_vus8m")
 
 [node name="HeldCard" parent="Gameplay/HUD/BottomUI/MarginContainer/DeckContainer/Deck" instance=ExtResource("6_vus8m")]
+material = SubResource("ShaderMaterial_4d8mm")
 
 [node name="RemainingCards" type="Label" parent="Gameplay/HUD/BottomUI/MarginContainer/DeckContainer"]
 layout_mode = 1
