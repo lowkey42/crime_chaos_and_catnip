@@ -1,0 +1,56 @@
+[gd_scene load_steps=2 format=3 uid="uid://dquooa11awyig"]
+
+[ext_resource type="Script" path="res://scenes/game_credits.gd" id="1_116ou"]
+
+[node name="game_credits" type="VBoxContainer"]
+offset_left = 22.0
+offset_top = 113.0
+offset_right = 584.0
+offset_bottom = 383.0
+theme_override_constants/separation = 10
+script = ExtResource("1_116ou")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "Elyzra (Jessica Scholl) - 2D Art"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 2
+text = "Thuy Linh (Duong) - 2D Art"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="."]
+layout_mode = 2
+text = "Yannick Späder - 3D Art"
+horizontal_alignment = 1
+
+[node name="Label7" type="Label" parent="."]
+layout_mode = 2
+text = "Carolyn Schneider - 3D Art"
+horizontal_alignment = 1
+
+[node name="Label5" type="Label" parent="."]
+layout_mode = 2
+text = "Jonas Novaki -  3D Art & Stuff"
+horizontal_alignment = 1
+
+[node name="Label6" type="Label" parent="."]
+layout_mode = 2
+text = "Florian Oetke - Programmer"
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="."]
+layout_mode = 2
+text = "Lukas Lehnart - Programmer"
+horizontal_alignment = 1
+
+[node name="Label8" type="Label" parent="."]
+layout_mode = 2
+text = "Benedikt Breitlauch - Programmer"
+horizontal_alignment = 1
+
+[node name="Label9" type="Label" parent="."]
+layout_mode = 2
+text = "Robin Wagner - Programmer"
+horizontal_alignment = 1
