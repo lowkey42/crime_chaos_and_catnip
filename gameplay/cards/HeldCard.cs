@@ -18,6 +18,8 @@ public partial class HeldCard : Node2D {
 	private CollisionShape2D _discardArea;
 
 	private CollisionShape2D _snapBackArea;
+	
+	[Export]private AnimationPlayer _animationPlayer;
 
 	private bool _grabbed = false;
 	private bool _canDrop = false;
@@ -131,6 +133,13 @@ public partial class HeldCard : Node2D {
 
 	private void OnArea2DMouseExited() {
 		GetParentOrNull<PlayerHand>()?.HandleCardUnhovered(this);
+	}
+
+	public void FlipCard() {
+		if (_animationPlayer != null)
+		{
+			_animationPlayer.Play("card_flip"); // "draw_card" ist der Name der Animation
+		}
 	}
 
 }

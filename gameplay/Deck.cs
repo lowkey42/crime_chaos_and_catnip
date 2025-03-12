@@ -9,11 +9,13 @@ using Godot;
 namespace CrimeChaosAndCatnip;
 
 [GlobalClass]
-public partial class Deck : Node {
+public partial class Deck : Node2D {
 
 	[Export] private DeckEntry[] _cards = [];
 
 	[Export] private PackedScene _heldCardScene = null!;
+	
+	private AnimationPlayer _animationPlayer = null!;
 
 	private readonly List<HeldCard> _liveCards = [];
 
@@ -46,6 +48,7 @@ public partial class Deck : Node {
 		var card = _liveCards[^1];
 		_liveCards.RemoveAt(_liveCards.Count - 1);
 		RemoveChild(card);
+		card.FlipCard();
 		return card;
 	}
 
