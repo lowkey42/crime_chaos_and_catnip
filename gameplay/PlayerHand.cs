@@ -11,6 +11,7 @@ public partial class PlayerHand : Control {
 	public delegate void CardPlayedEventHandler(CardBase card, BoardObject spawn);
 
 	[Export] private int _handRadius = 200;
+	[Export] private float _yFactor = 0.6f;
 	[Export] private float _cardAngleLimit = 90.0f;
 	[Export] private float _maxCardSpreadAngle = 20f;
 	[Export] private Deck _deck = null!;
@@ -60,11 +61,11 @@ public partial class PlayerHand : Control {
 		return _discardPile!=null && _discardPile.GetGlobalRect().HasPoint(screenPosition);
 	}
 	
-    public void AddCard(HeldCard card)
+    public async void AddCard(HeldCard card)
     {
         _heldCards.Add(card);
         AddChild(card);
-        RepositionCards();
+        await RepositionCardsWithTween();
     }
 
     
@@ -80,6 +81,34 @@ public partial class PlayerHand : Control {
 		    UpdateCardTransform(card, currentAngle);
 		    currentAngle += cardSpread;
 	    }
+    }
+    
+    private async Task RepositionCardsWithTween()
+    {
+	    if (_heldCards.Count == 0) return;
+
+	    float cardSpread = Mathf.Min(_cardAngleLimit / _heldCards.Count, _maxCardSpreadAngle);
+	    float currentAngle = -((cardSpread * (_heldCards.Count - 1)) / 2 - 90);
+
+	    // Erstelle einen Tween für jede Karte
+	    foreach (var card in _heldCards)
+	    {
+		    Vector2 finalPosition = GetCardPosition(currentAngle);
+		    float finalRotation = GetCardRotation(currentAngle);
+
+		    // Erstelle einen Tween für die Position und Rotation der Karte
+		    Tween tween = CreateTween();
+		    tween.TweenProperty(card, "position", finalPosition, 0.5f)
+			    .SetEase(Tween.EaseType.Out)
+			    .SetTrans(Tween.TransitionType.Quad);
+
+		    tween.Parallel().TweenProperty(card, "rotation", finalRotation, 0.5f);
+
+		    currentAngle += cardSpread;
+	    }
+
+	    // Warte auf das Ende der Animation
+	    await ToSignal(GetTree().CreateTimer(0.5f), "timeout");
     }
     
     private Vector2 GetCardPositionForAnimation(HeldCard card)
@@ -98,20 +127,15 @@ public partial class PlayerHand : Control {
     
     private float GetCardRotationForAnimation(HeldCard card)
     {
-	    // Berechne die Rotation der Karte basierend auf ihrer Position in der Hand
 	    float cardSpread = Mathf.Min(_cardAngleLimit / _heldCards.Count, _maxCardSpreadAngle);
 	    float currentAngle = -((cardSpread * (_heldCards.Count - 1)) / 2) - 90;
-
-	    // Finde den Index der Karte in der Hand
+	    
 	    int cardIndex = _heldCards.IndexOf(card);
 	    if (cardIndex >= 0)
 	    {
-		    // Berechne den Winkel für diese Karte
 		    float angle = currentAngle + cardIndex * cardSpread;
-		    return Mathf.DegToRad(angle + 90); // +90 Grad, damit die Karte zur Mitte zeigt
+		    return Mathf.DegToRad(angle + 90);
 	    }
-
-	    // Fallback: Rotation der letzten Karte in der Hand
 	    return Mathf.DegToRad(currentAngle + (_heldCards.Count - 1) * cardSpread + 90);
     }
     
@@ -119,18 +143,35 @@ public partial class PlayerHand : Control {
     {
 		    float angleInRadians = Mathf.DegToRad(angleInDegrees);
 		    float x =  _handRadius * Mathf.Cos(angleInRadians);
-		    float y =  _handRadius * Mathf.Sin(angleInRadians);
-		    
+		    float y = _handRadius * Mathf.Sin(angleInRadians) * _yFactor;
 
 		    return new Vector2(x, y);
+    }
+    
+    private float GetCardRotation(float angleInDegrees)
+    {
+	    float angleInRadians = Mathf.DegToRad(angleInDegrees);
+	    return Mathf.Atan2(_handRadius * Mathf.Sin(angleInRadians) * _yFactor, _handRadius * Mathf.Cos(angleInRadians));
     }
 
     // Aktualisiert die Position und Rotation einer Karte
     private void UpdateCardTransform(HeldCard card, float angleInDegrees)
     {
-        card.Position = GetCardPosition(angleInDegrees);
-        card.Rotation = -card.Position.AngleTo(Vector2.Up);
-        card.Rotation = card.Position.Angle() + Mathf.Pi / 2;
+        // Berechne die Position der Karte
+    card.Position = GetCardPosition(angleInDegrees);
+
+    // Berechne die Rotation der Karte basierend auf der elliptischen Form
+    float x = card.Position.X;
+    float y = card.Position.Y;
+
+    // Steigung der Ellipse an der Position (x, y)
+    float slope = -((_handRadius * _yFactor) * (_handRadius * _yFactor) * x) / (_handRadius * _handRadius * y);
+
+    // Berechne die Rotation aus der Steigung
+    float rotation = Mathf.Atan(slope);
+
+    // Korrigiere die Rotation, damit die Karte zur Mitte zeigt
+    card.Rotation = rotation; // +90 Grad, damit die Karte zur Mitte zeigt
     }
     
     
@@ -162,6 +203,8 @@ public partial class PlayerHand : Control {
 
             
             await ToSignal(tween, "finished");
+            
+            await RepositionCardsWithTween();
         }
         else
         {
@@ -179,8 +222,30 @@ public partial class PlayerHand : Control {
 		    
 		    AddChild(card);
 		    _heldCards.Add(card);
+		    
+		    //zeigt die endposition und rotation der karte an 
+		    Vector2 finalPosition = GetCardPositionForAnimation(card);
+		    float finalRotation = GetCardRotationForAnimation(card);
+            
+		    card.Position = finalPosition;
+		    card.Rotation = finalRotation;
+		    card.Scale = Vector2.One;
+		    card.Position = _deck.GlobalPosition - GlobalPosition; 
+		    card.Rotation = 0; 
+		    card.Scale = Vector2.One * 0.5f; 
+            
+		    Tween tween = CreateTween();
+		    tween.TweenProperty(card, "position", finalPosition, 0.5f)
+			    .SetEase(Tween.EaseType.Out) 
+			    .SetTrans(Tween.TransitionType.Quad); 
+            
+		    tween.Parallel().TweenProperty(card, "rotation", finalRotation, 0.5f);
+		    tween.Parallel().TweenProperty(card, "scale", Vector2.One, 0.5f);
+		    
+		    await ToSignal(tween, "finished");
 
-		    await Task.Delay(100); // TODO[ui]: placeholder for animation and stuff
+		    RepositionCards();
+
 	    }
 
 	    return true;
@@ -193,6 +258,7 @@ public partial class PlayerHand : Control {
         card.Card?.OnDiscard(this);
         card.QueueFree();
         RepositionCards();
+
     }
     public bool CanEndTurn()
     {

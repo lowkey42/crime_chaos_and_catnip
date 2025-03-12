@@ -39,19 +39,17 @@ metadata/_custom_type_script = "uid://bt7r7nusxbpsv"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Gameplay" type="Node" parent="CanvasLayer" node_paths=PackedStringArray("_deck", "_hand", "_board") groups=["Gameplay"]]
+[node name="Gameplay" type="Node" parent="CanvasLayer" node_paths=PackedStringArray("_deck", "_hand") groups=["Gameplay"]]
 script = ExtResource("1_rr2pk")
 _deck = NodePath("Deck")
 _hand = NodePath("CardOverlay/PlayerHand")
-_board = NodePath("Level01/Board")
 
 [node name="CardOverlay" type="CanvasLayer" parent="CanvasLayer/Gameplay"]
 
-[node name="PlayerHand" type="Node2D" parent="CanvasLayer/Gameplay/CardOverlay" node_paths=PackedStringArray("_deck", "_board")]
+[node name="PlayerHand" type="Node2D" parent="CanvasLayer/Gameplay/CardOverlay" node_paths=PackedStringArray("_deck")]
 position = Vector2(624, 896)
 script = ExtResource("1_5j2u5")
 _deck = NodePath("../../Deck")
-_board = NodePath("../../Level01/Board")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Gameplay/CardOverlay/PlayerHand"]
 position = Vector2(0, 66)

@@ -21,11 +21,15 @@ public partial class HeldCard : Node2D {
 	private bool _canDrop = false;
 	private Timer _dropTimer;
 
+	private ShaderMaterial _glowMaterial;
+
 
 	public override void _Ready() {
 		base._Ready();
 
 		_sprite?.SetTexture(Card?.CardSprite);
+
+		_glowMaterial = GD.Load<ShaderMaterial>("res://assets/card_glow.tres");
 
 		_dropTimer = new Timer();
 		AddChild(_dropTimer);
@@ -73,12 +77,21 @@ public partial class HeldCard : Node2D {
 	}
 
 	public void Highlight() {
-		if (!_grabbed)
-			_sprite?.SetModulate(new Color(1, 0.5f, 0.1f, 1)); // Gelb hervorheben
+		if (!_grabbed) {
+			if (_sprite != null) {
+				var spriteMaterial = (ShaderMaterial) _sprite.Material;
+				spriteMaterial.SetShaderParameter("highlight_active", true);
+			}
+		}
+
 	}
 
 	public void Unhighlight() {
-		_sprite?.SetModulate(new Color(1, 1, 1, 1)); // Normale Farbe
+		if (_sprite != null)
+		{
+			var spriteMaterial = (ShaderMaterial)_sprite.Material;
+			spriteMaterial.SetShaderParameter("highlight_active", false); 
+		}
 	}
 
 	public void OnDropped() {
