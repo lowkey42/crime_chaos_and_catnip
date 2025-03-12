@@ -22,10 +22,10 @@ public partial class CardBase : Resource {
 	public void PlayAt(CardAccessibleState state) {
 		if (SpawnOnPlay != null) {
 			var spawned = (BoardObject) SpawnOnPlay.Instantiate();
-			state.Board.AddChild(spawned);
-			spawned.Position = state.TargetCell.Position;
 			if (spawned is PlayedCard pc)
 				pc.Card = this;
+			state.Board.AddChild(spawned);
+			spawned.Position = state.TargetCell.Position;
 		}
 		
 		OnPlayed(state);

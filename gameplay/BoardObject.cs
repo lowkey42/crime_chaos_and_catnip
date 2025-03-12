@@ -27,13 +27,7 @@ public abstract partial class BoardObject : Node3D {
 	public override void _Ready() {
 		base._Ready();
 
-		// find the board we are on
-		foreach (var board in GetTree().GetNodesInGroup("Board")) {
-			if (board is Board b) {
-				Board = b;
-				break;
-			}
-		}
+		Board = Board.GetBoard(this);
 		
 		Board?.AddObject(BoardPosition, this);
 		_lastBoardPosition = BoardPosition;
