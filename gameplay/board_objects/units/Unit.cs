@@ -31,7 +31,7 @@ public partial class Unit : BoardObject {
 	public Vector2I MoveTarget => !WantsToMove
 		? Vector2I.Zero
 		: MovementDirection switch {
-			BoardOrientation.North => BoardPosition + new Vector2I(0, 1),
+			BoardOrientation.North => BoardPosition + new Vector2I(0, -1),
 			BoardOrientation.South => BoardPosition + new Vector2I(0, 1),
 			BoardOrientation.East => BoardPosition + new Vector2I(1, 0),
 			BoardOrientation.West => BoardPosition + new Vector2I(-1, 0),

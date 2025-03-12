@@ -3,9 +3,7 @@ using Godot;
 namespace CrimeChaosAndCatnip;
 
 [GlobalClass]
-public partial class PlayedCard : BoardObject {
-
-	public BoardOrientation BoardOrientation { get; private set; }
+public partial class PlayedCard : OrientedBoardObject {
 
 	[Export] public CardBase Card { get; set; }
 

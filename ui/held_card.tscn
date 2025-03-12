@@ -1,11 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://c8fvd606ep5u"]
+[gd_scene load_steps=13 format=3 uid="uid://c8fvd606ep5u"]
 
 [ext_resource type="Script" uid="uid://ducu2kng5aotl" path="res://gameplay/cards/HeldCard.cs" id="1_dxi6h"]
 [ext_resource type="Texture2D" uid="uid://cw4qn5ngn6ax5" path="res://gameplay/cards/instances/card_move_10.png" id="2_omqpp"]
 [ext_resource type="PackedScene" uid="uid://bkfm8wp8c8y0r" path="res://gameplay/board_objects/played_card.tscn" id="3_7d7q0"]
 [ext_resource type="Script" uid="uid://d0vrl7d4sx35b" path="res://gameplay/cards/CardMove.cs" id="3_esxd3"]
+[ext_resource type="Shader" uid="uid://ci55tqqowoikf" path="res://addons/outline.gdshader" id="4_esxd3"]
 [ext_resource type="Script" uid="uid://bn0wyw5lpfmgm" path="res://addons/addons/draggablesprite2d/src/draggablesprite2d.gd" id="5_7t26j"]
-[ext_resource type="Material" uid="uid://ih1jw1htj5p8" path="res://assets/card_glow.tres" id="5_gy4tq"]
 [ext_resource type="Texture2D" uid="uid://by78uykv1wms5" path="res://gameplay/cards/instances/Cardbackside.png" id="7_gopet"]
 
 [sub_resource type="Resource" id="Resource_7t26j"]
@@ -17,6 +17,66 @@ CardSprite = ExtResource("2_omqpp")
 SpawnOnPlay = ExtResource("3_7d7q0")
 RequiresOrientation = false
 metadata/_custom_type_script = "uid://d0vrl7d4sx35b"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7t26j"]
+shader = ExtResource("4_esxd3")
+shader_parameter/color = Color(0.79096, 0.185889, 0.596654, 1)
+shader_parameter/width = 3.159
+shader_parameter/pattern = 0
+shader_parameter/inside = false
+shader_parameter/add_margins = true
+shader_parameter/number_of_images = Vector2(1, 1)
+
+[sub_resource type="Animation" id="Animation_1s48i"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DraggableSprite2D/BackSprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DraggableSprite2D/BackSprite:z_index")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DraggableSprite2D/FrontSprite:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("DraggableSprite2D/FrontSprite:z_index")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [-1]
+}
 
 [sub_resource type="Animation" id="Animation_gy4tq"]
 resource_name = "card_flip"
@@ -70,57 +130,6 @@ tracks/3/keys = {
 "values": [-1, 0]
 }
 
-[sub_resource type="Animation" id="Animation_1s48i"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("DraggableSprite2D/BackSprite:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("DraggableSprite2D/BackSprite:z_index")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("DraggableSprite2D/FrontSprite:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("DraggableSprite2D/FrontSprite:z_index")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [-1]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2ertb"]
 _data = {
 &"RESET": SubResource("Animation_1s48i"),
@@ -136,7 +145,6 @@ metadata/_custom_type_script = "uid://ducu2kng5aotl"
 
 [node name="DraggableSprite2D" type="Area2D" parent="." node_paths=PackedStringArray("sprite")]
 texture_filter = 3
-material = ExtResource("5_gy4tq")
 scale = Vector2(0.15, 0.15)
 script = ExtResource("5_7t26j")
 centerDrag = true
@@ -145,11 +153,10 @@ sprite = NodePath("FrontSprite")
 
 [node name="FrontSprite" type="Sprite2D" parent="DraggableSprite2D"]
 z_index = -1
-material = ExtResource("5_gy4tq")
+material = SubResource("ShaderMaterial_7t26j")
 texture = ExtResource("2_omqpp")
 
 [node name="BackSprite" type="Sprite2D" parent="DraggableSprite2D"]
-material = ExtResource("5_gy4tq")
 texture = ExtResource("7_gopet")
 
 [node name="FlipAnimation" type="AnimationPlayer" parent="."]

@@ -7,6 +7,8 @@ namespace CrimeChaosAndCatnip;
 
 [GlobalClass]
 public partial class PlayerHand : Control {
+	[Signal]
+	public delegate void CardPlayedEventHandler(CardBase card, BoardObject spawn);
 
 	[Export] private int _handRadius = 200;
 	[Export] private float _yFactor = 0.6f;
@@ -27,6 +29,8 @@ public partial class PlayerHand : Control {
 	[Export] private int _maxCardAtTurnEnd = 3;
 
 	private Board? _board;
+
+	[Export] public int TotalPlayedCards { get; private set; }
 	
 	public override void _Ready() {
 		RepositionCards();
@@ -54,7 +58,6 @@ public partial class PlayerHand : Control {
 		return _bottomArea!=null && !_bottomArea.GetGlobalRect().HasPoint(screenPosition);
 	}
 	public bool IsInDiscardArea(Vector2 screenPosition) {
-		GD.Print($"Mouse {screenPosition}, Rect: {_discardPile?.GetRect()}, GlobalRect: {_discardPile?.GetGlobalRect()}");
 		return _discardPile!=null && _discardPile.GetGlobalRect().HasPoint(screenPosition);
 	}
 	
@@ -277,7 +280,9 @@ public partial class PlayerHand : Control {
     public void PlayAt(HeldCard heldCard, Vector2I boardPosition) {
 	    var state = GetCardAccessibleState(boardPosition);
 	    if (state != null) {
-		    heldCard.Card.PlayAt(state);
+		    TotalPlayedCards++;
+		    var spawned = heldCard.Card.PlayAt(state);
+		    EmitSignalCardPlayed(heldCard.Card, spawned);
 		    _heldCards.Remove(heldCard);
 		    heldCard.QueueFree();
 		    RepositionCards();

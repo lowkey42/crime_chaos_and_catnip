@@ -16,8 +16,9 @@ BaseCameraMove = Vector3(0, -10, 10)
 RotationDegree = 40.0
 IsometricCamera = NodePath("../FreeCamera")
 TopDownCamera = NodePath("../TopDownCamera")
-RotationSpeed = 0.005
+RotationSpeed = 90.0
 EdgeSensitivity = 5.0
+EnableMouseCameraMovement = false
 CameraRaycast = NodePath("../RayCast3D")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]

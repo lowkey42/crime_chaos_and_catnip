@@ -85,18 +85,18 @@ public partial class Gameplay : Node {
 	}
 
 	private async Task Act() {
-		GD.Print("Act");
 		if (_currentState != State.PlayingCards)
 			throw new InvalidOperationException($"Invalid state transition from {_currentState} to Acting");
 
 		_currentState = State.Acting;
 		EmitSignalActing();
 
+		_board.GridLines?.Fade(0.1f);
+		
 		_unitsMoveTargets = _board.ResizeToBoardDimensions(_unitsMoveTargets);
 		
 		var didAnyUnitAct = false;
 		do {
-			GD.Print("Step");
 			await Task.Delay(TimeSpan.FromSeconds(_stepTime));
 			
 			didAnyUnitAct = false;
@@ -127,9 +127,7 @@ public partial class Gameplay : Node {
 				}
 			}
 
-			GD.Print("MoveUnits");
 			MoveUnits();
-			GD.Print("Step done");
 		} while (didAnyUnitAct);
 
 		EmitSignalTurnDone();
@@ -139,11 +137,11 @@ public partial class Gameplay : Node {
 			unit.ClearStunned();
 		}
 
+		_board.GridLines?.Fade(1f);
+
 		EmitSignalTurnStarted();
 
-		GD.Print("Draw");
 		await Draw();
-		GD.Print("Act done");
 	}
 
 	private void MoveUnits() {
@@ -204,16 +202,19 @@ public partial class Gameplay : Node {
 		foreach (var unit in _unitsMovingInNextStep) {
 			var target = _board.GetCell(unit.MoveTarget).Position;
 			moveTween.TweenProperty(unit, "position", target, _stepTime);
+			unit.MovementLeft--;
 		}
 		// execute half movement + bounce for stunned units
 		foreach (var unit in _unitsStunnedInNextStep) {
+			unit.MovementLeft = 0;
+			
 			var currentPosition = unit.Position;
 			var targetPosition = _board.GetCell(unit.MoveTarget).Position;
 			var halfPoint = currentPosition.Lerp(targetPosition, 0.5f);
 
 			var stunTween = unit.CreateTween();
-			stunTween.TweenProperty(unit, "position", halfPoint, _stepTime/3f);
-			stunTween.TweenProperty(unit, "position", currentPosition, _stepTime/3f).SetTrans(Tween.TransitionType.Bounce);
+			stunTween.TweenProperty(unit, "position", halfPoint, _stepTime/2f);
+			stunTween.TweenProperty(unit, "position", currentPosition, _stepTime/2f).SetTrans(Tween.TransitionType.Bounce);
 			moveTween.TweenSubtween(stunTween);
 		}
 	}
