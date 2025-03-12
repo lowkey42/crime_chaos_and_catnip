@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/Panzer.glb-5e358454901bb205dd8f271c05463adb.s
 
 [params]
 
-nodes/root_type=""
+nodes/root_type="BoardCollision"
 nodes/root_name=""
 nodes/apply_root_scale=true
 nodes/root_scale=1.0

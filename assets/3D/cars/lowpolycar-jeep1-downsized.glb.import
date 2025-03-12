@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/lowpolycar-jeep1-downsized.glb-a528a5c36891ed
 
 [params]
 
-nodes/root_type=""
+nodes/root_type="BoardCollision"
 nodes/root_name=""
 nodes/apply_root_scale=true
 nodes/root_scale=1.0

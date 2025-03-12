@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/TAXI-downsized.glb-abd26c8e34ed6bdedf29ceba65
 
 [params]
 
-nodes/root_type=""
+nodes/root_type="BoardCollision"
 nodes/root_name=""
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
