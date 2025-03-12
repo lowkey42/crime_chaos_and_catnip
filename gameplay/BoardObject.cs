@@ -24,6 +24,8 @@ public abstract partial class BoardObject : Node3D {
 	public Vector2I BoardPosition => Board.ToBoardPosition(GlobalPosition);
 
 	public Board? Board { get; private set; }
+
+	public virtual int Priority => 0;
 	
 	private Vector2I _lastBoardPosition;
 

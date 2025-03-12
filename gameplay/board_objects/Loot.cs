@@ -9,6 +9,8 @@ public partial class Loot : BoardObject {
 
 	public override bool BlocksField => false;
 
+	public override int Priority => 10;
+
 	public override bool TryStack(BoardObject otherObject) {
 		if (otherObject is Loot loot) {
 			Value += loot.Value;
