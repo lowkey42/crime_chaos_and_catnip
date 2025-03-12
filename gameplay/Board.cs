@@ -24,7 +24,9 @@ public partial class Board : Node {
 		public readonly Vector2I BoardPosition = ToBoardPosition(position);
 		public readonly List<BoardObject> Objects = [];
 
-		public bool IsBlocked => Objects.Any(obj => obj.BlocksField);
+		public bool AlwaysBlocked = false;
+		
+		public bool IsBlocked => AlwaysBlocked || Objects.Any(obj => obj.BlocksField);
 
 		public bool TryStack(BoardObject obj) {
 			foreach(var existingObj in Objects)
@@ -75,7 +77,16 @@ public partial class Board : Node {
 			return previous;
 		
 		return new T[_cells.GetLength(0), _cells.GetLength(1)];
-	} 
+	}
+
+	public static Board? GetBoard(Node node) {
+		foreach (var board in node.GetTree().GetNodesInGroup("Board")) {
+			if (board is Board b) {
+				return b;
+			}
+		}
+		return null;
+	}
 	
 	public static Vector2I ToBoardPosition(Vector3 position) {
 		return new Vector2I((int) (position.X + 0.5f), (int) (position.Z + 0.5f));
@@ -160,6 +171,12 @@ public partial class Board : Node {
 			return true;
 
 		return cell.Objects.Any(obj => obj.BlocksField && !exclude.Contains(obj));
+	}
+
+	public void BoardMarkAsAlwaysBlocked(Vector2I boardPosition) {
+		var cell = TryGetCell(boardPosition);
+		if (cell != null)
+			cell.AlwaysBlocked = true;
 	}
 
 }
