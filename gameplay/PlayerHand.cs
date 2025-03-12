@@ -28,6 +28,8 @@ public partial class PlayerHand : Control {
 	[Export] private int _maxCardAtTurnEnd = 3;
 
 	private Board? _board;
+
+	[Export] public int TotalPlayedCards { get; private set; }
 	
 	public override void _Ready() {
 		RepositionCards();
@@ -212,6 +214,7 @@ public partial class PlayerHand : Control {
     public void PlayAt(HeldCard heldCard, Vector2I boardPosition) {
 	    var state = GetCardAccessibleState(boardPosition);
 	    if (state != null) {
+		    TotalPlayedCards++;
 		    var spawned = heldCard.Card.PlayAt(state);
 		    EmitSignalCardPlayed(heldCard.Card, spawned);
 		    _heldCards.Remove(heldCard);

@@ -27,7 +27,7 @@ public partial class Hud : CanvasLayer {
 		_remainingCardsLabel.Text = _deck.RemainingCards.ToString();
 		_endTurnButton.Disabled = !_gameplay.CanEndTurn();
 	}
-
+	
 	public void TryEndTurn() {
 		_gameplay.EndTurn();
 	}

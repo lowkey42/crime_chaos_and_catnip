@@ -1,6 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://mb4i47wd66wh"]
+[gd_scene load_steps=4 format=3 uid="uid://mb4i47wd66wh"]
 
 [ext_resource type="Script" uid="uid://p2ts3wh3dtq1" path="res://gameplay/board_objects/Loot.cs" id="1_5x2y6"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5x2y6"]
+albedo_color = Color(0.15, 1, 0.390833, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_obybp"]
+material = SubResource("StandardMaterial3D_5x2y6")
+
 [node name="Loot" type="Node3D"]
 script = ExtResource("1_5x2y6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CylinderMesh_obybp")
