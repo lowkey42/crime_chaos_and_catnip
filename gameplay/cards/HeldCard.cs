@@ -13,13 +13,15 @@ public partial class HeldCard : Node2D {
 	private CollisionShape2D _discardArea;
 	
 	private CollisionShape2D _snapBackArea;
-	
 
 	[Export] private Sprite2D _sprite;
 	
 	private bool _grabbed = false;
 
 	private Tween _shrinkTween;
+	
+	private bool _canDrop = false;
+	private Timer _dropTimer;
 	
 
 	public override void _Ready() {
@@ -37,14 +39,46 @@ public partial class HeldCard : Node2D {
 		}
 		
 		_sprite?.SetTexture(Card?.CardSprite);
+		
+		
+		_dropTimer = new Timer();
+		AddChild(_dropTimer);
+		_dropTimer.WaitTime = 0.5f;
+		_dropTimer.OneShot = true;
+		_dropTimer.Connect("timeout", new Callable(this, nameof(OnDropTimerTimeout)));
+		
+	}
+	
+	private void OnDropTimerTimeout()
+	{
+		_canDrop = true;
 	}
 
 	public override void _Process(double delta) {
 		base._Process(delta);
 
 		if (_grabbed) {
+			Vector2 globalMousePosition = GetGlobalMousePosition();
+			Vector2 localMousePosition = _snapBackArea.ToLocal(globalMousePosition);
+
+			if (!_snapBackArea.GetShape().GetRect().HasPoint(localMousePosition)) {
+				if (_shrinkTween == null || !_shrinkTween.IsRunning()) {
+					_shrinkTween?.Kill();
+					_shrinkTween = CreateTween();
+					_shrinkTween.TweenProperty(this, "scale", Vector2.One * 0.1f, 0.5f)
+						.SetTrans(Tween.TransitionType.Bounce);
+				}
+			} else {
+				if (_shrinkTween == null || !_shrinkTween.IsRunning()) {
+					_shrinkTween?.Kill();
+					_shrinkTween = CreateTween();
+					_shrinkTween.TweenProperty(this, "scale", Vector2.One, 0.5f)
+						.SetTrans(Tween.TransitionType.Bounce);
+				}
+			}
 			var boardPosition = GetMouseBoardPosition();
-			GetParentOrNull<PlayerHand>().MarkHoveredForbidden(boardPosition.HasValue && !CanBePlayedAt(boardPosition.Value));
+			GetParentOrNull<PlayerHand>()
+				?.MarkHoveredForbidden(boardPosition.HasValue && !CanBePlayedAt(boardPosition.Value));
 		}
 	}
 
@@ -83,6 +117,11 @@ public partial class HeldCard : Node2D {
 	}
 
 	public void OnDropped() {
+		if (!_canDrop)
+		{
+			GD.Print("Drop blocked: Timer not finished.");
+			return;
+		}
 		_shrinkTween?.Kill();
 		Scale = Vector2.One;
 		_grabbed = false;
@@ -93,9 +132,12 @@ public partial class HeldCard : Node2D {
 			GetParentOrNull<PlayerHand>()?.DiscardCard(this); // Karte verwerfen
 			
 		} else if (!_snapBackArea.GetShape().GetRect().HasPoint(localMousePosition)){
+			GD.Print("AREA: " + _snapBackArea);
 			var boardPosition = GetMouseBoardPosition();
 			if (CanBePlayedAt(boardPosition))
 				PlayAt(boardPosition);
+		} else {
+			GD.Print("Is In SnapBackArea" + nameof(_snapBackArea));
 		}
 	}
 
@@ -115,6 +157,8 @@ public partial class HeldCard : Node2D {
 		_shrinkTween = CreateTween();
 		_shrinkTween.TweenProperty(this, "scale", Vector2.One * 0.1f, 0.5f).SetTrans(Tween.TransitionType.Bounce);
 		Scale = Vector2.One * 0.1f;
+		_canDrop = false;
+		_dropTimer.Start();
 	}
 	
 	private void OnArea2DMouseEntered()
