@@ -19,10 +19,7 @@ public partial class PlayerHand : Node2D {
 
 	private int _currentSelectedCardIndex = -1;
 	private HeldCard? _highlightedCard = null;
-
-	[Export] public CollisionShape2D _discardArea = null!;
-
-
+	
 	[Export] private int _maxCardCount = 5;
 	[Export] private int _maxCardAtTurnEnd = 3;
 
@@ -31,7 +28,7 @@ public partial class PlayerHand : Node2D {
 	}
 
 	public override void _Process(double delta) {
-		// Entferne Highlight von allen Karten
+		
 		foreach (var card in _heldCards) {
 			card.Unhighlight();
 		}
@@ -46,13 +43,8 @@ public partial class PlayerHand : Node2D {
 			_currentSelectedCardIndex = -1; // Keine Karte ausgewählt
 		}
 	}
-
-	public CollisionShape2D GetCollisionShape2D() {
-		return _discardArea;
-	}
-
-
-// Fügt eine Karte zur Hand hinzu
+	
+	
     public void AddCard(HeldCard card)
     {
         _heldCards.Add(card);
@@ -60,15 +52,14 @@ public partial class PlayerHand : Node2D {
         RepositionCards();
     }
 
-    // Positioniert die Karten neu
+    
     private void RepositionCards()
     {
 	    if (_heldCards.Count == 0) return;
 
 	    // Berechne den Winkelabstand zwischen den Karten
 	    float cardSpread = Mathf.Min(CardAngleLimit / _heldCards.Count, MaxCardSpreadAngle);
-	    float currentAngle = -((cardSpread * (_heldCards.Count - 1)) / 2) - 90; // Startwinkel
-	    GD.Print("CardSpread" + cardSpread);
+	    float currentAngle = -((cardSpread * (_heldCards.Count - 1)) / 2) - 90;
 
 	    foreach (var card in _heldCards)
 	    {
@@ -95,7 +86,7 @@ public partial class PlayerHand : Node2D {
         card.Rotation = card.Position.Angle() + Mathf.Pi / 2;
     }
     
-    // Zieht eine Karte vom Deck und fügt sie zur Hand hinzu
+    
     public async Task DrawCard()
     {
         var card = _deck.TryDrawCard();

@@ -58,13 +58,12 @@ _board = NodePath("Level01/Board")
 
 [node name="CardOverlay" type="CanvasLayer" parent="Gameplay"]
 
-[node name="PlayerHand" type="Node2D" parent="Gameplay/CardOverlay" node_paths=PackedStringArray("_deck", "_discardArea")]
+[node name="PlayerHand" type="Node2D" parent="Gameplay/CardOverlay" node_paths=PackedStringArray("_deck")]
 position = Vector2(627, 848)
 script = ExtResource("10_etwux")
 HandRadius = 300
 MaxCardSpreadAngle = 10.0
 _deck = NodePath("../../Deck")
-_discardArea = NodePath("DropPossibleArea/DiscardZoneArea")
 
 [node name="Sprite2D" type="Sprite2D" parent="Gameplay/CardOverlay/PlayerHand"]
 position = Vector2(0, 66)
@@ -77,7 +76,7 @@ position = Vector2(-51, -23)
 position = Vector2(57.5, -205)
 shape = SubResource("RectangleShape2D_ilpo5")
 
-[node name="DiscardZoneArea" type="CollisionShape2D" parent="Gameplay/CardOverlay/PlayerHand/DropPossibleArea"]
+[node name="DiscardZoneArea" type="CollisionShape2D" parent="Gameplay/CardOverlay/PlayerHand/DropPossibleArea" groups=["discardArea"]]
 position = Vector2(595, -206.25)
 shape = SubResource("RectangleShape2D_pxehq")
 

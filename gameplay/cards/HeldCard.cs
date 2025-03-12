@@ -10,7 +10,7 @@ public partial class HeldCard : Node2D {
 
 	[Export] public CardBase Card;
 
-	[Export]private CollisionShape2D _discardArea;
+	private CollisionShape2D _discardArea;
 
 	[Export] private Sprite2D _sprite;
 	
@@ -19,7 +19,12 @@ public partial class HeldCard : Node2D {
 
 	public override void _Ready() {
 		base._Ready();
-		_discardArea = GetParentOrNull<PlayerHand>()?.GetCollisionShape2D();
+		
+		var discardNodes = GetTree().GetNodesInGroup("discardArea");
+		if (discardNodes.Count > 0)
+		{
+			_discardArea = discardNodes[0] as CollisionShape2D;
+		}
 		_sprite?.SetTexture(Card?.CardSprite);
 	}
 
@@ -66,9 +71,12 @@ public partial class HeldCard : Node2D {
 	{
 		_grabbed = false;
 		GD.Print("Dropped");
-
-		// Überprüfen, ob die Maus über dem Discard-Bereich liegt
-		if (_discardArea != null && _discardArea.GetShape().GetRect().HasPoint(GetGlobalMousePosition()))
+		GD.Print("DiscardArea is set: " + _discardArea.Name);
+		
+		Vector2 globalMousePosition = GetGlobalMousePosition();
+		Vector2 localMousePosition = _discardArea.ToLocal(globalMousePosition);
+		
+		if (_discardArea != null && _discardArea.GetShape().GetRect().HasPoint(localMousePosition))
 		{
 			GD.Print("Discard area");
 			GetParentOrNull<PlayerHand>()?.DiscardCard(this); // Karte verwerfen
@@ -87,12 +95,10 @@ public partial class HeldCard : Node2D {
 	
 	private void OnArea2DMouseEntered()
 	{
-		GD.Print("Mouse entered");
 		GetParentOrNull<PlayerHand>()?.HandleCardHovered(this);
 	}
 
 	private void OnArea2DMouseExited() {
-		GD.Print("Mouse exited");
 		GetParentOrNull<PlayerHand>()?.HandleCardUnhovered(this);
 	}
 
