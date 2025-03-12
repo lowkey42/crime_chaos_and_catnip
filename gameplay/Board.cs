@@ -11,12 +11,18 @@ namespace CrimeChaosAndCatnip;
 [GlobalClass]
 public partial class Board : Node {
 
+	public const int CellSize = 2;
+	
 	[Signal]
 	public delegate void BoardChangedEventHandler(Vector2I boardPosition);
 
 	[Export] public GridLines? GridLines { get; private set; }
 	
 	[Export] private Vector2I _maxGridSize;
+
+	[Export] private GridMap? _gridMap;
+
+	public Vector2I Size => _maxGridSize;
 
 	public class Cell(Vector3 position) {
 
@@ -65,12 +71,18 @@ public partial class Board : Node {
 
 	private readonly List<Unit> _units = [];
 
-	public override void _EnterTree() {
-		base._EnterTree();
+	public override void _Ready() {
+		if (_gridMap != null) {
+			foreach (var cell in _gridMap.GetUsedCells()) {
+				var p = _gridMap.ToGlobal(_gridMap.MapToLocal(cell) + _gridMap.CellSize);
+				_maxGridSize = _maxGridSize.Max(ToBoardPosition(p));
+			}
+		}
+		
 		_cells = new Cell[_maxGridSize.X, _maxGridSize.Y];
 		for (var x = 0; x < _maxGridSize.X; x++)
 		for (var y = 0; y < _maxGridSize.Y; y++)
-			_cells[x, y] = new Cell(new Vector3(x, 0, y)); // TODO: determine height (3D Y) from map?
+			_cells[x, y] = new Cell(new Vector3(x, 0, y)*CellSize); // TODO: determine height (3D Y) from map?
 	}
 
 	public T[,] ResizeToBoardDimensions<T>(T[,]? previous) {
@@ -93,7 +105,7 @@ public partial class Board : Node {
 	}
 	
 	public static Vector2I ToBoardPosition(Vector3 position) {
-		return new Vector2I((int) (position.X + 0.5f), (int) (position.Z + 0.5f));
+		return new Vector2I((int) (position.X/CellSize + 0.5f), (int) (position.Z/CellSize + 0.5f));
 	}
 
 	public Vector2I? ToNullableBoardPosition(Vector3 position) {
@@ -179,8 +191,10 @@ public partial class Board : Node {
 
 	public void BoardMarkAsAlwaysBlocked(Vector2I boardPosition) {
 		var cell = TryGetCell(boardPosition);
-		if (cell != null)
+		if (cell is {AlwaysBlocked: false}) {
 			cell.AlwaysBlocked = true;
+			EmitSignalBoardChanged(boardPosition);
+		}
 	}
 
 }

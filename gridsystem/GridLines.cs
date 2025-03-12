@@ -66,13 +66,23 @@ public partial class GridLines : Node3D {
 			return;
 		}
 
+		if (_board != null) {
+			if (_board.IsNodeReady())
+				OnBoardReady();
+			else
+				_board.Ready += OnBoardReady;
+		}
+	}
+
+	private void OnBoardReady() {
 		_cells = _board.ResizeToBoardDimensions(_cells);
 		for (var x = 0; x < _cells.GetLength(0); x++) {
 			for (var y = 0; y < _cells.GetLength(1); y++) {
 				_cells[x, y] = _gridCellScene.Instantiate<Sprite3D>();
-				_cells[x, y].Position = _board.GetCell(new Vector2I(x, y)).Position;
-				OnBoardChanged(new Vector2I(x, y));
 				AddChild(_cells[x, y]);
+				_cells[x, y].GlobalPosition = _board.GetCell(new Vector2I(x, y)).Position;
+				_cells[x, y].Scale = Vector3.One * Board.CellSize;
+				OnBoardChanged(new Vector2I(x, y));
 			}
 		}
 

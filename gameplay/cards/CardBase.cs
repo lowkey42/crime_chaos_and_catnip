@@ -27,7 +27,7 @@ public partial class CardBase : Resource {
 			if (spawned is PlayedCard pc)
 				pc.Card = this;
 			state.Board.AddChild(spawned);
-			spawned.Position = state.TargetCell.Position;
+			spawned.GlobalPosition = state.TargetCell.Position;
 		}
 		
 		OnPlayed(state);

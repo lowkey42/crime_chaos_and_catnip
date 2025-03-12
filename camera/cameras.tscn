@@ -2,10 +2,11 @@
 
 [ext_resource type="Script" uid="uid://bf661tpm2k0ry" path="res://camera/CameraControl.cs" id="1_a2eoo"]
 
-[node name="Cameras" type="Node"]
+[node name="Cameras" type="Node3D"]
 
 [node name="FreeCamera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.819152, 0.573576, 0, -0.573576, 0.819152, -2, 10, 20)
+current = true
 
 [node name="TopDownCamera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.173648, 0.984808, 0, -0.984808, 0.173648, -2, 22, 10)

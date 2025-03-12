@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://jyv4g54adkmo" path="res://ui/overlays/pause_overlay.tscn" id="3_8o178"]
 [ext_resource type="Script" uid="uid://8vkdkrdt2rgh" path="res://ui/Hud.cs" id="5_pxehq"]
 [ext_resource type="Texture2D" uid="uid://dbi3kwcagajfd" path="res://scenes/boot/logo.png" id="6_4d8mm"]
-[ext_resource type="PackedScene" uid="uid://bhmi15nw6utp5" path="res://scenes/level/level_01.tscn" id="6_5jhce"]
 [ext_resource type="Resource" uid="uid://bl5r6qrxgsgo3" path="res://gameplay/cards/instances/card_move_10.tres" id="6_iid22"]
 [ext_resource type="Script" uid="uid://o5q4p0foouv3" path="res://gameplay/Gameplay.cs" id="6_juwkt"]
 [ext_resource type="PackedScene" uid="uid://c8fvd606ep5u" path="res://ui/held_card.tscn" id="6_vus8m"]
@@ -13,10 +12,11 @@
 [ext_resource type="Script" uid="uid://bp64cwdqrlygr" path="res://gameplay/Deck.cs" id="7_ilpo5"]
 [ext_resource type="Resource" uid="uid://cxk2dmo6atpcu" path="res://gameplay/cards/instances/card_summon_cat.tres" id="8_juwkt"]
 [ext_resource type="Script" uid="uid://cidnfcxxq2ctp" path="res://gameplay/PlayerHand.cs" id="10_etwux"]
-[ext_resource type="Shader" path="res://addons/outline.gdshader" id="13_th7mp"]
+[ext_resource type="Shader" uid="uid://ci55tqqowoikf" path="res://addons/outline.gdshader" id="13_th7mp"]
 [ext_resource type="PackedScene" uid="uid://b4ufa4onh1vrb" path="res://camera/cameras.tscn" id="14_ilpo5"]
 [ext_resource type="Texture2D" uid="uid://cw4qn5ngn6ax5" path="res://gameplay/cards/instances/card_move_10.png" id="14_q7kwb"]
 [ext_resource type="Script" uid="uid://buu7cbc7wjijb" path="res://ui/GameOverScreen.cs" id="15_th7mp"]
+[ext_resource type="PackedScene" uid="uid://t31lv3om7t4f" path="res://scenes/level/level_02.tscn" id="16_th7mp"]
 
 [sub_resource type="Gradient" id="Gradient_juwkt"]
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
@@ -338,9 +338,12 @@ size_flags_horizontal = 4
 size_flags_vertical = 8
 text = "Continue"
 
-[node name="Level01" parent="Gameplay" instance=ExtResource("6_5jhce")]
+[node name="Level" type="Node" parent="Gameplay"]
+
+[node name="Level02" parent="Gameplay/Level" instance=ExtResource("16_th7mp")]
 
 [node name="Cameras" parent="." instance=ExtResource("14_ilpo5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 50)
 
 [connection signal="GameOver" from="Gameplay" to="Gameplay/GameOverOverlay" method="ShowOverlay"]
 [connection signal="CardPlayed" from="Gameplay/HUD/BottomUI/PlayerHand" to="Gameplay/HUD" method="OnCardPlayed"]
@@ -350,5 +353,3 @@ text = "Continue"
 [connection signal="pressed" from="Gameplay/HUD/CardDirectionControl/GridContainer/ButtonEast" to="Gameplay/HUD" method="RotateCardEast"]
 [connection signal="pressed" from="Gameplay/HUD/CardDirectionControl/GridContainer/ButtonSouth" to="Gameplay/HUD" method="RotateCardSouth"]
 [connection signal="pressed" from="Gameplay/GameOverOverlay/GameOverScreen/VBoxContainer/ContinueButton" to="Gameplay/GameOverOverlay" method="Continue"]
-
-[editable path="Gameplay/Level01"]

@@ -31,7 +31,15 @@ public abstract partial class BoardObject : Node3D {
 		base._Ready();
 
 		Board = Board.GetBoard(this);
-		
+		if (Board != null) {
+			if (Board.IsNodeReady())
+				OnBoardReady();
+			else
+				Board.Ready += OnBoardReady;
+		}
+	}
+
+	private void OnBoardReady() {
 		Board?.AddObject(BoardPosition, this);
 		_lastBoardPosition = BoardPosition;
 	}
