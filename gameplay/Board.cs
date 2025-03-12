@@ -134,7 +134,7 @@ public partial class Board : Node {
 	public Cell? TryGetCell(Vector2I boardPosition) {
 		if (boardPosition.X < 0 || boardPosition.Y < 0)
 			return null;
-		if (boardPosition.X > _maxGridSize.X || boardPosition.Y > _maxGridSize.Y)
+		if (boardPosition.X >= _maxGridSize.X || boardPosition.Y >= _maxGridSize.Y)
 			return null;
 		Debug.Assert(_cells != null, nameof(_cells) + " != null");
 		return _cells[boardPosition.X, boardPosition.Y];
@@ -144,7 +144,7 @@ public partial class Board : Node {
 	private void ValidateBoardPosition(Vector2I boardPosition) {
 		if (boardPosition.X < 0 || boardPosition.Y < 0)
 			throw new ArgumentException("Invalid board position");
-		if (boardPosition.X > _maxGridSize.X || boardPosition.Y > _maxGridSize.Y)
+		if (boardPosition.X >= _maxGridSize.X || boardPosition.Y >= _maxGridSize.Y)
 			throw new ArgumentException("Invalid board position");
 		if(_cells==null)
 			throw new NullReferenceException("_cells is null because _Ready() hasn't been called, yet");

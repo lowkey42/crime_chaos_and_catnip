@@ -58,12 +58,11 @@ _board = NodePath("Level01/Board")
 
 [node name="CardOverlay" type="CanvasLayer" parent="Gameplay"]
 
-[node name="PlayerHand" type="Node2D" parent="Gameplay/CardOverlay" node_paths=PackedStringArray("_deck")]
+[node name="PlayerHand" type="Node2D" parent="Gameplay/CardOverlay" node_paths=PackedStringArray("_deck", "_board")]
 position = Vector2(624, 896)
 script = ExtResource("10_etwux")
-HandRadius = 300
-MaxCardSpreadAngle = 10.0
 _deck = NodePath("../../Deck")
+_board = NodePath("../../Level01/Board")
 
 [node name="Sprite2D" type="Sprite2D" parent="Gameplay/CardOverlay/PlayerHand"]
 position = Vector2(0, 66)

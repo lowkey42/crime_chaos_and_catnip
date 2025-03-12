@@ -18,6 +18,8 @@ public partial class HeldCard : Node2D {
 	[Export] private Sprite2D _sprite;
 	
 	private bool _grabbed = false;
+
+	private Tween _shrinkTween;
 	
 
 	public override void _Ready() {
@@ -35,6 +37,15 @@ public partial class HeldCard : Node2D {
 		}
 		
 		_sprite?.SetTexture(Card?.CardSprite);
+	}
+
+	public override void _Process(double delta) {
+		base._Process(delta);
+
+		if (_grabbed) {
+			var boardPosition = GetMouseBoardPosition();
+			GetParentOrNull<PlayerHand>().MarkHoveredForbidden(boardPosition.HasValue && !CanBePlayedAt(boardPosition.Value));
+		}
 	}
 
 	private void OnMouseEntered()
@@ -72,43 +83,38 @@ public partial class HeldCard : Node2D {
 	}
 
 	public void OnDropped() {
+		_shrinkTween?.Kill();
+		Scale = Vector2.One;
 		_grabbed = false;
-		GD.Print("Dropped");
-		GD.Print("DiscardArea is set: " + _discardArea.Name);
+		GetParentOrNull<PlayerHand>().MarkHoveredForbidden(false);
 		var globalMousePosition = GetGlobalMousePosition();
 		var localMousePosition = _discardArea.ToLocal(globalMousePosition);
 		if (_discardArea != null && _discardArea.GetShape().GetRect().HasPoint(localMousePosition)) {
-			GD.Print("Discard area");
 			GetParentOrNull<PlayerHand>()?.DiscardCard(this); // Karte verwerfen
-		} else {
-			GD.Print("No discard area");
+			
+		} else if (!_snapBackArea.GetShape().GetRect().HasPoint(localMousePosition)){
+			var boardPosition = GetMouseBoardPosition();
+			if (CanBePlayedAt(boardPosition))
+				PlayAt(boardPosition);
 		}
-		
-		if (!_snapBackArea.GetShape().GetRect().HasPoint(localMousePosition)){
-			var camera = GetViewport().GetCamera3D();
-			var mousePosition = GetViewport().GetMousePosition();
-			var rayHit = Plane.PlaneXZ.IntersectsRay(
-				camera.ProjectRayOrigin(mousePosition), 
-				camera.ProjectRayNormal(mousePosition));
-			var _hoveredCell = rayHit != null ? Board.ToBoardPosition(rayHit.Value) : (Vector2I?) null;
-			//Raycast auf die plain und schauen wo es auf dem bord liegt
-			GD.Print("ray position: " + rayHit.ToString());
-			GD.Print("Board position: " + _hoveredCell.ToString());
-			if (CanBePlayedAt(_hoveredCell)) {
-				PlayAt(_hoveredCell);
-				GD.Print("Card played at position: " + _hoveredCell);
-			}
-			else
-			{
-				GD.Print("Card cannot be played at this position.");
-			}
-		}
+	}
 
-}
+	private Vector2I? GetMouseBoardPosition() {
+		var camera = GetViewport().GetCamera3D();
+		var mousePosition = GetViewport().GetMousePosition();
+		var rayHit = Plane.PlaneXZ.IntersectsRay(
+			camera.ProjectRayOrigin(mousePosition), 
+			camera.ProjectRayNormal(mousePosition));
+		return rayHit != null ? Board.ToBoardPosition(rayHit.Value) : null;
+	}
 
 	private void OnGrabbed() {
 		Unhighlight();
 		_grabbed = true;
+		_shrinkTween?.Kill();
+		_shrinkTween = CreateTween();
+		_shrinkTween.TweenProperty(this, "scale", Vector2.One * 0.1f, 0.5f).SetTrans(Tween.TransitionType.Bounce);
+		Scale = Vector2.One * 0.1f;
 	}
 	
 	private void OnArea2DMouseEntered()
