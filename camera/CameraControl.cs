@@ -32,7 +32,7 @@ public partial class CameraControl : Node
 	[Export] public float ZoomMin = 5.0f;
 	[Export] public float ZoomMax = 5.0f;
 	[Export] public float EdgeSensitivity = 100.0f;
-	private float _shiftFactor = 1.0f;
+	private float _shiftFactor = 3.0f;
 
 	[Export] public bool EnableMouseCameraMovement = true;
 
@@ -155,10 +155,10 @@ public partial class CameraControl : Node
 		}
 		
 		if (Input.IsActionPressed("speedup_movement")) {
-			_shiftFactor = 3.0f;
+			_shiftFactor = 1.0f;
 		}
 		else if (Input.IsActionJustReleased("speedup_movement")){
-			_shiftFactor = 1.0f;
+			_shiftFactor = 3.0f;
 		}
 
 		//Moves the camera on the axis with WASD
