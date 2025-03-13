@@ -1,24 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://dyy10ipmv4lgt"]
+[gd_scene load_steps=5 format=3 uid="uid://dyy10ipmv4lgt"]
 
-[ext_resource type="Script" uid="uid://bsk73plvk6at0" path="res://gameplay/board_objects/units/PlayerUnitCat.cs" id="1_gv5m6"]
-[ext_resource type="PackedScene" uid="uid://dlxygdiwxxpui" path="res://assets/3D/small things/cardholder-neon.glb" id="2_dxnya"]
-[ext_resource type="Texture2D" uid="uid://bmiicrtub72qh" path="res://assets/2D/Framed Characters/RaccoonBomb.png" id="3_dxnya"]
+[ext_resource type="PackedScene" uid="uid://i7vhx0eef663" path="res://gameplay/board_objects/units/unit_base.tscn" id="1_dxnya"]
+[ext_resource type="Script" uid="uid://b5kn405hfgmsm" path="res://gameplay/board_objects/units/PlayerUnit.cs" id="2_mthx0"]
+[ext_resource type="Texture2D" uid="uid://dy2mjbxcursal" path="res://assets/2D/Framed Characters/RaccoonBags.png" id="3_sxwca"]
 
-[node name="PlayerUnitCat" type="Node3D"]
-script = ExtResource("1_gv5m6")
+[sub_resource type="ViewportTexture" id="ViewportTexture_wtdqe"]
+viewport_path = NodePath("LootSubViewport")
 
-[node name="cardholder-neon" parent="." instance=ExtResource("2_dxnya")]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+[node name="PlayerUnitRacoon" node_paths=PackedStringArray("_lootLabel") instance=ExtResource("1_dxnya")]
+script = ExtResource("2_mthx0")
+_lootLabel = NodePath("LootSubViewport/Control/Panel/Label")
 
-[node name="front" type="Sprite3D" parent="."]
-transform = Transform3D(0.125, 0, 0, 0, 0.125, 0, 0, 0, 0.125, 0, 0.7, 0)
-shaded = true
-double_sided = false
-texture = ExtResource("3_dxnya")
+[node name="front" parent="." index="1"]
+texture = ExtResource("3_sxwca")
 
-[node name="back" type="Sprite3D" parent="."]
-transform = Transform3D(-0.125, 0, -1.09278e-08, 0, 0.125, 0, 1.09278e-08, 0, -0.125, 0, 0.7, 0)
-flip_h = true
-shaded = true
-double_sided = false
-texture = ExtResource("3_dxnya")
+[node name="back" parent="." index="2"]
+texture = ExtResource("3_sxwca")
+
+[node name="Loot" parent="." index="3"]
+texture = SubResource("ViewportTexture_wtdqe")
+
+[editable path="cardholder-rot"]

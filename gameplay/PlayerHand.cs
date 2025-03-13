@@ -12,6 +12,7 @@ public partial class PlayerHand : Control {
 
 	[Export] private int _handRadius = 200;
 	[Export] private float _yFactor = 0.6f;
+	[Export] private float _xFactor = 2f;
 	[Export] private float _cardAngleLimit = 90.0f;
 	[Export] private float _maxCardSpreadAngle = 20f;
 	[Export] private Deck _deck = null!;
@@ -31,6 +32,8 @@ public partial class PlayerHand : Control {
 	[Export] private float _hoverOffset = 50f;
 	[Export] private float _sidePush = 30f;
 	[Export] private float _animationDuration = 0.3f;
+	[Export] private float _animationDurationStagger = 0.15f;
+	[Export] private float _animationDurationReposition = 0.05f;
 	
 
 	private Board? _board;
@@ -79,9 +82,9 @@ public partial class PlayerHand : Control {
     {
 	    Tween tween = CreateTween();
 	    tween.SetParallel(true);
-	    tween.TweenProperty(card, "position", targetPosition, 0.3f)
+	    tween.TweenProperty(card, "position", targetPosition, _animationDurationReposition)
 		    .SetEase(Tween.EaseType.Out);
-	    tween.TweenProperty(card, "rotation", targetRotation, 0.3f)
+	    tween.TweenProperty(card, "rotation", targetRotation, _animationDurationReposition)
 		    .SetEase(Tween.EaseType.Out);
 	    await ToSignal(tween, "finished");
     }
@@ -144,17 +147,17 @@ public partial class PlayerHand : Control {
 
 		    // Erstelle einen Tween für die Position und Rotation der Karte
 		    Tween tween = CreateTween();
-		    tween.TweenProperty(card, "position", finalPosition, 0.5f)
+		    tween.TweenProperty(card, "position", finalPosition, _animationDuration)
 			    .SetEase(Tween.EaseType.Out)
 			    .SetTrans(Tween.TransitionType.Quad);
 
-		    tween.Parallel().TweenProperty(card, "rotation", finalRotation, 0.5f);
+		    tween.Parallel().TweenProperty(card, "rotation", finalRotation, _animationDuration);
 
 		    currentAngle += cardSpread;
 	    }
 
 	    // Warte auf das Ende der Animation
-	    await ToSignal(GetTree().CreateTimer(0.5f), "timeout");
+	    await ToSignal(GetTree().CreateTimer(_animationDurationStagger), "timeout");
     }
     
     private Vector2 GetCardPositionForAnimation(HeldCard card)
@@ -188,7 +191,7 @@ public partial class PlayerHand : Control {
     private Vector2 GetCardPosition(float angleInDegrees)
     {
 		    float angleInRadians = Mathf.DegToRad(angleInDegrees);
-		    float x =  _handRadius * Mathf.Cos(angleInRadians);
+		    float x =  _handRadius * Mathf.Cos(angleInRadians) * _xFactor;
 		    float y = _handRadius * Mathf.Sin(angleInRadians) * _yFactor;
 
 		    return new Vector2(x, y);
@@ -242,12 +245,12 @@ public partial class PlayerHand : Control {
             card.Scale = Vector2.One * 0.5f; 
             
             Tween tween = CreateTween();
-            tween.TweenProperty(card, "position", finalPosition, 0.5f)
+            tween.TweenProperty(card, "position", finalPosition, _animationDuration)
 	            .SetEase(Tween.EaseType.Out) 
 	            .SetTrans(Tween.TransitionType.Quad); 
             
-            tween.Parallel().TweenProperty(card, "rotation", finalRotation, 0.5f);
-            tween.Parallel().TweenProperty(card, "scale", Vector2.One, 0.5f);
+            tween.Parallel().TweenProperty(card, "rotation", finalRotation, _animationDuration);
+            tween.Parallel().TweenProperty(card, "scale", Vector2.One, _animationDuration);
 
             
             await ToSignal(tween, "finished");

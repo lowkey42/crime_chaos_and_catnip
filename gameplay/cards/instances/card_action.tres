@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CardAction" load_steps=4 format=3 uid="uid://bboevd7u8vn57"]
+
+[ext_resource type="Texture2D" uid="uid://hj3hq6mhw4aa" path="res://gameplay/cards/instances/card_action.png" id="1_3lcck"]
+[ext_resource type="PackedScene" uid="uid://bkfm8wp8c8y0r" path="res://gameplay/board_objects/played_card.tscn" id="2_51scs"]
+[ext_resource type="Script" uid="uid://kb3tsjxfxnou" path="res://gameplay/cards/CardAction.cs" id="3_51scs"]
+
+[resource]
+script = ExtResource("3_51scs")
+Name = "Action"
+Description = ""
+CardSprite = ExtResource("1_3lcck")
+SpawnOnPlay = ExtResource("2_51scs")
+RequiresOrientation = false
+metadata/_custom_type_script = "uid://d0vrl7d4sx35b"

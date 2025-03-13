@@ -20,6 +20,8 @@ public partial class Unit : BoardObject {
 
 	[Export] public int MovementLeft = 0;
 
+	[Export] private Label _lootLabel;
+
 	public override bool BlocksField => false;
 
 	public bool WantsToMove => MovementLeft > 0;
@@ -40,6 +42,8 @@ public partial class Unit : BoardObject {
 
 	public void IncreaseLoot(int value) {
 		CollectedLoot += value;
+		if(_lootLabel != null)
+			_lootLabel.Text = CollectedLoot.ToString();
 		EmitSignalLootCollected(value);
 	}
 
