@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bf2gi73alegi5"
-path="res://.godot/imported/cardholder-rot.glb-a71bae5aa2096bf5de505a43802fa479.scn"
+uid="uid://d1ltepg15hlkp"
+path="res://.godot/imported/Fence_Corner.glb-4817236661bc7c973999a1ab8b10983c.scn"
 
 [deps]
 
-source_file="res://assets/3D/small things/cardholder-rot.glb"
-dest_files=["res://.godot/imported/cardholder-rot.glb-a71bae5aa2096bf5de505a43802fa479.scn"]
+source_file="res://assets/3D/small things/fences/Fence_Corner.glb"
+dest_files=["res://.godot/imported/Fence_Corner.glb-4817236661bc7c973999a1ab8b10983c.scn"]
 
 [params]
 
@@ -32,13 +32,6 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-_subresources={
-"materials": {
-"ROT": {
-"use_external/enabled": true,
-"use_external/path": "res://assets/3D/small things/ROT.tres"
-}
-}
-}
+_subresources={}
 gltf/naming_version=1
 gltf/embedded_image_handling=1

@@ -3,20 +3,20 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bf2gi73alegi5"
-path="res://.godot/imported/cardholder-rot.glb-a71bae5aa2096bf5de505a43802fa479.scn"
+uid="uid://dcngyfpl31l0y"
+path="res://.godot/imported/Pipe_Vertical.glb-fb619e3d464d64c1ed9d181d83191d2f.scn"
 
 [deps]
 
-source_file="res://assets/3D/small things/cardholder-rot.glb"
-dest_files=["res://.godot/imported/cardholder-rot.glb-a71bae5aa2096bf5de505a43802fa479.scn"]
+source_file="res://assets/3D/small things/pipes/Pipe_Vertical.glb"
+dest_files=["res://.godot/imported/Pipe_Vertical.glb-fb619e3d464d64c1ed9d181d83191d2f.scn"]
 
 [params]
 
 nodes/root_type=""
 nodes/root_name=""
 nodes/apply_root_scale=true
-nodes/root_scale=1.0
+nodes/root_scale=2.0
 nodes/import_as_skeleton_bones=false
 nodes/use_node_type_suffixes=true
 meshes/ensure_tangents=true
@@ -32,13 +32,6 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-_subresources={
-"materials": {
-"ROT": {
-"use_external/enabled": true,
-"use_external/path": "res://assets/3D/small things/ROT.tres"
-}
-}
-}
+_subresources={}
 gltf/naming_version=1
 gltf/embedded_image_handling=1

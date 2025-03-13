@@ -195,6 +195,14 @@ public partial class Board : Node {
 
 		return cell.Objects.Any(obj => obj.BlocksField && !exclude.Contains(obj));
 	}
+	
+	public bool IsBlockedOrOccupied(Vector2I boardPosition, IEnumerable<BoardObject> exclude) {
+		var cell = TryGetCell(boardPosition);
+		if (cell == null)
+			return true;
+
+		return cell.Objects.Any(obj => (obj.BlocksField || obj is Unit) && !exclude.Contains(obj));
+	}
 
 	public void BoardMarkAsAlwaysBlocked(Vector2I boardPosition) {
 		var cell = TryGetCell(boardPosition);

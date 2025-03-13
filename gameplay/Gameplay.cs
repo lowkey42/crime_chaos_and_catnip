@@ -155,7 +155,7 @@ public partial class Gameplay : Node {
 			removed = 0;
 			for (var i = _unitsMovingInNextStep.Count - 1; i >= 0; i--) {
 				var unit = _unitsMovingInNextStep[i];
-				if (_board.IsBlocked(unit.MoveTarget, _unitsMovingInNextStep)) {
+				if (_board.IsBlockedOrOccupied(unit.MoveTarget, _unitsMovingInNextStep)) {
 					if(unit.Stun())
 						_unitsStunnedInNextStep.Add(unit);
 					_unitsMovingInNextStep.RemoveAt(i);
@@ -166,7 +166,27 @@ public partial class Gameplay : Node {
 
 		if (_unitsMovingInNextStep.Count == 0)
 			return;
-			
+
+		// remove movers that would cross path (origin and destination swapped between them)
+		for (var i = 0; i<_unitsMovingInNextStep.Count; i++) {
+			var unitI = _unitsMovingInNextStep[i];
+
+			for (var j = i + 1; j < _unitsMovingInNextStep.Count; j++) {
+				var unitJ = _unitsMovingInNextStep[j];
+
+				if (unitI.BoardPosition == unitJ.MoveTarget && unitI.MoveTarget == unitJ.BoardPosition) {
+					if(unitI.Stun())
+						_unitsStunnedInNextStep.Add(unitI);
+					if(unitJ.Stun())
+						_unitsStunnedInNextStep.Add(unitJ);
+				}
+			}
+		}
+		_unitsMovingInNextStep.RemoveAll(unit => unit.Stunned);
+
+		if (_unitsMovingInNextStep.Count == 0)
+			return;
+		
 		// clear previous mover targets
 		for (var x = 0; x < _unitsMoveTargets.GetLength(0); x++) {
 			for (var y = 0; y < _unitsMoveTargets.GetLength(1); y++) {
@@ -179,7 +199,7 @@ public partial class Gameplay : Node {
 			var target = unit.MoveTarget;
 			_unitsMoveTargets[target.X, target.Y]++;
 		}
-			
+		
 		// stun all movers whose target field has multiple members, mark their origin as occupied and remove them
 		do {
 			removed = 0;

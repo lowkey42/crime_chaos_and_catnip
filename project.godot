@@ -29,6 +29,7 @@ window/size/window_height_override=1080
 window/stretch/mode="canvas_items"
 window/stretch/aspect="keep_height"
 window/vsync/vsync_mode=3
+mouse_cursor/custom_image="uid://pbyyhtj3vpqm"
 
 [dotnet]
 
