@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddahu0u1hlwwi"
-path.s3tc="res://.godot/imported/Fence_side_gradienttextures.png-f4156201aaa3886c9a711fecc5970617.s3tc.ctex"
+uid="uid://dckwm8agvripn"
+path.s3tc="res://.godot/imported/Fence_ClosedSide_gradienttextures.png-b20c7a2fb4dee5e8c7fe55d1ec7f7980.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -14,8 +14,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://assets/3D/small things/fences/Fence_side_gradienttextures.png"
-dest_files=["res://.godot/imported/Fence_side_gradienttextures.png-f4156201aaa3886c9a711fecc5970617.s3tc.ctex"]
+source_file="res://assets/3D/small things/fences/Fence_ClosedSide_gradienttextures.png"
+dest_files=["res://.godot/imported/Fence_ClosedSide_gradienttextures.png-b20c7a2fb4dee5e8c7fe55d1ec7f7980.s3tc.ctex"]
 
 [params]
 
