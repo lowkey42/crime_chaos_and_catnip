@@ -1,0 +1,55 @@
+[gd_scene load_steps=18 format=3 uid="uid://cudda1uxetlc8"]
+
+[ext_resource type="PackedScene" uid="uid://738tvbbui302" path="res://assets/3D/small things/fences/Fence_Frontal1.glb" id="1_1dkhd"]
+[ext_resource type="PackedScene" uid="uid://f5eil28016re" path="res://assets/3D/small things/fences/Fence_Frontal2.glb" id="2_g6pvf"]
+[ext_resource type="PackedScene" uid="uid://cknqavwnqeoxn" path="res://assets/3D/small things/fences/Fence_Frontal3.glb" id="3_8wu2c"]
+[ext_resource type="PackedScene" uid="uid://d3hiia68fakgw" path="res://assets/3D/small things/fences/Fence_Gate_Closed.glb" id="4_hhktj"]
+[ext_resource type="PackedScene" uid="uid://c0n8hiahu5mrn" path="res://assets/3D/small things/fences/Fence_Gate_Open.glb" id="5_t86uh"]
+[ext_resource type="PackedScene" uid="uid://darlnr0tx6hy1" path="res://assets/3D/small things/pipes/Pipe_ConnectorGround.glb" id="6_832jv"]
+[ext_resource type="PackedScene" uid="uid://ddb45hntvgdq2" path="res://assets/3D/small things/pipes/Pipe_ConnectorVent.glb" id="7_jpyt4"]
+[ext_resource type="PackedScene" uid="uid://b8lcp00apo7uj" path="res://assets/3D/small things/pipes/Pipe_Corner.glb" id="8_yj5ay"]
+[ext_resource type="PackedScene" uid="uid://rcejj11l587p" path="res://assets/3D/small things/pipes/Pipe_CornerGround.glb" id="9_54ge7"]
+[ext_resource type="PackedScene" uid="uid://bpdb5qln5xrbe" path="res://assets/3D/small things/pipes/Pipe_Ground.glb" id="10_8yw0l"]
+[ext_resource type="PackedScene" uid="uid://do10r0gixbewb" path="res://assets/3D/small things/pipes/Pipe_Horizontal.glb" id="11_y1grf"]
+[ext_resource type="PackedScene" uid="uid://c1s6iscepxxor" path="res://assets/3D/small things/pipes/Pipe_Tshape.glb" id="12_gv77r"]
+[ext_resource type="PackedScene" uid="uid://bmfbgau6tnqcl" path="res://assets/3D/small things/pipes/Pipe_VentTop.glb" id="13_jfnmr"]
+[ext_resource type="PackedScene" uid="uid://dcngyfpl31l0y" path="res://assets/3D/small things/pipes/Pipe_Vertical.glb" id="14_huwr2"]
+[ext_resource type="PackedScene" uid="uid://4miwix2l2w1a" path="res://assets/3D/small things/fences/Fence_ClosedSide.glb" id="15_ejd6t"]
+[ext_resource type="PackedScene" uid="uid://d1ltepg15hlkp" path="res://assets/3D/small things/fences/Fence_Corner.glb" id="16_cl3vu"]
+[ext_resource type="PackedScene" uid="uid://bwwlo21ntux05" path="res://assets/3D/small things/fences/Fence_Tshape.glb" id="17_bnhuf"]
+
+[node name="Mesh_Library_1x1" type="Node3D"]
+
+[node name="Fence_Frontal12" parent="." instance=ExtResource("1_1dkhd")]
+
+[node name="Fence_Frontal22" parent="." instance=ExtResource("2_g6pvf")]
+
+[node name="Fence_Frontal32" parent="." instance=ExtResource("3_8wu2c")]
+
+[node name="Fence_Gate_Closed2" parent="." instance=ExtResource("4_hhktj")]
+
+[node name="Fence_Gate_Open2" parent="." instance=ExtResource("5_t86uh")]
+
+[node name="Pipe_ConnectorGround2" parent="." instance=ExtResource("6_832jv")]
+
+[node name="Pipe_ConnectorVent2" parent="." instance=ExtResource("7_jpyt4")]
+
+[node name="Pipe_Corner2" parent="." instance=ExtResource("8_yj5ay")]
+
+[node name="Pipe_CornerGround2" parent="." instance=ExtResource("9_54ge7")]
+
+[node name="Pipe_Ground2" parent="." instance=ExtResource("10_8yw0l")]
+
+[node name="Pipe_Horizontal2" parent="." instance=ExtResource("11_y1grf")]
+
+[node name="Pipe_Tshape2" parent="." instance=ExtResource("12_gv77r")]
+
+[node name="Pipe_VentTop2" parent="." instance=ExtResource("13_jfnmr")]
+
+[node name="Pipe_Vertical2" parent="." instance=ExtResource("14_huwr2")]
+
+[node name="Fence_ClosedSide" parent="." instance=ExtResource("15_ejd6t")]
+
+[node name="Fence_Corner2" parent="." instance=ExtResource("16_cl3vu")]
+
+[node name="Fence_Tshape2" parent="." instance=ExtResource("17_bnhuf")]

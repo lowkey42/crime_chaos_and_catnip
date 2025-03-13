@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://26r85guwto8r"]
+
+[node name="default_carlights" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, -0.995848, -0.0910323, 0, 0.0910323, -0.995848, 0, 0, 0)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.15225, 0, 0)
