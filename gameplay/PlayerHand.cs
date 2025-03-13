@@ -12,6 +12,7 @@ public partial class PlayerHand : Control {
 
 	[Export] private int _handRadius = 200;
 	[Export] private float _yFactor = 0.6f;
+	[Export] private float _xFactor = 2f;
 	[Export] private float _cardAngleLimit = 90.0f;
 	[Export] private float _maxCardSpreadAngle = 20f;
 	[Export] private Deck _deck = null!;
@@ -31,15 +32,28 @@ public partial class PlayerHand : Control {
 	[Export] private float _hoverOffset = 50f;
 	[Export] private float _sidePush = 30f;
 	[Export] private float _animationDuration = 0.3f;
+	[Export] private float _animationDurationStagger = 0.15f;
+	[Export] private float _animationDurationReposition = 0.05f;
 	
 
 	private Board? _board;
 
 	[Export] public int TotalPlayedCards { get; private set; }
 	
+	[Export] private float _spring = 80.0f;       // Reduzierte Federkonstante
+	[Export] private float _damp = 15.0f;         // Erhöhte Dämpfung
+	[Export] private float _velocityMultiplier = 0.005f; // Stark reduzierter Multiplikator
+	[Export] private float _maxRotation = 15.0f;  // Maximaler Drehwinkel
+
+	private float _displacement;
+	private float _oscillatorVelocity;
+	private Vector2 _previousMousePosition;
+	private bool _wasGrabbedLastFrame;
+	
 	public override void _Ready() {
 		RepositionCards();
 		_board = Board.GetBoard(this);
+		_previousMousePosition = GetGlobalMousePosition();
 	}
 
 	public override void _Process(double delta) {
@@ -60,6 +74,52 @@ public partial class PlayerHand : Control {
 			RepositionCards();
 		}
 	}
+	
+	private void HandleOscillatorPhysics(double delta)
+	{
+		if (_currentSelectedCardIndex == -1 || !_heldCards[_currentSelectedCardIndex].IsGrabbed)
+		{
+			if (_wasGrabbedLastFrame)
+			{
+				// Reset-Oszillator beim Loslassen
+				_displacement = 0;
+				_oscillatorVelocity = 0;
+				_heldCards[_currentSelectedCardIndex].Rotation = 0; // Rotation zurücksetzen
+			}
+			_wasGrabbedLastFrame = false;
+			return;
+		}
+
+		HeldCard grabbedCard = _heldCards[_currentSelectedCardIndex];
+        
+		// Aktuelle Mausposition in globalen Koordinaten
+		Vector2 currentMouseGlobal = GetGlobalMousePosition();
+        
+		// Maus-Delta berechnen (Differenz zur vorherigen Position)
+		Vector2 mouseDelta = (currentMouseGlobal - _previousMousePosition) / (float)delta;
+        
+		// Maus-Delta in lokalen Koordinaten der Karte umrechnen
+		mouseDelta = grabbedCard.GetGlobalTransform().AffineInverse().BasisXform(mouseDelta);
+        
+		// Geschwindigkeit begrenzen und runden
+		float mouseVelocityX = Mathf.Clamp(mouseDelta.X, -50f, 50f) * _velocityMultiplier;
+		mouseVelocityX = Mathf.Round(mouseVelocityX * 1000) / 1000; // Auf 3 Nachkommastellen runden
+
+		// Oszillator-Update
+		float force = (-_spring * _displacement) - (_damp * _oscillatorVelocity);
+		_oscillatorVelocity += (force + mouseVelocityX) * (float)delta;
+		_displacement += _oscillatorVelocity * (float)delta;
+        
+		// Begrenzung und Anwendung
+		_displacement = Mathf.Clamp(_displacement, -1f, 1f);
+		grabbedCard.Rotation = -_displacement * Mathf.DegToRad(_maxRotation);
+
+		// Debugging
+		GD.Print($"Mouse Delta: {mouseDelta.X:N3} | Velocity: {mouseVelocityX:N3} | Displacement: {_displacement:N3}");
+
+		_previousMousePosition = currentMouseGlobal;
+		_wasGrabbedLastFrame = true;
+	}
 
 	public bool IsInPlayableArea(Vector2 screenPosition) {
 		return _bottomArea!=null && !_bottomArea.GetGlobalRect().HasPoint(screenPosition);
@@ -79,9 +139,9 @@ public partial class PlayerHand : Control {
     {
 	    Tween tween = CreateTween();
 	    tween.SetParallel(true);
-	    tween.TweenProperty(card, "position", targetPosition, 0.3f)
+	    tween.TweenProperty(card, "position", targetPosition, _animationDurationReposition)
 		    .SetEase(Tween.EaseType.Out);
-	    tween.TweenProperty(card, "rotation", targetRotation, 0.3f)
+	    tween.TweenProperty(card, "rotation", targetRotation, _animationDurationReposition)
 		    .SetEase(Tween.EaseType.Out);
 	    await ToSignal(tween, "finished");
     }
@@ -144,17 +204,17 @@ public partial class PlayerHand : Control {
 
 		    // Erstelle einen Tween für die Position und Rotation der Karte
 		    Tween tween = CreateTween();
-		    tween.TweenProperty(card, "position", finalPosition, 0.5f)
+		    tween.TweenProperty(card, "position", finalPosition, _animationDuration)
 			    .SetEase(Tween.EaseType.Out)
 			    .SetTrans(Tween.TransitionType.Quad);
 
-		    tween.Parallel().TweenProperty(card, "rotation", finalRotation, 0.5f);
+		    tween.Parallel().TweenProperty(card, "rotation", finalRotation, _animationDuration);
 
 		    currentAngle += cardSpread;
 	    }
 
 	    // Warte auf das Ende der Animation
-	    await ToSignal(GetTree().CreateTimer(0.5f), "timeout");
+	    await ToSignal(GetTree().CreateTimer(_animationDurationStagger), "timeout");
     }
     
     private Vector2 GetCardPositionForAnimation(HeldCard card)
@@ -188,7 +248,7 @@ public partial class PlayerHand : Control {
     private Vector2 GetCardPosition(float angleInDegrees)
     {
 		    float angleInRadians = Mathf.DegToRad(angleInDegrees);
-		    float x =  _handRadius * Mathf.Cos(angleInRadians);
+		    float x =  _handRadius * Mathf.Cos(angleInRadians) * _xFactor;
 		    float y = _handRadius * Mathf.Sin(angleInRadians) * _yFactor;
 
 		    return new Vector2(x, y);
@@ -242,12 +302,12 @@ public partial class PlayerHand : Control {
             card.Scale = Vector2.One * 0.5f; 
             
             Tween tween = CreateTween();
-            tween.TweenProperty(card, "position", finalPosition, 0.5f)
+            tween.TweenProperty(card, "position", finalPosition, _animationDuration)
 	            .SetEase(Tween.EaseType.Out) 
 	            .SetTrans(Tween.TransitionType.Quad); 
             
-            tween.Parallel().TweenProperty(card, "rotation", finalRotation, 0.5f);
-            tween.Parallel().TweenProperty(card, "scale", Vector2.One, 0.5f);
+            tween.Parallel().TweenProperty(card, "rotation", finalRotation, _animationDuration);
+            tween.Parallel().TweenProperty(card, "scale", Vector2.One, _animationDuration);
 
             
             await ToSignal(tween, "finished");
@@ -283,12 +343,12 @@ public partial class PlayerHand : Control {
 		    card.Scale = Vector2.One * 0.5f; 
             
 		    Tween tween = CreateTween();
-		    tween.TweenProperty(card, "position", finalPosition, 0.5f)
+		    tween.TweenProperty(card, "position", finalPosition, 0.3f)
 			    .SetEase(Tween.EaseType.Out) 
 			    .SetTrans(Tween.TransitionType.Quad); 
             
-		    tween.Parallel().TweenProperty(card, "rotation", finalRotation, 0.5f);
-		    tween.Parallel().TweenProperty(card, "scale", Vector2.One, 0.5f);
+		    tween.Parallel().TweenProperty(card, "rotation", finalRotation, 0.3f);
+		    tween.Parallel().TweenProperty(card, "scale", Vector2.One, 0.3f);
 		    
 		    await ToSignal(tween, "finished");
 
@@ -301,16 +361,58 @@ public partial class PlayerHand : Control {
     
     public async Task DiscardCard(HeldCard card)
     {
-        _heldCards.Remove(card);
-        await Task.Delay(100); // Platzhalter für Animation
-        card.Card?.OnDiscard(this);
-        card.QueueFree();
-        RepositionCards();
+	    if (_discardPile == null)
+	    {
+		    GD.PrintErr("DiscardPile ist nicht zugewiesen!");
+		    return;
+	    }
+
+	    // Entferne die Karte aus der Hand
+	    _heldCards.Remove(card);
+
+	    // Berechne die Mitte des DiscardPile
+	    Vector2 discardPileCenter = _discardPile.GlobalPosition + new Vector2(_discardPile.Size.X / 2, _discardPile.Size.Y / 2);
+
+	    // Zielposition der Karte (Mitte des DiscardPile, relativ zur PlayerHand)
+	    Vector2 targetPosition = discardPileCenter - GlobalPosition;
+
+	    // Erstelle einen Tween für die Animation
+	    Tween tween = CreateTween();
+	    tween.SetParallel(true);
+
+	    // Bewege die Karte zur Zielposition
+	    tween.TweenProperty(card, "position", targetPosition, _animationDuration)
+		    .SetEase(Tween.EaseType.Out)
+		    .SetTrans(Tween.TransitionType.Quad);
+
+	    // Drehe die Karte (optional)
+	    tween.TweenProperty(card, "rotation", 0.0f, _animationDuration)
+		    .SetEase(Tween.EaseType.Out);
+
+	    // Skaliere die Karte (optional)
+	    tween.TweenProperty(card, "scale", Vector2.One * 0.5f, _animationDuration)
+		    .SetEase(Tween.EaseType.Out);
+
+	    // Warte auf das Ende der Animation
+	    await ToSignal(tween, "finished");
+
+	    // Führe den OnDiscard-Callback aus
+	    card.Card?.OnDiscard(this);
+
+	    // Entferne die Karte aus der Szene
+	    card.QueueFree();
+
+	    // Positioniere die verbleibenden Karten neu
+	    await RepositionCardsWithTween();
 
     }
     public bool CanEndTurn()
     {
         return _heldCards.Count <= _maxCardAtTurnEnd;
+    }
+    public int CardsOverLimit()
+    {
+	    return _heldCards.Count - _maxCardAtTurnEnd;
     }
 
     public bool CanBePlayedAt(HeldCard heldCard, Vector2I boardPosition) {

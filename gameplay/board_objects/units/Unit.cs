@@ -15,16 +15,25 @@ public partial class Unit : BoardObject {
 	[Signal]
 	public delegate void StunClearedEventHandler();
 	
+	[Signal]
+	public delegate void KilledEventHandler();
+	
 	
 	[Export] public BoardOrientation MovementDirection = BoardOrientation.North;
 
 	[Export] public int MovementLeft = 0;
 
+	[Export] public int SelfDestruct = -1;
+
+	[Export] private Label _lootLabel;
+	
+	[Export] private PackedScene _lootScene;
+
 	public override bool BlocksField => false;
 
 	public bool WantsToMove => MovementLeft > 0;
 
-	public int CollectedLoot { get; private set; } = 0;
+	[Export] public int CollectedLoot { get; private set; } = 0;
 
 	public bool Stunned { get; private set; } = false;
 
@@ -38,9 +47,32 @@ public partial class Unit : BoardObject {
 			_ => throw new ArgumentOutOfRangeException()
 		};
 
+	public override void _Ready() {
+		base._Ready();
+		if(_lootLabel != null)
+			_lootLabel.Text = CollectedLoot.ToString();
+	}
+
 	public void IncreaseLoot(int value) {
 		CollectedLoot += value;
+		if(_lootLabel != null)
+			_lootLabel.Text = CollectedLoot.ToString();
 		EmitSignalLootCollected(value);
+	}
+
+	public void Kill() {
+		// drop loot at current field
+		if (CollectedLoot > 0 && _lootScene!=null) {
+			var droppedLoot = _lootScene.Instantiate<Loot>();
+			droppedLoot.Value = CollectedLoot;
+			GetParent().AddChild(droppedLoot);
+			droppedLoot.Position = Position;
+			CollectedLoot = 0;
+		}
+		
+		EmitSignalKilled();
+		Stunned = true;
+		QueueFree();
 	}
 
 	public void ClearStunned() {
@@ -57,6 +89,16 @@ public partial class Unit : BoardObject {
 		EmitSignalStunAdded();
 		Stunned = true;
 		return true;
+	}
+
+	public void OnTurnEnd() {
+		ClearStunned();
+		
+		if (SelfDestruct > 0) {
+			SelfDestruct--;
+			if(SelfDestruct==0)
+				Kill();
+		}
 	}
 
 }

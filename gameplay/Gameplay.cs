@@ -78,6 +78,10 @@ public partial class Gameplay : Node {
 		return _currentState == State.PlayingCards && _hand.CanEndTurn();
 	}
 
+	public int CardsOverLimit() {
+		return _hand.CardsOverLimit();
+	}
+
 	public bool CanPlayCards() {
 		return _currentState is State.PlayingCards or State.LastTurn;
 	}
@@ -139,9 +143,12 @@ public partial class Gameplay : Node {
 				}
 
 				// check if there is an actionable card/object on the units field
-				if (cell.TryInteract(unit)) {
+				var interactResult = cell.TryInteract(unit);
+				if (interactResult.HasFlag(BoardObject.InteractResult.Interacted)) {
 					didAnyUnitAct = true;
-				} else if(unit.WantsToMove) {
+				} 
+				
+				if(!interactResult.HasFlag(BoardObject.InteractResult.BlockMovement) && unit.WantsToMove) {
 					didAnyUnitAct = true;
 					_unitsMovingInNextStep.Add(unit);
 				}
@@ -152,10 +159,7 @@ public partial class Gameplay : Node {
 
 		EmitSignalTurnDone();
 		
-		// remove stunned status from all units after the turn
-		foreach (var unit in _board.GetUnits()) {
-			unit.ClearStunned();
-		}
+		_board.OnTurnEnd();
 
 		_board.GridLines?.Fade(1f);
 

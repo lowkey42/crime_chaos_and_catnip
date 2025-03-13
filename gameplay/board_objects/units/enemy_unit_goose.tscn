@@ -1,24 +1,33 @@
-[gd_scene load_steps=4 format=3 uid="uid://r1l46im0nohs"]
+[gd_scene load_steps=6 format=3 uid="uid://r1l46im0nohs"]
 
 [ext_resource type="Script" uid="uid://cwoylgdtytjwc" path="res://gameplay/board_objects/units/EnemyUnit.cs" id="1_cc84r"]
-[ext_resource type="PackedScene" uid="uid://dlxygdiwxxpui" path="res://assets/3D/small things/cardholder-neon.glb" id="2_dqcqk"]
-[ext_resource type="Texture2D" uid="uid://be3j4u1qf4tsh" path="res://assets/2D/Framed Characters/GooseStandingBlink.png" id="3_cc84r"]
+[ext_resource type="PackedScene" uid="uid://i7vhx0eef663" path="res://gameplay/board_objects/units/unit_base.tscn" id="1_syotq"]
+[ext_resource type="Texture2D" uid="uid://cxxnrjqastg8i" path="res://assets/2D/UI/SpeakBubbleGoose.png" id="3_cc84r"]
+[ext_resource type="PackedScene" uid="uid://mb4i47wd66wh" path="res://gameplay/board_objects/loot.tscn" id="3_dqcqk"]
 
-[node name="EnemyUnitGoose" type="Node3D"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_cc84r"]
+viewport_path = NodePath("LootSubViewport")
+
+[node name="EnemyUnitGoose" node_paths=PackedStringArray("_lootLabel") instance=ExtResource("1_syotq")]
 script = ExtResource("1_cc84r")
+_lootLabel = NodePath("LootSubViewport/Control/Panel/Label")
+_lootScene = ExtResource("3_dqcqk")
 
-[node name="cardholder-neon" parent="." instance=ExtResource("2_dqcqk")]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+[node name="front" parent="." index="1"]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 1.00125, 0)
 
-[node name="front" type="Sprite3D" parent="."]
-transform = Transform3D(0.125, 0, 0, 0, 0.125, 0, 0, 0, 0.125, 0, 0.7, 0)
-shaded = true
-double_sided = false
+[node name="back" parent="." index="2"]
+transform = Transform3D(-0.2, 0, -3.01992e-08, 0, 0.2, 0, 3.01992e-08, 0, -0.2, 0, 1.00125, 0)
+
+[node name="Loot" parent="." index="3"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 2.1964, 0)
+texture = SubResource("ViewportTexture_cc84r")
+
+[node name="AttackMarker" type="Sprite3D" parent="." index="5"]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 2.83966, 0)
+visible = false
+sorting_offset = 0.1
+billboard = 2
 texture = ExtResource("3_cc84r")
 
-[node name="back" type="Sprite3D" parent="."]
-transform = Transform3D(-0.125, 0, -1.09278e-08, 0, 0.125, 0, 1.09278e-08, 0, -0.125, 0, 0.7, 0)
-flip_h = true
-shaded = true
-double_sided = false
-texture = ExtResource("3_cc84r")
+[editable path="cardholder-rot"]

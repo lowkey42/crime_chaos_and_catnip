@@ -1,0 +1,77 @@
+[gd_scene load_steps=5 format=3 uid="uid://i7vhx0eef663"]
+
+[ext_resource type="PackedScene" uid="uid://bf2gi73alegi5" path="res://assets/3D/small things/cardholder-rot.glb" id="1_et8n7"]
+[ext_resource type="Material" uid="uid://ijx083t7cclw" path="res://assets/3D/small things/ROT.tres" id="2_12nh0"]
+[ext_resource type="Texture2D" uid="uid://be3j4u1qf4tsh" path="res://assets/2D/Framed Characters/GooseStandingBlink.png" id="3_0weh6"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_et8n7"]
+viewport_path = NodePath("LootSubViewport")
+
+[node name="UnitBase" type="Node3D"]
+
+[node name="cardholder-rot" parent="." instance=ExtResource("1_et8n7")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+
+[node name="Cardholder_Red" parent="cardholder-rot" index="0"]
+gi_mode = 2
+surface_material_override/0 = ExtResource("2_12nh0")
+
+[node name="front" type="Sprite3D" parent="."]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 1.06193, 0)
+gi_mode = 2
+shaded = true
+double_sided = false
+alpha_cut = 2
+texture = ExtResource("3_0weh6")
+
+[node name="back" type="Sprite3D" parent="."]
+transform = Transform3D(-0.2, 0, -3.01992e-08, 0, 0.2, 0, 3.01992e-08, 0, -0.2, 0, 1.06193, 0)
+gi_mode = 2
+flip_h = true
+shaded = true
+double_sided = false
+alpha_cut = 2
+texture = ExtResource("3_0weh6")
+
+[node name="Loot" type="Sprite3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 2.38502, 0)
+gi_mode = 2
+billboard = 2
+texture = SubResource("ViewportTexture_et8n7")
+
+[node name="LootSubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(128, 64)
+
+[node name="Control" type="Control" parent="LootSubViewport"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Panel" type="Panel" parent="LootSubViewport/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="LootSubViewport/Control/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 60
+text = "42"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[editable path="cardholder-rot"]

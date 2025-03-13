@@ -41,18 +41,16 @@ public partial class Board : Node {
 			return false;
 		}
 
-		public bool TryInteract(Unit unit) {
-			var movementBlocked = false;
+		public BoardObject.InteractResult TryInteract(Unit unit) {
+			var result = BoardObject.InteractResult.Ignored;
 			
 			for (var i = Objects.Count - 1; i >= 0; i--) {
 				var interactResult = Objects[i].TryInteract(unit);
+				result |= interactResult;
 				
 				if (interactResult.HasFlag(BoardObject.InteractResult.Interacted))
 					Objects[i].OnInteracted();
 				
-				if (interactResult.HasFlag(BoardObject.InteractResult.BlockMovement))
-					movementBlocked = true;
-					
 				if (interactResult.HasFlag(BoardObject.InteractResult.RemoveSelf)) {
 					Objects[i].QueueFree();
 					Objects.RemoveAt(i); // remove immediately so the object can't be consumed by other units during the same tick
@@ -62,7 +60,7 @@ public partial class Board : Node {
 					break;
 			}
 
-			return movementBlocked;
+			return result;
 		}
 
 	}
@@ -210,6 +208,18 @@ public partial class Board : Node {
 			cell.AlwaysBlocked = true;
 			EmitSignalBoardChanged(boardPosition);
 		}
+	}
+
+	public void OnTurnEnd() {
+		// remove stunned status from all units after the turn
+		foreach (var unit in GetUnits()) {
+			unit.OnTurnEnd();
+		}
+	}
+
+	public Vector3 GetWorldPosition(Vector2I boardPosition) {
+		var cell = TryGetCell(boardPosition);
+		return cell?.Position ?? new Vector3(boardPosition.X * CellSize, 0, boardPosition.Y * CellSize);
 	}
 
 }

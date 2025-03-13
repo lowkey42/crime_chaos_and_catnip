@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://ig4cv6dtcnst"]
+
+[ext_resource type="PackedScene" uid="uid://i7vhx0eef663" path="res://gameplay/board_objects/units/unit_base.tscn" id="1_iwfkl"]
+[ext_resource type="Script" uid="uid://cwoylgdtytjwc" path="res://gameplay/board_objects/units/EnemyUnit.cs" id="2_drxa5"]
+[ext_resource type="PackedScene" uid="uid://mb4i47wd66wh" path="res://gameplay/board_objects/loot.tscn" id="3_d32ey"]
+[ext_resource type="Texture2D" uid="uid://dod46lkl2ilo6" path="res://assets/2D/Framed Characters/RaccoonTrashStuck.png" id="3_drxa5"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_cc84r"]
+viewport_path = NodePath("LootSubViewport")
+
+[node name="DestructableBase" node_paths=PackedStringArray("_lootLabel") instance=ExtResource("1_iwfkl")]
+script = ExtResource("2_drxa5")
+_lootLabel = NodePath("LootSubViewport/Control/Panel/Label")
+_lootScene = ExtResource("3_d32ey")
+CollectedLoot = 5
+
+[node name="front" parent="." index="1"]
+texture = ExtResource("3_drxa5")
+
+[node name="back" parent="." index="2"]
+texture = ExtResource("3_drxa5")
+
+[node name="Loot" parent="." index="3"]
+texture = SubResource("ViewportTexture_cc84r")
+
+[node name="Label" parent="LootSubViewport/Control/Panel" index="0"]
+text = "?"
+
+[editable path="cardholder-rot"]

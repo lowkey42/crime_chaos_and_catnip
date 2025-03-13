@@ -2,24 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bkw1bhxad8b6a"
-path.s3tc="res://.godot/imported/GradientTexture.png-16e3191d4d9e69e0b9cd04484dc27b49.s3tc.ctex"
+uid="uid://bkjf8p0874qdg"
+path="res://.godot/imported/card_summon_chipmunk.png-0436ddb1fe5ac1b6461902e2985a55d8.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
-}
-generator_parameters={
-"md5": "649f3b0f3cb84b8fb653b1dd2bdc2381"
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/GradientTexture.png"
-dest_files=["res://.godot/imported/GradientTexture.png-16e3191d4d9e69e0b9cd04484dc27b49.s3tc.ctex"]
+source_file="res://gameplay/cards/instances/card_summon_chipmunk.png"
+dest_files=["res://.godot/imported/card_summon_chipmunk.png-0436ddb1fe5ac1b6461902e2985a55d8.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
@@ -35,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

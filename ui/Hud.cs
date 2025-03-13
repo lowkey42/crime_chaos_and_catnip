@@ -31,6 +31,8 @@ public partial class Hud : CanvasLayer {
 		
 		_endTurnButton.Visible = !_gameplay.CanEndGame();
 		_endGameButton.Visible = _gameplay.CanEndGame();
+
+		_endTurnButton.TooltipText = _gameplay.CanEndTurn() ? "" : $"Play or discard {_gameplay.CardsOverLimit()} more cards to end your turn";
 	}
 	
 	public void TryEndTurn() {
@@ -42,7 +44,7 @@ public partial class Hud : CanvasLayer {
 	}
 
 	private void OnCardPlayed(CardBase card, BoardObject spawn) {
-		if (spawn is not OrientedBoardObject obj)
+		if (!card.RequiresOrientation || spawn is not OrientedBoardObject obj)
 			return;
 
 		_cardSpawn = obj;

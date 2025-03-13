@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://cucgjg2gfoau7"]
+
+[ext_resource type="PackedScene" uid="uid://ig4cv6dtcnst" path="res://gameplay/board_objects/units/destructable_base.tscn" id="1_f5jgq"]
+[ext_resource type="PackedScene" uid="uid://n3ckudajbt7a" path="res://assets/3D/small things/destructables/Kiste1x1.glb" id="2_volem"]
+[ext_resource type="PackedScene" uid="uid://dtdlmocfdx02w" path="res://assets/3D/small things/destructables/Kiste1x2.glb" id="3_wjm1d"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_7sjlj"]
+viewport_path = NodePath("LootSubViewport")
+
+[node name="Box" instance=ExtResource("1_f5jgq")]
+
+[node name="Kiste1x1" parent="." index="0" instance=ExtResource("2_volem")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0.495052, 0)
+
+[node name="Kiste1x2" parent="." index="1" instance=ExtResource("3_wjm1d")]
+
+[node name="cardholder-rot" parent="." index="2"]
+visible = false
+
+[node name="front" parent="." index="3"]
+visible = false
+
+[node name="back" parent="." index="4"]
+visible = false
+
+[node name="Loot" parent="." index="5"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.38551, 0)
+texture = SubResource("ViewportTexture_7sjlj")
+
+[editable path="cardholder-rot"]

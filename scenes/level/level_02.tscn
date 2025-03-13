@@ -1,14 +1,19 @@
-[gd_scene load_steps=30 format=3 uid="uid://t31lv3om7t4f"]
+[gd_scene load_steps=35 format=3 uid="uid://t31lv3om7t4f"]
 
 [ext_resource type="Script" uid="uid://b4tr0lmx326c7" path="res://gameplay/Board.cs" id="1_5g03a"]
 [ext_resource type="PackedScene" uid="uid://b267dln8bmyc0" path="res://gridsystem/grid_lines.tscn" id="2_saf3a"]
-[ext_resource type="PackedScene" uid="uid://bwslpyd3dfv3r" path="res://gameplay/board_objects/exit.tscn" id="3_je1eg"]
+[ext_resource type="PackedScene" path="res://gameplay/board_objects/exit.tscn" id="3_je1eg"]
 [ext_resource type="MeshLibrary" uid="uid://crx7qq1oe5n3w" path="res://CityMeshLibrary.tres" id="4_fm2p5"]
 [ext_resource type="Script" uid="uid://c78jpbv3tl850" path="res://gameplay/board_objects/GridMapBoardCollision.cs" id="4_uqvjn"]
 [ext_resource type="PackedScene" uid="uid://bsq61q37gqwbk" path="res://assets/3D/small things/foliage/BaumGroß02.glb" id="4_xwd00"]
 [ext_resource type="PackedScene" uid="uid://buq58r1wm7r11" path="res://assets/3D/small things/foliage/BaumGroß.glb" id="5_4o7lk"]
 [ext_resource type="PackedScene" uid="uid://go6gi32bplg6" path="res://assets/3D/cars/TAXI-downsized.glb" id="5_saf3a"]
+[ext_resource type="PackedScene" uid="uid://c5fw6hn22hi6k" path="res://gameplay/board_objects/loot_sources/loot_source_cat.tscn" id="6_ji5cl"]
+[ext_resource type="PackedScene" uid="uid://70upebyxhbou" path="res://gameplay/board_objects/loot_sources/loot_source_racoon.tscn" id="7_r2fdo"]
 [ext_resource type="MeshLibrary" uid="uid://b8tgjug4vkhw0" path="res://City_1x1_mesh_new.tres" id="8_5t0lm"]
+[ext_resource type="PackedScene" uid="uid://ce37br2s4b6qe" path="res://gameplay/board_objects/loot_sources/loot_source_chipmunk.tscn" id="8_7wb3e"]
+[ext_resource type="PackedScene" uid="uid://cwxr4sn5h2581" path="res://gameplay/board_objects/units/player_unit_chipmunk.tscn" id="9_7wb3e"]
+[ext_resource type="PackedScene" uid="uid://dt5k6hmjrqseu" path="res://gameplay/board_objects/units/player_unit_racoon.tscn" id="10_bs8jp"]
 [ext_resource type="PackedScene" uid="uid://b8no4lwu22gs7" path="res://assets/3D/small things/destructables/Briefkasten.glb" id="12_yscao"]
 [ext_resource type="PackedScene" uid="uid://hjuumlxfm76a" path="res://assets/3D/small things/destructables/trashcan.glb" id="13_e3ykv"]
 [ext_resource type="PackedScene" uid="uid://r5n51vbg0tgm" path="res://assets/3D/small things/straße/stopschild.glb" id="14_oqihs"]
@@ -16,13 +21,13 @@
 [ext_resource type="PackedScene" uid="uid://cnyifj0b58f8d" path="res://assets/3D/small things/foliage/BuschKlein.glb" id="18_lvnuf"]
 [ext_resource type="Environment" uid="uid://bcp04kwm6bifu" path="res://environment.tres" id="19_rw4af"]
 [ext_resource type="PackedScene" uid="uid://dyy10ipmv4lgt" path="res://gameplay/board_objects/units/player_unit_cat.tscn" id="21_5t0lm"]
-[ext_resource type="PackedScene" uid="uid://mb4i47wd66wh" path="res://gameplay/board_objects/loot.tscn" id="22_6pjwo"]
+[ext_resource type="PackedScene" path="res://gameplay/board_objects/loot.tscn" id="22_6pjwo"]
 [ext_resource type="PackedScene" uid="uid://dmyx5cmc44lkw" path="res://scenes/Entities/laterne_spot.tscn" id="22_ks2j2"]
-[ext_resource type="PackedScene" uid="uid://bpoos7iwf3a3f" path="res://scenes/Decoration/lowpolycar_normal_light.tscn" id="23_6gva2"]
+[ext_resource type="PackedScene" path="res://scenes/Decoration/lowpolycar_normal_light.tscn" id="23_6gva2"]
 [ext_resource type="PackedScene" uid="uid://cmlanued2imtr" path="res://assets/3D/small things/foliage/FlowerPot.glb" id="23_itcxq"]
 [ext_resource type="PackedScene" uid="uid://dcptorrhpew8x" path="res://assets/3D/small things/foliage/Topfpflanze.glb" id="24_5t0lm"]
 [ext_resource type="PackedScene" uid="uid://cx8rea3hge35j" path="res://assets/3D/small things/foliage/Topfpflanze3.glb" id="24_14y5t"]
-[ext_resource type="PackedScene" uid="uid://0xgcybxsnshf" path="res://scenes/Decoration/taxi_light.tscn" id="25_5t0lm"]
+[ext_resource type="PackedScene" path="res://scenes/Decoration/taxi_light.tscn" id="25_5t0lm"]
 [ext_resource type="PackedScene" uid="uid://c6ldsw5stmsvg" path="res://scenes/Decoration/Polizei1-light.gltf" id="25_6pjwo"]
 [ext_resource type="PackedScene" uid="uid://dfvn827ve7r50" path="res://assets/3D/cars/lowpolycar-jeep2-downsized.glb" id="25_r5fxx"]
 [ext_resource type="PackedScene" uid="uid://c2jcqfkha8sw2" path="res://assets/3D/cars/lowpolycar-jeep1-downsized.glb" id="26_5j0yt"]
@@ -47,7 +52,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5)
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 42, 0, 116)
 
 [node name="PlayerUnitCat" parent="Board/GameplaySetup" instance=ExtResource("21_5t0lm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42, 0, 119)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36, 0, 119)
 
 [node name="Loot" parent="Board/GameplaySetup" instance=ExtResource("22_6pjwo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52, 0, 119)
@@ -60,6 +65,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48, 0, 136)
 
 [node name="Loot4" parent="Board/GameplaySetup" instance=ExtResource("22_6pjwo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28, 0, 118)
+
+[node name="LootSourceCat" parent="Board/GameplaySetup" instance=ExtResource("6_ji5cl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36, 0, 117)
+
+[node name="LootSourceRacoon" parent="Board/GameplaySetup" instance=ExtResource("7_r2fdo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46, 0, 122)
+
+[node name="LootSourceChipmunk" parent="Board/GameplaySetup" instance=ExtResource("8_7wb3e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34, 0, 124)
+
+[node name="PlayerUnitChipmunk" parent="Board/GameplaySetup" instance=ExtResource("9_7wb3e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36, 0, 124)
+
+[node name="PlayerUnitRacoon" parent="Board/GameplaySetup" instance=ExtResource("10_bs8jp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 0, 122)
 
 [node name="Visuals" type="Node3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 81, -0.1, 81)

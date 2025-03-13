@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cvphq8bl1xpcw"]
+
+[ext_resource type="PackedScene" uid="uid://hjuumlxfm76a" path="res://assets/3D/small things/destructables/trashcan.glb" id="3_wbop0"]
+
+[node name="LootSourceRacoon" type="Node3D"]
+
+[node name="trashcan" parent="." instance=ExtResource("3_wbop0")]
+transform = Transform3D(1, 0, 0, 0, 0.0763014, -0.997085, 0, 0.997085, 0.0763014, 0, 0.18796, 0)

@@ -17,6 +17,8 @@ public partial class HeldCard : Node2D {
 	
 	[Export]private AnimationPlayer _animationPlayer;
 
+	
+	public bool IsGrabbed => _grabbed;
 	private bool _grabbed = false;
 	private bool _canDrop = false;
 	private Timer _dropTimer;
@@ -29,11 +31,11 @@ public partial class HeldCard : Node2D {
 
 		_sprite?.SetTexture(Card?.CardSprite);
 
-		_glowMaterial = GD.Load<ShaderMaterial>("res://assets/card_glow.tres");
+		_glowMaterial = GD.Load<ShaderMaterial>("res://assets/Shader/card_glow.tres");
 
 		_dropTimer = new Timer();
 		AddChild(_dropTimer);
-		_dropTimer.WaitTime = 0.5f;
+		_dropTimer.WaitTime = 0.2f;
 		_dropTimer.OneShot = true;
 		_dropTimer.Connect("timeout", new Callable(this, nameof(OnDropTimerTimeout)));
 	}
