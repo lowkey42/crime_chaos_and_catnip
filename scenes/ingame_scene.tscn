@@ -16,7 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://b4ufa4onh1vrb" path="res://camera/cameras.tscn" id="14_ilpo5"]
 [ext_resource type="Texture2D" uid="uid://cw4qn5ngn6ax5" path="res://gameplay/cards/instances/card_move_10.png" id="14_q7kwb"]
 [ext_resource type="Script" uid="uid://buu7cbc7wjijb" path="res://ui/GameOverScreen.cs" id="15_th7mp"]
-[ext_resource type="PackedScene" uid="uid://cqdo162bubc58" path="res://scenes/level/level_02.tscn" id="16_th7mp"]
+[ext_resource type="PackedScene" uid="uid://t31lv3om7t4f" path="res://scenes/level/level_02.tscn" id="16_th7mp"]
 
 [sub_resource type="Gradient" id="Gradient_juwkt"]
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
@@ -87,12 +87,13 @@ _deck = NodePath("HUD/BottomUI/MarginContainer/DeckContainer/Deck")
 _hand = NodePath("HUD/BottomUI/PlayerHand")
 _stepTime = 0.1
 
-[node name="HUD" type="CanvasLayer" parent="Gameplay" node_paths=PackedStringArray("_scoreLabel", "_remainingCardsLabel", "_endTurnButton", "_gameplay", "_deck", "_rotationUi")]
+[node name="HUD" type="CanvasLayer" parent="Gameplay" node_paths=PackedStringArray("_scoreLabel", "_remainingCardsLabel", "_endTurnButton", "_endGameButton", "_gameplay", "_deck", "_rotationUi")]
 follow_viewport_enabled = true
 script = ExtResource("5_pxehq")
 _scoreLabel = NodePath("TopUI/HBoxContainer/Score")
 _remainingCardsLabel = NodePath("BottomUI/MarginContainer/DeckContainer/RemainingCards")
-_endTurnButton = NodePath("BottomUI/MarginContainer/EndTurnButton")
+_endTurnButton = NodePath("BottomUI/MarginContainer/Control/EndTurnButton")
+_endGameButton = NodePath("BottomUI/MarginContainer/Control/EndGameButton")
 _gameplay = NodePath("..")
 _deck = NodePath("BottomUI/MarginContainer/DeckContainer/Deck")
 _rotationUi = NodePath("CardDirectionControl")
@@ -191,11 +192,11 @@ theme_override_constants/margin_left = 4
 theme_override_constants/margin_bottom = 9
 
 [node name="DeckContainer" type="Control" parent="Gameplay/HUD/BottomUI/MarginContainer"]
-custom_minimum_size = Vector2(100, 230)
+custom_minimum_size = Vector2(150, 230)
 layout_mode = 2
 
 [node name="Deck" type="Node2D" parent="Gameplay/HUD/BottomUI/MarginContainer/DeckContainer"]
-position = Vector2(60, 111)
+position = Vector2(75, 111)
 script = ExtResource("7_ilpo5")
 _cards = [SubResource("Resource_juwkt"), SubResource("Resource_ilpo5")]
 _heldCardScene = ExtResource("6_vus8m")
@@ -215,10 +216,29 @@ theme_override_font_sizes/font_size = 30
 text = "96"
 horizontal_alignment = 1
 
-[node name="EndTurnButton" type="Button" parent="Gameplay/HUD/BottomUI/MarginContainer"]
+[node name="Control" type="Control" parent="Gameplay/HUD/BottomUI/MarginContainer"]
 layout_mode = 2
+
+[node name="EndTurnButton" type="Button" parent="Gameplay/HUD/BottomUI/MarginContainer/Control"]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+offset_left = 4.0
+offset_top = 194.0
+offset_right = 123.0
+offset_bottom = 230.0
 size_flags_vertical = 8
 text = "  End Turn  "
+
+[node name="EndGameButton" type="Button" parent="Gameplay/HUD/BottomUI/MarginContainer/Control"]
+visible = false
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+offset_left = 4.0
+offset_top = 194.0
+offset_right = 123.0
+offset_bottom = 230.0
+size_flags_vertical = 8
+text = " End Game "
 
 [node name="CardDirectionControl" type="Control" parent="Gameplay/HUD"]
 layout_mode = 3
@@ -328,7 +348,7 @@ layout_mode = 2
 size_flags_vertical = 3
 text = "PLACEHOLDER
 
-You've collected {LOOT} loot in {CARDS} cards!"
+You've collected {LOOT} loot in {MOVES} with {CARDS} cards!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -347,7 +367,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43, 0, 111.27)
 
 [connection signal="GameOver" from="Gameplay" to="Gameplay/GameOverOverlay" method="ShowOverlay"]
 [connection signal="CardPlayed" from="Gameplay/HUD/BottomUI/PlayerHand" to="Gameplay/HUD" method="OnCardPlayed"]
-[connection signal="pressed" from="Gameplay/HUD/BottomUI/MarginContainer/EndTurnButton" to="Gameplay/HUD" method="TryEndTurn"]
+[connection signal="pressed" from="Gameplay/HUD/BottomUI/MarginContainer/Control/EndTurnButton" to="Gameplay/HUD" method="TryEndTurn"]
+[connection signal="pressed" from="Gameplay/HUD/BottomUI/MarginContainer/Control/EndGameButton" to="Gameplay/HUD" method="TryEndGame"]
 [connection signal="pressed" from="Gameplay/HUD/CardDirectionControl/GridContainer/ButtonNorth" to="Gameplay/HUD" method="RotateCardNorth"]
 [connection signal="pressed" from="Gameplay/HUD/CardDirectionControl/GridContainer/ButtonWest" to="Gameplay/HUD" method="RotateCardWest"]
 [connection signal="pressed" from="Gameplay/HUD/CardDirectionControl/GridContainer/ButtonEast" to="Gameplay/HUD" method="RotateCardEast"]
