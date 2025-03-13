@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dlumv0jqe0i23"]
+
+[ext_resource type="PackedScene" uid="uid://b8no4lwu22gs7" path="res://assets/3D/small things/destructables/Briefkasten.glb" id="2_rj2nm"]
+
+[node name="LootSourceCatEmpty" type="Node3D"]
+
+[node name="Briefkasten2" parent="." instance=ExtResource("2_rj2nm")]
+transform = Transform3D(0.101352, 0.994851, 0, -0.994851, 0.101352, 0, 0, 0, 1, 0, 0, 0)

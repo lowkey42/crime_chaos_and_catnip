@@ -217,4 +217,9 @@ public partial class Board : Node {
 		}
 	}
 
+	public Vector3 GetWorldPosition(Vector2I boardPosition) {
+		var cell = TryGetCell(boardPosition);
+		return cell?.Position ?? new Vector3(boardPosition.X * CellSize, 0, boardPosition.Y * CellSize);
+	}
+
 }

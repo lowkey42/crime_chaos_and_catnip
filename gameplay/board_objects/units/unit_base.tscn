@@ -10,20 +10,23 @@ viewport_path = NodePath("LootSubViewport")
 [node name="UnitBase" type="Node3D"]
 
 [node name="cardholder-rot" parent="." instance=ExtResource("1_et8n7")]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 
 [node name="Cardholder_Red" parent="cardholder-rot" index="0"]
+gi_mode = 2
 surface_material_override/0 = ExtResource("2_12nh0")
 
 [node name="front" type="Sprite3D" parent="."]
-transform = Transform3D(0.125, 0, 0, 0, 0.125, 0, 0, 0, 0.125, 0, 0.7, 0)
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 1.06193, 0)
+gi_mode = 2
 shaded = true
 double_sided = false
 alpha_cut = 2
 texture = ExtResource("3_0weh6")
 
 [node name="back" type="Sprite3D" parent="."]
-transform = Transform3D(-0.125, 0, -1.09278e-08, 0, 0.125, 0, 1.09278e-08, 0, -0.125, 0, 0.7, 0)
+transform = Transform3D(-0.2, 0, -3.01992e-08, 0, 0.2, 0, 3.01992e-08, 0, -0.2, 0, 1.06193, 0)
+gi_mode = 2
 flip_h = true
 shaded = true
 double_sided = false
@@ -31,7 +34,8 @@ alpha_cut = 2
 texture = ExtResource("3_0weh6")
 
 [node name="Loot" type="Sprite3D" parent="."]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.8, 0)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 2.38502, 0)
+gi_mode = 2
 billboard = 2
 texture = SubResource("ViewportTexture_et8n7")
 

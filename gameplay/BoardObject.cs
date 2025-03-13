@@ -1,5 +1,6 @@
 #nullable enable
 using System;
+using System.Diagnostics;
 using Godot;
 
 namespace CrimeChaosAndCatnip;
@@ -42,7 +43,9 @@ public abstract partial class BoardObject : Node3D {
 	}
 
 	private void OnBoardReady() {
-		Board?.AddObject(BoardPosition, this);
+		Debug.Assert(Board != null, nameof(Board) + " != null");
+		GlobalPosition = Board.GetWorldPosition(BoardPosition);
+		Board.AddObject(BoardPosition, this);
 		_lastBoardPosition = BoardPosition;
 	}
 
