@@ -1,16 +1,35 @@
-[gd_scene load_steps=4 format=3 uid="uid://mb4i47wd66wh"]
+[gd_scene load_steps=5 format=3 uid="uid://mb4i47wd66wh"]
 
 [ext_resource type="Script" uid="uid://p2ts3wh3dtq1" path="res://gameplay/board_objects/Loot.cs" id="1_5x2y6"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5x2y6"]
-albedo_color = Color(0.15, 1, 0.390833, 1)
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_obybp"]
-material = SubResource("StandardMaterial3D_5x2y6")
+[ext_resource type="PackedScene" uid="uid://bf2gi73alegi5" path="res://assets/3D/small things/cardholder-rot.glb" id="2_obybp"]
+[ext_resource type="Material" uid="uid://ijx083t7cclw" path="res://assets/3D/small things/ROT.tres" id="3_tw1l4"]
+[ext_resource type="Texture2D" uid="uid://c0hsgr0i34axs" path="res://assets/2D/Icons/Icon_CatnipBag.png" id="4_ieetp"]
 
 [node name="Loot" type="Node3D"]
 script = ExtResource("1_5x2y6")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-mesh = SubResource("CylinderMesh_obybp")
+[node name="cardholder-rot2" parent="." instance=ExtResource("2_obybp")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0.112336, 0, 0)
+
+[node name="Cardholder_Red" parent="cardholder-rot2" index="0"]
+gi_mode = 2
+surface_material_override/0 = ExtResource("3_tw1l4")
+
+[node name="front" type="Sprite3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.110336, 0.66455, 0)
+gi_mode = 2
+shaded = true
+double_sided = false
+alpha_cut = 2
+texture = ExtResource("4_ieetp")
+
+[node name="back" type="Sprite3D" parent="."]
+transform = Transform3D(-0.5, 0, -7.54979e-08, 0, 0.5, 0, 7.54979e-08, 0, -0.5, 0.110336, 0.66455, 0)
+gi_mode = 2
+flip_h = true
+shaded = true
+double_sided = false
+alpha_cut = 2
+texture = ExtResource("4_ieetp")
+
+[editable path="cardholder-rot2"]

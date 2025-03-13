@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bxeod08v668tw"
 path.s3tc="res://.godot/imported/ChipmunkMunch.png-d365ee75eeb63efb1a78895db577bfd8.s3tc.ctex"
+path.etc2="res://.godot/imported/ChipmunkMunch.png-d365ee75eeb63efb1a78895db577bfd8.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/2D/Framed Characters/ChipmunkMunch.png"
-dest_files=["res://.godot/imported/ChipmunkMunch.png-d365ee75eeb63efb1a78895db577bfd8.s3tc.ctex"]
+dest_files=["res://.godot/imported/ChipmunkMunch.png-d365ee75eeb63efb1a78895db577bfd8.s3tc.ctex", "res://.godot/imported/ChipmunkMunch.png-d365ee75eeb63efb1a78895db577bfd8.etc2.ctex"]
 
 [params]
 

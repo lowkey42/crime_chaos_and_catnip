@@ -6,6 +6,12 @@ public partial class GameOverScreen : CanvasLayer
 {
 	[Export] private CanvasLayer _hud;
 	
+	[Export] private Label _lootLabel;
+	
+	[Export] private Label _turnsLabel;
+	
+	[Export] private Label _cardsLabel;
+	
 	[Export] private Label _messageLabel;
 	
 	[Export] private Button _continueButton;
@@ -17,10 +23,9 @@ public partial class GameOverScreen : CanvasLayer
 	[Export] private PlayerHand _hand;
 
 	public void ShowOverlay() {
-		_messageLabel.Text = _messageLabel.Text
-			.Replace("{LOOT}", _gameplay.Score.ToString())
-			.Replace("{TURNS}", _gameplay.Turns.ToString())
-			.Replace("{CARDS}", _hand.TotalPlayedCards.ToString());
+		_lootLabel.Text = _gameplay.Score.ToString();
+		_turnsLabel.Text = _gameplay.Turns.ToString();
+		_cardsLabel.Text = _hand.TotalPlayedCards.ToString();
 
 		_continueButton.GrabFocus();
 

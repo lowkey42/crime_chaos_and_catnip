@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://c7ptq1owaewbs"
 path.s3tc="res://.godot/imported/stopschild_gradienttextures.png-9ef05c66500b9d20a8de7df8bba8c6d6.s3tc.ctex"
+path.etc2="res://.godot/imported/stopschild_gradienttextures.png-9ef05c66500b9d20a8de7df8bba8c6d6.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/3D/small things/straße/stopschild_gradienttextures.png"
-dest_files=["res://.godot/imported/stopschild_gradienttextures.png-9ef05c66500b9d20a8de7df8bba8c6d6.s3tc.ctex"]
+dest_files=["res://.godot/imported/stopschild_gradienttextures.png-9ef05c66500b9d20a8de7df8bba8c6d6.s3tc.ctex", "res://.godot/imported/stopschild_gradienttextures.png-9ef05c66500b9d20a8de7df8bba8c6d6.etc2.ctex"]
 
 [params]
 

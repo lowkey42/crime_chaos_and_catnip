@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://b70yxjrp7orx7"
 path.s3tc="res://.godot/imported/Kiste1x2_gradienttextures.png-7f68797001b1c83f41e2d49d036325f9.s3tc.ctex"
+path.etc2="res://.godot/imported/Kiste1x2_gradienttextures.png-7f68797001b1c83f41e2d49d036325f9.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/3D/small things/destructables/Kiste1x2_gradienttextures.png"
-dest_files=["res://.godot/imported/Kiste1x2_gradienttextures.png-7f68797001b1c83f41e2d49d036325f9.s3tc.ctex"]
+dest_files=["res://.godot/imported/Kiste1x2_gradienttextures.png-7f68797001b1c83f41e2d49d036325f9.s3tc.ctex", "res://.godot/imported/Kiste1x2_gradienttextures.png-7f68797001b1c83f41e2d49d036325f9.etc2.ctex"]
 
 [params]
 

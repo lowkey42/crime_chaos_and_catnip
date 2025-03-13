@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://do7gjuekyx243"
 path.s3tc="res://.godot/imported/Gebäude06_gradienttextures.png-e87519d371c7b319b0c7088f6b2a9317.s3tc.ctex"
+path.etc2="res://.godot/imported/Gebäude06_gradienttextures.png-e87519d371c7b319b0c7088f6b2a9317.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/3D/houses/Gebäude06_gradienttextures.png"
-dest_files=["res://.godot/imported/Gebäude06_gradienttextures.png-e87519d371c7b319b0c7088f6b2a9317.s3tc.ctex"]
+dest_files=["res://.godot/imported/Gebäude06_gradienttextures.png-e87519d371c7b319b0c7088f6b2a9317.s3tc.ctex", "res://.godot/imported/Gebäude06_gradienttextures.png-e87519d371c7b319b0c7088f6b2a9317.etc2.ctex"]
 
 [params]
 

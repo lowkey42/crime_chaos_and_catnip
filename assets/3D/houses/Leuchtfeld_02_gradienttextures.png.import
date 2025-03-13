@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dmja70gh2d5sp"
 path.s3tc="res://.godot/imported/Leuchtfeld_02_gradienttextures.png-c5739290e556a1c3c73b4a2aa197e200.s3tc.ctex"
+path.etc2="res://.godot/imported/Leuchtfeld_02_gradienttextures.png-c5739290e556a1c3c73b4a2aa197e200.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/3D/houses/Leuchtfeld_02_gradienttextures.png"
-dest_files=["res://.godot/imported/Leuchtfeld_02_gradienttextures.png-c5739290e556a1c3c73b4a2aa197e200.s3tc.ctex"]
+dest_files=["res://.godot/imported/Leuchtfeld_02_gradienttextures.png-c5739290e556a1c3c73b4a2aa197e200.s3tc.ctex", "res://.godot/imported/Leuchtfeld_02_gradienttextures.png-c5739290e556a1c3c73b4a2aa197e200.etc2.ctex"]
 
 [params]
 

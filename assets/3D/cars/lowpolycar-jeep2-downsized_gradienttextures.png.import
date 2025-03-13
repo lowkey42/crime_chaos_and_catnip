@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://w1gaxo2xv4am"
 path.s3tc="res://.godot/imported/lowpolycar-jeep2-downsized_gradienttextures.png-a5f5748c85435094c55dea3d82b8d3d4.s3tc.ctex"
+path.etc2="res://.godot/imported/lowpolycar-jeep2-downsized_gradienttextures.png-a5f5748c85435094c55dea3d82b8d3d4.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/3D/cars/lowpolycar-jeep2-downsized_gradienttextures.png"
-dest_files=["res://.godot/imported/lowpolycar-jeep2-downsized_gradienttextures.png-a5f5748c85435094c55dea3d82b8d3d4.s3tc.ctex"]
+dest_files=["res://.godot/imported/lowpolycar-jeep2-downsized_gradienttextures.png-a5f5748c85435094c55dea3d82b8d3d4.s3tc.ctex", "res://.godot/imported/lowpolycar-jeep2-downsized_gradienttextures.png-a5f5748c85435094c55dea3d82b8d3d4.etc2.ctex"]
 
 [params]
 

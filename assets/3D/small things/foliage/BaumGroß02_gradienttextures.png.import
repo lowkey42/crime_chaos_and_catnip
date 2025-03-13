@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://c0oaui0d4e6qi"
 path.s3tc="res://.godot/imported/BaumGroß02_gradienttextures.png-db73da0a821811f2a6c72ad4d0e65340.s3tc.ctex"
+path.etc2="res://.godot/imported/BaumGroß02_gradienttextures.png-db73da0a821811f2a6c72ad4d0e65340.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/3D/small things/foliage/BaumGroß02_gradienttextures.png"
-dest_files=["res://.godot/imported/BaumGroß02_gradienttextures.png-db73da0a821811f2a6c72ad4d0e65340.s3tc.ctex"]
+dest_files=["res://.godot/imported/BaumGroß02_gradienttextures.png-db73da0a821811f2a6c72ad4d0e65340.s3tc.ctex", "res://.godot/imported/BaumGroß02_gradienttextures.png-db73da0a821811f2a6c72ad4d0e65340.etc2.ctex"]
 
 [params]
 

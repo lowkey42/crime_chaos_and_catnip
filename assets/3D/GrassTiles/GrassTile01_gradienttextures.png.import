@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://vvc13lxjv56b"
 path.s3tc="res://.godot/imported/GrassTile01_gradienttextures.png-00b1fbd43d15d62a68a8305befd1945c.s3tc.ctex"
+path.etc2="res://.godot/imported/GrassTile01_gradienttextures.png-00b1fbd43d15d62a68a8305befd1945c.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/3D/GrassTiles/GrassTile01_gradienttextures.png"
-dest_files=["res://.godot/imported/GrassTile01_gradienttextures.png-00b1fbd43d15d62a68a8305befd1945c.s3tc.ctex"]
+dest_files=["res://.godot/imported/GrassTile01_gradienttextures.png-00b1fbd43d15d62a68a8305befd1945c.s3tc.ctex", "res://.godot/imported/GrassTile01_gradienttextures.png-00b1fbd43d15d62a68a8305befd1945c.etc2.ctex"]
 
 [params]
 

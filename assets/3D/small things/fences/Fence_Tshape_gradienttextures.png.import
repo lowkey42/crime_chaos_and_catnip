@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dnmtxcqg244xk"
 path.s3tc="res://.godot/imported/Fence_Tshape_gradienttextures.png-92747835f96c7e768375d4e62eacb1cc.s3tc.ctex"
+path.etc2="res://.godot/imported/Fence_Tshape_gradienttextures.png-92747835f96c7e768375d4e62eacb1cc.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/3D/small things/fences/Fence_Tshape_gradienttextures.png"
-dest_files=["res://.godot/imported/Fence_Tshape_gradienttextures.png-92747835f96c7e768375d4e62eacb1cc.s3tc.ctex"]
+dest_files=["res://.godot/imported/Fence_Tshape_gradienttextures.png-92747835f96c7e768375d4e62eacb1cc.s3tc.ctex", "res://.godot/imported/Fence_Tshape_gradienttextures.png-92747835f96c7e768375d4e62eacb1cc.etc2.ctex"]
 
 [params]
 

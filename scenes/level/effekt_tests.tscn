@@ -1,3 +1,86 @@
-[gd_scene format=3 uid="uid://cs33vv4b68ea0"]
+[gd_scene load_steps=9 format=3 uid="uid://cs33vv4b68ea0"]
+
+[ext_resource type="Texture2D" uid="uid://b2dp1unjsp24f" path="res://assets/2D/Particles/P_Smoke.png" id="1_iotom"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_x1tvs"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4inwq"]
+next_pass = SubResource("ParticleProcessMaterial_x1tvs")
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_iotom")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4mfqb"]
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="QuadMesh" id="QuadMesh_qvs5a"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xcapn"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_iotom")
+billboard_mode = 1
+grow = true
+grow_amount = -5.0
+proximity_fade_enabled = true
+proximity_fade_distance = 0.01
+distance_fade_mode = 1
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_60isb"]
+lifetime_randomness = 0.1
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_min = -5.0
+initial_velocity_max = -5.0
+gravity = Vector3(0, 1, 0)
+radial_accel_min = -3.0
+radial_accel_max = -3.0
+damping_min = 4.93
+damping_max = 5.281
+
+[sub_resource type="QuadMesh" id="QuadMesh_qgdl7"]
 
 [node name="EffektTests" type="Node3D"]
+
+[node name="Smoke_Effekt" type="Node3D" parent="."]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Smoke_Effekt"]
+material_override = SubResource("StandardMaterial3D_4inwq")
+amount = 1
+lifetime = 3.5
+fixed_fps = 60
+draw_order = 3
+process_material = SubResource("ParticleProcessMaterial_4mfqb")
+draw_pass_1 = SubResource("QuadMesh_qvs5a")
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="Smoke_Effekt"]
+material_override = SubResource("StandardMaterial3D_xcapn")
+amount = 4
+speed_scale = 0.5
+explosiveness = 0.5
+randomness = 0.22
+fixed_fps = 60
+draw_order = 3
+process_material = SubResource("ParticleProcessMaterial_60isb")
+draw_pass_1 = SubResource("QuadMesh_qgdl7")
+
+[node name="GPUParticles3D3" type="GPUParticles3D" parent="Smoke_Effekt"]
+material_override = SubResource("StandardMaterial3D_xcapn")
+amount = 4
+speed_scale = 0.5
+explosiveness = 0.5
+randomness = 0.22
+fixed_fps = 60
+draw_order = 3
+process_material = SubResource("ParticleProcessMaterial_60isb")
+draw_pass_1 = SubResource("QuadMesh_qgdl7")
