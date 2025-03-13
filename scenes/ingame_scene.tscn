@@ -343,7 +343,7 @@ text = "Continue"
 [node name="Level02" parent="Gameplay/Level" instance=ExtResource("16_th7mp")]
 
 [node name="Cameras" parent="." instance=ExtResource("14_ilpo5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 50)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43, 0, 111.27)
 
 [connection signal="GameOver" from="Gameplay" to="Gameplay/GameOverOverlay" method="ShowOverlay"]
 [connection signal="CardPlayed" from="Gameplay/HUD/BottomUI/PlayerHand" to="Gameplay/HUD" method="OnCardPlayed"]
@@ -353,3 +353,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 50)
 [connection signal="pressed" from="Gameplay/HUD/CardDirectionControl/GridContainer/ButtonEast" to="Gameplay/HUD" method="RotateCardEast"]
 [connection signal="pressed" from="Gameplay/HUD/CardDirectionControl/GridContainer/ButtonSouth" to="Gameplay/HUD" method="RotateCardSouth"]
 [connection signal="pressed" from="Gameplay/GameOverOverlay/GameOverScreen/VBoxContainer/ContinueButton" to="Gameplay/GameOverOverlay" method="Continue"]
+
+[editable path="Cameras"]

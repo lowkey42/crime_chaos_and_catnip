@@ -118,13 +118,20 @@ public partial class Board : Node {
 
 		Debug.Assert(_cells != null, nameof(_cells) + " != null");
 		var cell = _cells[boardPosition.X, boardPosition.Y];
+		
 		if(cell.TryStack(obj))
 			return;
-		
-		cell.Objects.Add(obj);
+		AddSorted(obj, cell);
+
 		if(obj is Unit unit)
 			_units.Add(unit);
 		EmitSignalBoardChanged(boardPosition);
+	}
+
+	private static void AddSorted(BoardObject obj, Cell cell) {
+		var index = cell.Objects.BinarySearch(obj, Comparer<BoardObject>.Create((lhs, rhs) => lhs.Priority-rhs.Priority));
+		if (index < 0) index = ~index;
+		cell.Objects.Insert(index, obj);
 	}
 
 	public void RemoveObject(Vector2I boardPosition, BoardObject obj) {
@@ -148,7 +155,7 @@ public partial class Board : Node {
 		var cell = _cells[newBoardPosition.X, newBoardPosition.Y];
 		if(cell.TryStack(obj))
 			return;
-		cell.Objects.Add(obj);
+		AddSorted(obj, cell);
 		EmitSignalBoardChanged(oldBoardPosition);
 		EmitSignalBoardChanged(newBoardPosition);
 	}
