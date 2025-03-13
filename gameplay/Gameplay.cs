@@ -15,6 +15,7 @@ public partial class Gameplay : Node {
 		Drawing,
 		PlayingCards,
 		Acting,
+		LastTurn,
 		GameOver
 
 	}
@@ -35,6 +36,9 @@ public partial class Gameplay : Node {
 	public delegate void TurnDoneEventHandler();
 
 	[Signal]
+	public delegate void LastTurnEventHandler();
+
+	[Signal]
 	public delegate void GameOverEventHandler();
 
 	[Signal]
@@ -50,6 +54,8 @@ public partial class Gameplay : Node {
 	[Export] private float _stepTime = 0.5f;
 
 	[Export] public int Score { get; private set; }
+
+	[Export] public int Turns { get; private set; }
 
 	private State _currentState = State.Shuffle;
 
@@ -73,7 +79,7 @@ public partial class Gameplay : Node {
 	}
 
 	public bool CanPlayCards() {
-		return _currentState == State.PlayingCards;
+		return _currentState is State.PlayingCards or State.LastTurn;
 	}
 
 	public void EndTurn() {
@@ -84,10 +90,24 @@ public partial class Gameplay : Node {
 		_ = Act();
 	}
 
+	public bool CanEndGame() {
+		return _currentState == State.LastTurn;
+	}
+
+	public void EndGame() {
+		if (!CanEndGame())
+			return;
+		
+		_currentState = State.GameOver;
+		EmitSignalGameOver();
+	}
+
 	private async Task Act() {
 		if (_currentState != State.PlayingCards)
 			throw new InvalidOperationException($"Invalid state transition from {_currentState} to Acting");
 
+		Turns++;
+		
 		_currentState = State.Acting;
 		EmitSignalActing();
 
@@ -164,9 +184,6 @@ public partial class Gameplay : Node {
 			}
 		} while (removed > 0);
 
-		if (_unitsMovingInNextStep.Count == 0)
-			return;
-
 		// remove movers that would cross path (origin and destination swapped between them)
 		for (var i = 0; i<_unitsMovingInNextStep.Count; i++) {
 			var unitI = _unitsMovingInNextStep[i];
@@ -183,9 +200,6 @@ public partial class Gameplay : Node {
 			}
 		}
 		_unitsMovingInNextStep.RemoveAll(unit => unit.Stunned);
-
-		if (_unitsMovingInNextStep.Count == 0)
-			return;
 		
 		// clear previous mover targets
 		for (var x = 0; x < _unitsMoveTargets.GetLength(0); x++) {
@@ -247,8 +261,8 @@ public partial class Gameplay : Node {
 		EmitSignalDrawing();
 
 		if (!await _hand.TryDrawCards(_deck)) { // game over, not enough cards
-			_currentState = State.GameOver;
-			EmitSignalGameOver();
+			_currentState = State.LastTurn;
+			EmitSignalLastTurn();
 			return;
 		}
 

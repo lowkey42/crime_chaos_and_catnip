@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cgakdkyg2lchh" path="res://scenes/game_settings_scene.gd" id="1_1xq4j"]
 [ext_resource type="Texture2D" uid="uid://dt2fgehf87ng4" path="res://ui/menu_background.png" id="2_pfpuo"]
-[ext_resource type="PackedScene" path="res://scenes/game_credits.tscn" id="3_jcp86"]
+[ext_resource type="PackedScene" uid="uid://dquooa11awyig" path="res://scenes/game_credits.tscn" id="3_jcp86"]
 [ext_resource type="FontFile" uid="uid://dbmji04vmaq7m" path="res://fonts/American Typewriter Condensed.ttf" id="4_1xq4j"]
 [ext_resource type="PackedScene" uid="uid://bkk87o2ooo6at" path="res://ui/overlays/fade_overlay.tscn" id="5_dgu6b"]
 
