@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://jh4ydx6srqxe"
-path.s3tc="res://.godot/imported/Pipe4_gradienttextures.png-401978052c290654ee89b19eadf7c17d.s3tc.ctex"
+uid="uid://dn37l117osd7y"
+path.s3tc="res://.godot/imported/Pipe_Tshape_gradienttextures.png-261c9ebdb5644e89b8c67ae43a0e2eef.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "df6e0b0bbfe090b56d39561daf76effd"
+}
 
 [deps]
 
-source_file="res://assets/3D/small things/pipes/Pipe4_gradienttextures.png"
-dest_files=["res://.godot/imported/Pipe4_gradienttextures.png-401978052c290654ee89b19eadf7c17d.s3tc.ctex"]
+source_file="res://assets/3D/small things/pipes/Pipe_Tshape_gradienttextures.png"
+dest_files=["res://.godot/imported/Pipe_Tshape_gradienttextures.png-261c9ebdb5644e89b8c67ae43a0e2eef.s3tc.ctex"]
 
 [params]
 

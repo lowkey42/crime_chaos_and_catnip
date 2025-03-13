@@ -3,20 +3,20 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://sf184jwsxt5d"
-path="res://.godot/imported/Pipe2.glb-89bdffb686acc9746aad7c7e017be84e.scn"
+uid="uid://b8lcp00apo7uj"
+path="res://.godot/imported/Pipe_Corner.glb-accd4cb384def27cb20942b95b55ab9a.scn"
 
 [deps]
 
-source_file="res://assets/3D/small things/pipes/Pipe2.glb"
-dest_files=["res://.godot/imported/Pipe2.glb-89bdffb686acc9746aad7c7e017be84e.scn"]
+source_file="res://assets/3D/small things/pipes/Pipe_Corner.glb"
+dest_files=["res://.godot/imported/Pipe_Corner.glb-accd4cb384def27cb20942b95b55ab9a.scn"]
 
 [params]
 
 nodes/root_type=""
 nodes/root_name=""
 nodes/apply_root_scale=true
-nodes/root_scale=1.0
+nodes/root_scale=2.0
 nodes/import_as_skeleton_bones=false
 nodes/use_node_type_suffixes=true
 meshes/ensure_tangents=true

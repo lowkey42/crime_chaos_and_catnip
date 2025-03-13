@@ -3,20 +3,20 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://b6u60st3lrp1j"
-path="res://.godot/imported/Pipe_Vent.glb-4589f0725efeffc2f1478ac3d522f378.scn"
+uid="uid://dcngyfpl31l0y"
+path="res://.godot/imported/Pipe_Vertical.glb-fb619e3d464d64c1ed9d181d83191d2f.scn"
 
 [deps]
 
-source_file="res://assets/3D/small things/pipes/Pipe_Vent.glb"
-dest_files=["res://.godot/imported/Pipe_Vent.glb-4589f0725efeffc2f1478ac3d522f378.scn"]
+source_file="res://assets/3D/small things/pipes/Pipe_Vertical.glb"
+dest_files=["res://.godot/imported/Pipe_Vertical.glb-fb619e3d464d64c1ed9d181d83191d2f.scn"]
 
 [params]
 
 nodes/root_type=""
 nodes/root_name=""
 nodes/apply_root_scale=true
-nodes/root_scale=1.0
+nodes/root_scale=2.0
 nodes/import_as_skeleton_bones=false
 nodes/use_node_type_suffixes=true
 meshes/ensure_tangents=true

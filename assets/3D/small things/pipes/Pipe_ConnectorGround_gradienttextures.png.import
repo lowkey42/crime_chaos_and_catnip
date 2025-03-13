@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c2x6xienncygx"
-path.s3tc="res://.godot/imported/Pipe3_gradienttextures.png-7da070dcbdc5fcf20524cf18f662804d.s3tc.ctex"
+uid="uid://d3y7w0xx4wtqn"
+path.s3tc="res://.godot/imported/Pipe_ConnectorGround_gradienttextures.png-648b0254e22cc3f33490f8e69d790f78.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -14,8 +14,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://assets/3D/small things/pipes/Pipe3_gradienttextures.png"
-dest_files=["res://.godot/imported/Pipe3_gradienttextures.png-7da070dcbdc5fcf20524cf18f662804d.s3tc.ctex"]
+source_file="res://assets/3D/small things/pipes/Pipe_ConnectorGround_gradienttextures.png"
+dest_files=["res://.godot/imported/Pipe_ConnectorGround_gradienttextures.png-648b0254e22cc3f33490f8e69d790f78.s3tc.ctex"]
 
 [params]
 
