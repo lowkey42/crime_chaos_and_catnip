@@ -27,6 +27,11 @@ public partial class PlayerHand : Control {
 	
 	[Export] private int _maxCardCount = 5;
 	[Export] private int _maxCardAtTurnEnd = 3;
+	
+	[Export] private float _hoverOffset = 50f;
+	[Export] private float _sidePush = 30f;
+	[Export] private float _animationDuration = 0.3f;
+	
 
 	private Board? _board;
 
@@ -48,9 +53,11 @@ public partial class PlayerHand : Control {
 			// Finde die oberste Karte (die zuletzt berührte Karte)
 			_currentSelectedCardIndex = _heldCards.FindLastIndex(card => _touchedCards.Contains(card));
 			if (_currentSelectedCardIndex != -1)
-				_heldCards[_currentSelectedCardIndex].Highlight();
+				_heldCards[_currentSelectedCardIndex].Highlight(); 
+			RepositionCards();
 		} else {
 			_currentSelectedCardIndex = -1; // Keine Karte ausgewählt
+			RepositionCards();
 		}
 	}
 
@@ -67,20 +74,59 @@ public partial class PlayerHand : Control {
         AddChild(card);
         await RepositionCardsWithTween();
     }
-
     
-    private void RepositionCards()
+    private async Task AnimateCardMovement(HeldCard card, Vector2 targetPosition, float targetRotation)
+    {
+	    Tween tween = CreateTween();
+	    tween.SetParallel(true);
+	    tween.TweenProperty(card, "position", targetPosition, 0.3f)
+		    .SetEase(Tween.EaseType.Out);
+	    tween.TweenProperty(card, "rotation", targetRotation, 0.3f)
+		    .SetEase(Tween.EaseType.Out);
+	    await ToSignal(tween, "finished");
+    }
+
+// Aktualisierte RepositionCards-Methode
+    private async void RepositionCards()
     {
 	    if (_heldCards.Count == 0) return;
-	    
-	    float cardSpread = Mathf.Min(_cardAngleLimit / _heldCards.Count, _maxCardSpreadAngle);
-	    float currentAngle = -((cardSpread * (_heldCards.Count - 1)) / 2) - 90;
 
-	    foreach (var card in _heldCards)
+	    float cardSpread = Mathf.Min(_cardAngleLimit / _heldCards.Count, _maxCardSpreadAngle);
+	    float baseAngle = -((cardSpread * (_heldCards.Count - 1)) / 2) - 90;
+	    float hoverOffset = 50f;
+	    float sidePush = 30f;
+
+	    List<Task> animations = new List<Task>();
+
+	    for (int i = 0; i < _heldCards.Count; i++)
 	    {
-		    UpdateCardTransform(card, currentAngle);
-		    currentAngle += cardSpread;
+		    float angle = baseAngle + i * cardSpread;
+		    Vector2 basePosition = GetCardPosition(angle);
+		    float baseRotation = GetCardRotation(angle);
+
+		    Vector2 targetPosition = basePosition;
+		    float targetRotation = baseRotation;
+
+		    if (i == _currentSelectedCardIndex)
+		    {
+			    targetPosition += new Vector2(0, -hoverOffset);
+			    _heldCards[i].ZIndex = 10;
+		    }
+		    else if (Mathf.Abs(i - _currentSelectedCardIndex) == 1 && _currentSelectedCardIndex != -1)
+		    {
+			    float direction = i < _currentSelectedCardIndex ? -1 : 1;
+			    targetPosition += new Vector2(direction * sidePush, 0);
+			    _heldCards[i].ZIndex = 5;
+		    }
+		    else
+		    {
+			    _heldCards[i].ZIndex = 0;
+		    }
+
+		    animations.Add(AnimateCardMovement(_heldCards[i], targetPosition, targetRotation));
 	    }
+
+	    await Task.WhenAll(animations);
     }
     
     private async Task RepositionCardsWithTween()
@@ -151,23 +197,25 @@ public partial class PlayerHand : Control {
     private float GetCardRotation(float angleInDegrees)
     {
 	    float angleInRadians = Mathf.DegToRad(angleInDegrees);
-	    return Mathf.Atan2(_handRadius * Mathf.Sin(angleInRadians) * _yFactor, _handRadius * Mathf.Cos(angleInRadians));
-    }
+    
+	    float tangentSlope = (_yFactor * Mathf.Cos(angleInRadians)) / Mathf.Sin(angleInRadians);
+	    
+	    float rotation = Mathf.Atan(tangentSlope);
 
-    // Aktualisiert die Position und Rotation einer Karte
+	    return -rotation;
+	    
+    }
+    
     private void UpdateCardTransform(HeldCard card, float angleInDegrees)
     {
-        // Berechne die Position der Karte
     card.Position = GetCardPosition(angleInDegrees);
-
-    // Berechne die Rotation der Karte basierend auf der elliptischen Form
+    
     float x = card.Position.X;
     float y = card.Position.Y;
-
-    // Steigung der Ellipse an der Position (x, y)
+    
     float slope = -((_handRadius * _yFactor) * (_handRadius * _yFactor) * x) / (_handRadius * _handRadius * y);
 
-    // Berechne die Rotation aus der Steigung
+    
     float rotation = Mathf.Atan(slope);
 
     // Korrigiere die Rotation, damit die Karte zur Mitte zeigt

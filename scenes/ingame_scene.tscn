@@ -16,7 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://b4ufa4onh1vrb" path="res://camera/cameras.tscn" id="14_ilpo5"]
 [ext_resource type="Texture2D" uid="uid://cw4qn5ngn6ax5" path="res://gameplay/cards/instances/card_move_10.png" id="14_q7kwb"]
 [ext_resource type="Script" uid="uid://buu7cbc7wjijb" path="res://ui/GameOverScreen.cs" id="15_th7mp"]
-[ext_resource type="PackedScene" uid="uid://t31lv3om7t4f" path="res://scenes/level/level_02.tscn" id="16_th7mp"]
+[ext_resource type="PackedScene" uid="uid://cqdo162bubc58" path="res://scenes/level/level_02.tscn" id="16_th7mp"]
 
 [sub_resource type="Gradient" id="Gradient_juwkt"]
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c8fvd606ep5u"]
+[gd_scene load_steps=14 format=3 uid="uid://c8fvd606ep5u"]
 
 [ext_resource type="Script" uid="uid://ducu2kng5aotl" path="res://gameplay/cards/HeldCard.cs" id="1_dxi6h"]
 [ext_resource type="Texture2D" uid="uid://cw4qn5ngn6ax5" path="res://gameplay/cards/instances/card_move_10.png" id="2_omqpp"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://bn0wyw5lpfmgm" path="res://addons/addons/draggablesprite2d/src/draggablesprite2d.gd" id="5_7t26j"]
 [ext_resource type="Material" uid="uid://ih1jw1htj5p8" path="res://assets/card_glow.tres" id="5_gy4tq"]
 [ext_resource type="Texture2D" uid="uid://by78uykv1wms5" path="res://gameplay/cards/instances/Cardbackside.png" id="7_gopet"]
+[ext_resource type="Shader" uid="uid://du4mnb6o764np" path="res://assets/card_glow.gdshader" id="7_gy4tq"]
 
 [sub_resource type="Resource" id="Resource_7t26j"]
 script = ExtResource("3_esxd3")
@@ -17,6 +18,20 @@ CardSprite = ExtResource("2_omqpp")
 SpawnOnPlay = ExtResource("3_7d7q0")
 RequiresOrientation = false
 metadata/_custom_type_script = "uid://d0vrl7d4sx35b"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1s48i"]
+shader = ExtResource("7_gy4tq")
+shader_parameter/highlight_active = false
+shader_parameter/glow_color = Color(1, 1, 0, 1)
+shader_parameter/glow_thickness = 2.0
+shader_parameter/glow_intensity = 0.5
+shader_parameter/pulse_speed = 1.0
+shader_parameter/color = Color(0, 0, 0, 1)
+shader_parameter/width = 2.395
+shader_parameter/pattern = 0
+shader_parameter/inside = false
+shader_parameter/add_margins = true
+shader_parameter/number_of_images = Vector2(1, 1)
 
 [sub_resource type="Animation" id="Animation_1s48i"]
 length = 0.001
@@ -148,6 +163,7 @@ material = ExtResource("5_gy4tq")
 texture = ExtResource("2_omqpp")
 
 [node name="BackSprite" type="Sprite2D" parent="DraggableSprite2D"]
+material = SubResource("ShaderMaterial_1s48i")
 texture = ExtResource("7_gopet")
 
 [node name="FlipAnimation" type="AnimationPlayer" parent="."]
