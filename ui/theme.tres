@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=28 format=3 uid="uid://d22mpqutkotsu"]
+[gd_resource type="Theme" load_steps=29 format=3 uid="uid://d22mpqutkotsu"]
 
 [ext_resource type="FontFile" uid="uid://dbmji04vmaq7m" path="res://fonts/American Typewriter Condensed.ttf" id="1_rqugq"]
 
@@ -207,6 +207,25 @@ bg_color = Color(0.92549, 0.776471, 0.847059, 1)
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_rqugq"]
 color = Color(0.556863, 0.027451, 0.364706, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iqtc0"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+corner_detail = 16
+expand_margin_left = 8.0
+expand_margin_top = 8.0
+expand_margin_right = 8.0
+expand_margin_bottom = 8.0
+shadow_color = Color(0, 0, 0, 0.705882)
+shadow_size = 3
+shadow_offset = Vector2(2, 2)
+
 [resource]
 Button/colors/font_color = Color(0.78, 0.4836, 0.6318, 1)
 Button/colors/font_disabled_color = Color(0.555162, 0.0263196, 0.364204, 1)
@@ -269,3 +288,6 @@ PopupMenu/colors/font_outline_color = Color(0.768627, 0.435294, 0.588235, 1)
 PopupMenu/styles/hover = SubResource("StyleBoxFlat_6lx7k")
 PopupMenu/styles/panel = SubResource("StyleBoxFlat_jf26r")
 PopupMenu/styles/separator = SubResource("StyleBoxLine_rqugq")
+TooltipLabel/font_sizes/font_size = 30
+TooltipPanel/font_sizes/title_font_size = 30
+TooltipPanel/styles/panel = SubResource("StyleBoxFlat_iqtc0")

@@ -76,4 +76,5 @@ public abstract partial class BoardObject : Node3D {
 	public void OnInteracted() {
 		EmitSignalInteracted();
 	}
+	
 }

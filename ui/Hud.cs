@@ -31,6 +31,8 @@ public partial class Hud : CanvasLayer {
 		
 		_endTurnButton.Visible = !_gameplay.CanEndGame();
 		_endGameButton.Visible = _gameplay.CanEndGame();
+
+		_endTurnButton.TooltipText = _gameplay.CanEndTurn() ? "" : $"Play or discard {_gameplay.CardsOverLimit()} more cards to end your turn";
 	}
 	
 	public void TryEndTurn() {

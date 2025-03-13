@@ -410,6 +410,10 @@ public partial class PlayerHand : Control {
     {
         return _heldCards.Count <= _maxCardAtTurnEnd;
     }
+    public int CardsOverLimit()
+    {
+	    return _heldCards.Count - _maxCardAtTurnEnd;
+    }
 
     public bool CanBePlayedAt(HeldCard heldCard, Vector2I boardPosition) {
 	    var state = GetCardAccessibleState(boardPosition);

@@ -23,6 +23,8 @@ public partial class Unit : BoardObject {
 
 	[Export] public int MovementLeft = 0;
 
+	[Export] public int SelfDestruct = -1;
+
 	[Export] private Label _lootLabel;
 	
 	[Export] private PackedScene _lootScene;
@@ -87,6 +89,16 @@ public partial class Unit : BoardObject {
 		EmitSignalStunAdded();
 		Stunned = true;
 		return true;
+	}
+
+	public void OnTurnEnd() {
+		ClearStunned();
+		
+		if (SelfDestruct > 0) {
+			SelfDestruct--;
+			if(SelfDestruct==0)
+				Kill();
+		}
 	}
 
 }
