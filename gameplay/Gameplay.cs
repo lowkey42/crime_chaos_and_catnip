@@ -184,9 +184,6 @@ public partial class Gameplay : Node {
 			}
 		} while (removed > 0);
 
-		if (_unitsMovingInNextStep.Count == 0)
-			return;
-
 		// remove movers that would cross path (origin and destination swapped between them)
 		for (var i = 0; i<_unitsMovingInNextStep.Count; i++) {
 			var unitI = _unitsMovingInNextStep[i];
@@ -203,9 +200,6 @@ public partial class Gameplay : Node {
 			}
 		}
 		_unitsMovingInNextStep.RemoveAll(unit => unit.Stunned);
-
-		if (_unitsMovingInNextStep.Count == 0)
-			return;
 		
 		// clear previous mover targets
 		for (var x = 0; x < _unitsMoveTargets.GetLength(0); x++) {
