@@ -1,13 +1,12 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://ih1jw1htj5p8"]
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://btbfdgcacptlh"]
 
-[ext_resource type="Shader" uid="uid://dq01ox4112p61" path="res://assets/2D/3deffectcard.gdshader" id="1_prait"]
+[ext_resource type="Shader" uid="uid://dq01ox4112p61" path="res://assets/2D/3deffectcard.gdshader" id="1_m5hcn"]
 
 [resource]
-resource_local_to_scene = true
-shader = ExtResource("1_prait")
+shader = ExtResource("1_m5hcn")
 shader_parameter/debug = false
-shader_parameter/border_scale = 0.83
-shader_parameter/shadow_offset = Vector2(0, -50)
+shader_parameter/border_scale = 2.0
+shader_parameter/shadow_offset = Vector2(0, -100)
 shader_parameter/color = Color(0, 0, 0, 1)
 shader_parameter/blur_amount = 0.0
 shader_parameter/shadow_scale = 1.5

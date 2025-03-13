@@ -17,6 +17,8 @@ public partial class HeldCard : Node2D {
 	
 	[Export]private AnimationPlayer _animationPlayer;
 
+	
+	public bool IsGrabbed => _grabbed;
 	private bool _grabbed = false;
 	private bool _canDrop = false;
 	private Timer _dropTimer;
