@@ -3,20 +3,20 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://diixii4o75fis"
-path="res://.godot/imported/Fence_side.glb-d0a2dc03a5b8e5c7b8f8e222de8cdd3a.scn"
+uid="uid://4miwix2l2w1a"
+path="res://.godot/imported/Fence_ClosedSide.glb-ddcd7bfbfe38efef310d93fc1c8730bf.scn"
 
 [deps]
 
-source_file="res://assets/3D/small things/fences/Fence_side.glb"
-dest_files=["res://.godot/imported/Fence_side.glb-d0a2dc03a5b8e5c7b8f8e222de8cdd3a.scn"]
+source_file="res://assets/3D/small things/fences/Fence_ClosedSide.glb"
+dest_files=["res://.godot/imported/Fence_ClosedSide.glb-ddcd7bfbfe38efef310d93fc1c8730bf.scn"]
 
 [params]
 
 nodes/root_type=""
 nodes/root_name=""
 nodes/apply_root_scale=true
-nodes/root_scale=2.0
+nodes/root_scale=1.0
 nodes/import_as_skeleton_bones=false
 nodes/use_node_type_suffixes=true
 meshes/ensure_tangents=true
