@@ -10,16 +10,23 @@ viewport_path = NodePath("LootSubViewport")
 
 [node name="PlayerUnitRacoon" node_paths=PackedStringArray("_lootLabel") instance=ExtResource("1_dxnya")]
 script = ExtResource("2_mthx0")
+_lootType = 1
 _lootLabel = NodePath("LootSubViewport/Control/Panel/Label")
 _lootScene = ExtResource("3_mthx0")
 
+[node name="cardholder-rot" parent="." index="0"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0.197007, 0, 0)
+
 [node name="front" parent="." index="1"]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 1.07952, 0)
 texture = ExtResource("3_sxwca")
 
 [node name="back" parent="." index="2"]
+transform = Transform3D(-0.2, 0, -3.01992e-08, 0, 0.2, 0, 3.01992e-08, 0, -0.2, 0, 1.07952, 0)
 texture = ExtResource("3_sxwca")
 
 [node name="Loot" parent="." index="3"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 2.30224, 0)
 texture = SubResource("ViewportTexture_wtdqe")
 
 [editable path="cardholder-rot"]

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bcso21maagacw"]
+
+[ext_resource type="PackedScene" uid="uid://taedtqir7p7m" path="res://assets/3D/small things/foliage/BaumKlein.glb" id="1_siply"]
+
+[node name="LootSourceChipmunkEmpty" type="Node3D"]
+
+[node name="BaumKlein" parent="." instance=ExtResource("1_siply")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.40759, 0)
