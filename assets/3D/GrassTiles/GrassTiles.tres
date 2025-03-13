@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://chflfg0goashf"]
+
+[ext_resource type="Texture2D" uid="uid://vvc13lxjv56b" path="res://assets/3D/GrassTiles/GrassTile01_gradienttextures.png" id="1_rtjlq"]
+
+[resource]
+resource_name = "GrassTiles"
+cull_mode = 2
+albedo_texture = ExtResource("1_rtjlq")
