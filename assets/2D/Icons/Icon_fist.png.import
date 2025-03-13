@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bkjf8p0874qdg"
-path="res://.godot/imported/card_summon_chipmunk.png-0436ddb1fe5ac1b6461902e2985a55d8.ctex"
+uid="uid://rgen35pmqpx7"
+path="res://.godot/imported/Icon_fist.png-fa26bcc36e0a0804ddb0076d29323b28.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://gameplay/cards/instances/card_summon_chipmunk.png"
-dest_files=["res://.godot/imported/card_summon_chipmunk.png-0436ddb1fe5ac1b6461902e2985a55d8.ctex"]
+source_file="res://assets/2D/Icons/Icon_fist.png"
+dest_files=["res://.godot/imported/Icon_fist.png-fa26bcc36e0a0804ddb0076d29323b28.ctex"]
 
 [params]
 

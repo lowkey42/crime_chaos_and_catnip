@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bkjf8p0874qdg"
-path="res://.godot/imported/card_summon_chipmunk.png-0436ddb1fe5ac1b6461902e2985a55d8.ctex"
+uid="uid://dkg7smc06ld0k"
+path="res://.godot/imported/Banner.jpeg-3919847f163c8552e6891d1b52e28b6e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://gameplay/cards/instances/card_summon_chipmunk.png"
-dest_files=["res://.godot/imported/card_summon_chipmunk.png-0436ddb1fe5ac1b6461902e2985a55d8.ctex"]
+source_file="res://assets/2D/UI/Banner.jpeg"
+dest_files=["res://.godot/imported/Banner.jpeg-3919847f163c8552e6891d1b52e28b6e.ctex"]
 
 [params]
 
@@ -21,7 +21,7 @@ compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
