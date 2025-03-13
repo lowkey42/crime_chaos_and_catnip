@@ -11,5 +11,5 @@ Name = "Run"
 Description = ""
 CardSprite = ExtResource("1_6o8pv")
 SpawnOnPlay = ExtResource("2_sdlny")
-RequiresOrientation = false
+RequiresOrientation = true
 metadata/_custom_type_script = "uid://d0vrl7d4sx35b"
