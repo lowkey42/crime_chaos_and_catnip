@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://r1l46im0nohs"]
+[gd_scene load_steps=7 format=3 uid="uid://r1l46im0nohs"]
 
 [ext_resource type="Script" uid="uid://cwoylgdtytjwc" path="res://gameplay/board_objects/units/EnemyUnit.cs" id="1_cc84r"]
 [ext_resource type="PackedScene" uid="uid://i7vhx0eef663" path="res://gameplay/board_objects/units/unit_base.tscn" id="1_syotq"]
@@ -8,8 +8,18 @@
 [sub_resource type="ViewportTexture" id="ViewportTexture_cc84r"]
 viewport_path = NodePath("LootSubViewport")
 
-[node name="EnemyUnitGoose" node_paths=PackedStringArray("_lootLabel") instance=ExtResource("1_syotq")]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dqcqk"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(1.5, 1.5, 1.5, 1)
+albedo_texture = ExtResource("3_cc84r")
+billboard_keep_scale = true
+proximity_fade_distance = 3293.35
+
+[node name="EnemyUnitGoose" node_paths=PackedStringArray("_attackMarker", "_lootLabel") instance=ExtResource("1_syotq")]
 script = ExtResource("1_cc84r")
+_attackMarker = NodePath("AttackMarkerParent")
 _lootLabel = NodePath("LootSubViewport/Control/Panel/Label")
 _lootScene = ExtResource("3_dqcqk")
 
@@ -23,10 +33,13 @@ transform = Transform3D(-0.2, 0, -3.01992e-08, 0, 0.2, 0, 3.01992e-08, 0, -0.2, 
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 2.1964, 0)
 texture = SubResource("ViewportTexture_cc84r")
 
-[node name="AttackMarker" type="Sprite3D" parent="." index="5"]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 2.83966, 0)
+[node name="AttackMarkerParent" type="Node3D" parent="." index="5"]
 visible = false
+
+[node name="AttackMarker" type="Sprite3D" parent="AttackMarkerParent" index="0"]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 2.83966, 0)
 sorting_offset = 0.1
+material_override = SubResource("StandardMaterial3D_dqcqk")
 billboard = 2
 texture = ExtResource("3_cc84r")
 

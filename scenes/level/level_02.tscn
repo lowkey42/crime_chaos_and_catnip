@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://t31lv3om7t4f"]
+[gd_scene load_steps=37 format=3 uid="uid://t31lv3om7t4f"]
 
 [ext_resource type="Script" uid="uid://b4tr0lmx326c7" path="res://gameplay/Board.cs" id="1_5g03a"]
 [ext_resource type="PackedScene" uid="uid://b267dln8bmyc0" path="res://gridsystem/grid_lines.tscn" id="2_saf3a"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://ce37br2s4b6qe" path="res://gameplay/board_objects/loot_sources/loot_source_chipmunk.tscn" id="8_7wb3e"]
 [ext_resource type="PackedScene" uid="uid://cwxr4sn5h2581" path="res://gameplay/board_objects/units/player_unit_chipmunk.tscn" id="9_7wb3e"]
 [ext_resource type="PackedScene" uid="uid://dt5k6hmjrqseu" path="res://gameplay/board_objects/units/player_unit_racoon.tscn" id="10_bs8jp"]
+[ext_resource type="PackedScene" uid="uid://r1l46im0nohs" path="res://gameplay/board_objects/units/enemy_unit_goose.tscn" id="11_bs8jp"]
 [ext_resource type="PackedScene" uid="uid://b8no4lwu22gs7" path="res://assets/3D/small things/destructables/Briefkasten.glb" id="12_yscao"]
 [ext_resource type="PackedScene" uid="uid://hjuumlxfm76a" path="res://assets/3D/small things/destructables/trashcan.glb" id="13_e3ykv"]
 [ext_resource type="PackedScene" uid="uid://r5n51vbg0tgm" path="res://assets/3D/small things/straße/stopschild.glb" id="14_oqihs"]
@@ -35,6 +36,13 @@
 [ext_resource type="PackedScene" uid="uid://bn6r0nr6uoqiy" path="res://assets/3D/houses/Leuchtfeld_02.glb" id="28_14y5t"]
 [ext_resource type="PackedScene" uid="uid://d4dnm2f5cdi3k" path="res://assets/3D/small things/straße/trafficcone.glb" id="29_14y5t"]
 
+[sub_resource type="Curve3D" id="Curve3D_bs8jp"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 12, 0, 0, 0, 0, 0, 0, 0, 0, 12, 0, -4, 0, 0, 0, 0, 0, 0, 24, 0, -4),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
 [node name="Level02" type="Node"]
 
 [node name="Board" type="Node3D" parent="." node_paths=PackedStringArray("GridLines", "_gridMap") groups=["Board"]]
@@ -55,7 +63,7 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 42, 0,
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36, 0, 119)
 
 [node name="Loot" parent="Board/GameplaySetup" instance=ExtResource("22_6pjwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52, 0, 119)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 118)
 
 [node name="Loot2" parent="Board/GameplaySetup" instance=ExtResource("22_6pjwo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60.9855, 0, 115)
@@ -80,6 +88,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36, 0, 124)
 
 [node name="PlayerUnitRacoon" parent="Board/GameplaySetup" instance=ExtResource("10_bs8jp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 0, 122)
+
+[node name="EnemyUnitGoose" parent="Board/GameplaySetup" node_paths=PackedStringArray("_path") instance=ExtResource("11_bs8jp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29, 0, 122)
+_path = NodePath("../EnemyPath")
+
+[node name="EnemyPath" type="Path3D" parent="Board/GameplaySetup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29, 0, 122)
+curve = SubResource("Curve3D_bs8jp")
 
 [node name="Visuals" type="Node3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 81, -0.1, 81)
@@ -245,7 +261,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.1015, 0.1, 18.9712)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.1296, -0.265937, 21.2463)
 
 [node name="lowpolycar_normal_light" parent="Board/Visuals/Environment" instance=ExtResource("23_6gva2")]
-transform = Transform3D(-0.0542182, 0, -0.998529, 0, 1, 0, 0.998529, 0, -0.0542182, -25.1241, 0.1, 37.299)
+transform = Transform3D(-0.0542182, 0, -0.998529, 0, 1, 0, 0.998529, 0, -0.0542182, -25, 0.1, 37)
 
 [node name="BaumKlein3" parent="Board/Visuals/Environment" instance=ExtResource("17_oqihs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.0586, -0.338577, 27.343)

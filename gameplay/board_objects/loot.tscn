@@ -1,9 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://mb4i47wd66wh"]
+[gd_scene load_steps=7 format=3 uid="uid://mb4i47wd66wh"]
 
 [ext_resource type="Script" uid="uid://p2ts3wh3dtq1" path="res://gameplay/board_objects/Loot.cs" id="1_5x2y6"]
 [ext_resource type="PackedScene" uid="uid://bf2gi73alegi5" path="res://assets/3D/small things/cardholder-rot.glb" id="2_obybp"]
 [ext_resource type="Material" uid="uid://ijx083t7cclw" path="res://assets/3D/small things/ROT.tres" id="3_tw1l4"]
 [ext_resource type="Texture2D" uid="uid://c0hsgr0i34axs" path="res://assets/2D/Icons/Icon_CatnipBag.png" id="4_ieetp"]
+[ext_resource type="Texture2D" uid="uid://dy2mjbxcursal" path="res://assets/2D/Framed Characters/RaccoonBags.png" id="5_ieetp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_57ni4"]
+transparency = 1
+cull_mode = 2
+albedo_texture = ExtResource("4_ieetp")
+emission = Color(1, 1, 1, 1)
+emission_operator = 1
+emission_texture = ExtResource("5_ieetp")
+backlight_enabled = true
+backlight = Color(1.4, 1.4, 1.4, 1)
+billboard_mode = 2
+billboard_keep_scale = true
 
 [node name="Loot" type="Node3D"]
 script = ExtResource("1_5x2y6")
@@ -17,6 +30,7 @@ surface_material_override/0 = ExtResource("3_tw1l4")
 
 [node name="front" type="Sprite3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.110336, 0.66455, 0)
+material_override = SubResource("StandardMaterial3D_57ni4")
 gi_mode = 2
 shaded = true
 double_sided = false
@@ -25,6 +39,7 @@ texture = ExtResource("4_ieetp")
 
 [node name="back" type="Sprite3D" parent="."]
 transform = Transform3D(-0.5, 0, -7.54979e-08, 0, 0.5, 0, 7.54979e-08, 0, -0.5, 0.110336, 0.66455, 0)
+visible = false
 gi_mode = 2
 flip_h = true
 shaded = true

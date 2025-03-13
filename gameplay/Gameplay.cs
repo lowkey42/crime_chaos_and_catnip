@@ -130,6 +130,8 @@ public partial class Gameplay : Node {
 				if (unit.IsQueuedForDeletion() || unit.Stunned) // skip stunned units
 					continue;
 				
+				unit.OnStep();
+				
 				var cell = _board.TryGetCell(unit.BoardPosition);
 				if (cell == null)
 					continue; // ignore units outside board area
@@ -149,8 +151,9 @@ public partial class Gameplay : Node {
 				} 
 				
 				if(!interactResult.HasFlag(BoardObject.InteractResult.BlockMovement) && unit.WantsToMove) {
-					didAnyUnitAct = true;
 					_unitsMovingInNextStep.Add(unit);
+					if(unit is PlayerUnit)
+						didAnyUnitAct = true;
 				}
 			}
 
@@ -234,26 +237,52 @@ public partial class Gameplay : Node {
 			}
 		} while (removed > 0);
 
+		// solve enemy attacks
+		foreach (var unitA in _board.GetUnits()) {
+			if (unitA is not EnemyUnit enemy)
+				continue;
+
+			if (!enemy.Stunned)
+				continue; // enemies that could step freely, can't have caught a player
+
+			var anyHit = false;
+			foreach (var unitB in _board.GetUnits()) {
+				if (unitB is not PlayerUnit player)
+					continue;
+
+				if (player.BoardPosition == enemy.BoardPosition || player.BoardPosition == enemy.MoveTarget
+				                                                || player.MoveTarget == enemy.BoardPosition ||
+				                                                player.MoveTarget == enemy.MoveTarget) {
+					player.Kill(enemy);
+					anyHit = true;
+				}
+			}
+			
+			if(anyHit)
+				enemy.OnAttackHit();
+		}
+		
 		// execute movements
 		var moveTween = CreateTween();
 		moveTween.SetParallel();
 		foreach (var unit in _unitsMovingInNextStep) {
 			var target = _board.GetCell(unit.MoveTarget).Position;
-			moveTween.TweenProperty(unit, "position", target, _stepTime);
+			moveTween.TweenProperty(unit, "global_position", target, _stepTime);
 			unit.MovementLeft--;
 		}
 		// execute half movement + bounce for stunned units
 		foreach (var unit in _unitsStunnedInNextStep) {
 			unit.MovementLeft = 0;
 			
-			var currentPosition = unit.Position;
+			var currentPosition = _board.GetCell(unit.BoardPosition).Position;
 			var targetPosition = _board.GetCell(unit.MoveTarget).Position;
 			var halfPoint = currentPosition.Lerp(targetPosition, 0.5f);
 
 			var stunTween = unit.CreateTween();
-			stunTween.TweenProperty(unit, "position", halfPoint, _stepTime/2f);
-			stunTween.TweenProperty(unit, "position", currentPosition, _stepTime/2f).SetTrans(Tween.TransitionType.Bounce);
+			stunTween.TweenProperty(unit, "global_position", halfPoint, _stepTime/2f);
+			stunTween.TweenProperty(unit, "global_position", currentPosition, _stepTime/2f).SetTrans(Tween.TransitionType.Elastic);
 			moveTween.TweenSubtween(stunTween);
+			
 		}
 	}
 

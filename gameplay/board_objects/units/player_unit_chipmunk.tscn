@@ -1,9 +1,21 @@
-[gd_scene load_steps=6 format=3 uid="uid://cwxr4sn5h2581"]
+[gd_scene load_steps=7 format=3 uid="uid://cwxr4sn5h2581"]
 
 [ext_resource type="PackedScene" uid="uid://i7vhx0eef663" path="res://gameplay/board_objects/units/unit_base.tscn" id="1_ejybd"]
 [ext_resource type="Script" uid="uid://b5kn405hfgmsm" path="res://gameplay/board_objects/units/PlayerUnit.cs" id="2_iid7b"]
 [ext_resource type="Texture2D" uid="uid://bxeod08v668tw" path="res://assets/2D/Framed Characters/ChipmunkMunch.png" id="3_ejybd"]
 [ext_resource type="PackedScene" uid="uid://mb4i47wd66wh" path="res://gameplay/board_objects/loot.tscn" id="3_iid7b"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iid7b"]
+transparency = 1
+cull_mode = 2
+albedo_texture = ExtResource("3_ejybd")
+emission = Color(1, 1, 1, 1)
+emission_operator = 1
+emission_texture = ExtResource("3_ejybd")
+backlight_enabled = true
+backlight = Color(1.4, 1.4, 1.4, 1)
+billboard_mode = 2
+billboard_keep_scale = true
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_wtdqe"]
 viewport_path = NodePath("LootSubViewport")
@@ -19,6 +31,7 @@ transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0.103757, 0, 0)
 
 [node name="front" parent="." index="1"]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 1.0023, 0)
+material_override = SubResource("StandardMaterial3D_iid7b")
 texture = ExtResource("3_ejybd")
 
 [node name="back" parent="." index="2"]
