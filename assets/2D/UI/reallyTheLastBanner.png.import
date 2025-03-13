@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bikukrrraixqi"
-path="res://.godot/imported/BannerNextTry.png-128bdb3c87b5924276ad39fc55a9bc7e.ctex"
+uid="uid://c3kottbp6cs03"
+path="res://.godot/imported/reallyTheLastBanner.png-cf3d43f7dc069b1ae60f109815e306e3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/2D/UI/BannerNextTry.png"
-dest_files=["res://.godot/imported/BannerNextTry.png-128bdb3c87b5924276ad39fc55a9bc7e.ctex"]
+source_file="res://assets/2D/UI/reallyTheLastBanner.png"
+dest_files=["res://.godot/imported/reallyTheLastBanner.png-cf3d43f7dc069b1ae60f109815e306e3.ctex"]
 
 [params]
 

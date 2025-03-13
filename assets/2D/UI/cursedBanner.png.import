@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bw6q7nsiw7r1w"
-path="res://.godot/imported/Banner(Faded).png-ccb799cad3d6394fb62171713e0f22f4.ctex"
+uid="uid://bioa1ei2dbkq6"
+path="res://.godot/imported/cursedBanner.png-24e200f8d9e650dea5b8f6fb293fb297.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/2D/UI/Banner(Faded).png"
-dest_files=["res://.godot/imported/Banner(Faded).png-ccb799cad3d6394fb62171713e0f22f4.ctex"]
+source_file="res://assets/2D/UI/cursedBanner.png"
+dest_files=["res://.godot/imported/cursedBanner.png-24e200f8d9e650dea5b8f6fb293fb297.ctex"]
 
 [params]
 
