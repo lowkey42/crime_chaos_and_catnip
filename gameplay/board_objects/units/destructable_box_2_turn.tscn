@@ -11,6 +11,7 @@ viewport_path = NodePath("LootSubViewport")
 [node name="Box" instance=ExtResource("1_aa8fm")]
 script = ExtResource("2_jsrox")
 _lootType = 0
+CanAttack = true
 SelfDestruct = 2
 CollectedLoot = 0
 
