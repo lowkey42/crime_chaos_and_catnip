@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://c8fvd606ep5u" path="res://ui/held_card.tscn" id="6_vus8m"]
 [ext_resource type="Script" uid="uid://bt7r7nusxbpsv" path="res://gameplay/DeckEntry.cs" id="7_2vs8u"]
 [ext_resource type="Script" uid="uid://bp64cwdqrlygr" path="res://gameplay/Deck.cs" id="7_ilpo5"]
+[ext_resource type="Texture2D" uid="uid://dqkuipeee5xbf" path="res://assets/2D/Cards/DiscardPile.png" id="7_q7kwb"]
 [ext_resource type="Resource" uid="uid://cxk2dmo6atpcu" path="res://gameplay/cards/instances/card_summon_cat.tres" id="8_juwkt"]
 [ext_resource type="Script" uid="uid://cidnfcxxq2ctp" path="res://gameplay/PlayerHand.cs" id="10_etwux"]
 [ext_resource type="Resource" uid="uid://dqamkdeotg7vt" path="res://gameplay/cards/instances/card_summon_box.tres" id="12_l64ye"]
@@ -30,9 +31,6 @@ gradient = SubResource("Gradient_juwkt")
 height = 128
 fill_from = Vector2(0, 0.487179)
 fill_to = Vector2(0, 0)
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_pxehq"]
-size = Vector2(100, 150)
 
 [sub_resource type="Resource" id="Resource_juwkt"]
 script = ExtResource("7_2vs8u")
@@ -186,11 +184,12 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -100.0
-offset_top = -150.0
+offset_left = -136.0
+offset_top = -189.0
 grow_horizontal = 0
 grow_vertical = 0
-texture = SubResource("PlaceholderTexture2D_pxehq")
+texture = ExtResource("7_q7kwb")
+expand_mode = 1
 
 [node name="PlayerHand" type="Control" parent="Gameplay/HUD/BottomUI" node_paths=PackedStringArray("_deck", "_discardPile", "_bottomArea")]
 layout_mode = 1
