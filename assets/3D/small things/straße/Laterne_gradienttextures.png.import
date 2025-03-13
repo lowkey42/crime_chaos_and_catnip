@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://l5ul8dypmjbq"
 path.s3tc="res://.godot/imported/Laterne_gradienttextures.png-bb0842202a0a7eb0a53a76ff130de77f.s3tc.ctex"
+path.etc2="res://.godot/imported/Laterne_gradienttextures.png-bb0842202a0a7eb0a53a76ff130de77f.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/3D/small things/straße/Laterne_gradienttextures.png"
-dest_files=["res://.godot/imported/Laterne_gradienttextures.png-bb0842202a0a7eb0a53a76ff130de77f.s3tc.ctex"]
+dest_files=["res://.godot/imported/Laterne_gradienttextures.png-bb0842202a0a7eb0a53a76ff130de77f.s3tc.ctex", "res://.godot/imported/Laterne_gradienttextures.png-bb0842202a0a7eb0a53a76ff130de77f.etc2.ctex"]
 
 [params]
 

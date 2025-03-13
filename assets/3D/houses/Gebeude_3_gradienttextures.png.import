@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bllawki3ln772"
 path.s3tc="res://.godot/imported/Gebeude_3_gradienttextures.png-d490450626cfe73d0aecf4ddb26afcdf.s3tc.ctex"
+path.etc2="res://.godot/imported/Gebeude_3_gradienttextures.png-d490450626cfe73d0aecf4ddb26afcdf.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/3D/houses/Gebeude_3_gradienttextures.png"
-dest_files=["res://.godot/imported/Gebeude_3_gradienttextures.png-d490450626cfe73d0aecf4ddb26afcdf.s3tc.ctex"]
+dest_files=["res://.godot/imported/Gebeude_3_gradienttextures.png-d490450626cfe73d0aecf4ddb26afcdf.s3tc.ctex", "res://.godot/imported/Gebeude_3_gradienttextures.png-d490450626cfe73d0aecf4ddb26afcdf.etc2.ctex"]
 
 [params]
 

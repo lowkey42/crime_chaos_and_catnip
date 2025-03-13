@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://be3j4u1qf4tsh"
 path.s3tc="res://.godot/imported/GooseStandingBlink.png-64091a44308d485ee31f226173ce427a.s3tc.ctex"
+path.etc2="res://.godot/imported/GooseStandingBlink.png-64091a44308d485ee31f226173ce427a.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/2D/Framed Characters/GooseStandingBlink.png"
-dest_files=["res://.godot/imported/GooseStandingBlink.png-64091a44308d485ee31f226173ce427a.s3tc.ctex"]
+dest_files=["res://.godot/imported/GooseStandingBlink.png-64091a44308d485ee31f226173ce427a.s3tc.ctex", "res://.godot/imported/GooseStandingBlink.png-64091a44308d485ee31f226173ce427a.etc2.ctex"]
 
 [params]
 

@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://mubybk6wd2h8"
 path.s3tc="res://.godot/imported/Strasse5_gradienttextures.png-fccee17daba2367b83a59f825b671ef2.s3tc.ctex"
+path.etc2="res://.godot/imported/Strasse5_gradienttextures.png-fccee17daba2367b83a59f825b671ef2.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/3D/small things/straße/Strasse5_gradienttextures.png"
-dest_files=["res://.godot/imported/Strasse5_gradienttextures.png-fccee17daba2367b83a59f825b671ef2.s3tc.ctex"]
+dest_files=["res://.godot/imported/Strasse5_gradienttextures.png-fccee17daba2367b83a59f825b671ef2.s3tc.ctex", "res://.godot/imported/Strasse5_gradienttextures.png-fccee17daba2367b83a59f825b671ef2.etc2.ctex"]
 
 [params]
 
