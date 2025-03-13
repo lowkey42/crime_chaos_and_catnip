@@ -31,7 +31,7 @@ public partial class HeldCard : Node2D {
 
 		_sprite?.SetTexture(Card?.CardSprite);
 
-		_glowMaterial = GD.Load<ShaderMaterial>("res://assets/card_glow.tres");
+		_glowMaterial = GD.Load<ShaderMaterial>("res://assets/Shader/card_glow.tres");
 
 		_dropTimer = new Timer();
 		AddChild(_dropTimer);

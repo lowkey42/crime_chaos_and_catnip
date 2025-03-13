@@ -5,8 +5,8 @@
 [resource]
 shader = ExtResource("1_m5hcn")
 shader_parameter/debug = false
-shader_parameter/border_scale = 2.0
-shader_parameter/shadow_offset = Vector2(0, -100)
+shader_parameter/border_scale = 0.8
+shader_parameter/shadow_offset = Vector2(0, -50)
 shader_parameter/color = Color(0, 0, 0, 1)
 shader_parameter/blur_amount = 0.0
 shader_parameter/shadow_scale = 1.5
