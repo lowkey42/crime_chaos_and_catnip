@@ -35,7 +35,7 @@ public partial class HeldCard : Node2D {
 
 		_dropTimer = new Timer();
 		AddChild(_dropTimer);
-		_dropTimer.WaitTime = 0.5f;
+		_dropTimer.WaitTime = 0.2f;
 		_dropTimer.OneShot = true;
 		_dropTimer.Connect("timeout", new Callable(this, nameof(OnDropTimerTimeout)));
 	}

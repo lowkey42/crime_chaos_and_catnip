@@ -343,12 +343,12 @@ public partial class PlayerHand : Control {
 		    card.Scale = Vector2.One * 0.5f; 
             
 		    Tween tween = CreateTween();
-		    tween.TweenProperty(card, "position", finalPosition, 0.5f)
+		    tween.TweenProperty(card, "position", finalPosition, 0.3f)
 			    .SetEase(Tween.EaseType.Out) 
 			    .SetTrans(Tween.TransitionType.Quad); 
             
-		    tween.Parallel().TweenProperty(card, "rotation", finalRotation, 0.5f);
-		    tween.Parallel().TweenProperty(card, "scale", Vector2.One, 0.5f);
+		    tween.Parallel().TweenProperty(card, "rotation", finalRotation, 0.3f);
+		    tween.Parallel().TweenProperty(card, "scale", Vector2.One, 0.3f);
 		    
 		    await ToSignal(tween, "finished");
 
