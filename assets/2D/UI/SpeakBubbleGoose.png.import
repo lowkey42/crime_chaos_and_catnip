@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dod46lkl2ilo6"
-path.s3tc="res://.godot/imported/RaccoonTrashStuck.png-c7b24ec58a8d30db52b84d5ecf15ecd5.s3tc.ctex"
+uid="uid://cxxnrjqastg8i"
+path.s3tc="res://.godot/imported/SpeakBubbleGoose.png-15bd36470e74011dbb9fefeafe9a6df6.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/2D/Framed Characters/RaccoonTrashStuck.png"
-dest_files=["res://.godot/imported/RaccoonTrashStuck.png-c7b24ec58a8d30db52b84d5ecf15ecd5.s3tc.ctex"]
+source_file="res://assets/2D/UI/SpeakBubbleGoose.png"
+dest_files=["res://.godot/imported/SpeakBubbleGoose.png-15bd36470e74011dbb9fefeafe9a6df6.s3tc.ctex"]
 
 [params]
 

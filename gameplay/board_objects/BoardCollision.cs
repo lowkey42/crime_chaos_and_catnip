@@ -29,7 +29,7 @@ public partial class BoardCollision : Node3D {
 	}
 
 	private void MarkRecursive(Node3D node) {
-		if (node is VisualInstance3D v) {
+		if (node is MeshInstance3D v) {
 			var aabb = v.GetAabb();
 			var size = aabb.Size;
 			for (var x = _margin; x <= size.X-_margin; x += 0.5f) {

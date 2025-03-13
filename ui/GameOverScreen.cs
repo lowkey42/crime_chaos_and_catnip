@@ -19,6 +19,7 @@ public partial class GameOverScreen : CanvasLayer
 	public void ShowOverlay() {
 		_messageLabel.Text = _messageLabel.Text
 			.Replace("{LOOT}", _gameplay.Score.ToString())
+			.Replace("{TURNS}", _gameplay.Turns.ToString())
 			.Replace("{CARDS}", _hand.TotalPlayedCards.ToString());
 
 		_continueButton.GrabFocus();

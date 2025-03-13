@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CardSummon" load_steps=4 format=3 uid="uid://cyl0bioig84qr"]
+
+[ext_resource type="Texture2D" uid="uid://mnyuxk75ykas" path="res://gameplay/cards/instances/card_summon_racoon.png" id="1_ggovj"]
+[ext_resource type="PackedScene" uid="uid://dt5k6hmjrqseu" path="res://gameplay/board_objects/units/player_unit_racoon.tscn" id="2_ggovj"]
+[ext_resource type="Script" uid="uid://la07fs1sg4bg" path="res://gameplay/cards/CardSummon.cs" id="3_w1m32"]
+
+[resource]
+script = ExtResource("3_w1m32")
+Name = "Racoon"
+Description = ""
+CardSprite = ExtResource("1_ggovj")
+SpawnOnPlay = ExtResource("2_ggovj")
+RequiresOrientation = false
+metadata/_custom_type_script = "uid://la07fs1sg4bg"

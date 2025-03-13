@@ -6,6 +6,7 @@
 resource_name = "ROT"
 transparency = 4
 cull_mode = 2
+depth_draw_mode = 1
 albedo_color = Color(1, 1, 1, 0.407273)
 albedo_texture = ExtResource("1_s7wd2")
 metallic = 0.0690909

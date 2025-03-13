@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cik30de5gaaah"]
+[gd_scene load_steps=33 format=3 uid="uid://cik30de5gaaah"]
 
 [ext_resource type="Script" uid="uid://dmeymco117qmu" path="res://scenes/ingame_scene.gd" id="1_objyc"]
 [ext_resource type="PackedScene" uid="uid://bkk87o2ooo6at" path="res://ui/overlays/fade_overlay.tscn" id="1_y6ebv"]
@@ -10,14 +10,17 @@
 [ext_resource type="PackedScene" uid="uid://c8fvd606ep5u" path="res://ui/held_card.tscn" id="6_vus8m"]
 [ext_resource type="Script" uid="uid://bt7r7nusxbpsv" path="res://gameplay/DeckEntry.cs" id="7_2vs8u"]
 [ext_resource type="Script" uid="uid://bp64cwdqrlygr" path="res://gameplay/Deck.cs" id="7_ilpo5"]
-[ext_resource type="Texture2D" uid="uid://dqkuipeee5xbf" path="res://assets/2D/Cards/DiscardPile.png" id="7_q7kwb"]
 [ext_resource type="Resource" uid="uid://cxk2dmo6atpcu" path="res://gameplay/cards/instances/card_summon_cat.tres" id="8_juwkt"]
 [ext_resource type="Script" uid="uid://cidnfcxxq2ctp" path="res://gameplay/PlayerHand.cs" id="10_etwux"]
+[ext_resource type="Resource" uid="uid://dqamkdeotg7vt" path="res://gameplay/cards/instances/card_summon_box.tres" id="12_l64ye"]
+[ext_resource type="Resource" uid="uid://cyl0bioig84qr" path="res://gameplay/cards/instances/card_summon_racoon.tres" id="13_rohyw"]
 [ext_resource type="Shader" uid="uid://ci55tqqowoikf" path="res://addons/outline.gdshader" id="13_th7mp"]
+[ext_resource type="Resource" uid="uid://ih453nd7fsjl" path="res://gameplay/cards/instances/card_summon_chipmunk.tres" id="14_hr6f0"]
 [ext_resource type="PackedScene" uid="uid://b4ufa4onh1vrb" path="res://camera/cameras.tscn" id="14_ilpo5"]
 [ext_resource type="Texture2D" uid="uid://cw4qn5ngn6ax5" path="res://gameplay/cards/instances/card_move_10.png" id="14_q7kwb"]
+[ext_resource type="Resource" uid="uid://bboevd7u8vn57" path="res://gameplay/cards/instances/card_action.tres" id="15_6ywyt"]
 [ext_resource type="Script" uid="uid://buu7cbc7wjijb" path="res://ui/GameOverScreen.cs" id="15_th7mp"]
-[ext_resource type="PackedScene" uid="uid://cqdo162bubc58" path="res://scenes/level/level_02.tscn" id="16_th7mp"]
+[ext_resource type="PackedScene" uid="uid://t31lv3om7t4f" path="res://scenes/level/level_02.tscn" id="16_th7mp"]
 
 [sub_resource type="Gradient" id="Gradient_juwkt"]
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
@@ -28,15 +31,42 @@ height = 128
 fill_from = Vector2(0, 0.487179)
 fill_to = Vector2(0, 0)
 
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_pxehq"]
+size = Vector2(100, 150)
+
 [sub_resource type="Resource" id="Resource_juwkt"]
 script = ExtResource("7_2vs8u")
 Card = ExtResource("6_iid22")
-Count = 10
+Count = 20
 metadata/_custom_type_script = "uid://bt7r7nusxbpsv"
 
 [sub_resource type="Resource" id="Resource_ilpo5"]
 script = ExtResource("7_2vs8u")
 Card = ExtResource("8_juwkt")
+Count = 3
+metadata/_custom_type_script = "uid://bt7r7nusxbpsv"
+
+[sub_resource type="Resource" id="Resource_fq0u6"]
+script = ExtResource("7_2vs8u")
+Card = ExtResource("12_l64ye")
+Count = 10
+metadata/_custom_type_script = "uid://bt7r7nusxbpsv"
+
+[sub_resource type="Resource" id="Resource_fvcpb"]
+script = ExtResource("7_2vs8u")
+Card = ExtResource("13_rohyw")
+Count = 3
+metadata/_custom_type_script = "uid://bt7r7nusxbpsv"
+
+[sub_resource type="Resource" id="Resource_dqase"]
+script = ExtResource("7_2vs8u")
+Card = ExtResource("14_hr6f0")
+Count = 3
+metadata/_custom_type_script = "uid://bt7r7nusxbpsv"
+
+[sub_resource type="Resource" id="Resource_amt0v"]
+script = ExtResource("7_2vs8u")
+Card = ExtResource("15_6ywyt")
 Count = 10
 metadata/_custom_type_script = "uid://bt7r7nusxbpsv"
 
@@ -85,12 +115,13 @@ _deck = NodePath("HUD/BottomUI/MarginContainer/DeckContainer/Deck")
 _hand = NodePath("HUD/BottomUI/PlayerHand")
 _stepTime = 0.1
 
-[node name="HUD" type="CanvasLayer" parent="Gameplay" node_paths=PackedStringArray("_scoreLabel", "_remainingCardsLabel", "_endTurnButton", "_gameplay", "_deck", "_rotationUi")]
+[node name="HUD" type="CanvasLayer" parent="Gameplay" node_paths=PackedStringArray("_scoreLabel", "_remainingCardsLabel", "_endTurnButton", "_endGameButton", "_gameplay", "_deck", "_rotationUi")]
 follow_viewport_enabled = true
 script = ExtResource("5_pxehq")
 _scoreLabel = NodePath("TopUI/HBoxContainer/Score")
 _remainingCardsLabel = NodePath("BottomUI/MarginContainer/DeckContainer/RemainingCards")
-_endTurnButton = NodePath("BottomUI/MarginContainer/EndTurnButton")
+_endTurnButton = NodePath("BottomUI/MarginContainer/Control/EndTurnButton")
+_endGameButton = NodePath("BottomUI/MarginContainer/Control/EndGameButton")
 _gameplay = NodePath("..")
 _deck = NodePath("BottomUI/MarginContainer/DeckContainer/Deck")
 _rotationUi = NodePath("CardDirectionControl")
@@ -155,14 +186,11 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -145.0
-offset_top = -198.0
-offset_right = -6.0
-offset_bottom = -4.0
+offset_left = -100.0
+offset_top = -150.0
 grow_horizontal = 0
 grow_vertical = 0
-texture = ExtResource("7_q7kwb")
-expand_mode = 1
+texture = SubResource("PlaceholderTexture2D_pxehq")
 
 [node name="PlayerHand" type="Control" parent="Gameplay/HUD/BottomUI" node_paths=PackedStringArray("_deck", "_discardPile", "_bottomArea")]
 layout_mode = 1
@@ -179,8 +207,9 @@ script = ExtResource("10_etwux")
 _deck = NodePath("../MarginContainer/DeckContainer/Deck")
 _discardPile = NodePath("../DiscardPile")
 _bottomArea = NodePath("../BottomBackground")
-_animationDuration = 0.2
-_velocityMultiplier = 1.0
+_maxCardCount = 12
+_maxCardAtTurnEnd = 5
+_animationDurationReposition = 0.1
 
 [node name="MarginContainer" type="MarginContainer" parent="Gameplay/HUD/BottomUI"]
 layout_mode = 1
@@ -194,13 +223,13 @@ theme_override_constants/margin_left = 4
 theme_override_constants/margin_bottom = 9
 
 [node name="DeckContainer" type="Control" parent="Gameplay/HUD/BottomUI/MarginContainer"]
-custom_minimum_size = Vector2(100, 230)
+custom_minimum_size = Vector2(150, 230)
 layout_mode = 2
 
 [node name="Deck" type="Node2D" parent="Gameplay/HUD/BottomUI/MarginContainer/DeckContainer"]
-position = Vector2(60, 111)
+position = Vector2(75, 111)
 script = ExtResource("7_ilpo5")
-_cards = [SubResource("Resource_juwkt"), SubResource("Resource_ilpo5")]
+_cards = [SubResource("Resource_juwkt"), SubResource("Resource_ilpo5"), SubResource("Resource_fq0u6"), SubResource("Resource_fvcpb"), SubResource("Resource_dqase"), SubResource("Resource_amt0v")]
 _heldCardScene = ExtResource("6_vus8m")
 
 [node name="Background" type="Sprite2D" parent="Gameplay/HUD/BottomUI/MarginContainer/DeckContainer/Deck"]
@@ -218,10 +247,29 @@ theme_override_font_sizes/font_size = 30
 text = "96"
 horizontal_alignment = 1
 
-[node name="EndTurnButton" type="Button" parent="Gameplay/HUD/BottomUI/MarginContainer"]
+[node name="Control" type="Control" parent="Gameplay/HUD/BottomUI/MarginContainer"]
 layout_mode = 2
+
+[node name="EndTurnButton" type="Button" parent="Gameplay/HUD/BottomUI/MarginContainer/Control"]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+offset_left = 4.0
+offset_top = 194.0
+offset_right = 123.0
+offset_bottom = 230.0
 size_flags_vertical = 8
 text = "  End Turn  "
+
+[node name="EndGameButton" type="Button" parent="Gameplay/HUD/BottomUI/MarginContainer/Control"]
+visible = false
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+offset_left = 4.0
+offset_top = 194.0
+offset_right = 123.0
+offset_bottom = 230.0
+size_flags_vertical = 8
+text = " End Game "
 
 [node name="CardDirectionControl" type="Control" parent="Gameplay/HUD"]
 layout_mode = 3
@@ -331,7 +379,7 @@ layout_mode = 2
 size_flags_vertical = 3
 text = "PLACEHOLDER
 
-You've collected {LOOT} loot in {CARDS} cards!"
+You've collected {LOOT} loot in {MOVES} with {CARDS} cards!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -350,7 +398,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43, 0, 111.27)
 
 [connection signal="GameOver" from="Gameplay" to="Gameplay/GameOverOverlay" method="ShowOverlay"]
 [connection signal="CardPlayed" from="Gameplay/HUD/BottomUI/PlayerHand" to="Gameplay/HUD" method="OnCardPlayed"]
-[connection signal="pressed" from="Gameplay/HUD/BottomUI/MarginContainer/EndTurnButton" to="Gameplay/HUD" method="TryEndTurn"]
+[connection signal="pressed" from="Gameplay/HUD/BottomUI/MarginContainer/Control/EndTurnButton" to="Gameplay/HUD" method="TryEndTurn"]
+[connection signal="pressed" from="Gameplay/HUD/BottomUI/MarginContainer/Control/EndGameButton" to="Gameplay/HUD" method="TryEndGame"]
 [connection signal="pressed" from="Gameplay/HUD/CardDirectionControl/GridContainer/ButtonNorth" to="Gameplay/HUD" method="RotateCardNorth"]
 [connection signal="pressed" from="Gameplay/HUD/CardDirectionControl/GridContainer/ButtonWest" to="Gameplay/HUD" method="RotateCardWest"]
 [connection signal="pressed" from="Gameplay/HUD/CardDirectionControl/GridContainer/ButtonEast" to="Gameplay/HUD" method="RotateCardEast"]
