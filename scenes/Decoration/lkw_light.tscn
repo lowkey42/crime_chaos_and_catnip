@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://c02iowsywd0wg"]
+
+[ext_resource type="PackedScene" uid="uid://baj55qcs5pdiy" path="res://assets/3D/cars/LKW-downsized.glb" id="1_cv8io"]
+[ext_resource type="PackedScene" uid="uid://26r85guwto8r" path="res://scenes/Decoration/default_carlights.tscn" id="2_ogyp8"]
+
+[node name="LKW_Light" type="Node3D"]
+
+[node name="LKW-downsized" parent="." instance=ExtResource("1_cv8io")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.51295, 1.19209e-07, 0.0466685)
+
+[node name="default_carlights" parent="LKW-downsized" instance=ExtResource("2_ogyp8")]
+transform = Transform3D(1, 0, 0, 0, -0.995848, -0.0910323, 0, 0.0910323, -0.995848, 0.498859, 0.372213, 1.22915)

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://0xgcybxsnshf"]
+
+[ext_resource type="PackedScene" uid="uid://go6gi32bplg6" path="res://assets/3D/cars/TAXI-downsized.glb" id="1_m5jh4"]
+[ext_resource type="PackedScene" uid="uid://26r85guwto8r" path="res://scenes/Decoration/default_carlights.tscn" id="2_05mt7"]
+
+[node name="Taxi_Light" type="Node3D"]
+
+[node name="TAXI-downsized" parent="." instance=ExtResource("1_m5jh4")]
+
+[node name="default_carlights" parent="TAXI-downsized" instance=ExtResource("2_05mt7")]
+transform = Transform3D(0.645076, 0, 0, 0, -0.995848, -0.0910323, 0, 0.0910323, -0.995848, 0.387036, 0.610751, 1.6909)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00519669, 1.28815, 0.366359)
