@@ -37,7 +37,6 @@ ssao_light_affect = 0.2
 ssil_enabled = true
 sdfgi_enabled = true
 sdfgi_use_occlusion = true
-sdfgi_read_sky_light = false
 sdfgi_energy = 0.3
 glow_enabled = true
 glow_levels/1 = 1.0
