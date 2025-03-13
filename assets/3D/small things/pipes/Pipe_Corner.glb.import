@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bgrnw17podjsi"
-path="res://.godot/imported/Pipe3.glb-adc088363f75067b77789b1ba641d935.scn"
+uid="uid://b8lcp00apo7uj"
+path="res://.godot/imported/Pipe_Corner.glb-accd4cb384def27cb20942b95b55ab9a.scn"
 
 [deps]
 
-source_file="res://assets/3D/small things/pipes/Pipe3.glb"
-dest_files=["res://.godot/imported/Pipe3.glb-adc088363f75067b77789b1ba641d935.scn"]
+source_file="res://assets/3D/small things/pipes/Pipe_Corner.glb"
+dest_files=["res://.godot/imported/Pipe_Corner.glb-accd4cb384def27cb20942b95b55ab9a.scn"]
 
 [params]
 

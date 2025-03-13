@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cw033106ng8tl"
-path="res://.godot/imported/Pipe1.glb-48b32955119c86fab0ffebcc9d409ab6.scn"
+uid="uid://ddb45hntvgdq2"
+path="res://.godot/imported/Pipe_ConnectorVent.glb-9cce967b1488a275261cf4bd9e4c12f8.scn"
 
 [deps]
 
-source_file="res://assets/3D/small things/pipes/Pipe1.glb"
-dest_files=["res://.godot/imported/Pipe1.glb-48b32955119c86fab0ffebcc9d409ab6.scn"]
+source_file="res://assets/3D/small things/pipes/Pipe_ConnectorVent.glb"
+dest_files=["res://.godot/imported/Pipe_ConnectorVent.glb-9cce967b1488a275261cf4bd9e4c12f8.scn"]
 
 [params]
 

@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dwrh0hfbpnaxt"
-path.s3tc="res://.godot/imported/Pipe_Vent_gradienttextures.png-f551257551088f5a0e2137fefd9a1084.s3tc.ctex"
+uid="uid://qf2bbcq30kpe"
+path.s3tc="res://.godot/imported/Pipe_Ground_gradienttextures.png-e9172712223bac4718c75f52b649c204.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -14,8 +14,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://assets/3D/small things/pipes/Pipe_Vent_gradienttextures.png"
-dest_files=["res://.godot/imported/Pipe_Vent_gradienttextures.png-f551257551088f5a0e2137fefd9a1084.s3tc.ctex"]
+source_file="res://assets/3D/small things/pipes/Pipe_Ground_gradienttextures.png"
+dest_files=["res://.godot/imported/Pipe_Ground_gradienttextures.png-e9172712223bac4718c75f52b649c204.s3tc.ctex"]
 
 [params]
 
