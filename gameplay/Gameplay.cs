@@ -65,9 +65,12 @@ public partial class Gameplay : Node {
 
 	public override void _Ready() {
 		_board = Board.GetBoard(this);
-		_ = Warmup();
 	}
 
+	public void StartGame() {
+		_ = Warmup();
+	}
+	
 	public async Task Warmup() {
 		_currentState = State.Shuffle;
 		await _deck.ShuffleAnimation();

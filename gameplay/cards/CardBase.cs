@@ -1,3 +1,4 @@
+using System.Linq;
 using Godot;
 
 namespace CrimeChaosAndCatnip;
@@ -28,6 +29,16 @@ public partial class CardBase : Resource {
 				pc.Card = this;
 			state.Board.AddChild(spawned);
 			spawned.GlobalPosition = state.TargetCell.Position;
+			
+			var particleEffect = GD.Load<PackedScene>("res://scenes/level/effekt_tests.tscn").Instantiate<Node3D>();
+			state.Board.AddChild(particleEffect);
+			var particlesList = particleEffect.GetChildren().OfType<GpuParticles3D>().ToList();
+			GD.Print("Particles in List: " + particlesList.Count);
+			foreach (var particle in particlesList) {
+				particle.GlobalPosition = state.TargetCell.Position + new Vector3(0, 0.5f,1);
+				GD.Print("Particle Names: " + particle.Name);
+				particle.Emitting = true; // Starte die Partikel-Emission
+			}
 		}
 		
 		OnPlayed(state);
