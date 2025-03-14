@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://b4ufa4onh1vrb"]
+[gd_scene load_steps=3 format=3 uid="uid://b4ufa4onh1vrb"]
 
 [ext_resource type="Script" uid="uid://bf661tpm2k0ry" path="res://camera/CameraControl.cs" id="1_a2eoo"]
+[ext_resource type="Script" uid="uid://b45f4jckgte3b" path="res://camera/CameraConfiner.cs" id="2_o13qt"]
 
 [node name="Cameras" type="Node3D"]
 
@@ -24,3 +25,8 @@ CameraRaycast = NodePath("../RayCast3D")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.02089, 0)
+
+[node name="CameraConfiner" type="Node3D" parent="." node_paths=PackedStringArray("Camera", "Camera2")]
+script = ExtResource("2_o13qt")
+Camera = NodePath("../FreeCamera")
+Camera2 = NodePath("../TopDownCamera")
