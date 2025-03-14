@@ -19,10 +19,6 @@ config/icon="uid://b8qltk0t8mugn"
 config/macos_native_icon="res://assets/2D/Icons/DesktopIconWithoutBackground.icns"
 config/windows_native_icon="res://assets/2D/Icons/DesktopIconWithoutBackground.ico"
 
-[audio]
-
-general/default_playback_type=1
-
 [autoload]
 
 UserSettings="*res://settings/user_settings.gd"
