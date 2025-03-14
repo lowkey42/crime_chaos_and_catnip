@@ -22,7 +22,7 @@
 [ext_resource type="Resource" uid="uid://bboevd7u8vn57" path="res://gameplay/cards/instances/card_action.tres" id="15_6ywyt"]
 [ext_resource type="Script" uid="uid://buu7cbc7wjijb" path="res://ui/GameOverScreen.cs" id="15_th7mp"]
 [ext_resource type="Texture2D" uid="uid://cnr7n55dq2r1a" path="res://assets/2D/GameOverScreen/GameOverBackground.png" id="22_6ywyt"]
-[ext_resource type="PackedScene" path="res://scenes/level/level_03.tscn" id="23_6ywyt"]
+[ext_resource type="PackedScene" uid="uid://jxjimmbyhk6o" path="res://scenes/level/level_03.tscn" id="23_6ywyt"]
 [ext_resource type="Texture2D" uid="uid://c0hsgr0i34axs" path="res://assets/2D/Icons/Icon_CatnipBag.png" id="23_fq0u6"]
 [ext_resource type="Texture2D" uid="uid://c6i2tq3sw7wst" path="res://ui/direction.png" id="23_or0qi"]
 [ext_resource type="Texture2D" uid="uid://cqlfam0nbnpqg" path="res://ui/direction_hover.png" id="24_bmd0x"]
@@ -541,6 +541,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43, 0, 111.27)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("29_rky18")
+volume_db = -10.788
 autoplay = true
 
 [connection signal="GameOver" from="Gameplay" to="Gameplay/GameOverOverlay" method="ShowOverlay"]
