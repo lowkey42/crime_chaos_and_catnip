@@ -103,6 +103,9 @@ public partial class GridLines : Node3D {
 			newHoveredCell = rayHit != null ? _board.ToNullableBoardPosition(rayHit.Value) : null;
 		}
 
+		if (!Gameplay.CanPlayCards)
+			newHoveredCell = null;
+
 		if (newHoveredCell != _hoveredCell) {
 			var oldHoveredCell = _hoveredCell;
 			_hoveredCell = newHoveredCell;

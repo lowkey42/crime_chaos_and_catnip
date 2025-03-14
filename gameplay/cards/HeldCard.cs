@@ -49,6 +49,9 @@ public partial class HeldCard : Node2D {
 
 		var targetScale = 1f;
 
+		if(_grabbed && !Gameplay.CanPlayCards)
+			OnDropped();
+		
 		if (_grabbed) {
 			targetScale = GetParentOrNull<PlayerHand>()?.IsInPlayableArea(GetGlobalMousePosition()) ?? false ? 0.2f : 1f;
 			

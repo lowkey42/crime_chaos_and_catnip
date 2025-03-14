@@ -85,10 +85,8 @@ public partial class Gameplay : Node {
 		return _hand.CardsOverLimit();
 	}
 
-	public bool CanPlayCards() {
-		return _currentState is State.PlayingCards or State.LastTurn;
-	}
-
+	public static bool CanPlayCards { get; private set; } = false;
+	
 	public void EndTurn() {
 		if (!CanEndTurn())
 			throw new InvalidOperationException("Can't end turn at this point");
@@ -114,6 +112,7 @@ public partial class Gameplay : Node {
 			throw new InvalidOperationException($"Invalid state transition from {_currentState} to Acting");
 
 		Turns++;
+		CanPlayCards = false;
 		
 		_currentState = State.Acting;
 		EmitSignalActing();
@@ -317,11 +316,13 @@ public partial class Gameplay : Node {
 		if (!await _hand.TryDrawCards(_deck)) { // game over, not enough cards
 			_currentState = State.LastTurn;
 			EmitSignalLastTurn();
+			CanPlayCards = true;
 			return;
 		}
 
 		_currentState = State.PlayingCards;
 		EmitSignalPlayingCards();
+		CanPlayCards = true;
 		// after this step, return is controlled to the player and EndTurn() is called
 	}
 

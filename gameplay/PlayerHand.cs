@@ -358,8 +358,10 @@ public partial class PlayerHand : Control {
 	    return true;
     }
     
-    public async Task DiscardCard(HeldCard card)
-    {
+    public async Task DiscardCard(HeldCard card) {
+	    if (!Gameplay.CanPlayCards)
+		    return;
+	    
 	    if (_discardPile == null)
 	    {
 		    GD.PrintErr("DiscardPile ist nicht zugewiesen!");
@@ -415,6 +417,9 @@ public partial class PlayerHand : Control {
     }
 
     public void PlayAt(HeldCard heldCard, Vector2I boardPosition) {
+	    if (!Gameplay.CanPlayCards)
+		    return;
+	    
 	    var state = GetCardAccessibleState(boardPosition);
 	    if (state != null) {
 		    TotalPlayedCards++;
