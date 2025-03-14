@@ -3,20 +3,20 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://y61petf8a81q"
-path="res://.godot/imported/Gebäude_11.glb-6e91f1e0cc94f4c8042215e563bdfce3.scn"
+uid="uid://btku7fnkvqksf"
+path="res://.godot/imported/Blumengruppe_M.glb-df581671b8cac73bd73b817b57803789.scn"
 
 [deps]
 
-source_file="res://assets/3D/houses/Gebäude_11.glb"
-dest_files=["res://.godot/imported/Gebäude_11.glb-6e91f1e0cc94f4c8042215e563bdfce3.scn"]
+source_file="res://assets/3D/small things/foliage/Blumengruppe_M.glb"
+dest_files=["res://.godot/imported/Blumengruppe_M.glb-df581671b8cac73bd73b817b57803789.scn"]
 
 [params]
 
 nodes/root_type=""
 nodes/root_name=""
 nodes/apply_root_scale=true
-nodes/root_scale=1.6
+nodes/root_scale=1.0
 nodes/import_as_skeleton_bones=false
 nodes/use_node_type_suffixes=true
 meshes/ensure_tangents=true
