@@ -277,7 +277,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 8
-text = "End Turn"
+text = "end_turn"
 
 [node name="DeckContainer" type="MarginContainer" parent="Gameplay/HUD/BottomUI/VBoxContainer"]
 custom_minimum_size = Vector2(136, 0)
@@ -465,7 +465,7 @@ theme_override_constants/shadow_offset_y = 2
 theme_override_constants/outline_size = 2
 theme_override_constants/shadow_outline_size = 1
 theme_override_font_sizes/font_size = 70
-text = "The Goolice Has Arrived"
+text = "gameover_message"
 horizontal_alignment = 1
 
 [node name="Control" type="Control" parent="Gameplay/GameOverOverlay/VBoxContainer"]
@@ -493,7 +493,7 @@ layout_mode = 2
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 30
-text = "You've escaped with"
+text = "gameover_details"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -542,7 +542,7 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 30
-text = "Turns"
+text = "turns"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -563,7 +563,7 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 30
-text = "Cards"
+text = "cards"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -572,7 +572,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 theme_override_font_sizes/font_size = 40
-text = "Continue"
+text = "continue"
 
 [node name="Control2" type="Control" parent="Gameplay/GameOverOverlay/VBoxContainer"]
 custom_minimum_size = Vector2(0, 5)
@@ -620,7 +620,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="Gameplay/DeckSelect/PanelContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 60
-text = "Build your Deck"
+text = "build_your_deck"
 horizontal_alignment = 1
 
 [node name="Space" type="Control" parent="Gameplay/DeckSelect/PanelContainer/VBoxContainer"]
@@ -636,6 +636,7 @@ columns = 8
 [node name="RaccoonImage" type="TextureRect" parent="Gameplay/DeckSelect/PanelContainer/VBoxContainer/GridContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
+tooltip_text = "raccoon_tooltip"
 texture = ExtResource("27_co0jq")
 expand_mode = 4
 stretch_mode = 5
@@ -655,6 +656,7 @@ layout_mode = 2
 [node name="CatImage" type="TextureRect" parent="Gameplay/DeckSelect/PanelContainer/VBoxContainer/GridContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
+tooltip_text = "cat_tooltip"
 texture = ExtResource("30_co0jq")
 expand_mode = 4
 stretch_mode = 5
@@ -675,6 +677,7 @@ layout_mode = 2
 [node name="ChipmunkImage" type="TextureRect" parent="Gameplay/DeckSelect/PanelContainer/VBoxContainer/GridContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
+tooltip_text = "chipmunk_tooltip"
 texture = ExtResource("31_lbq3s")
 expand_mode = 4
 stretch_mode = 5
@@ -691,6 +694,7 @@ custom_arrow_step = 1.0
 [node name="Move5Image" type="TextureRect" parent="Gameplay/DeckSelect/PanelContainer/VBoxContainer/GridContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
+tooltip_text = "move5_tooltip"
 texture = ExtResource("30_lbq3s")
 expand_mode = 4
 stretch_mode = 5
@@ -711,6 +715,7 @@ layout_mode = 2
 [node name="Move10Image" type="TextureRect" parent="Gameplay/DeckSelect/PanelContainer/VBoxContainer/GridContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
+tooltip_text = "move10_tooltip"
 texture = ExtResource("31_2fmb7")
 expand_mode = 4
 stretch_mode = 5
@@ -730,6 +735,7 @@ layout_mode = 2
 [node name="Move15Image" type="TextureRect" parent="Gameplay/DeckSelect/PanelContainer/VBoxContainer/GridContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
+tooltip_text = "move15_tooltip"
 texture = ExtResource("32_x526a")
 expand_mode = 4
 stretch_mode = 5
@@ -746,6 +752,7 @@ custom_arrow_step = 1.0
 [node name="ActionImage" type="TextureRect" parent="Gameplay/DeckSelect/PanelContainer/VBoxContainer/GridContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
+tooltip_text = "action_tooltip"
 texture = ExtResource("27_bpltm")
 expand_mode = 4
 stretch_mode = 5
@@ -766,6 +773,7 @@ layout_mode = 2
 [node name="BoxImage" type="TextureRect" parent="Gameplay/DeckSelect/PanelContainer/VBoxContainer/GridContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
+tooltip_text = "box_tooltip"
 texture = ExtResource("29_rv58i")
 expand_mode = 4
 stretch_mode = 5
@@ -787,7 +795,7 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
-text = " Continue "
+text = "continue"
 
 [node name="Level" type="Node" parent="Gameplay"]
 
