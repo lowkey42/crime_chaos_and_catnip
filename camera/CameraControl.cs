@@ -9,17 +9,6 @@ public partial class CameraControl : Node
 		TopDown,
 	}
 
-	private class CameraView {
-
-		public Vector3 Position { get; private set; } = Vector3.Zero;
-		public Vector3 Rotation { get; private set; } = Vector3.Zero;
-
-		public void SetView(Vector3 position, Vector3 rotation) {
-			Position = position;
-			Rotation = rotation;
-		}
-
-	}
 	[Export] public Vector3 BaseCameraMove;
 	[Export] public float RotationDegree;
 
@@ -28,9 +17,6 @@ public partial class CameraControl : Node
 	[Export] public float CameraSpeed = 10.0f;
 
 	[Export] public float RotationSpeed = 5.0f;
-	[Export] public float ZoomSpeed = 5.0f;
-	[Export] public float ZoomMin = 5.0f;
-	[Export] public float ZoomMax = 5.0f;
 	[Export] public float EdgeSensitivity = 100.0f;
 	private float _shiftFactor = 3.0f;
 
@@ -44,21 +30,17 @@ public partial class CameraControl : Node
 	private Vector3 _targetRotation;
 	[Export] public float LerpSpeed = 5.0f;
 
-	private CameraView _originalIsometricView;
-	private CameraView _originalTopDownView;
 	
 	private bool _isRightMouseButtonPressed;
 
 	
 	public override void _Ready() {
 		
-		_originalIsometricView = new CameraView();
-		_originalTopDownView = new CameraView();
+		
 		
 		_targetRotation = IsometricCamera.Rotation;
 
-		_originalIsometricView.SetView(IsometricCamera.Position, IsometricCamera.Rotation);
-		_originalTopDownView.SetView(TopDownCamera.Position, TopDownCamera.Rotation);
+		
 		
 	}
 
@@ -71,33 +53,30 @@ public partial class CameraControl : Node
 				case CameraState.TopDown:
 					IsometricCamera.MakeCurrent();
 				
-					IsometricCamera.Position = _originalIsometricView.Position;
-					IsometricCamera.Rotation = _originalIsometricView.Rotation;
-				
 					_currentCameraState = CameraState.Isometric;
 					break;
 				case CameraState.Isometric:
 					TopDownCamera.MakeCurrent();
 					_currentCameraState = CameraState.TopDown;
-					TopDownCamera.Position = _originalTopDownView.Position;
-					TopDownCamera.Rotation = _originalTopDownView.Rotation;
+					
 					break;
 				default:
 					throw new ArgumentOutOfRangeException();
 			}
-
-			GD.Print("Isometric toggled!");
 		}
 
 
 		
 		if (@event is InputEventMouseButton mouseEvent && _currentCameraState == CameraState.Isometric) {
+			float zoomAmount = 0.5f;
+			Vector3 targetPosition = IsometricCamera.Position;
+			
 			switch ((int)mouseEvent.ButtonIndex) {
 				case 4:
-					IsometricCamera.Position = new Vector3(IsometricCamera.Position.X, IsometricCamera.Position.Y - 0.1f, IsometricCamera.Position.Z);
+					IsometricCamera.Position = new Vector3(IsometricCamera.Position.X, IsometricCamera.Position.Y - 0.5f, IsometricCamera.Position.Z);
 					break;
 				case 5:
-					IsometricCamera.Position = new Vector3(IsometricCamera.Position.X, IsometricCamera.Position.Y + 0.1f, IsometricCamera.Position.Z);
+					IsometricCamera.Position = new Vector3(IsometricCamera.Position.X, IsometricCamera.Position.Y + 0.5f, IsometricCamera.Position.Z);
 					break;
 				case 2:
 					break;

@@ -1,33 +1,40 @@
 shader_type spatial;
+render_mode blend_mix, cull_disabled, depth_prepass_alpha;
 
-uniform bool billboard_y = false;
-uniform bool enable_details = true;
-uniform vec3 detail_color:source_color = vec3(0.2);
-uniform vec2 world_size = vec2(10.0);
-uniform vec2 world_position = vec2(0);
+uniform vec3 wind_direction = vec3(1.0, 0.0, 0.0);
+uniform float wind_intensity = 1;
+uniform float wind_speed = 1.0; // Speed of the wind animation
+uniform float wind_frequency = 1.0; // Frequency of wind oscillation
+uniform sampler2D albedo_texture : source_color;
+uniform float alpha_threshold = 0.5;
+uniform float height_start = 1.0; // Height at which wind starts affecting the object
+uniform float height_influence = 20.0; // How much height affects wind strength
 
 void vertex() {
-	// Called for every vertex the material is visible on.
-		float root = (5.0 - UV.y);
-	vec3 sway;
-	sway.x = sin(NODE_POSITION_WORLD.x + TIME * 1.25 + UV.y) * root * 0.10;
-	sway.y = sin(NODE_POSITION_WORLD.x + TIME * 0.6 + UV.y) * root * 0.08;
-	sway.z = cos(NODE_POSITION_WORLD.z + TIME * 0.45 + UV.y) * root * 0.15;
-	
-	if(billboard_y){
-		VERTEX += sway;
-		MODELVIEW_MATRIX = VIEW_MATRIX * mat4(vec4(normalize(cross(vec3(0.0, 1.0, 0.0), INV_VIEW_MATRIX[2].xyz)), 0.0), vec4(0.0, 1.0, 0.0, 0.0), vec4(normalize(cross(INV_VIEW_MATRIX[0].xyz, vec3(0.0, 1.0, 0.0))), 0.0), MODEL_MATRIX[3]);
-	}
-	else{
-		VERTEX += (vec4(sway, 1.0) * MODEL_MATRIX).xyz;
-	}
+    // Calculate wind effect
+    float time_factor = TIME * wind_speed;
+    float wind_effect = sin(VERTEX.y * wind_frequency + time_factor) * wind_intensity;
+
+    // Only apply wind to vertices above height_start
+    // Use smoothstep for a gradual transition
+    float height_factor = smoothstep(height_start, height_start + height_influence, VERTEX.y);
+
+    // Apply wind only to the top part
+    VERTEX += wind_direction * wind_effect * height_factor;
 }
 
 void fragment() {
-	// Called for every pixel the material is visible on.
-}
+    vec4 albedo_tex = texture(albedo_texture, UV);
 
-//void light() {
-//	// Called for every pixel for every light affecting the material.
-//	// Uncomment to replace the default light processing function with this one.
-//}
+    // Apply alpha scissoring for clean edges
+    if (albedo_tex.a < alpha_threshold) {
+        discard;
+    }
+
+    ALBEDO = albedo_tex.rgb;
+    ALPHA = albedo_tex.a;
+
+    // Add some subtle color variation based on wind
+    float wind_color = sin(TIME * wind_speed * 0.5) * 0.05;
+    ALBEDO += vec3(wind_color, wind_color * 0.7, 0.0);
+}
