@@ -85,6 +85,8 @@ _maxGridSize = Vector2i(48, 48)
 _gridMap = NodePath("Visuals/6x6Gridmap")
 
 [node name="GridLines" parent="Board" instance=ExtResource("2_o1nda")]
+_colorLoot = Color(0.463841, 1, 0.893308, 0.901961)
+_colorOther = Color(0.989167, 1, 0.35, 0.901961)
 
 [node name="GameplaySetup" type="Node3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5)
@@ -463,23 +465,7 @@ polygon = PackedVector2Array(-0.5, 0, -0.5, 0.1, 0.5, 0.1, 0.5, 0)
 mode = 2
 path_node = NodePath("..")
 path_interval_type = 0
-path_interval = 0.01
-path_simplify_angle = 0.0
-path_rotation = 1
-path_rotation_accurate = true
-path_local = true
-path_continuous_u = true
-path_u_distance = 0.0
-path_joined = false
-smooth_faces = true
-material = ExtResource("9_k7sxj")
-
-[node name="ENEMYPOLYGON2" type="CSGPolygon3D" parent="Board/GameplaySetup/Gooses/EnemyPath"]
-polygon = PackedVector2Array(-0.5, 0, -0.5, 0.1, 0.5, 0.1, 0.5, 0)
-mode = 2
-path_node = NodePath("..")
-path_interval_type = 0
-path_interval = 0.01
+path_interval = 0.25
 path_simplify_angle = 0.0
 path_rotation = 1
 path_rotation_accurate = true
@@ -527,7 +513,7 @@ polygon = PackedVector2Array(-0.5, 0, -0.5, 0.1, 0.5, 0.1, 0.5, 0)
 mode = 2
 path_node = NodePath("..")
 path_interval_type = 0
-path_interval = 0.01
+path_interval = 0.05
 path_simplify_angle = 0.0
 path_rotation = 1
 path_rotation_accurate = true
