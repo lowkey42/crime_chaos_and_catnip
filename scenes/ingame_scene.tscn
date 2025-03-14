@@ -28,7 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://cqlfam0nbnpqg" path="res://ui/direction_hover.png" id="24_bmd0x"]
 [ext_resource type="Texture2D" uid="uid://dbjk4vvd4lbal" path="res://ui/direction_right.png" id="25_xo32w"]
 [ext_resource type="Texture2D" uid="uid://dca3q0s5fiw5b" path="res://ui/direction_right_hover.png" id="26_bcpdc"]
-[ext_resource type="AudioStream" uid="uid://c26hxxbjmlp0q" path="res://assets/Sound/CCC Ingame Loop.wav" id="29_rky18"]
+[ext_resource type="AudioStream" uid="uid://dtlt3cdoskwcx" path="res://assets/Sound/CCC Main Theme Full.wav" id="29_rky18"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fvcpb"]
 shader = ExtResource("7_fq0u6")
@@ -574,6 +574,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43, 0, 111.27)
 stream = ExtResource("29_rky18")
 volume_db = -10.788
 autoplay = true
+bus = &"Music"
+playback_type = 1
 
 [connection signal="GameOver" from="Gameplay" to="Gameplay/GameOverOverlay" method="ShowOverlay"]
 [connection signal="pressed" from="Gameplay/HUD/BottomUI/VBoxContainer/MarginContainer/Control/EndTurnButton" to="Gameplay/HUD" method="TryEndTurn"]
