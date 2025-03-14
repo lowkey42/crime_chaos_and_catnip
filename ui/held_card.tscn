@@ -1,13 +1,14 @@
-[gd_scene load_steps=14 format=3 uid="uid://c8fvd606ep5u"]
+[gd_scene load_steps=16 format=3 uid="uid://c8fvd606ep5u"]
 
 [ext_resource type="Script" uid="uid://ducu2kng5aotl" path="res://gameplay/cards/HeldCard.cs" id="1_dxi6h"]
 [ext_resource type="Texture2D" uid="uid://cw4qn5ngn6ax5" path="res://gameplay/cards/instances/card_move_10.png" id="2_omqpp"]
 [ext_resource type="PackedScene" uid="uid://bkfm8wp8c8y0r" path="res://gameplay/board_objects/played_card.tscn" id="3_7d7q0"]
 [ext_resource type="Script" uid="uid://d0vrl7d4sx35b" path="res://gameplay/cards/CardMove.cs" id="3_esxd3"]
 [ext_resource type="Script" uid="uid://bn0wyw5lpfmgm" path="res://addons/addons/draggablesprite2d/src/draggablesprite2d.gd" id="5_7t26j"]
-[ext_resource type="Material" uid="uid://btbfdgcacptlh" path="res://assets/2D/3deffectcard.tres" id="6_gopet"]
+[ext_resource type="Shader" uid="uid://blgul0xt0n05d" path="res://assets/Shader/card.gdshader" id="7_1s48i"]
 [ext_resource type="Texture2D" uid="uid://cscqhobgos1k1" path="res://assets/2D/Cards/ActionCard.png" id="7_gy4tq"]
 [ext_resource type="Texture2D" uid="uid://dvi3cwd7y55ln" path="res://assets/2D/Cards/CardBackSprite.png" id="8_1s48i"]
+[ext_resource type="Script" uid="uid://o3ww6v8coo1b" path="res://ui/card_shader_helper.gd" id="8_2ertb"]
 [ext_resource type="AudioStream" uid="uid://djfm5wa7ir82f" path="res://assets/Sound/card_draw.wav" id="9_1s48i"]
 
 [sub_resource type="Resource" id="Resource_7t26j"]
@@ -19,6 +20,15 @@ CardSprite = ExtResource("2_omqpp")
 SpawnOnPlay = ExtResource("3_7d7q0")
 RequiresOrientation = false
 metadata/_custom_type_script = "uid://d0vrl7d4sx35b"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2ertb"]
+resource_local_to_scene = true
+shader = ExtResource("7_1s48i")
+shader_parameter/_tilt_Scale = 0.1
+shader_parameter/_isSpecularLight = true
+shader_parameter/_speularLightIntensity = 0.2
+shader_parameter/_speularLightPower = 8.0
+shader_parameter/_mousePos = Vector2(0, 0)
 
 [sub_resource type="Animation" id="Animation_1s48i"]
 length = 0.001
@@ -132,28 +142,57 @@ _data = {
 [node name="HeldCard" type="Node2D" node_paths=PackedStringArray("_sprite", "_animationPlayer")]
 script = ExtResource("1_dxi6h")
 Card = SubResource("Resource_7t26j")
-_sprite = NodePath("DraggableSprite2D/FrontSprite")
+_sprite = NodePath("")
 _animationPlayer = NodePath("FlipAnimation")
 metadata/_custom_type_script = "uid://ducu2kng5aotl"
 
 [node name="DraggableSprite2D" type="Area2D" parent="." node_paths=PackedStringArray("sprite")]
-texture_filter = 3
+texture_filter = 6
 scale = Vector2(0.15, 0.15)
 script = ExtResource("5_7t26j")
 centerDrag = true
 return_to_origin = true
+origin = Vector2(118, 96)
 sprite = NodePath("FrontSprite")
 
-[node name="FrontSprite" type="Sprite2D" parent="DraggableSprite2D"]
+[node name="FrontSprite" type="TextureRect" parent="DraggableSprite2D"]
 z_index = -1
 texture_filter = 6
-material = ExtResource("6_gopet")
+material = SubResource("ShaderMaterial_2ertb")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -375.0
+offset_top = -525.0
+offset_right = 375.0
+offset_bottom = 525.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(375, 525)
+mouse_filter = 2
 texture = ExtResource("7_gy4tq")
+script = ExtResource("8_2ertb")
 
-[node name="BackSprite" type="Sprite2D" parent="DraggableSprite2D"]
+[node name="BackSprite" type="TextureRect" parent="DraggableSprite2D"]
 texture_filter = 6
-material = ExtResource("6_gopet")
+material = SubResource("ShaderMaterial_2ertb")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -375.0
+offset_top = -525.0
+offset_right = 375.0
+offset_bottom = 525.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(375, 525)
+mouse_filter = 2
 texture = ExtResource("8_1s48i")
+script = ExtResource("8_2ertb")
 
 [node name="FlipAnimation" type="AnimationPlayer" parent="."]
 libraries = {
