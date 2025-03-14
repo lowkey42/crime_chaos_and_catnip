@@ -15,14 +15,20 @@ public partial class CardAction : CardBase {
 				var boardPosition = card.BoardPosition;
 				boardPosition.X += x;
 				boardPosition.Y += y;
+				
 				var cell = card.Board.TryGetCell(boardPosition);
 				if (cell != null) {
 					foreach (var obj in cell.Objects) {
-						if (obj is LootSource ls) {
-							ls.TryLoot(p);
-						}
-						if (obj is EnemyUnit enemy) {
-							enemy.Kill();
+						switch (obj) {
+							case Loot l:
+								l.TryInteract(unit);
+								break;
+							case LootSource ls:
+								ls.TryLoot(p);
+								break;
+							case EnemyUnit enemy:
+								enemy.Kill();
+								break;
 						}
 					}
 				}
