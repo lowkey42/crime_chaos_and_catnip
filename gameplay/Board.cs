@@ -114,6 +114,11 @@ public partial class Board : Node {
 	}
 	
 	public void AddObject(Vector2I boardPosition, BoardObject obj) {
+		if (boardPosition.X < 0 || boardPosition.Y < 0)
+			return;
+		if (boardPosition.X >= _maxGridSize.X || boardPosition.Y >= _maxGridSize.Y)
+			return;
+		
 		ValidateBoardPosition(boardPosition);
 
 		Debug.Assert(_cells != null, nameof(_cells) + " != null");
@@ -135,6 +140,11 @@ public partial class Board : Node {
 	}
 
 	public void RemoveObject(Vector2I boardPosition, BoardObject obj) {
+		if (boardPosition.X < 0 || boardPosition.Y < 0)
+			return;
+		if (boardPosition.X >= _maxGridSize.X || boardPosition.Y >= _maxGridSize.Y)
+			return;
+
 		ValidateBoardPosition(boardPosition);
 		Debug.Assert(_cells != null, nameof(_cells) + " != null");
 		_cells[boardPosition.X, boardPosition.Y].Objects.Remove(obj);
@@ -144,6 +154,17 @@ public partial class Board : Node {
 	}
 
 	public void MoveObject(Vector2I oldBoardPosition, Vector2I newBoardPosition, BoardObject obj) {
+		if (oldBoardPosition.X < 0 || oldBoardPosition.Y < 0)
+			return;
+		if (oldBoardPosition.X >= _maxGridSize.X || oldBoardPosition.Y >= _maxGridSize.Y)
+			return;
+		
+		if (newBoardPosition.X < 0 || newBoardPosition.Y < 0)
+			return;
+		if (newBoardPosition.X >= _maxGridSize.X || newBoardPosition.Y >= _maxGridSize.Y)
+			return;
+
+
 		ValidateBoardPosition(oldBoardPosition);
 		ValidateBoardPosition(newBoardPosition);
 		if (oldBoardPosition.X == newBoardPosition.X && oldBoardPosition.Y == newBoardPosition.Y)
