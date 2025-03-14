@@ -1,0 +1,16 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://cy0ib0rq3d51"]
+
+[ext_resource type="Shader" uid="uid://dvdimftdj0ehr" path="res://assets/Shader/sway2.gdshader" id="1_whihx"]
+[ext_resource type="Texture2D" uid="uid://ygdh2cx618w0" path="res://assets/3D/small things/cardholder-neon_gradienttextures.png" id="2_xj156"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_whihx")
+shader_parameter/wind_direction = Vector3(1, 0, 0)
+shader_parameter/wind_intensity = 3.5
+shader_parameter/wind_speed = 1.0
+shader_parameter/wind_frequency = 1.0
+shader_parameter/albedo_texture = ExtResource("2_xj156")
+shader_parameter/alpha_threshold = 0.5
+shader_parameter/height_start = 1.0
+shader_parameter/height_influence = 20.0
