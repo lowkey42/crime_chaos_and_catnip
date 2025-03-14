@@ -31,8 +31,8 @@
 [ext_resource type="Texture2D" uid="uid://cscqhobgos1k1" path="res://assets/2D/Cards/ActionCard.png" id="27_bpltm"]
 [ext_resource type="Texture2D" uid="uid://cslaqvxyw5d3l" path="res://assets/2D/Cards/RaccoonVariant3.png" id="27_co0jq"]
 [ext_resource type="Script" uid="uid://csrxs2hpe8vw6" path="res://ui/DeckSelect.cs" id="27_lbq3s"]
-[ext_resource type="Resource" uid="uid://kxqxuigcdtxa" path="res://gameplay/cards/instances/card_move_5.tres" id="28_x526a"]
-[ext_resource type="Resource" uid="uid://blisqcljmgj2m" path="res://gameplay/cards/instances/card_move_15.tres" id="29_q6vb2"]
+[ext_resource type="Resource" path="res://gameplay/cards/instances/card_move_5.tres" id="28_x526a"]
+[ext_resource type="Resource" path="res://gameplay/cards/instances/card_move_15.tres" id="29_q6vb2"]
 [ext_resource type="AudioStream" uid="uid://8ibx4iua14ac" path="res://assets/Sound/CCC Ingame Loop.wav" id="29_rky18"]
 [ext_resource type="Texture2D" uid="uid://d0w1fajvjaa2n" path="res://assets/2D/Cards/BoxCard.png" id="29_rv58i"]
 [ext_resource type="Texture2D" uid="uid://c6vfnhrwktuva" path="res://assets/2D/Cards/CatGun.png" id="30_co0jq"]
@@ -801,8 +801,17 @@ text = "continue"
 
 [node name="level_03" parent="Gameplay/Level" instance=ExtResource("23_6ywyt")]
 
+[node name="Board" parent="Gameplay/Level/level_03" index="0"]
+_maxGridSize = Vector2i(55, 55)
+
 [node name="Cameras" parent="." instance=ExtResource("14_ilpo5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43, 0, 111.27)
+
+[node name="FreeCamera" parent="Cameras" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.819152, 0.573576, 0, -0.573576, 0.819152, 15, 10, -3.00001)
+
+[node name="TopDownCamera" parent="Cameras" index="1"]
+transform = Transform3D(1, 0, 0, 0, 0.173648, 0.984808, 0, -0.984808, 0.173648, 13, 22, -13)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("29_rky18")
@@ -821,4 +830,5 @@ playback_type = 1
 [connection signal="pressed" from="Gameplay/GameOverOverlay/VBoxContainer/ContinueButton" to="Gameplay/GameOverOverlay" method="Continue"]
 [connection signal="pressed" from="Gameplay/DeckSelect/PanelContainer/VBoxContainer/Button" to="Gameplay/DeckSelect" method="StartGame"]
 
+[editable path="Gameplay/Level/level_03"]
 [editable path="Cameras"]
