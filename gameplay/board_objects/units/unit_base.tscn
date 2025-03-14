@@ -1,8 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://i7vhx0eef663"]
+[gd_scene load_steps=6 format=3 uid="uid://i7vhx0eef663"]
 
 [ext_resource type="PackedScene" uid="uid://bf2gi73alegi5" path="res://assets/3D/small things/cardholder-rot.glb" id="1_et8n7"]
 [ext_resource type="Material" uid="uid://ijx083t7cclw" path="res://assets/3D/small things/ROT.tres" id="2_12nh0"]
 [ext_resource type="Texture2D" uid="uid://be3j4u1qf4tsh" path="res://assets/2D/Framed Characters/GooseStandingBlink.png" id="3_0weh6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_et8n7"]
+transparency = 1
+cull_mode = 2
+albedo_texture = ExtResource("3_0weh6")
+emission = Color(1, 1, 1, 1)
+emission_operator = 1
+emission_texture = ExtResource("3_0weh6")
+backlight_enabled = true
+backlight = Color(1.4, 1.4, 1.4, 1)
+billboard_mode = 2
+billboard_keep_scale = true
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_et8n7"]
 viewport_path = NodePath("LootSubViewport")
@@ -18,14 +30,16 @@ surface_material_override/0 = ExtResource("2_12nh0")
 
 [node name="front" type="Sprite3D" parent="."]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 1.06193, 0)
+material_override = SubResource("StandardMaterial3D_et8n7")
 gi_mode = 2
+billboard = 2
 shaded = true
-double_sided = false
 alpha_cut = 2
 texture = ExtResource("3_0weh6")
 
 [node name="back" type="Sprite3D" parent="."]
 transform = Transform3D(-0.2, 0, -3.01992e-08, 0, 0.2, 0, 3.01992e-08, 0, -0.2, 0, 1.06193, 0)
+visible = false
 gi_mode = 2
 flip_h = true
 shaded = true

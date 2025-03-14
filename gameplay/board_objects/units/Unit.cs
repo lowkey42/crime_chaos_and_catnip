@@ -38,7 +38,7 @@ public partial class Unit : BoardObject {
 	public bool Stunned { get; private set; } = false;
 
 	public Vector2I MoveTarget => !WantsToMove
-		? Vector2I.Zero
+		? BoardPosition
 		: MovementDirection switch {
 			BoardOrientation.North => BoardPosition + new Vector2I(0, -1),
 			BoardOrientation.South => BoardPosition + new Vector2I(0, 1),
@@ -60,9 +60,13 @@ public partial class Unit : BoardObject {
 		EmitSignalLootCollected(value);
 	}
 
-	public void Kill() {
-		// drop loot at current field
-		if (CollectedLoot > 0 && _lootScene!=null) {
+	public void Kill(Unit killer = null) {
+		if (killer != null) {
+			killer.IncreaseLoot(CollectedLoot);
+			CollectedLoot = 0;
+			
+		} else if (CollectedLoot > 0 && _lootScene!=null) {
+			// drop loot at current field
 			var droppedLoot = _lootScene.Instantiate<Loot>();
 			droppedLoot.Value = CollectedLoot;
 			GetParent().AddChild(droppedLoot);
@@ -91,7 +95,11 @@ public partial class Unit : BoardObject {
 		return true;
 	}
 
-	public void OnTurnEnd() {
+	public virtual void OnStep() {
+		
+	}
+	
+	public virtual void OnTurnEnd() {
 		ClearStunned();
 		
 		if (SelfDestruct > 0) {

@@ -88,7 +88,7 @@ visible = false
 script = ExtResource("6_juwkt")
 _deck = NodePath("HUD/BottomUI/MarginContainer/DeckContainer/Deck")
 _hand = NodePath("HUD/BottomUI/PlayerHand")
-_stepTime = 0.2
+_stepTime = 0.3
 
 [node name="HUD" type="CanvasLayer" parent="Gameplay" node_paths=PackedStringArray("_scoreLabel", "_remainingCardsLabel", "_turnCounterLabel", "_endTurnButton", "_endGameButton", "_gameplay", "_deck", "_rotationUi")]
 follow_viewport_enabled = true

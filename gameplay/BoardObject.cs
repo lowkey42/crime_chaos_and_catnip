@@ -49,6 +49,11 @@ public abstract partial class BoardObject : Node3D {
 		_lastBoardPosition = BoardPosition;
 	}
 
+	public void SnapToGrid() {
+		if(Board != null)
+			GlobalPosition = Board.GetWorldPosition(BoardPosition);
+	}
+
 	public override void _ExitTree() {
 		base._ExitTree();
 		Board?.RemoveObject(BoardPosition, this);

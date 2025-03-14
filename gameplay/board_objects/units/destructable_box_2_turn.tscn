@@ -25,9 +25,9 @@ visible = false
 
 [node name="front" parent="." index="3"]
 visible = false
-
-[node name="back" parent="." index="4"]
-visible = false
+material_override = null
+billboard = 0
+double_sided = false
 
 [node name="Loot" parent="." index="5"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.38551, 0)
