@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cs33vv4b68ea0"]
+[gd_scene load_steps=14 format=3 uid="uid://bftykp1mn7wp3"]
 
 [ext_resource type="Texture2D" uid="uid://b84rlm1881bn" path="res://assets/2D/Particles/P_Smoke.png" id="1_iotom"]
 
@@ -86,7 +86,7 @@ damping_min = 4.93
 damping_max = 5.29
 color_ramp = SubResource("GradientTexture1D_4mfqb")
 
-[node name="EffektTests" type="Node3D"]
+[node name="Spawn_Smoke" type="Node3D"]
 
 [node name="Smoke_Effekt" type="Node3D" parent="."]
 
