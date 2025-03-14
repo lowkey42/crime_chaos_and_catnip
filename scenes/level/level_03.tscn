@@ -1,12 +1,12 @@
 [gd_scene load_steps=22 format=3 uid="uid://jxjimmbyhk6o"]
 
 [ext_resource type="Script" uid="uid://b4tr0lmx326c7" path="res://gameplay/Board.cs" id="1_hx277"]
-[ext_resource type="PackedScene" path="res://gridsystem/grid_lines.tscn" id="2_o1nda"]
+[ext_resource type="PackedScene" uid="uid://b267dln8bmyc0" path="res://gridsystem/grid_lines.tscn" id="2_o1nda"]
 [ext_resource type="PackedScene" uid="uid://bwslpyd3dfv3r" path="res://gameplay/board_objects/exit.tscn" id="3_fu6u2"]
 [ext_resource type="PackedScene" uid="uid://mb4i47wd66wh" path="res://gameplay/board_objects/loot.tscn" id="5_5xxq8"]
 [ext_resource type="PackedScene" uid="uid://c5fw6hn22hi6k" path="res://gameplay/board_objects/loot_sources/loot_source_cat.tscn" id="6_xwmh0"]
 [ext_resource type="PackedScene" uid="uid://70upebyxhbou" path="res://gameplay/board_objects/loot_sources/loot_source_racoon.tscn" id="7_mcbxj"]
-[ext_resource type="PackedScene" path="res://gameplay/board_objects/units/enemy_unit_goose.tscn" id="8_613py"]
+[ext_resource type="PackedScene" uid="uid://r1l46im0nohs" path="res://gameplay/board_objects/units/enemy_unit_goose.tscn" id="8_613py"]
 [ext_resource type="PackedScene" uid="uid://ce37br2s4b6qe" path="res://gameplay/board_objects/loot_sources/loot_source_chipmunk.tscn" id="8_lmiw1"]
 [ext_resource type="Material" uid="uid://b7rgxxmt708ru" path="res://scenes/level/enemypath1.tres" id="9_k7sxj"]
 [ext_resource type="MeshLibrary" uid="uid://crx7qq1oe5n3w" path="res://CityMeshLibrary.tres" id="11_dketp"]
@@ -85,6 +85,8 @@ _maxGridSize = Vector2i(48, 48)
 _gridMap = NodePath("Visuals/6x6Gridmap")
 
 [node name="GridLines" parent="Board" instance=ExtResource("2_o1nda")]
+_colorLoot = Color(0.463841, 1, 0.893308, 0.901961)
+_colorOther = Color(0.989167, 1, 0.35, 0.901961)
 
 [node name="GameplaySetup" type="Node3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5)
@@ -463,23 +465,7 @@ polygon = PackedVector2Array(-0.5, 0, -0.5, 0.1, 0.5, 0.1, 0.5, 0)
 mode = 2
 path_node = NodePath("..")
 path_interval_type = 0
-path_interval = 0.01
-path_simplify_angle = 0.0
-path_rotation = 1
-path_rotation_accurate = true
-path_local = true
-path_continuous_u = true
-path_u_distance = 0.0
-path_joined = false
-smooth_faces = true
-material = ExtResource("9_k7sxj")
-
-[node name="ENEMYPOLYGON2" type="CSGPolygon3D" parent="Board/GameplaySetup/Gooses/EnemyPath"]
-polygon = PackedVector2Array(-0.5, 0, -0.5, 0.1, 0.5, 0.1, 0.5, 0)
-mode = 2
-path_node = NodePath("..")
-path_interval_type = 0
-path_interval = 0.01
+path_interval = 0.25
 path_simplify_angle = 0.0
 path_rotation = 1
 path_rotation_accurate = true
@@ -503,7 +489,7 @@ polygon = PackedVector2Array(-0.5, 0, -0.5, 0.1, 0.5, 0.1, 0.5, 0)
 mode = 2
 path_node = NodePath("..")
 path_interval_type = 0
-path_interval = 0.01
+path_interval = 0.25
 path_simplify_angle = 0.0
 path_rotation = 1
 path_rotation_accurate = true
@@ -527,7 +513,7 @@ polygon = PackedVector2Array(-0.5, 0, -0.5, 0.1, 0.5, 0.1, 0.5, 0)
 mode = 2
 path_node = NodePath("..")
 path_interval_type = 0
-path_interval = 0.01
+path_interval = 0.25
 path_simplify_angle = 0.0
 path_rotation = 1
 path_rotation_accurate = true
@@ -551,7 +537,7 @@ polygon = PackedVector2Array(-0.5, 0, -0.5, 0.1, 0.5, 0.1, 0.5, 0)
 mode = 2
 path_node = NodePath("..")
 path_interval_type = 0
-path_interval = 0.01
+path_interval = 0.25
 path_simplify_angle = 0.0
 path_rotation = 1
 path_rotation_accurate = true
@@ -575,7 +561,7 @@ polygon = PackedVector2Array(-0.5, 0, -0.5, 0.1, 0.5, 0.1, 0.5, 0)
 mode = 2
 path_node = NodePath("..")
 path_interval_type = 0
-path_interval = 0.01
+path_interval = 0.25
 path_simplify_angle = 0.0
 path_rotation = 1
 path_rotation_accurate = true
@@ -599,7 +585,7 @@ polygon = PackedVector2Array(-0.5, 0, -0.5, 0.1, 0.5, 0.1, 0.5, 0)
 mode = 2
 path_node = NodePath("..")
 path_interval_type = 0
-path_interval = 0.01
+path_interval = 0.25
 path_simplify_angle = 0.0
 path_rotation = 1
 path_rotation_accurate = true
@@ -623,7 +609,7 @@ polygon = PackedVector2Array(-0.5, 0, -0.5, 0.1, 0.5, 0.1, 0.5, 0)
 mode = 2
 path_node = NodePath("..")
 path_interval_type = 0
-path_interval = 0.01
+path_interval = 0.25
 path_simplify_angle = 0.0
 path_rotation = 1
 path_rotation_accurate = true
@@ -647,7 +633,7 @@ polygon = PackedVector2Array(-0.5, 0, -0.5, 0.1, 0.5, 0.1, 0.5, 0)
 mode = 2
 path_node = NodePath("..")
 path_interval_type = 0
-path_interval = 0.01
+path_interval = 0.25
 path_simplify_angle = 0.0
 path_rotation = 1
 path_rotation_accurate = true
@@ -671,7 +657,7 @@ polygon = PackedVector2Array(-0.5, 0, -0.5, 0.1, 0.5, 0.1, 0.5, 0)
 mode = 2
 path_node = NodePath("..")
 path_interval_type = 0
-path_interval = 0.01
+path_interval = 0.25
 path_simplify_angle = 0.0
 path_rotation = 1
 path_rotation_accurate = true
@@ -696,7 +682,7 @@ data = {
 "cells": PackedInt32Array(65529, 5, 1441795, 65529, 4, 1441792, 65529, 3, 1441793, 65520, 5, 0, 2, 5, 0, 65520, 3, 0, 65520, 2, 11, 65520, 65530, 11, 65520, 65529, 0, 65520, 65528, 11, 2, 6, 1441803, 1, 6, 0, 0, 6, 1441803, 65535, 6, 0, 65534, 6, 1441803, 65533, 6, 0, 65532, 6, 1441803, 65531, 6, 0, 65530, 6, 1441803, 65529, 6, 0, 65528, 6, 1441803, 65527, 6, 0, 65526, 6, 1441803, 65525, 6, 0, 65524, 6, 1441803, 65523, 6, 0, 65522, 6, 1441803, 65521, 6, 0, 65520, 6, 1441803, 65520, 4, 1441803, 65520, 1, 0, 65520, 0, 11, 65520, 65535, 0, 65520, 65534, 11, 65520, 65533, 0, 65520, 65532, 11, 65520, 65531, 0, 65520, 65527, 0, 65520, 65526, 11, 65520, 65525, 0, 65520, 65524, 11, 2, 4, 11, 2, 3, 0, 2, 2, 11, 2, 1, 0, 2, 0, 0, 2, 65535, 0, 2, 65534, 11, 2, 65533, 0, 2, 65532, 11, 2, 65531, 0, 2, 65530, 11, 2, 65529, 0, 2, 65528, 11, 2, 65527, 0, 2, 65526, 11, 2, 65525, 0, 2, 65524, 11, 1, 65524, 0, 0, 65524, 1441803, 65535, 65524, 0, 65534, 65524, 1441803, 65533, 65524, 0, 65532, 65524, 1441803, 65531, 65524, 0, 65530, 65524, 1441803, 65529, 65524, 0, 65528, 65524, 1441792, 65527, 65524, 0, 65526, 65524, 1441803, 65525, 65524, 0, 65524, 65524, 1441803, 65523, 65524, 0, 65522, 65524, 1441803, 65521, 65524, 0, 65528, 4, 1048588, 65530, 4, 1048588, 65527, 4, 1048582, 65525, 4, 1048582, 65526, 4, 1048588, 65531, 4, 1048582, 65524, 4, 1048582, 65528, 5, 655366, 65535, 65535, 1441792, 65535, 0, 4, 65521, 65525, 11, 65521, 65526, 11, 65521, 65527, 11, 65521, 65528, 11, 65522, 65528, 11, 65522, 65529, 11, 65523, 65529, 11, 65524, 65529, 11, 65525, 65529, 11, 65525, 65528, 11, 65526, 65528, 11, 65527, 65528, 11, 65527, 65527, 11, 65527, 65526, 11, 65527, 65525, 11, 65526, 65525, 11, 65525, 65525, 11, 65524, 65525, 11, 65523, 65525, 11, 65522, 65525, 11, 65522, 65526, 11, 65522, 65527, 11, 65523, 65527, 11, 65523, 65528, 11, 65524, 65528, 11, 65524, 65527, 11, 65523, 65526, 11, 65524, 65526, 11, 65525, 65526, 11, 65526, 65526, 11, 65526, 65527, 11, 65525, 65527, 11, 65528, 3, 0, 65527, 3, 0, 65526, 3, 0, 65530, 3, 0, 65531, 3, 17, 65532, 3, 0, 65533, 3, 4, 65533, 2, 1441792, 65533, 1, 1441809, 65533, 0, 655364, 65534, 0, 655360, 0, 0, 17, 1, 0, 655360, 65532, 65535, 1048593, 65532, 65534, 1441792, 65532, 65533, 655364, 65533, 65533, 2, 65531, 65533, 1441794, 65531, 65532, 1048580, 65531, 65531, 655362, 65533, 65531, 1048578, 65533, 65532, 1441796, 65532, 65531, 4, 65529, 2, 1441792, 65529, 1, 1441792, 65529, 0, 1048578, 65528, 0, 4, 65528, 65535, 1441792, 65528, 65534, 1048579, 65528, 65533, 1441803, 65528, 65532, 1441803, 65529, 65532, 1441803, 65530, 65532, 1441803, 65527, 65532, 1441803, 65526, 65532, 1441803, 65526, 0, 655363, 65527, 0, 17, 65525, 3, 655360, 65524, 3, 4, 65524, 2, 1048576, 65524, 1, 1441809, 65524, 0, 1048576, 65523, 65534, 17, 65522, 65534, 1441794, 65522, 65533, 1048580, 65522, 65532, 1441809, 65522, 65531, 1441792, 65522, 65530, 655362, 65523, 65530, 17, 65524, 65530, 655360, 65525, 65530, 655360, 65526, 65531, 1441795, 65526, 65530, 1048580, 65526, 65529, 655362, 65528, 65529, 2, 65527, 65529, 17, 65528, 65528, 1441792, 65528, 65527, 1441796, 65528, 65526, 1441792, 65528, 65525, 1441792, 65521, 65533, 655360, 65532, 65530, 1441792, 65532, 65529, 1048580, 65532, 65528, 1441792, 65532, 65527, 1048577, 65531, 65527, 655360, 65530, 65527, 655360, 65529, 65527, 655360, 65533, 65527, 655360, 65534, 65527, 655360, 65535, 65527, 655360, 0, 65527, 655364, 0, 65528, 1441795, 1, 65527, 655360, 65532, 65526, 1048576, 65532, 65525, 1048579, 65534, 3, 0, 65535, 3, 1048578, 65535, 4, 1441795, 65527, 65531, 1441803, 65528, 65531, 1441803, 65529, 65531, 1441803, 65530, 65531, 1441803, 65529, 65533, 1441803, 65527, 65533, 1441803, 65526, 65533, 1441803, 65535, 65534, 655362, 0, 65534, 2, 0, 65533, 1441792, 0, 65532, 1048580, 65535, 65532, 655360, 65534, 65532, 17, 0, 65531, 1048576, 0, 65530, 1048579, 65523, 3, 655360, 65521, 3, 655360, 65522, 3, 655360, 65529, 65530, 1441803, 65530, 65530, 1441803, 65525, 65533, 1441803, 65525, 65532, 1441803, 65524, 65534, 1048580, 65534, 2, 11, 0, 65535, 11, 65533, 65528, 11, 65526, 1, 11, 65531, 65535, 11, 65530, 65526, 11, 65522, 2, 11, 65523, 65535, 11, 65532, 0, 1441794, 65531, 65529, 655363, 65524, 65533, 1048579, 65524, 65535, 1048576)
 }
 script = ExtResource("12_ijhy3")
-_nonBlockingItems = PackedInt32Array(0, 1, 2, 3, 4, 11)
+_nonBlockingItems = PackedInt32Array(0, 1, 2, 3, 4, 11, 17)
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
 [node name="6x6Gridmap_Ground" type="GridMap" parent="Board/Visuals"]

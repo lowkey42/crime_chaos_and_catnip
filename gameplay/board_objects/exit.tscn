@@ -4,12 +4,20 @@
 [ext_resource type="PackedScene" uid="uid://baj55qcs5pdiy" path="res://assets/3D/cars/LKW-downsized.glb" id="2_ggbsf"]
 
 [node name="Exit" type="Node3D"]
-script = ExtResource("1_bxko7")
 
 [node name="LKW2" parent="." instance=ExtResource("2_ggbsf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.6)
 _margin = 0.9
 
-[connection signal="Interacted" from="." to="LKW2/AnimationPlayer" method="play" binds= ["Door Closing"]]
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+script = ExtResource("1_bxko7")
+
+[node name="Node3D2" type="Node3D" parent="."]
+script = ExtResource("1_bxko7")
+
+[node name="Node3D3" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+script = ExtResource("1_bxko7")
 
 [editable path="LKW2"]
