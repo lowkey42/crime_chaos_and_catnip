@@ -197,6 +197,17 @@ mouse_filter = 2
 texture = ExtResource("9_fvcpb")
 expand_mode = 1
 
+[node name="Blocker" type="Control" parent="Gameplay/HUD/BottomUI/Control/BottomBackground"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+
 [node name="DiscardPile" type="TextureRect" parent="Gameplay/HUD/BottomUI"]
 layout_mode = 1
 anchors_preset = 2
@@ -300,7 +311,7 @@ grow_vertical = 2
 script = ExtResource("10_etwux")
 _deck = NodePath("../VBoxContainer/DeckContainer/Deck")
 _discardPile = NodePath("../DiscardPile")
-_bottomArea = NodePath("../Control/BottomBackground")
+_bottomArea = NodePath("../Control/BottomBackground/Blocker")
 _maxCardCount = 8
 _maxCardAtTurnEnd = 99
 _hoverOffset = 25.0
