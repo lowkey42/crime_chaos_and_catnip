@@ -390,7 +390,7 @@ public partial class PlayerHand : Control {
 	    
 	    card.QueueFree();
 	    
-	    await RepositionCardsWithTween();
+	    RepositionCards();
 
     }
     public bool CanEndTurn()

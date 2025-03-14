@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b4tr0lmx326c7" path="res://gameplay/Board.cs" id="1_5g03a"]
 [ext_resource type="PackedScene" uid="uid://b267dln8bmyc0" path="res://gridsystem/grid_lines.tscn" id="2_saf3a"]
-[ext_resource type="PackedScene" path="res://gameplay/board_objects/exit.tscn" id="3_je1eg"]
+[ext_resource type="PackedScene" uid="uid://bwslpyd3dfv3r" path="res://gameplay/board_objects/exit.tscn" id="3_je1eg"]
 [ext_resource type="MeshLibrary" uid="uid://crx7qq1oe5n3w" path="res://CityMeshLibrary.tres" id="4_fm2p5"]
 [ext_resource type="Script" uid="uid://c78jpbv3tl850" path="res://gameplay/board_objects/GridMapBoardCollision.cs" id="4_uqvjn"]
 [ext_resource type="PackedScene" uid="uid://bsq61q37gqwbk" path="res://assets/3D/small things/foliage/BaumGroß02.glb" id="4_xwd00"]

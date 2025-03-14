@@ -1,6 +1,6 @@
 [gd_resource type="Environment" load_steps=4 format=3 uid="uid://bcp04kwm6bifu"]
 
-[ext_resource type="Shader" uid="uid://chxhrhfh0nkui" path="res://scenes/level/level_02.gdshader" id="1_0wybp"]
+[ext_resource type="Shader" path="res://scenes/level/level_02.gdshader" id="1_0wybp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_scygu"]
 shader = ExtResource("1_0wybp")

@@ -23,7 +23,7 @@ static var currently_dragged_sprite: DraggableSprite2D = null
 @export var origin := Vector2.ZERO
 
 ## The Sprite node that will be used to display the texture
-@export var sprite :Sprite2D
+@export var sprite :TextureRect
 ## The default collider. It is automatically created and updated to match the size of the sprite
 var default_collider : CollisionShape2D
 ## Whether or not the sprite is currently grabbed
@@ -101,7 +101,7 @@ func update_default_collider() -> void:
 			if not sprite or not sprite.texture:
 				default_collider.shape.size = Vector2(0, 0)
 				return
-			default_collider.shape.size = Vector2(sprite.texture.get_width(), sprite.texture.get_height())
+			default_collider.shape.size = Vector2(sprite.texture.get_width(), sprite.texture.get_height()) * sprite.scale
 
 
 func _input_event(viewport: Viewport, event: InputEvent, shape_idx: int) -> void:

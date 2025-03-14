@@ -13,7 +13,7 @@ public partial class HeldCard : Node2D {
 
 	[Export] public CardBase Card;
 
-	[Export] private Sprite2D _sprite;
+	[Export] private TextureRect _sprite;
 	
 	[Export]private AnimationPlayer _animationPlayer;
 
