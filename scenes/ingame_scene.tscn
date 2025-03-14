@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://o5q4p0foouv3" path="res://gameplay/Gameplay.cs" id="6_juwkt"]
 [ext_resource type="PackedScene" uid="uid://c8fvd606ep5u" path="res://ui/held_card.tscn" id="6_vus8m"]
 [ext_resource type="Script" uid="uid://bt7r7nusxbpsv" path="res://gameplay/DeckEntry.cs" id="7_2vs8u"]
-[ext_resource type="Shader" path="res://assets/Shader/ui_fog.gdshader" id="7_fq0u6"]
+[ext_resource type="Shader" uid="uid://dh223vyipyq2p" path="res://assets/Shader/ui_fog.gdshader" id="7_fq0u6"]
 [ext_resource type="Script" uid="uid://bp64cwdqrlygr" path="res://gameplay/Deck.cs" id="7_ilpo5"]
 [ext_resource type="Texture2D" uid="uid://dqkuipeee5xbf" path="res://assets/2D/Cards/DiscardPile.png" id="7_q7kwb"]
 [ext_resource type="Resource" uid="uid://cxk2dmo6atpcu" path="res://gameplay/cards/instances/card_summon_cat.tres" id="8_juwkt"]
@@ -85,7 +85,7 @@ visible = false
 
 [node name="Gameplay" type="Node" parent="." node_paths=PackedStringArray("_deck", "_hand") groups=["Gameplay"]]
 script = ExtResource("6_juwkt")
-_deck = NodePath("HUD/BottomUI/MarginContainer/DeckContainer/Deck")
+_deck = NodePath("HUD/BottomUI/VBoxContainer/DeckContainer/Deck")
 _hand = NodePath("HUD/BottomUI/PlayerHand")
 _stepTime = 0.3
 
@@ -93,12 +93,12 @@ _stepTime = 0.3
 follow_viewport_enabled = true
 script = ExtResource("5_pxehq")
 _scoreLabel = NodePath("TopUI/HBoxContainer/Score")
-_remainingCardsLabel = NodePath("BottomUI/MarginContainer/DeckContainer/RemainingCards")
+_remainingCardsLabel = NodePath("BottomUI/VBoxContainer/DeckContainer/RemainingCardsContainer/RemainingCards")
 _turnCounterLabel = NodePath("TopUI/TurnCounter")
-_endTurnButton = NodePath("BottomUI/MarginContainer/Control/EndTurnButton")
-_endGameButton = NodePath("BottomUI/MarginContainer/Control/EndGameButton")
+_endTurnButton = NodePath("BottomUI/VBoxContainer/MarginContainer/Control/EndTurnButton")
+_endGameButton = NodePath("BottomUI/VBoxContainer/MarginContainer/Control/EndGameButton")
 _gameplay = NodePath("..")
-_deck = NodePath("BottomUI/MarginContainer/DeckContainer/Deck")
+_deck = NodePath("BottomUI/VBoxContainer/DeckContainer/Deck")
 _rotationUi = NodePath("CardDirectionControl")
 
 [node name="BottomBackground2" type="TextureRect" parent="Gameplay/HUD"]
@@ -199,93 +199,113 @@ expand_mode = 1
 
 [node name="DiscardPile" type="TextureRect" parent="Gameplay/HUD/BottomUI"]
 layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -179.0
+offset_right = 136.0
+grow_vertical = 0
+texture = ExtResource("7_q7kwb")
+expand_mode = 5
+stretch_mode = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Gameplay/HUD/BottomUI"]
+layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -136.0
-offset_top = -179.0
+offset_top = -225.0
 grow_horizontal = 0
 grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Gameplay/HUD/BottomUI/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Control" type="Control" parent="Gameplay/HUD/BottomUI/VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+
+[node name="EndTurnButton" type="Button" parent="Gameplay/HUD/BottomUI/VBoxContainer/MarginContainer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 8
+text = "  End Turn  "
+
+[node name="EndGameButton" type="Button" parent="Gameplay/HUD/BottomUI/VBoxContainer/MarginContainer/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 8
+text = " End Game "
+
+[node name="DeckContainer" type="MarginContainer" parent="Gameplay/HUD/BottomUI/VBoxContainer"]
+custom_minimum_size = Vector2(136, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="DiscardPile2" type="TextureRect" parent="Gameplay/HUD/BottomUI/VBoxContainer/DeckContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
 texture = ExtResource("7_q7kwb")
 expand_mode = 5
 stretch_mode = 4
 
-[node name="PlayerHand" type="Control" parent="Gameplay/HUD/BottomUI" node_paths=PackedStringArray("_deck", "_discardPile", "_bottomArea")]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_top = 50.0
-offset_bottom = 50.0
-grow_horizontal = 2
-grow_vertical = 0
-script = ExtResource("10_etwux")
-_deck = NodePath("../MarginContainer/DeckContainer/Deck")
-_discardPile = NodePath("../DiscardPile")
-_bottomArea = NodePath("../Control/BottomBackground")
-_maxCardCount = 8
-_maxCardAtTurnEnd = 99
-_animationDuration = 0.2
-_animationDurationReposition = 0.1
-
-[node name="MarginContainer" type="MarginContainer" parent="Gameplay/HUD/BottomUI"]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -159.0
-offset_right = 123.0
-grow_vertical = 0
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_bottom = 9
-
-[node name="DeckContainer" type="Control" parent="Gameplay/HUD/BottomUI/MarginContainer"]
-custom_minimum_size = Vector2(150, 230)
-layout_mode = 2
-
-[node name="Deck" type="Node2D" parent="Gameplay/HUD/BottomUI/MarginContainer/DeckContainer"]
-position = Vector2(75, 111)
+[node name="Deck" type="Node2D" parent="Gameplay/HUD/BottomUI/VBoxContainer/DeckContainer"]
+position = Vector2(70, 90)
 script = ExtResource("7_ilpo5")
 _cards = [SubResource("Resource_juwkt"), SubResource("Resource_ilpo5"), SubResource("Resource_fq0u6"), SubResource("Resource_fvcpb"), SubResource("Resource_dqase"), SubResource("Resource_amt0v")]
 _heldCardScene = ExtResource("6_vus8m")
 
-[node name="RemainingCards" type="Label" parent="Gameplay/HUD/BottomUI/MarginContainer/DeckContainer"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 19.0
-grow_horizontal = 2
+[node name="RemainingCardsContainer" type="PanelContainer" parent="Gameplay/HUD/BottomUI/VBoxContainer/DeckContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="RemainingCards" type="Label" parent="Gameplay/HUD/BottomUI/VBoxContainer/DeckContainer/RemainingCardsContainer"]
+layout_mode = 2
+size_flags_vertical = 1
 theme_override_font_sizes/font_size = 30
 text = "96"
 horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Control" type="Control" parent="Gameplay/HUD/BottomUI/MarginContainer"]
-layout_mode = 2
-
-[node name="EndTurnButton" type="Button" parent="Gameplay/HUD/BottomUI/MarginContainer/Control"]
-custom_minimum_size = Vector2(140, 0)
-layout_mode = 2
-offset_left = 4.0
-offset_top = 194.0
-offset_right = 123.0
-offset_bottom = 230.0
-size_flags_vertical = 8
-text = "  End Turn  "
-
-[node name="EndGameButton" type="Button" parent="Gameplay/HUD/BottomUI/MarginContainer/Control"]
-visible = false
-custom_minimum_size = Vector2(140, 0)
-layout_mode = 2
-offset_left = 4.0
-offset_top = 194.0
-offset_right = 123.0
-offset_bottom = 230.0
-size_flags_vertical = 8
-text = " End Game "
+[node name="PlayerHand" type="Control" parent="Gameplay/HUD/BottomUI" node_paths=PackedStringArray("_deck", "_discardPile", "_bottomArea")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("10_etwux")
+_deck = NodePath("../VBoxContainer/DeckContainer/Deck")
+_discardPile = NodePath("../DiscardPile")
+_bottomArea = NodePath("../Control/BottomBackground")
+_maxCardCount = 8
+_maxCardAtTurnEnd = 99
+_hoverOffset = 25.0
+_animationDurationReposition = 0.2
+_damp = 20.0
 
 [node name="CardDirectionControl" type="Control" parent="Gameplay/HUD"]
 layout_mode = 3
@@ -545,9 +565,9 @@ volume_db = -10.788
 autoplay = true
 
 [connection signal="GameOver" from="Gameplay" to="Gameplay/GameOverOverlay" method="ShowOverlay"]
+[connection signal="pressed" from="Gameplay/HUD/BottomUI/VBoxContainer/MarginContainer/Control/EndTurnButton" to="Gameplay/HUD" method="TryEndTurn"]
+[connection signal="pressed" from="Gameplay/HUD/BottomUI/VBoxContainer/MarginContainer/Control/EndGameButton" to="Gameplay/HUD" method="TryEndGame"]
 [connection signal="CardPlayed" from="Gameplay/HUD/BottomUI/PlayerHand" to="Gameplay/HUD" method="OnCardPlayed"]
-[connection signal="pressed" from="Gameplay/HUD/BottomUI/MarginContainer/Control/EndTurnButton" to="Gameplay/HUD" method="TryEndTurn"]
-[connection signal="pressed" from="Gameplay/HUD/BottomUI/MarginContainer/Control/EndGameButton" to="Gameplay/HUD" method="TryEndGame"]
 [connection signal="pressed" from="Gameplay/HUD/CardDirectionControl/GridContainer/ButtonNorth" to="Gameplay/HUD" method="RotateCardNorth"]
 [connection signal="pressed" from="Gameplay/HUD/CardDirectionControl/GridContainer/ButtonWest" to="Gameplay/HUD" method="RotateCardWest"]
 [connection signal="pressed" from="Gameplay/HUD/CardDirectionControl/GridContainer/ButtonEast" to="Gameplay/HUD" method="RotateCardEast"]
