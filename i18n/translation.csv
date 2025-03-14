@@ -1,6 +1,7 @@
 keys,en,de
 credits,Credits,Credits
 new_game,New Game,Neues Spiel
+tutorial,Tutorial,Tutorial
 continue,Continue,Fortfahren
 settings,Game Settings,Einstellungen
 leave_game,Leave game,Spiel verlassen
@@ -16,6 +17,7 @@ settings_language,Game Language,Spielsprache
 game_paused,Game paused,Spiel pausiert
 resume_game,Resume game,Weiterspielen
 build_your_deck,Build your Deck,Deck Zusammenstellen
+build_your_deck_tutorial,Your tutorial deck,Dein Tutorial Deck
 end_turn,End Turn,Zug Beenden
 end_game,End Game,Spiel Beenden
 gameover_message,The Goolice Has Arrived,Die Goolice ist Eingetroffen

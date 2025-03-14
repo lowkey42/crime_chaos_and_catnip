@@ -37,12 +37,10 @@ point_count = 5
 [node name="Board" type="Node3D" parent="." node_paths=PackedStringArray("GridLines", "_gridMap") groups=["Board"]]
 script = ExtResource("1_yv78t")
 GridLines = NodePath("GridLines")
-_maxGridSize = Vector2i(48, 48)
+_maxGridSize = Vector2i(60, 60)
 _gridMap = NodePath("Visuals/6x6Gridmap")
 
 [node name="GridLines" parent="Board" instance=ExtResource("2_0x2iv")]
-_colorLoot = Color(0.463841, 1, 0.893308, 0.901961)
-_colorOther = Color(0.989167, 1, 0.35, 0.901961)
 
 [node name="GameplaySetup" type="Node3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5)

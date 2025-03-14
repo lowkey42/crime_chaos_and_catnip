@@ -1,0 +1,843 @@
+[gd_scene load_steps=49 format=3 uid="uid://g3lqcs427k5d"]
+
+[ext_resource type="Script" uid="uid://dmeymco117qmu" path="res://scenes/ingame_scene.gd" id="1_vbxd6"]
+[ext_resource type="PackedScene" uid="uid://bkk87o2ooo6at" path="res://ui/overlays/fade_overlay.tscn" id="2_2a5f1"]
+[ext_resource type="PackedScene" uid="uid://jyv4g54adkmo" path="res://ui/overlays/pause_overlay.tscn" id="3_xk5md"]
+[ext_resource type="Script" uid="uid://o5q4p0foouv3" path="res://gameplay/Gameplay.cs" id="4_5dw38"]
+[ext_resource type="Script" uid="uid://8vkdkrdt2rgh" path="res://ui/Hud.cs" id="5_l4klo"]
+[ext_resource type="Texture2D" uid="uid://rusjs0rxefdl" path="res://assets/2D/MainMenu/MainMenu.png" id="6_dj7kl"]
+[ext_resource type="Texture2D" uid="uid://c0hsgr0i34axs" path="res://assets/2D/Icons/Icon_CatnipBag.png" id="7_ncaew"]
+[ext_resource type="Shader" path="res://assets/Shader/ui_fog.gdshader" id="8_qt3cc"]
+[ext_resource type="Texture2D" uid="uid://dopsa0435c4ye" path="res://assets/2D/noise.png" id="9_g35y0"]
+[ext_resource type="Texture2D" uid="uid://dqkuipeee5xbf" path="res://assets/2D/Cards/DiscardPile.png" id="10_wdbcs"]
+[ext_resource type="Script" uid="uid://bp64cwdqrlygr" path="res://gameplay/Deck.cs" id="11_vjvfh"]
+[ext_resource type="Resource" uid="uid://bl5r6qrxgsgo3" path="res://gameplay/cards/instances/card_move_10.tres" id="12_v5mqo"]
+[ext_resource type="Script" uid="uid://bt7r7nusxbpsv" path="res://gameplay/DeckEntry.cs" id="13_c6p3c"]
+[ext_resource type="Resource" uid="uid://cxk2dmo6atpcu" path="res://gameplay/cards/instances/card_summon_cat.tres" id="14_wu6x4"]
+[ext_resource type="Resource" uid="uid://dqamkdeotg7vt" path="res://gameplay/cards/instances/card_summon_box.tres" id="15_t2g50"]
+[ext_resource type="Resource" uid="uid://cyl0bioig84qr" path="res://gameplay/cards/instances/card_summon_racoon.tres" id="16_wf4xg"]
+[ext_resource type="Resource" uid="uid://ih453nd7fsjl" path="res://gameplay/cards/instances/card_summon_chipmunk.tres" id="17_27c3c"]
+[ext_resource type="Resource" uid="uid://bboevd7u8vn57" path="res://gameplay/cards/instances/card_action.tres" id="18_epkbo"]
+[ext_resource type="PackedScene" uid="uid://c8fvd606ep5u" path="res://ui/held_card.tscn" id="19_xjhbm"]
+[ext_resource type="Script" uid="uid://cidnfcxxq2ctp" path="res://gameplay/PlayerHand.cs" id="20_048ju"]
+[ext_resource type="Texture2D" uid="uid://c6i2tq3sw7wst" path="res://ui/direction.png" id="21_irhlp"]
+[ext_resource type="Texture2D" uid="uid://cqlfam0nbnpqg" path="res://ui/direction_hover.png" id="22_nqok7"]
+[ext_resource type="Texture2D" uid="uid://dbjk4vvd4lbal" path="res://ui/direction_right.png" id="23_unuix"]
+[ext_resource type="Texture2D" uid="uid://dca3q0s5fiw5b" path="res://ui/direction_right_hover.png" id="24_uigvh"]
+[ext_resource type="Script" uid="uid://buu7cbc7wjijb" path="res://ui/GameOverScreen.cs" id="25_hxxxu"]
+[ext_resource type="Texture2D" uid="uid://cnr7n55dq2r1a" path="res://assets/2D/GameOverScreen/GameOverBackground.png" id="26_qsj57"]
+[ext_resource type="Script" uid="uid://csrxs2hpe8vw6" path="res://ui/DeckSelect.cs" id="27_6pypk"]
+[ext_resource type="Resource" path="res://gameplay/cards/instances/card_move_5.tres" id="28_78sbd"]
+[ext_resource type="Resource" path="res://gameplay/cards/instances/card_move_15.tres" id="29_fg4hb"]
+[ext_resource type="Texture2D" uid="uid://cslaqvxyw5d3l" path="res://assets/2D/Cards/RaccoonVariant3.png" id="30_a6s8a"]
+[ext_resource type="Texture2D" uid="uid://c6vfnhrwktuva" path="res://assets/2D/Cards/CatGun.png" id="31_8k6iq"]
+[ext_resource type="Texture2D" uid="uid://b3pmfau711til" path="res://assets/2D/Cards/Chipmunk.png" id="32_t52c4"]
+[ext_resource type="Texture2D" uid="uid://bitp6dd3wcoy" path="res://assets/2D/Cards/Move5Card.png" id="33_cs2y6"]
+[ext_resource type="Texture2D" uid="uid://bm2ysskf2vab6" path="res://assets/2D/Cards/Move10Card.png" id="34_si7ee"]
+[ext_resource type="Texture2D" uid="uid://cd7erqkrda0w7" path="res://assets/2D/Cards/Move15Card.png" id="35_ojx0l"]
+[ext_resource type="Texture2D" uid="uid://cscqhobgos1k1" path="res://assets/2D/Cards/ActionCard.png" id="36_q6acy"]
+[ext_resource type="Texture2D" uid="uid://d0w1fajvjaa2n" path="res://assets/2D/Cards/BoxCard.png" id="37_y7m64"]
+[ext_resource type="PackedScene" uid="uid://bd5na6m5iarth" path="res://scenes/level/TutorialLevel.tscn" id="38_vbxd6"]
+[ext_resource type="PackedScene" uid="uid://b4ufa4onh1vrb" path="res://camera/cameras.tscn" id="39_xqbwa"]
+[ext_resource type="AudioStream" uid="uid://8ibx4iua14ac" path="res://assets/Sound/CCC Ingame Loop.wav" id="40_7xpn7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fvcpb"]
+shader = ExtResource("8_qt3cc")
+
+[sub_resource type="Resource" id="Resource_juwkt"]
+script = ExtResource("13_c6p3c")
+Card = ExtResource("12_v5mqo")
+Count = 20
+metadata/_custom_type_script = "uid://bt7r7nusxbpsv"
+
+[sub_resource type="Resource" id="Resource_ilpo5"]
+script = ExtResource("13_c6p3c")
+Card = ExtResource("14_wu6x4")
+Count = 3
+metadata/_custom_type_script = "uid://bt7r7nusxbpsv"
+
+[sub_resource type="Resource" id="Resource_fq0u6"]
+script = ExtResource("13_c6p3c")
+Card = ExtResource("15_t2g50")
+Count = 10
+metadata/_custom_type_script = "uid://bt7r7nusxbpsv"
+
+[sub_resource type="Resource" id="Resource_fvcpb"]
+script = ExtResource("13_c6p3c")
+Card = ExtResource("16_wf4xg")
+Count = 3
+metadata/_custom_type_script = "uid://bt7r7nusxbpsv"
+
+[sub_resource type="Resource" id="Resource_dqase"]
+script = ExtResource("13_c6p3c")
+Card = ExtResource("17_27c3c")
+Count = 3
+metadata/_custom_type_script = "uid://bt7r7nusxbpsv"
+
+[sub_resource type="Resource" id="Resource_amt0v"]
+script = ExtResource("13_c6p3c")
+Card = ExtResource("18_epkbo")
+Count = 10
+metadata/_custom_type_script = "uid://bt7r7nusxbpsv"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ykg1"]
+content_margin_left = 50.0
+content_margin_top = 50.0
+content_margin_right = 50.0
+content_margin_bottom = 50.0
+bg_color = Color(1, 1, 0.79, 0.862745)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.8, 0.545098, 0.8, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[node name="IngameScene" type="Node2D"]
+script = ExtResource("1_vbxd6")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="FadeOverlay" parent="UI" instance=ExtResource("2_2a5f1")]
+unique_name_in_owner = true
+visible = false
+
+[node name="PauseOverlay" parent="UI" instance=ExtResource("3_xk5md")]
+unique_name_in_owner = true
+process_mode = 2
+visible = false
+
+[node name="Gameplay" type="Node" parent="." node_paths=PackedStringArray("_deck", "_hand") groups=["Gameplay"]]
+script = ExtResource("4_5dw38")
+_deck = NodePath("HUD/BottomUI/VBoxContainer/DeckContainer/Deck")
+_hand = NodePath("HUD/BottomUI/PlayerHand")
+_stepTime = 0.3
+
+[node name="HUD" type="CanvasLayer" parent="Gameplay" node_paths=PackedStringArray("_scoreLabel", "_remainingCardsLabel", "_turnCounterLabel", "_endTurnButton", "_gameplay", "_deck", "_rotationUi")]
+follow_viewport_enabled = true
+script = ExtResource("5_l4klo")
+_scoreLabel = NodePath("TopUI/HBoxContainer/Score")
+_remainingCardsLabel = NodePath("BottomUI/VBoxContainer/DeckContainer/RemainingCardsContainer/RemainingCards")
+_turnCounterLabel = NodePath("TopUI/TurnCounter")
+_endTurnButton = NodePath("BottomUI/VBoxContainer/MarginContainer/Control/EndTurnButton")
+_gameplay = NodePath("..")
+_deck = NodePath("BottomUI/VBoxContainer/DeckContainer/Deck")
+_rotationUi = NodePath("CardDirectionControl")
+
+[node name="BottomBackground2" type="TextureRect" parent="Gameplay/HUD"]
+visible = false
+texture_filter = 4
+texture_repeat = 2
+custom_minimum_size = Vector2(0, 100)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("6_dj7kl")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="TopUI" type="Control" parent="Gameplay/HUD"]
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="TurnCounter" type="Label" parent="Gameplay/HUD/TopUI"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 28.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 30
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Gameplay/HUD/TopUI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -46.5
+offset_right = 46.5
+offset_bottom = 40.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="Icon" type="TextureRect" parent="Gameplay/HUD/TopUI/HBoxContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("7_ncaew")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Score" type="Label" parent="Gameplay/HUD/TopUI/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "1234"
+
+[node name="BottomUI" type="Control" parent="Gameplay/HUD"]
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Control" type="Control" parent="Gameplay/HUD/BottomUI"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="BottomBackground" type="TextureRect" parent="Gameplay/HUD/BottomUI/Control"]
+texture_filter = 4
+texture_repeat = 2
+material = SubResource("ShaderMaterial_fvcpb")
+custom_minimum_size = Vector2(0, 180)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -100.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("9_g35y0")
+expand_mode = 1
+
+[node name="Blocker" type="Control" parent="Gameplay/HUD/BottomUI/Control/BottomBackground"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="DiscardPile" type="TextureRect" parent="Gameplay/HUD/BottomUI"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -179.0
+offset_right = 136.0
+grow_vertical = 0
+texture = ExtResource("10_wdbcs")
+expand_mode = 5
+stretch_mode = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Gameplay/HUD/BottomUI"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -136.0
+offset_top = -225.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Gameplay/HUD/BottomUI/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Control" type="Control" parent="Gameplay/HUD/BottomUI/VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+
+[node name="EndTurnButton" type="Button" parent="Gameplay/HUD/BottomUI/VBoxContainer/MarginContainer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 8
+text = "end_turn"
+
+[node name="DeckContainer" type="MarginContainer" parent="Gameplay/HUD/BottomUI/VBoxContainer"]
+custom_minimum_size = Vector2(136, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="DiscardPile2" type="TextureRect" parent="Gameplay/HUD/BottomUI/VBoxContainer/DeckContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+texture = ExtResource("10_wdbcs")
+expand_mode = 5
+stretch_mode = 4
+
+[node name="Deck" type="Node2D" parent="Gameplay/HUD/BottomUI/VBoxContainer/DeckContainer"]
+position = Vector2(70, 90)
+script = ExtResource("11_vjvfh")
+_cards = [SubResource("Resource_juwkt"), SubResource("Resource_ilpo5"), SubResource("Resource_fq0u6"), SubResource("Resource_fvcpb"), SubResource("Resource_dqase"), SubResource("Resource_amt0v")]
+_heldCardScene = ExtResource("19_xjhbm")
+
+[node name="RemainingCardsContainer" type="PanelContainer" parent="Gameplay/HUD/BottomUI/VBoxContainer/DeckContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="RemainingCards" type="Label" parent="Gameplay/HUD/BottomUI/VBoxContainer/DeckContainer/RemainingCardsContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 30
+text = "96"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayerHand" type="Control" parent="Gameplay/HUD/BottomUI" node_paths=PackedStringArray("_deck", "_discardPile", "_bottomArea")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("20_048ju")
+_deck = NodePath("../VBoxContainer/DeckContainer/Deck")
+_discardPile = NodePath("../DiscardPile")
+_bottomArea = NodePath("../Control/BottomBackground/Blocker")
+_maxCardCount = 8
+_maxCardAtTurnEnd = 99
+_hoverOffset = 25.0
+_animationDurationReposition = 0.2
+_damp = 20.0
+
+[node name="CardDirectionControl" type="Control" parent="Gameplay/HUD"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="Gameplay/HUD/CardDirectionControl"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -107.0
+offset_top = -104.0
+offset_right = 107.0
+offset_bottom = 104.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 20
+columns = 3
+
+[node name="Control" type="Control" parent="Gameplay/HUD/CardDirectionControl/GridContainer"]
+layout_mode = 2
+
+[node name="ButtonNorth" type="TextureButton" parent="Gameplay/HUD/CardDirectionControl/GridContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+texture_normal = ExtResource("21_irhlp")
+texture_pressed = ExtResource("22_nqok7")
+texture_hover = ExtResource("22_nqok7")
+texture_disabled = ExtResource("21_irhlp")
+texture_focused = ExtResource("22_nqok7")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Control3" type="Control" parent="Gameplay/HUD/CardDirectionControl/GridContainer"]
+layout_mode = 2
+
+[node name="ButtonWest" type="TextureButton" parent="Gameplay/HUD/CardDirectionControl/GridContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+texture_normal = ExtResource("23_unuix")
+texture_pressed = ExtResource("24_uigvh")
+texture_hover = ExtResource("24_uigvh")
+texture_disabled = ExtResource("23_unuix")
+texture_focused = ExtResource("24_uigvh")
+ignore_texture_size = true
+stretch_mode = 5
+flip_h = true
+
+[node name="Control5" type="Control" parent="Gameplay/HUD/CardDirectionControl/GridContainer"]
+layout_mode = 2
+
+[node name="ButtonEast" type="TextureButton" parent="Gameplay/HUD/CardDirectionControl/GridContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+texture_normal = ExtResource("23_unuix")
+texture_pressed = ExtResource("24_uigvh")
+texture_hover = ExtResource("24_uigvh")
+texture_disabled = ExtResource("23_unuix")
+texture_focused = ExtResource("24_uigvh")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Control6" type="Control" parent="Gameplay/HUD/CardDirectionControl/GridContainer"]
+layout_mode = 2
+
+[node name="ButtonSouth" type="TextureButton" parent="Gameplay/HUD/CardDirectionControl/GridContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+texture_normal = ExtResource("21_irhlp")
+texture_pressed = ExtResource("22_nqok7")
+texture_hover = ExtResource("22_nqok7")
+texture_disabled = ExtResource("21_irhlp")
+texture_focused = ExtResource("22_nqok7")
+ignore_texture_size = true
+stretch_mode = 5
+flip_v = true
+
+[node name="Control7" type="Control" parent="Gameplay/HUD/CardDirectionControl/GridContainer"]
+layout_mode = 2
+
+[node name="GameOverOverlay" type="CanvasLayer" parent="Gameplay" node_paths=PackedStringArray("_hud", "_lootLabel", "_turnsLabel", "_cardsLabel", "_messageLabel", "_continueButton", "_gameplay", "_hand")]
+visible = false
+script = ExtResource("25_hxxxu")
+_hud = NodePath("../HUD")
+_lootLabel = NodePath("VBoxContainer/Control/PanelContainer/VBoxContainer/HBoxContainer/Loot")
+_turnsLabel = NodePath("VBoxContainer/Control/PanelContainer/VBoxContainer/HBoxContainer2/Turns")
+_cardsLabel = NodePath("VBoxContainer/Control/PanelContainer/VBoxContainer/HBoxContainer3/Cards")
+_messageLabel = NodePath("VBoxContainer/Control/PanelContainer/VBoxContainer/Text")
+_continueButton = NodePath("VBoxContainer/ContinueButton")
+_nextScenePath = "uid://dv2y18ye8j7o0"
+_gameplay = NodePath("..")
+_hand = NodePath("../HUD/BottomUI/PlayerHand")
+
+[node name="TextureRect" type="TextureRect" parent="Gameplay/GameOverOverlay"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("26_qsj57")
+expand_mode = 3
+stretch_mode = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Gameplay/GameOverOverlay"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Headline" type="Label" parent="Gameplay/GameOverOverlay/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 2
+theme_override_constants/shadow_outline_size = 1
+theme_override_font_sizes/font_size = 70
+text = "gameover_message"
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="Gameplay/GameOverOverlay/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="Gameplay/GameOverOverlay/VBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -292.5
+offset_top = -45.0
+offset_right = 292.5
+offset_bottom = 45.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Gameplay/GameOverOverlay/VBoxContainer/Control/PanelContainer"]
+layout_mode = 2
+
+[node name="Text" type="Label" parent="Gameplay/GameOverOverlay/VBoxContainer/Control/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 30
+text = "gameover_details"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Gameplay/GameOverOverlay/VBoxContainer/Control/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Loot" type="Label" parent="Gameplay/GameOverOverlay/VBoxContainer/Control/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 30
+text = "56556"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Gameplay/GameOverOverlay/VBoxContainer/Control/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("7_ncaew")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Text2" type="Label" parent="Gameplay/GameOverOverlay/VBoxContainer/Control/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 30
+text = "
+Within"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Gameplay/GameOverOverlay/VBoxContainer/Control/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Turns" type="Label" parent="Gameplay/GameOverOverlay/VBoxContainer/Control/PanelContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 30
+text = "56"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="Gameplay/GameOverOverlay/VBoxContainer/Control/PanelContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 30
+text = "turns"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Gameplay/GameOverOverlay/VBoxContainer/Control/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Cards" type="Label" parent="Gameplay/GameOverOverlay/VBoxContainer/Control/PanelContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 30
+text = "56"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="Gameplay/GameOverOverlay/VBoxContainer/Control/PanelContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 30
+text = "cards"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ContinueButton" type="Button" parent="Gameplay/GameOverOverlay/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 40
+text = "continue"
+
+[node name="Control2" type="Control" parent="Gameplay/GameOverOverlay/VBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+
+[node name="DeckSelect" type="CanvasLayer" parent="Gameplay" node_paths=PackedStringArray("_countRaccoon", "_countCat", "_countChipmunk", "_countMove5", "_countMove10", "_countMove15", "_countAction", "_countBox", "_deck", "_hud", "_gameplay")]
+script = ExtResource("27_6pypk")
+_countRaccoon = NodePath("PanelContainer/VBoxContainer/GridContainer/Raccoon")
+_raccoon = ExtResource("16_wf4xg")
+_countCat = NodePath("PanelContainer/VBoxContainer/GridContainer/Cat")
+_cat = ExtResource("14_wu6x4")
+_countChipmunk = NodePath("PanelContainer/VBoxContainer/GridContainer/Chipmunk")
+_chipmunk = ExtResource("17_27c3c")
+_countMove5 = NodePath("PanelContainer/VBoxContainer/GridContainer/Move5")
+_move5 = ExtResource("28_78sbd")
+_countMove10 = NodePath("PanelContainer/VBoxContainer/GridContainer/Move10")
+_move10 = ExtResource("12_v5mqo")
+_countMove15 = NodePath("PanelContainer/VBoxContainer/GridContainer/Move15")
+_move15 = ExtResource("29_fg4hb")
+_countAction = NodePath("PanelContainer/VBoxContainer/GridContainer/Action")
+_action = ExtResource("18_epkbo")
+_countBox = NodePath("PanelContainer/VBoxContainer/GridContainer/Box")
+_box = ExtResource("15_t2g50")
+_deck = NodePath("../HUD/BottomUI/VBoxContainer/DeckContainer/Deck")
+_hud = NodePath("../HUD")
+_gameplay = NodePath("..")
+
+[node name="PanelContainer" type="PanelContainer" parent="Gameplay/DeckSelect"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -239.0
+offset_top = -228.0
+offset_right = 239.0
+offset_bottom = 228.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1ykg1")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Gameplay/DeckSelect/PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Gameplay/DeckSelect/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "build_your_deck_tutorial"
+horizontal_alignment = 1
+
+[node name="Space" type="Control" parent="Gameplay/DeckSelect/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="Gameplay/DeckSelect/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 10
+columns = 8
+
+[node name="RaccoonImage" type="TextureRect" parent="Gameplay/DeckSelect/PanelContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+tooltip_text = "raccoon_tooltip"
+texture = ExtResource("30_a6s8a")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="Raccoon" type="SpinBox" parent="Gameplay/DeckSelect/PanelContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+value = 2.0
+rounded = true
+alignment = 1
+editable = false
+custom_arrow_step = 1.0
+
+[node name="Space6" type="Control" parent="Gameplay/DeckSelect/PanelContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="CatImage" type="TextureRect" parent="Gameplay/DeckSelect/PanelContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+tooltip_text = "cat_tooltip"
+texture = ExtResource("31_8k6iq")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="Cat" type="SpinBox" parent="Gameplay/DeckSelect/PanelContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+value = 2.0
+rounded = true
+alignment = 1
+editable = false
+custom_arrow_step = 1.0
+
+[node name="Space5" type="Control" parent="Gameplay/DeckSelect/PanelContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+
+[node name="ChipmunkImage" type="TextureRect" parent="Gameplay/DeckSelect/PanelContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+tooltip_text = "chipmunk_tooltip"
+texture = ExtResource("32_t52c4")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="Chipmunk" type="SpinBox" parent="Gameplay/DeckSelect/PanelContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+value = 2.0
+rounded = true
+alignment = 1
+editable = false
+custom_arrow_step = 1.0
+
+[node name="Move5Image" type="TextureRect" parent="Gameplay/DeckSelect/PanelContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+tooltip_text = "move5_tooltip"
+texture = ExtResource("33_cs2y6")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="Move5" type="SpinBox" parent="Gameplay/DeckSelect/PanelContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+value = 5.0
+rounded = true
+alignment = 1
+editable = false
+custom_arrow_step = 1.0
+
+[node name="Space3" type="Control" parent="Gameplay/DeckSelect/PanelContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+
+[node name="Move10Image" type="TextureRect" parent="Gameplay/DeckSelect/PanelContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+tooltip_text = "move10_tooltip"
+texture = ExtResource("34_si7ee")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="Move10" type="SpinBox" parent="Gameplay/DeckSelect/PanelContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+value = 5.0
+rounded = true
+alignment = 1
+editable = false
+custom_arrow_step = 1.0
+
+[node name="Space4" type="Control" parent="Gameplay/DeckSelect/PanelContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Move15Image" type="TextureRect" parent="Gameplay/DeckSelect/PanelContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+tooltip_text = "move15_tooltip"
+texture = ExtResource("35_ojx0l")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="Move15" type="SpinBox" parent="Gameplay/DeckSelect/PanelContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+value = 5.0
+rounded = true
+alignment = 1
+editable = false
+custom_arrow_step = 1.0
+
+[node name="ActionImage" type="TextureRect" parent="Gameplay/DeckSelect/PanelContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+tooltip_text = "action_tooltip"
+texture = ExtResource("36_q6acy")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="Action" type="SpinBox" parent="Gameplay/DeckSelect/PanelContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+value = 10.0
+rounded = true
+alignment = 1
+editable = false
+custom_arrow_step = 1.0
+
+[node name="Space" type="Control" parent="Gameplay/DeckSelect/PanelContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+
+[node name="BoxImage" type="TextureRect" parent="Gameplay/DeckSelect/PanelContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+tooltip_text = "box_tooltip"
+texture = ExtResource("37_y7m64")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="Box" type="SpinBox" parent="Gameplay/DeckSelect/PanelContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+value = 5.0
+rounded = true
+alignment = 1
+editable = false
+custom_arrow_step = 1.0
+
+[node name="Space2" type="Control" parent="Gameplay/DeckSelect/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="Gameplay/DeckSelect/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "continue"
+
+[node name="Level" type="Node" parent="Gameplay"]
+
+[node name="TutorialScene" parent="Gameplay/Level" instance=ExtResource("38_vbxd6")]
+
+[node name="Cameras" parent="." instance=ExtResource("39_xqbwa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43, 0, 111.27)
+
+[node name="FreeCamera" parent="Cameras" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.819152, 0.573576, 0, -0.573576, 0.819152, -32, 10, -36)
+
+[node name="TopDownCamera" parent="Cameras" index="1"]
+transform = Transform3D(1, 0, 0, 0, 0.173648, 0.984808, 0, -0.984808, 0.173648, -18, 22, -45)
+
+[node name="CameraConfiner" parent="Cameras" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53.3202, 0, -16.6543)
+MinLimit = Vector3(-30, 0, -30)
+MaxLimit = Vector3(20, 30, 10)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("40_7xpn7")
+volume_db = -10.788
+autoplay = true
+bus = &"Music"
+playback_type = 1
+
+[connection signal="GameOver" from="Gameplay" to="Gameplay/GameOverOverlay" method="ShowOverlay"]
+[connection signal="pressed" from="Gameplay/HUD/BottomUI/VBoxContainer/MarginContainer/Control/EndTurnButton" to="Gameplay/HUD" method="TryEndTurn"]
+[connection signal="CardPlayed" from="Gameplay/HUD/BottomUI/PlayerHand" to="Gameplay/HUD" method="OnCardPlayed"]
+[connection signal="pressed" from="Gameplay/HUD/CardDirectionControl/GridContainer/ButtonNorth" to="Gameplay/HUD" method="RotateCardNorth"]
+[connection signal="pressed" from="Gameplay/HUD/CardDirectionControl/GridContainer/ButtonWest" to="Gameplay/HUD" method="RotateCardWest"]
+[connection signal="pressed" from="Gameplay/HUD/CardDirectionControl/GridContainer/ButtonEast" to="Gameplay/HUD" method="RotateCardEast"]
+[connection signal="pressed" from="Gameplay/HUD/CardDirectionControl/GridContainer/ButtonSouth" to="Gameplay/HUD" method="RotateCardSouth"]
+[connection signal="pressed" from="Gameplay/GameOverOverlay/VBoxContainer/ContinueButton" to="Gameplay/GameOverOverlay" method="Continue"]
+[connection signal="pressed" from="Gameplay/DeckSelect/PanelContainer/VBoxContainer/Button" to="Gameplay/DeckSelect" method="StartGame"]
+
+[editable path="Cameras"]
