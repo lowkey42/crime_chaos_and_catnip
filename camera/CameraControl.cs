@@ -73,14 +73,16 @@ public partial class CameraControl : Node
 			
 			switch ((int)mouseEvent.ButtonIndex) {
 				case 4:
-					IsometricCamera.Position = new Vector3(IsometricCamera.Position.X, IsometricCamera.Position.Y - 0.5f, IsometricCamera.Position.Z);
+					targetPosition = new Vector3(IsometricCamera.Position.X, IsometricCamera.Position.Y - 0.5f, IsometricCamera.Position.Z);
 					break;
 				case 5:
-					IsometricCamera.Position = new Vector3(IsometricCamera.Position.X, IsometricCamera.Position.Y + 0.5f, IsometricCamera.Position.Z);
+					targetPosition = new Vector3(IsometricCamera.Position.X, IsometricCamera.Position.Y + 0.5f, IsometricCamera.Position.Z);
 					break;
 				case 2:
 					break;
 			}
+			var tween = GetTree().CreateTween();
+			tween.TweenProperty(IsometricCamera, "position", targetPosition, 0.1f);
 		}
 		
 		switch (@event) {
