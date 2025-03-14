@@ -142,7 +142,7 @@ _data = {
 [node name="HeldCard" type="Node2D" node_paths=PackedStringArray("_sprite", "_animationPlayer")]
 script = ExtResource("1_dxi6h")
 Card = SubResource("Resource_7t26j")
-_sprite = NodePath("")
+_sprite = NodePath("DraggableSprite2D/FrontSprite")
 _animationPlayer = NodePath("FlipAnimation")
 metadata/_custom_type_script = "uid://ducu2kng5aotl"
 
@@ -152,7 +152,6 @@ scale = Vector2(0.15, 0.15)
 script = ExtResource("5_7t26j")
 centerDrag = true
 return_to_origin = true
-origin = Vector2(118, 96)
 sprite = NodePath("FrontSprite")
 
 [node name="FrontSprite" type="TextureRect" parent="DraggableSprite2D"]
