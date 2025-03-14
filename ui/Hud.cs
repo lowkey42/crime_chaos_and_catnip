@@ -37,6 +37,10 @@ public partial class Hud : CanvasLayer {
 		_endTurnButton.TooltipText = _gameplay.CanEndTurn() ? "" : $"Play or discard {_gameplay.CardsOverLimit()} more cards to end your turn";
 		
 		_turnCounterLabel.Text = _gameplay.Turns.ToString();
+
+		if (_cardSpawn != null) {
+			PositionRotationUi();
+		}
 	}
 	
 	public void TryEndTurn() {
@@ -52,10 +56,13 @@ public partial class Hud : CanvasLayer {
 			return;
 
 		_cardSpawn = obj;
-		
-		var camera = GetViewport().GetCamera3D();
 		AddChild(_rotationUi);
-		_rotationUi.GlobalPosition = camera.UnprojectPosition(spawn.GlobalPosition);
+		PositionRotationUi();
+	}
+
+	private void PositionRotationUi() {
+		var camera = GetViewport().GetCamera3D();
+		_rotationUi.GlobalPosition = camera.UnprojectPosition(_cardSpawn.GlobalPosition);
 		_rotationUi.RotationDegrees = camera.RotationDegrees.Y;
 	}
 
