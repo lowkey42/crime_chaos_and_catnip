@@ -52,11 +52,11 @@ func _ready() -> void:
 	default_collider.shape = RectangleShape2D.new()
 
 	update_default_collider()
-	
+
 	add_child(default_collider)
 	if has_custom_collider():
 		toggle_default_collider(false)
-	
+
 	# Set the starting origin if necessary
 	if return_to_origin:
 		origin = global_position
@@ -85,7 +85,7 @@ func has_custom_collider() -> bool:
 	for child in children:
 		if child is CollisionShape2D or child is CollisionPolygon2D:
 			return true
-	
+
 	return false
 
 
@@ -108,7 +108,7 @@ func _input_event(viewport: Viewport, event: InputEvent, shape_idx: int) -> void
 	if currently_dragged_sprite and currently_dragged_sprite.get_parent().get_index() > get_parent().get_index():
 		return
 	# Detect when mouse button is clicked inside the area2d
-	if event is InputEventMouseButton and grabbable:		
+	if event is InputEventMouseButton and grabbable:
 		if event.is_pressed():
 			if currently_dragged_sprite:
 				currently_dragged_sprite.is_grabbed = false

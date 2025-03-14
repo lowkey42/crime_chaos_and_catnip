@@ -34,7 +34,7 @@ public partial class Hud : CanvasLayer {
 		_endTurnButton.Visible = !_gameplay.CanEndGame();
 		_endGameButton.Visible = _gameplay.CanEndGame();
 
-		_endTurnButton.TooltipText = _gameplay.CanEndTurn() ? "" : $"Play or discard {_gameplay.CardsOverLimit()} more cards to end your turn";
+		_endTurnButton.TooltipText = _gameplay.CardsOverLimit()>0 ? "" : $"Play or discard {_gameplay.CardsOverLimit()} more cards to end your turn";
 		
 		_turnCounterLabel.Text = _gameplay.Turns.ToString();
 
@@ -55,8 +55,10 @@ public partial class Hud : CanvasLayer {
 		if (!card.RequiresOrientation || spawn is not OrientedBoardObject obj)
 			return;
 
+		var hidden = _cardSpawn == null;
 		_cardSpawn = obj;
-		AddChild(_rotationUi);
+		if(hidden)
+			AddChild(_rotationUi);
 		PositionRotationUi();
 	}
 

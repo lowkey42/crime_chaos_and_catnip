@@ -146,10 +146,12 @@ sprite = NodePath("FrontSprite")
 
 [node name="FrontSprite" type="Sprite2D" parent="DraggableSprite2D"]
 z_index = -1
+texture_filter = 6
 material = ExtResource("6_gopet")
 texture = ExtResource("7_gy4tq")
 
 [node name="BackSprite" type="Sprite2D" parent="DraggableSprite2D"]
+texture_filter = 6
 material = ExtResource("6_gopet")
 texture = ExtResource("8_1s48i")
 

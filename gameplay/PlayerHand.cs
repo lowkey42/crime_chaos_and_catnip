@@ -1,4 +1,5 @@
 #nullable enable
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Godot;
@@ -148,8 +149,8 @@ public partial class PlayerHand : Control {
 
 	    float cardSpread = Mathf.Min(_cardAngleLimit / _heldCards.Count, _maxCardSpreadAngle);
 	    float baseAngle = -((cardSpread * (_heldCards.Count - 1)) / 2) - 90;
-	    float hoverOffset = 50f;
-	    float sidePush = 30f;
+	    float hoverOffset = 20f;
+	    float sidePush = 20f;
 
 	    List<Task> animations = new List<Task>();
 
@@ -342,19 +343,18 @@ public partial class PlayerHand : Control {
 		    card.Scale = Vector2.One * 0.5f; 
             
 		    Tween tween = CreateTween();
-		    tween.TweenProperty(card, "position", finalPosition, 0.3f)
+		    tween.TweenProperty(card, "position", finalPosition, _animationDuration)
 			    .SetEase(Tween.EaseType.Out) 
 			    .SetTrans(Tween.TransitionType.Quad); 
             
-		    tween.Parallel().TweenProperty(card, "rotation", finalRotation, 0.3f);
-		    tween.Parallel().TweenProperty(card, "scale", Vector2.One, 0.3f);
+		    tween.Parallel().TweenProperty(card, "rotation", finalRotation, _animationDuration);
+		    tween.Parallel().TweenProperty(card, "scale", Vector2.One, _animationDuration);
 		    
-		    await ToSignal(tween, "finished");
-
-		    RepositionCards();
-
+		    await Task.Delay(TimeSpan.FromSeconds(i<_maxCardCount-1 ? _animationDurationStagger : _animationDuration+0.1f));
 	    }
 
+	    RepositionCards();
+	    
 	    return true;
     }
     
