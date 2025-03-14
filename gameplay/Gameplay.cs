@@ -267,7 +267,9 @@ public partial class Gameplay : Node {
 		moveTween.SetParallel();
 		foreach (var unit in _unitsMovingInNextStep) {
 			var target = _board.GetCell(unit.MoveTarget).Position;
-			moveTween.TweenProperty(unit, "global_position", target, _stepTime);
+			//old lerp
+			//moveTween.TweenProperty(unit, "global_position", target, _stepTime);
+			MoveUnitStepByStep(moveTween,unit, target, _stepTime);
 			unit.MovementLeft--;
 		}
 		// execute half movement + bounce for stunned units
@@ -285,6 +287,22 @@ public partial class Gameplay : Node {
 			
 		}
 	}
+	
+	private void MoveUnitStepByStep(Tween tween,Unit unit, Vector3 targetPosition, float stepTime) {
+		var currentPosition = _board.GetCell(unit.BoardPosition).Position;
+		if (currentPosition == targetPosition) {
+			return;
+		}
+		var direction = (targetPosition - currentPosition);
+		var start = currentPosition + direction;
+		var end = currentPosition + direction;
+		var midPoint = start.Lerp(end, 0.5f) + new Vector3(0, 1, 0);
+		var newTween = unit.CreateTween();
+		newTween.TweenProperty(unit, "global_position", midPoint, stepTime).SetTrans(Tween.TransitionType.Quad).SetEase(Tween.EaseType.In);
+		newTween.TweenProperty(unit, "global_position", end, stepTime).SetTrans(Tween.TransitionType.Quad).SetEase(Tween.EaseType.Out);
+		tween.TweenSubtween(newTween);
+	}
+	
 
 	private async Task Draw() {
 		if (_currentState != State.Shuffle && _currentState != State.Acting)

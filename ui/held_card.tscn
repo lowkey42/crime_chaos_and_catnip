@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c8fvd606ep5u"]
+[gd_scene load_steps=13 format=3 uid="uid://c8fvd606ep5u"]
 
 [ext_resource type="Script" uid="uid://ducu2kng5aotl" path="res://gameplay/cards/HeldCard.cs" id="1_dxi6h"]
 [ext_resource type="Texture2D" uid="uid://cw4qn5ngn6ax5" path="res://gameplay/cards/instances/card_move_10.png" id="2_omqpp"]
@@ -6,7 +6,8 @@
 [ext_resource type="Script" uid="uid://d0vrl7d4sx35b" path="res://gameplay/cards/CardMove.cs" id="3_esxd3"]
 [ext_resource type="Script" uid="uid://bn0wyw5lpfmgm" path="res://addons/addons/draggablesprite2d/src/draggablesprite2d.gd" id="5_7t26j"]
 [ext_resource type="Material" uid="uid://btbfdgcacptlh" path="res://assets/2D/3deffectcard.tres" id="6_gopet"]
-[ext_resource type="Texture2D" uid="uid://by78uykv1wms5" path="res://gameplay/cards/instances/Cardbackside.png" id="7_gopet"]
+[ext_resource type="Texture2D" uid="uid://cscqhobgos1k1" path="res://assets/2D/Cards/ActionCard.png" id="7_gy4tq"]
+[ext_resource type="Texture2D" uid="uid://dvi3cwd7y55ln" path="res://assets/2D/Cards/CardBackSprite.png" id="8_1s48i"]
 
 [sub_resource type="Resource" id="Resource_7t26j"]
 script = ExtResource("3_esxd3")
@@ -145,11 +146,11 @@ sprite = NodePath("FrontSprite")
 [node name="FrontSprite" type="Sprite2D" parent="DraggableSprite2D"]
 z_index = -1
 material = ExtResource("6_gopet")
-texture = ExtResource("2_omqpp")
+texture = ExtResource("7_gy4tq")
 
 [node name="BackSprite" type="Sprite2D" parent="DraggableSprite2D"]
 material = ExtResource("6_gopet")
-texture = ExtResource("7_gopet")
+texture = ExtResource("8_1s48i")
 
 [node name="FlipAnimation" type="AnimationPlayer" parent="."]
 libraries = {

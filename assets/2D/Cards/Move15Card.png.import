@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bw6q7nsiw7r1w"
-path="res://.godot/imported/Banner(Faded).png-ccb799cad3d6394fb62171713e0f22f4.ctex"
+uid="uid://cd7erqkrda0w7"
+path="res://.godot/imported/Move15Card.png-17163adb5755eff31b4441651458458b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/2D/UI/Banner(Faded).png"
-dest_files=["res://.godot/imported/Banner(Faded).png-ccb799cad3d6394fb62171713e0f22f4.ctex"]
+source_file="res://assets/2D/Cards/Move15Card.png"
+dest_files=["res://.godot/imported/Move15Card.png-17163adb5755eff31b4441651458458b.ctex"]
 
 [params]
 

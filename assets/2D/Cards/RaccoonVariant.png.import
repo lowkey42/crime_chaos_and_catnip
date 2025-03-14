@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://crjy2ilj38owb"
-path="res://.godot/imported/GodotLogoCat.png-7f481043c4406a64bed336c5e4ab1150.ctex"
+uid="uid://bcb2eg6vmi2c8"
+path="res://.godot/imported/RaccoonVariant.png-2b437d96e27714ed9aea4ea26c2c3a22.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/2D/UI/GodotLogoCat.png"
-dest_files=["res://.godot/imported/GodotLogoCat.png-7f481043c4406a64bed336c5e4ab1150.ctex"]
+source_file="res://assets/2D/Cards/RaccoonVariant.png"
+dest_files=["res://.godot/imported/RaccoonVariant.png-2b437d96e27714ed9aea4ea26c2c3a22.ctex"]
 
 [params]
 

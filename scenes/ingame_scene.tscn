@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://cik30de5gaaah"]
+[gd_scene load_steps=39 format=3 uid="uid://cik30de5gaaah"]
 
 [ext_resource type="Script" uid="uid://dmeymco117qmu" path="res://scenes/ingame_scene.gd" id="1_objyc"]
 [ext_resource type="PackedScene" uid="uid://bkk87o2ooo6at" path="res://ui/overlays/fade_overlay.tscn" id="1_y6ebv"]
@@ -9,23 +9,27 @@
 [ext_resource type="Script" uid="uid://o5q4p0foouv3" path="res://gameplay/Gameplay.cs" id="6_juwkt"]
 [ext_resource type="PackedScene" uid="uid://c8fvd606ep5u" path="res://ui/held_card.tscn" id="6_vus8m"]
 [ext_resource type="Script" uid="uid://bt7r7nusxbpsv" path="res://gameplay/DeckEntry.cs" id="7_2vs8u"]
-[ext_resource type="Shader" uid="uid://dh223vyipyq2p" path="res://assets/Shader/ui_fog.gdshader" id="7_fq0u6"]
+[ext_resource type="Shader" path="res://assets/Shader/ui_fog.gdshader" id="7_fq0u6"]
 [ext_resource type="Script" uid="uid://bp64cwdqrlygr" path="res://gameplay/Deck.cs" id="7_ilpo5"]
 [ext_resource type="Texture2D" uid="uid://dqkuipeee5xbf" path="res://assets/2D/Cards/DiscardPile.png" id="7_q7kwb"]
 [ext_resource type="Resource" uid="uid://cxk2dmo6atpcu" path="res://gameplay/cards/instances/card_summon_cat.tres" id="8_juwkt"]
 [ext_resource type="Texture2D" uid="uid://dopsa0435c4ye" path="res://assets/2D/noise.png" id="9_fvcpb"]
 [ext_resource type="Script" uid="uid://cidnfcxxq2ctp" path="res://gameplay/PlayerHand.cs" id="10_etwux"]
-[ext_resource type="Resource" path="res://gameplay/cards/instances/card_summon_box.tres" id="12_l64ye"]
-[ext_resource type="Resource" path="res://gameplay/cards/instances/card_summon_racoon.tres" id="13_rohyw"]
+[ext_resource type="Resource" uid="uid://dqamkdeotg7vt" path="res://gameplay/cards/instances/card_summon_box.tres" id="12_l64ye"]
+[ext_resource type="Resource" uid="uid://cyl0bioig84qr" path="res://gameplay/cards/instances/card_summon_racoon.tres" id="13_rohyw"]
 [ext_resource type="Shader" uid="uid://ci55tqqowoikf" path="res://addons/outline.gdshader" id="13_th7mp"]
-[ext_resource type="Resource" path="res://gameplay/cards/instances/card_summon_chipmunk.tres" id="14_hr6f0"]
+[ext_resource type="Resource" uid="uid://ih453nd7fsjl" path="res://gameplay/cards/instances/card_summon_chipmunk.tres" id="14_hr6f0"]
 [ext_resource type="PackedScene" uid="uid://b4ufa4onh1vrb" path="res://camera/cameras.tscn" id="14_ilpo5"]
 [ext_resource type="Texture2D" uid="uid://cw4qn5ngn6ax5" path="res://gameplay/cards/instances/card_move_10.png" id="14_q7kwb"]
-[ext_resource type="Resource" path="res://gameplay/cards/instances/card_action.tres" id="15_6ywyt"]
+[ext_resource type="Resource" uid="uid://bboevd7u8vn57" path="res://gameplay/cards/instances/card_action.tres" id="15_6ywyt"]
 [ext_resource type="Script" uid="uid://buu7cbc7wjijb" path="res://ui/GameOverScreen.cs" id="15_th7mp"]
 [ext_resource type="Texture2D" uid="uid://cnr7n55dq2r1a" path="res://assets/2D/GameOverScreen/GameOverBackground.png" id="22_6ywyt"]
-[ext_resource type="PackedScene" uid="uid://jxjimmbyhk6o" path="res://scenes/level/level_03.tscn" id="23_6ywyt"]
+[ext_resource type="PackedScene" path="res://scenes/level/level_03.tscn" id="23_6ywyt"]
 [ext_resource type="Texture2D" uid="uid://c0hsgr0i34axs" path="res://assets/2D/Icons/Icon_CatnipBag.png" id="23_fq0u6"]
+[ext_resource type="Texture2D" uid="uid://c6i2tq3sw7wst" path="res://ui/direction.png" id="23_or0qi"]
+[ext_resource type="Texture2D" uid="uid://cqlfam0nbnpqg" path="res://ui/direction_hover.png" id="24_bmd0x"]
+[ext_resource type="Texture2D" uid="uid://dbjk4vvd4lbal" path="res://ui/direction_right.png" id="25_xo32w"]
+[ext_resource type="Texture2D" uid="uid://dca3q0s5fiw5b" path="res://ui/direction_right_hover.png" id="26_bcpdc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fvcpb"]
 shader = ExtResource("7_fq0u6")
@@ -332,34 +336,60 @@ columns = 3
 [node name="Control" type="Control" parent="Gameplay/HUD/CardDirectionControl/GridContainer"]
 layout_mode = 2
 
-[node name="ButtonNorth" type="Button" parent="Gameplay/HUD/CardDirectionControl/GridContainer"]
+[node name="ButtonNorth" type="TextureButton" parent="Gameplay/HUD/CardDirectionControl/GridContainer"]
+custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = " ⇑ "
+texture_normal = ExtResource("23_or0qi")
+texture_pressed = ExtResource("24_bmd0x")
+texture_hover = ExtResource("24_bmd0x")
+texture_disabled = ExtResource("23_or0qi")
+texture_focused = ExtResource("24_bmd0x")
+ignore_texture_size = true
+stretch_mode = 5
 
 [node name="Control3" type="Control" parent="Gameplay/HUD/CardDirectionControl/GridContainer"]
 layout_mode = 2
 
-[node name="ButtonWest" type="Button" parent="Gameplay/HUD/CardDirectionControl/GridContainer"]
+[node name="ButtonWest" type="TextureButton" parent="Gameplay/HUD/CardDirectionControl/GridContainer"]
+custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = " ⇐ "
+texture_normal = ExtResource("25_xo32w")
+texture_pressed = ExtResource("26_bcpdc")
+texture_hover = ExtResource("26_bcpdc")
+texture_disabled = ExtResource("25_xo32w")
+texture_focused = ExtResource("26_bcpdc")
+ignore_texture_size = true
+stretch_mode = 5
+flip_h = true
 
 [node name="Control5" type="Control" parent="Gameplay/HUD/CardDirectionControl/GridContainer"]
 layout_mode = 2
 
-[node name="ButtonEast" type="Button" parent="Gameplay/HUD/CardDirectionControl/GridContainer"]
+[node name="ButtonEast" type="TextureButton" parent="Gameplay/HUD/CardDirectionControl/GridContainer"]
+custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = " ⇒ "
+texture_normal = ExtResource("25_xo32w")
+texture_pressed = ExtResource("26_bcpdc")
+texture_hover = ExtResource("26_bcpdc")
+texture_disabled = ExtResource("25_xo32w")
+texture_focused = ExtResource("26_bcpdc")
+ignore_texture_size = true
+stretch_mode = 5
 
 [node name="Control6" type="Control" parent="Gameplay/HUD/CardDirectionControl/GridContainer"]
 layout_mode = 2
 
-[node name="ButtonSouth" type="Button" parent="Gameplay/HUD/CardDirectionControl/GridContainer"]
+[node name="ButtonSouth" type="TextureButton" parent="Gameplay/HUD/CardDirectionControl/GridContainer"]
+custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = " ⇓ "
+texture_normal = ExtResource("23_or0qi")
+texture_pressed = ExtResource("24_bmd0x")
+texture_hover = ExtResource("24_bmd0x")
+texture_disabled = ExtResource("23_or0qi")
+texture_focused = ExtResource("24_bmd0x")
+ignore_texture_size = true
+stretch_mode = 5
+flip_v = true
 
 [node name="Control7" type="Control" parent="Gameplay/HUD/CardDirectionControl/GridContainer"]
 layout_mode = 2

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://crjy2ilj38owb"
-path="res://.godot/imported/GodotLogoCat.png-7f481043c4406a64bed336c5e4ab1150.ctex"
+uid="uid://dypqif7lsad7n"
+path="res://.godot/imported/Movement15.png-e1177601ff32769b293cf2b5496f6e70.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/2D/UI/GodotLogoCat.png"
-dest_files=["res://.godot/imported/GodotLogoCat.png-7f481043c4406a64bed336c5e4ab1150.ctex"]
+source_file="res://assets/2D/Cards/Movement15.png"
+dest_files=["res://.godot/imported/Movement15.png-e1177601ff32769b293cf2b5496f6e70.ctex"]
 
 [params]
 
