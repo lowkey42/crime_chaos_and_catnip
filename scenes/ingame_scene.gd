@@ -9,8 +9,6 @@ func _ready() -> void:
 	if SaveGame.has_save():
 		SaveGame.load_game(get_tree())
 
-	pause_overlay.game_exited.connect(_save_game)
-
 func _input(event) -> void:
 	if event.is_action_pressed("pause") and not pause_overlay.visible:
 		get_viewport().set_input_as_handled()
