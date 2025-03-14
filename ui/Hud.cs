@@ -8,6 +8,8 @@ public partial class Hud : CanvasLayer {
 
 	[Export] private Label _remainingCardsLabel;
 
+	[Export] private Label _turnCounterLabel;
+
 	[Export] private Button _endTurnButton;
 
 	[Export] private Button _endGameButton;
@@ -33,6 +35,8 @@ public partial class Hud : CanvasLayer {
 		_endGameButton.Visible = _gameplay.CanEndGame();
 
 		_endTurnButton.TooltipText = _gameplay.CanEndTurn() ? "" : $"Play or discard {_gameplay.CardsOverLimit()} more cards to end your turn";
+		
+		_turnCounterLabel.Text = _gameplay.Turns.ToString();
 	}
 	
 	public void TryEndTurn() {
