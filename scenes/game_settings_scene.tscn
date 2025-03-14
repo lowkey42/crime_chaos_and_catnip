@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cgakdkyg2lchh" path="res://scenes/game_settings_scene.gd" id="1_3764u"]
 [ext_resource type="PackedScene" uid="uid://bkk87o2ooo6at" path="res://ui/overlays/fade_overlay.tscn" id="1_w6tmj"]
-[ext_resource type="Texture2D" uid="uid://dt2fgehf87ng4" path="res://ui/menu_background.png" id="2_3hjmb"]
+[ext_resource type="Texture2D" uid="uid://cweug0t0gla1f" path="res://assets/2D/MainMenu/MainMenuSetting.png" id="2_3hjmb"]
 [ext_resource type="PackedScene" uid="uid://nbaodrlopo7y" path="res://ui/components/game_settings.tscn" id="2_qsqie"]
 [ext_resource type="Theme" uid="uid://d22mpqutkotsu" path="res://ui/theme.tres" id="3_unbh4"]
 
@@ -11,7 +11,7 @@ content_margin_left = 50.0
 content_margin_top = 50.0
 content_margin_right = 50.0
 content_margin_bottom = 50.0
-bg_color = Color(1, 1, 0.788235, 1)
+bg_color = Color(1, 1, 0.79, 0.784314)
 border_width_left = 5
 border_width_top = 5
 border_width_right = 5
