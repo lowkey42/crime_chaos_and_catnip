@@ -1,6 +1,7 @@
 [gd_resource type="Theme" load_steps=29 format=3 uid="uid://d22mpqutkotsu"]
 
 [ext_resource type="FontFile" uid="uid://dbmji04vmaq7m" path="res://fonts/American Typewriter Condensed.ttf" id="1_rqugq"]
+[ext_resource type="StyleBox" uid="uid://d2rcl2ojc8ko4" path="res://ui/pressed_button_style.tres" id="2_jf26r"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yo7pd"]
 content_margin_left = 4.0
@@ -73,26 +74,6 @@ corner_detail = 20
 shadow_color = Color(0.768627, 0.427451, 0.584314, 1)
 shadow_size = 1
 shadow_offset = Vector2(3, 3)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sgkw7"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0.898039, 0.847059, 0.886275, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(0.93, 0.7719, 0.84568, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-corner_detail = 20
-shadow_color = Color(0.768627, 0.427451, 0.584314, 1)
-shadow_size = 1
-shadow_offset = Vector2(1, 1)
 
 [sub_resource type="Image" id="Image_rqugq"]
 data = {
@@ -248,7 +229,7 @@ Button/styles/disabled = SubResource("StyleBoxFlat_yo7pd")
 Button/styles/focus = SubResource("StyleBoxFlat_6xrbm")
 Button/styles/hover = SubResource("StyleBoxFlat_p7kfi")
 Button/styles/normal = SubResource("StyleBoxFlat_ctk1n")
-Button/styles/pressed = SubResource("StyleBoxFlat_sgkw7")
+Button/styles/pressed = ExtResource("2_jf26r")
 CheckButton/colors/font_color = Color(0.780392, 0.482353, 0.631373, 1)
 CheckButton/colors/font_disabled_color = Color(0.556863, 0.027451, 0.364706, 1)
 CheckButton/colors/font_focus_color = Color(0.901961, 0.376471, 0.639216, 1)
@@ -281,6 +262,18 @@ HSlider/styles/grabber_area = SubResource("StyleBoxFlat_rqugq")
 Label/colors/font_color = Color(0.901961, 0.376471, 0.639216, 1)
 Label/font_sizes/font_size = 24
 Label/fonts/font = ExtResource("1_rqugq")
+LineEdit/colors/caret_color = Color(0.901961, 0.376471, 0.639216, 1)
+LineEdit/colors/clear_button_color = Color(0.901961, 0.376471, 0.639216, 1)
+LineEdit/colors/clear_button_color_pressed = Color(0.901961, 0.376471, 0.639216, 1)
+LineEdit/colors/font_color = Color(0.901961, 0.376471, 0.639216, 1)
+LineEdit/colors/font_outline_color = Color(0, 0, 0, 1)
+LineEdit/colors/font_placeholder_color = Color(0.9, 0.378, 0.639, 0.6)
+LineEdit/colors/font_selected_color = Color(0.901961, 0.376471, 0.639216, 1)
+LineEdit/colors/font_uneditable_color = Color(0.9, 0.378, 0.639, 0.501961)
+LineEdit/font_sizes/font_size = 24
+LineEdit/styles/focus = ExtResource("2_jf26r")
+LineEdit/styles/normal = ExtResource("2_jf26r")
+LineEdit/styles/read_only = ExtResource("2_jf26r")
 PopupMenu/colors/font_color = Color(0.780392, 0.482353, 0.631373, 1)
 PopupMenu/colors/font_disabled_color = Color(0.556863, 0.027451, 0.364706, 1)
 PopupMenu/colors/font_hover_color = Color(0.870588, 0.592157, 0.729412, 1)
@@ -288,6 +281,24 @@ PopupMenu/colors/font_outline_color = Color(0.768627, 0.435294, 0.588235, 1)
 PopupMenu/styles/hover = SubResource("StyleBoxFlat_6lx7k")
 PopupMenu/styles/panel = SubResource("StyleBoxFlat_jf26r")
 PopupMenu/styles/separator = SubResource("StyleBoxLine_rqugq")
+SpinBox/colors/down_disabled_icon_modulate = Color(0.9, 0.378, 0.639, 0.501961)
+SpinBox/colors/down_hover_icon_modulate = Color(0.901961, 0.376471, 0.639216, 1)
+SpinBox/colors/down_icon_modulate = Color(0.901961, 0.376471, 0.639216, 1)
+SpinBox/colors/down_pressed_icon_modulate = Color(0.901961, 0.376471, 0.639216, 1)
+SpinBox/colors/up_disabled_icon_modulate = Color(0.9, 0.378, 0.639, 0.501961)
+SpinBox/colors/up_hover_icon_modulate = Color(0.901961, 0.376471, 0.639216, 1)
+SpinBox/colors/up_icon_modulate = Color(0.901961, 0.376471, 0.639216, 1)
+SpinBox/colors/up_pressed_icon_modulate = Color(0.901961, 0.376471, 0.639216, 1)
+SpinBox/constants/buttons_width = 20
+SpinBox/styles/down_background = ExtResource("2_jf26r")
+SpinBox/styles/down_background_disabled = ExtResource("2_jf26r")
+SpinBox/styles/down_background_hovered = ExtResource("2_jf26r")
+SpinBox/styles/down_background_pressed = ExtResource("2_jf26r")
+SpinBox/styles/up_background = ExtResource("2_jf26r")
+SpinBox/styles/up_background_disabled = ExtResource("2_jf26r")
+SpinBox/styles/up_background_hovered = ExtResource("2_jf26r")
+SpinBox/styles/up_background_pressed = ExtResource("2_jf26r")
+SpinBox/styles/up_down_buttons_separator = ExtResource("2_jf26r")
 TooltipLabel/font_sizes/font_size = 30
 TooltipPanel/font_sizes/title_font_size = 30
 TooltipPanel/styles/panel = SubResource("StyleBoxFlat_iqtc0")

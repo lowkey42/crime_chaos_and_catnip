@@ -21,9 +21,22 @@ public partial class Deck : Node2D {
 	
 	public int RemainingCards => _liveCards.Count;
 
+	public void SetCards(List<DeckEntry> cards) {
+		_cards = cards.ToArray();
+		ShuffleDeck();
+	}
+	
 	public override void _EnterTree() {
 		base._EnterTree();
+		ShuffleDeck();
+	}
 
+	public void ShuffleDeck() {
+		foreach (var child in GetChildren()) {
+			child.QueueFree();
+		}
+		_liveCards.Clear();
+		
 		foreach (var card in _cards) {
 			for (var i = 0; i < card.Count; i++) {
 				var heldCard = (HeldCard) _heldCardScene.Instantiate();
@@ -40,7 +53,7 @@ public partial class Deck : Node2D {
 	}
 
 	public async Task ShuffleAnimation() {
-		await Task.Delay(100); // TODO
+		await Task.Delay(1);
 	}
 
 	public HeldCard? TryDrawCard() {
