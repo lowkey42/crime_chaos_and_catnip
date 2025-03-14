@@ -89,14 +89,13 @@ _deck = NodePath("HUD/BottomUI/VBoxContainer/DeckContainer/Deck")
 _hand = NodePath("HUD/BottomUI/PlayerHand")
 _stepTime = 0.3
 
-[node name="HUD" type="CanvasLayer" parent="Gameplay" node_paths=PackedStringArray("_scoreLabel", "_remainingCardsLabel", "_turnCounterLabel", "_endTurnButton", "_endGameButton", "_gameplay", "_deck", "_rotationUi")]
+[node name="HUD" type="CanvasLayer" parent="Gameplay" node_paths=PackedStringArray("_scoreLabel", "_remainingCardsLabel", "_turnCounterLabel", "_endTurnButton", "_gameplay", "_deck", "_rotationUi")]
 follow_viewport_enabled = true
 script = ExtResource("5_pxehq")
 _scoreLabel = NodePath("TopUI/HBoxContainer/Score")
 _remainingCardsLabel = NodePath("BottomUI/VBoxContainer/DeckContainer/RemainingCardsContainer/RemainingCards")
 _turnCounterLabel = NodePath("TopUI/TurnCounter")
 _endTurnButton = NodePath("BottomUI/VBoxContainer/MarginContainer/Control/EndTurnButton")
-_endGameButton = NodePath("BottomUI/VBoxContainer/MarginContainer/Control/EndGameButton")
 _gameplay = NodePath("..")
 _deck = NodePath("BottomUI/VBoxContainer/DeckContainer/Deck")
 _rotationUi = NodePath("CardDirectionControl")
@@ -251,18 +250,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 8
-text = "  End Turn  "
-
-[node name="EndGameButton" type="Button" parent="Gameplay/HUD/BottomUI/VBoxContainer/MarginContainer/Control"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_vertical = 8
-text = " End Game "
+text = "End Turn"
 
 [node name="DeckContainer" type="MarginContainer" parent="Gameplay/HUD/BottomUI/VBoxContainer"]
 custom_minimum_size = Vector2(136, 0)
@@ -579,7 +567,6 @@ playback_type = 1
 
 [connection signal="GameOver" from="Gameplay" to="Gameplay/GameOverOverlay" method="ShowOverlay"]
 [connection signal="pressed" from="Gameplay/HUD/BottomUI/VBoxContainer/MarginContainer/Control/EndTurnButton" to="Gameplay/HUD" method="TryEndTurn"]
-[connection signal="pressed" from="Gameplay/HUD/BottomUI/VBoxContainer/MarginContainer/Control/EndGameButton" to="Gameplay/HUD" method="TryEndGame"]
 [connection signal="CardPlayed" from="Gameplay/HUD/BottomUI/PlayerHand" to="Gameplay/HUD" method="OnCardPlayed"]
 [connection signal="pressed" from="Gameplay/HUD/CardDirectionControl/GridContainer/ButtonNorth" to="Gameplay/HUD" method="RotateCardNorth"]
 [connection signal="pressed" from="Gameplay/HUD/CardDirectionControl/GridContainer/ButtonWest" to="Gameplay/HUD" method="RotateCardWest"]
