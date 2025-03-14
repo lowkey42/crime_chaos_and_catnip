@@ -36,7 +36,7 @@ public partial class CardBase : Resource {
 			state.Board.AddChild(particleEffect);
 			var particlesList = particleEffect.GetChildren().OfType<GpuParticles3D>().ToList();
 			foreach (var particle in particlesList) {
-				particle.GlobalPosition = state.TargetCell.Position + new Vector3(0, 0.5f,1);
+				particle.GlobalPosition = state.TargetCell.Position + new Vector3(0, 1f,0);
 				particle.Emitting = true; // Starte die Partikel-Emission
 			}
 		}
