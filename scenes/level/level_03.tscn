@@ -1,13 +1,14 @@
-[gd_scene load_steps=21 format=3 uid="uid://jxjimmbyhk6o"]
+[gd_scene load_steps=22 format=3 uid="uid://jxjimmbyhk6o"]
 
 [ext_resource type="Script" uid="uid://b4tr0lmx326c7" path="res://gameplay/Board.cs" id="1_hx277"]
-[ext_resource type="PackedScene" uid="uid://b267dln8bmyc0" path="res://gridsystem/grid_lines.tscn" id="2_o1nda"]
+[ext_resource type="PackedScene" path="res://gridsystem/grid_lines.tscn" id="2_o1nda"]
 [ext_resource type="PackedScene" uid="uid://bwslpyd3dfv3r" path="res://gameplay/board_objects/exit.tscn" id="3_fu6u2"]
 [ext_resource type="PackedScene" uid="uid://mb4i47wd66wh" path="res://gameplay/board_objects/loot.tscn" id="5_5xxq8"]
 [ext_resource type="PackedScene" uid="uid://c5fw6hn22hi6k" path="res://gameplay/board_objects/loot_sources/loot_source_cat.tscn" id="6_xwmh0"]
 [ext_resource type="PackedScene" uid="uid://70upebyxhbou" path="res://gameplay/board_objects/loot_sources/loot_source_racoon.tscn" id="7_mcbxj"]
-[ext_resource type="PackedScene" uid="uid://r1l46im0nohs" path="res://gameplay/board_objects/units/enemy_unit_goose.tscn" id="8_613py"]
+[ext_resource type="PackedScene" path="res://gameplay/board_objects/units/enemy_unit_goose.tscn" id="8_613py"]
 [ext_resource type="PackedScene" uid="uid://ce37br2s4b6qe" path="res://gameplay/board_objects/loot_sources/loot_source_chipmunk.tscn" id="8_lmiw1"]
+[ext_resource type="Material" uid="uid://b7rgxxmt708ru" path="res://scenes/level/enemypath1.tres" id="9_k7sxj"]
 [ext_resource type="MeshLibrary" uid="uid://crx7qq1oe5n3w" path="res://CityMeshLibrary.tres" id="11_dketp"]
 [ext_resource type="Script" uid="uid://c78jpbv3tl850" path="res://gameplay/board_objects/GridMapBoardCollision.cs" id="12_ijhy3"]
 [ext_resource type="MeshLibrary" uid="uid://b8tgjug4vkhw0" path="res://City_1x1_mesh_new.tres" id="13_avub8"]
@@ -457,6 +458,38 @@ _path = NodePath("../EnemyPath")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29, 0, 94)
 curve = SubResource("Curve3D_k7sxj")
 
+[node name="ENEMYPOLYGON" type="CSGPolygon3D" parent="Board/GameplaySetup/Gooses/EnemyPath"]
+polygon = PackedVector2Array(-0.5, 0, -0.5, 0.1, 0.5, 0.1, 0.5, 0)
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 0.01
+path_simplify_angle = 0.0
+path_rotation = 1
+path_rotation_accurate = true
+path_local = true
+path_continuous_u = true
+path_u_distance = 0.0
+path_joined = false
+smooth_faces = true
+material = ExtResource("9_k7sxj")
+
+[node name="ENEMYPOLYGON2" type="CSGPolygon3D" parent="Board/GameplaySetup/Gooses/EnemyPath"]
+polygon = PackedVector2Array(-0.5, 0, -0.5, 0.1, 0.5, 0.1, 0.5, 0)
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 0.01
+path_simplify_angle = 0.0
+path_rotation = 1
+path_rotation_accurate = true
+path_local = true
+path_continuous_u = true
+path_u_distance = 0.0
+path_joined = false
+smooth_faces = true
+material = ExtResource("9_k7sxj")
+
 [node name="EnemyUnitGoose2" parent="Board/GameplaySetup/Gooses" node_paths=PackedStringArray("_path") instance=ExtResource("8_613py")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 82, 0, 94)
 _path = NodePath("../EnemyPath2")
@@ -464,6 +497,22 @@ _path = NodePath("../EnemyPath2")
 [node name="EnemyPath2" type="Path3D" parent="Board/GameplaySetup/Gooses"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 83, 0, 94)
 curve = SubResource("Curve3D_hx277")
+
+[node name="ENEMYPOLYGON" type="CSGPolygon3D" parent="Board/GameplaySetup/Gooses/EnemyPath2"]
+polygon = PackedVector2Array(-0.5, 0, -0.5, 0.1, 0.5, 0.1, 0.5, 0)
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 0.01
+path_simplify_angle = 0.0
+path_rotation = 1
+path_rotation_accurate = true
+path_local = true
+path_continuous_u = true
+path_u_distance = 0.0
+path_joined = false
+smooth_faces = true
+material = ExtResource("9_k7sxj")
 
 [node name="EnemyUnitGoose3" parent="Board/GameplaySetup/Gooses" node_paths=PackedStringArray("_path") instance=ExtResource("8_613py")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 58)
@@ -473,6 +522,22 @@ _path = NodePath("../EnemyPath3")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 58)
 curve = SubResource("Curve3D_613py")
 
+[node name="ENEMYPOLYGON" type="CSGPolygon3D" parent="Board/GameplaySetup/Gooses/EnemyPath3"]
+polygon = PackedVector2Array(-0.5, 0, -0.5, 0.1, 0.5, 0.1, 0.5, 0)
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 0.01
+path_simplify_angle = 0.0
+path_rotation = 1
+path_rotation_accurate = true
+path_local = true
+path_continuous_u = true
+path_u_distance = 0.0
+path_joined = false
+smooth_faces = true
+material = ExtResource("9_k7sxj")
+
 [node name="EnemyUnitGoose4" parent="Board/GameplaySetup/Gooses" node_paths=PackedStringArray("_path") instance=ExtResource("8_613py")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, 46)
 _path = NodePath("../EnemyPath4")
@@ -480,6 +545,22 @@ _path = NodePath("../EnemyPath4")
 [node name="EnemyPath4" type="Path3D" parent="Board/GameplaySetup/Gooses"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, 46)
 curve = SubResource("Curve3D_o1nda")
+
+[node name="ENEMYPOLYGON" type="CSGPolygon3D" parent="Board/GameplaySetup/Gooses/EnemyPath4"]
+polygon = PackedVector2Array(-0.5, 0, -0.5, 0.1, 0.5, 0.1, 0.5, 0)
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 0.01
+path_simplify_angle = 0.0
+path_rotation = 1
+path_rotation_accurate = true
+path_local = true
+path_continuous_u = true
+path_u_distance = 0.0
+path_joined = false
+smooth_faces = true
+material = ExtResource("9_k7sxj")
 
 [node name="EnemyUnitGoose5" parent="Board/GameplaySetup/Gooses" node_paths=PackedStringArray("_path") instance=ExtResource("8_613py")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52, 0, 34)
@@ -489,6 +570,22 @@ _path = NodePath("../EnemyPath5")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52, 0, 34)
 curve = SubResource("Curve3D_fu6u2")
 
+[node name="ENEMYPOLYGON" type="CSGPolygon3D" parent="Board/GameplaySetup/Gooses/EnemyPath5"]
+polygon = PackedVector2Array(-0.5, 0, -0.5, 0.1, 0.5, 0.1, 0.5, 0)
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 0.01
+path_simplify_angle = 0.0
+path_rotation = 1
+path_rotation_accurate = true
+path_local = true
+path_continuous_u = true
+path_u_distance = 0.0
+path_joined = false
+smooth_faces = true
+material = ExtResource("9_k7sxj")
+
 [node name="EnemyUnitGoose6" parent="Board/GameplaySetup/Gooses" node_paths=PackedStringArray("_path") instance=ExtResource("8_613py")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 76, 0, 11)
 _path = NodePath("../EnemyPath6")
@@ -496,6 +593,22 @@ _path = NodePath("../EnemyPath6")
 [node name="EnemyPath6" type="Path3D" parent="Board/GameplaySetup/Gooses"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 76, 0, 11)
 curve = SubResource("Curve3D_sntr5")
+
+[node name="ENEMYPOLYGON" type="CSGPolygon3D" parent="Board/GameplaySetup/Gooses/EnemyPath6"]
+polygon = PackedVector2Array(-0.5, 0, -0.5, 0.1, 0.5, 0.1, 0.5, 0)
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 0.01
+path_simplify_angle = 0.0
+path_rotation = 1
+path_rotation_accurate = true
+path_local = true
+path_continuous_u = true
+path_u_distance = 0.0
+path_joined = false
+smooth_faces = true
+material = ExtResource("9_k7sxj")
 
 [node name="EnemyUnitGoose7" parent="Board/GameplaySetup/Gooses" node_paths=PackedStringArray("_path") instance=ExtResource("8_613py")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 76, 0, 45)
@@ -505,6 +618,22 @@ _path = NodePath("../EnemyPath7")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 76, 0, 45)
 curve = SubResource("Curve3D_5xxq8")
 
+[node name="ENEMYPOLYGON" type="CSGPolygon3D" parent="Board/GameplaySetup/Gooses/EnemyPath7"]
+polygon = PackedVector2Array(-0.5, 0, -0.5, 0.1, 0.5, 0.1, 0.5, 0)
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 0.01
+path_simplify_angle = 0.0
+path_rotation = 1
+path_rotation_accurate = true
+path_local = true
+path_continuous_u = true
+path_u_distance = 0.0
+path_joined = false
+smooth_faces = true
+material = ExtResource("9_k7sxj")
+
 [node name="EnemyUnitGoose8" parent="Board/GameplaySetup/Gooses" node_paths=PackedStringArray("_path") instance=ExtResource("8_613py")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59, 0, 39)
 _path = NodePath("../EnemyPath8")
@@ -513,6 +642,22 @@ _path = NodePath("../EnemyPath8")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59, 0, 39)
 curve = SubResource("Curve3D_xwmh0")
 
+[node name="ENEMYPOLYGON" type="CSGPolygon3D" parent="Board/GameplaySetup/Gooses/EnemyPath8"]
+polygon = PackedVector2Array(-0.5, 0, -0.5, 0.1, 0.5, 0.1, 0.5, 0)
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 0.01
+path_simplify_angle = 0.0
+path_rotation = 1
+path_rotation_accurate = true
+path_local = true
+path_continuous_u = true
+path_u_distance = 0.0
+path_joined = false
+smooth_faces = true
+material = ExtResource("9_k7sxj")
+
 [node name="EnemyUnitGoose9" parent="Board/GameplaySetup/Gooses" node_paths=PackedStringArray("_path") instance=ExtResource("8_613py")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52, 0, 64)
 _path = NodePath("../EnemyPath9")
@@ -520,6 +665,22 @@ _path = NodePath("../EnemyPath9")
 [node name="EnemyPath9" type="Path3D" parent="Board/GameplaySetup/Gooses"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52, 0, 64)
 curve = SubResource("Curve3D_mcbxj")
+
+[node name="ENEMYPOLYGON" type="CSGPolygon3D" parent="Board/GameplaySetup/Gooses/EnemyPath9"]
+polygon = PackedVector2Array(-0.5, 0, -0.5, 0.1, 0.5, 0.1, 0.5, 0)
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 0.01
+path_simplify_angle = 0.0
+path_rotation = 1
+path_rotation_accurate = true
+path_local = true
+path_continuous_u = true
+path_u_distance = 0.0
+path_joined = false
+smooth_faces = true
+material = ExtResource("9_k7sxj")
 
 [node name="Goose_Pathes" type="Node" parent="Board/GameplaySetup"]
 

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bcy21vavqbvlx"
+path="res://.godot/imported/CCC Theme Loop Only cut.wav-0fdd5212e7a76d484a405884bdf6cd53.sample"
+
+[deps]
+
+source_file="res://assets/Sound/CCC Theme Loop Only cut.wav"
+dest_files=["res://.godot/imported/CCC Theme Loop Only cut.wav-0fdd5212e7a76d484a405884bdf6cd53.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
