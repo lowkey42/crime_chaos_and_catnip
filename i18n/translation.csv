@@ -1,5 +1,5 @@
 keys,en,de
-credits,Credits here,Credits hier
+credits,Credits,Credits
 new_game,New Game,Neues Spiel
 continue,Continue,Fortfahren
 settings,Game Settings,Einstellungen
@@ -15,3 +15,18 @@ settings_volume_sound,Sound Volume,Sound Lautstärke
 settings_language,Game Language,Spielsprache
 game_paused,Game paused,Spiel pausiert
 resume_game,Resume game,Weiterspielen
+build_your_deck,Build your Deck,Deck Zusammenstellen
+end_turn,End Turn,Zug Beenden
+end_game,End Game,Spiel Beenden
+gameover_message,The Goolice Has Arrived,Die Goolice ist Eingetroffen
+gameover_details,You've escaped with,Du bist entkommen mit
+turns,Turns,Zügen
+cards,Cards,Karten
+raccoon_tooltip,"Summon a raccoon, that can plunder trashcans","Beschwöre einen Waschbär, der Mülleimer plündern kann"
+cat_tooltip,"Summon a cat, that can destroy mailboxes","Beschwöre eine Katze, die Briefkästen zerstören kann"
+chipmunk_tooltip,"Summon a chipmunk, that can fell trees","Beschwöre ein Eichhörnchen, das Bäume fällen kann"
+move5_tooltip,Move up to 5 tiles,Bewege eine Einheit bis zu 5 Felder
+move10_tooltip,Move up to 10 tiles,Bewege eine Einheit bis zu 10 Felder
+move15_tooltip,Move up to 15 tiles,Bewege eine Einheit bis zu 15 Felder
+action_tooltip,Attack and loot all fields around a unit,Plündere und greife alle Felder um eine Einheit an
+box_tooltip,Summon an all mighty box,Beschwöre eine Kiste

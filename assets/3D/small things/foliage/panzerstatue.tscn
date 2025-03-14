@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://dgvf2ilb2hdy1"]
+
+[ext_resource type="Material" uid="uid://chflfg0goashf" path="res://assets/3D/GrassTiles/GrassTiles.tres" id="1_a4ur5"]
+[ext_resource type="PackedScene" uid="uid://d2vyc11ywfhv2" path="res://assets/3D/cars/Panzer.glb" id="2_op60h"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_tc026"]
+
+[node name="Panzerstatue" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(2.24641, 0, 0, 0, 0.368195, 0, 0, 0, 2.1, 0.0291041, 0.299721, 0)
+mesh = SubResource("CylinderMesh_tc026")
+surface_material_override/0 = ExtResource("1_a4ur5")
+
+[node name="Panzer" parent="." instance=ExtResource("2_op60h")]
+transform = Transform3D(1, 0, 0, 0, 0.994895, 0.100917, 0, -0.100917, 0.994895, 0, 0.670428, 0)

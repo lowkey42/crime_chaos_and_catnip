@@ -28,7 +28,7 @@ public partial class Hud : CanvasLayer {
 		_scoreLabel.Text = _gameplay.Score.ToString();
 		_remainingCardsLabel.Text = _deck.RemainingCards.ToString();
 		
-		_endTurnButton.Text = _gameplay.CanEndGame() ? "End Game" : "End Turn";
+		_endTurnButton.Text = _gameplay.CanEndGame() ? "end_game" : "end_turn";
 		
 		_turnCounterLabel.Text = _gameplay.Turns.ToString();
 

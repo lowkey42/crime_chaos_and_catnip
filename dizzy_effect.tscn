@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://ddcc30mk8x34y"]
+
+[ext_resource type="Texture2D" uid="uid://c5rgnwedb7s0m" path="res://assets/2D/Particles/P_Dizzy.png" id="1_aj23d"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cq2jh"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_aj23d")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yha8l"]
+angular_velocity_min = 370.14
+angular_velocity_max = 370.14
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="QuadMesh" id="QuadMesh_q2axs"]
+
+[node name="Dizzy_Effect" type="Node3D"]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+material_override = SubResource("StandardMaterial3D_cq2jh")
+amount = 1
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_yha8l")
+draw_pass_1 = SubResource("QuadMesh_q2axs")
