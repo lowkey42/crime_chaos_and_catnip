@@ -17,6 +17,8 @@ public partial class GridLines : Node3D {
 
 	[Export] private Color _colorOther = Color.Color8(255, 255, 255);
 
+	[Export] private Color _colorExit = Color.Color8(255, 255, 255);
+
 	[Export] private Color _colorEmpty = Color.Color8(255, 255, 255);
 
 	[Export] private float _lineThicknessHovered = 0.2f;
@@ -128,9 +130,10 @@ public partial class GridLines : Node3D {
 			return _colorHoverForbidden;
 
 		if (cell.IsBlocked) return _colorBlocked;
+		if (cell.Objects.Any(obj => obj is Exit)) return _colorExit;
 		if (cell.Objects.Any(obj => obj is PlayerUnit)) return _colorPlayer;
 		if (cell.Objects.Any(obj => obj is EnemyUnit)) return _colorEnemy;
-		if (cell.Objects.Any(obj => obj is Loot)) return _colorLoot;
+		if (cell.Objects.Any(obj => obj is Loot or LootSource)) return _colorLoot;
 		if (cell.Objects.Count > 0) return _colorOther;
 		return _colorEmpty;
 	}

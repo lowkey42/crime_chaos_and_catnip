@@ -28,7 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://cqlfam0nbnpqg" path="res://ui/direction_hover.png" id="24_bmd0x"]
 [ext_resource type="Texture2D" uid="uid://dbjk4vvd4lbal" path="res://ui/direction_right.png" id="25_xo32w"]
 [ext_resource type="Texture2D" uid="uid://dca3q0s5fiw5b" path="res://ui/direction_right_hover.png" id="26_bcpdc"]
-[ext_resource type="AudioStream" uid="uid://c26hxxbjmlp0q" path="res://assets/Sound/CCC Ingame Loop.wav" id="29_rky18"]
+[ext_resource type="AudioStream" uid="uid://dtlt3cdoskwcx" path="res://assets/Sound/CCC Main Theme Full.wav" id="29_rky18"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fvcpb"]
 shader = ExtResource("7_fq0u6")
@@ -89,14 +89,13 @@ _deck = NodePath("HUD/BottomUI/VBoxContainer/DeckContainer/Deck")
 _hand = NodePath("HUD/BottomUI/PlayerHand")
 _stepTime = 0.3
 
-[node name="HUD" type="CanvasLayer" parent="Gameplay" node_paths=PackedStringArray("_scoreLabel", "_remainingCardsLabel", "_turnCounterLabel", "_endTurnButton", "_endGameButton", "_gameplay", "_deck", "_rotationUi")]
+[node name="HUD" type="CanvasLayer" parent="Gameplay" node_paths=PackedStringArray("_scoreLabel", "_remainingCardsLabel", "_turnCounterLabel", "_endTurnButton", "_gameplay", "_deck", "_rotationUi")]
 follow_viewport_enabled = true
 script = ExtResource("5_pxehq")
 _scoreLabel = NodePath("TopUI/HBoxContainer/Score")
 _remainingCardsLabel = NodePath("BottomUI/VBoxContainer/DeckContainer/RemainingCardsContainer/RemainingCards")
 _turnCounterLabel = NodePath("TopUI/TurnCounter")
 _endTurnButton = NodePath("BottomUI/VBoxContainer/MarginContainer/Control/EndTurnButton")
-_endGameButton = NodePath("BottomUI/VBoxContainer/MarginContainer/Control/EndGameButton")
 _gameplay = NodePath("..")
 _deck = NodePath("BottomUI/VBoxContainer/DeckContainer/Deck")
 _rotationUi = NodePath("CardDirectionControl")
@@ -251,18 +250,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 8
-text = "  End Turn  "
-
-[node name="EndGameButton" type="Button" parent="Gameplay/HUD/BottomUI/VBoxContainer/MarginContainer/Control"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_vertical = 8
-text = " End Game "
+text = "End Turn"
 
 [node name="DeckContainer" type="MarginContainer" parent="Gameplay/HUD/BottomUI/VBoxContainer"]
 custom_minimum_size = Vector2(136, 0)
@@ -574,10 +562,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43, 0, 111.27)
 stream = ExtResource("29_rky18")
 volume_db = -10.788
 autoplay = true
+bus = &"Music"
+playback_type = 1
 
 [connection signal="GameOver" from="Gameplay" to="Gameplay/GameOverOverlay" method="ShowOverlay"]
 [connection signal="pressed" from="Gameplay/HUD/BottomUI/VBoxContainer/MarginContainer/Control/EndTurnButton" to="Gameplay/HUD" method="TryEndTurn"]
-[connection signal="pressed" from="Gameplay/HUD/BottomUI/VBoxContainer/MarginContainer/Control/EndGameButton" to="Gameplay/HUD" method="TryEndGame"]
 [connection signal="CardPlayed" from="Gameplay/HUD/BottomUI/PlayerHand" to="Gameplay/HUD" method="OnCardPlayed"]
 [connection signal="pressed" from="Gameplay/HUD/CardDirectionControl/GridContainer/ButtonNorth" to="Gameplay/HUD" method="RotateCardNorth"]
 [connection signal="pressed" from="Gameplay/HUD/CardDirectionControl/GridContainer/ButtonWest" to="Gameplay/HUD" method="RotateCardWest"]
