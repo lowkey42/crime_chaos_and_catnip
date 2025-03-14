@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c3p2f0quigxji"
-path="res://.godot/imported/MovementCard.png-520dc91fd85289db096792d78cfd8324.ctex"
+uid="uid://d0w1fajvjaa2n"
+path="res://.godot/imported/BoxCard.png-0937d9c2724800b767b4c6774dbc5b73.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/2D/Cards/MovementCard.png"
-dest_files=["res://.godot/imported/MovementCard.png-520dc91fd85289db096792d78cfd8324.ctex"]
+source_file="res://assets/2D/Cards/BoxCard.png"
+dest_files=["res://.godot/imported/BoxCard.png-0937d9c2724800b767b4c6774dbc5b73.ctex"]
 
 [params]
 
@@ -21,7 +21,7 @@ compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

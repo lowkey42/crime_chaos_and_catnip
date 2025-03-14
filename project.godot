@@ -12,9 +12,13 @@ config_version=5
 
 config/name="Crime, Chaos & Catnip"
 config/version="0.0.1"
-run/main_scene="res://scenes/boot/godot/godot_bootsplash_scene.tscn"
+run/main_scene="uid://dv2y18ye8j7o0"
 config/features=PackedStringArray("4.4", "C#")
-config/icon="res://icon.svg"
+boot_splash/image="uid://duwfmy7rybva8"
+config/icon="uid://b8qltk0t8mugn"
+config/macos_native_icon="res://assets/2D/Icons/DesktopIconWithoutBackground.icns"
+config/windows_native_icon="res://assets/2D/Icons/DesktopIconWithoutBackground.ico"
+boot_splash/minimum_display_time=1000
 
 [autoload]
 
