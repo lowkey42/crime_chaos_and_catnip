@@ -53,7 +53,7 @@ func _on_settings_button_pressed() -> void:
 func _on_play_button_pressed() -> void:
 	next_scene = game_scene
 	overlay.fade_out()
-	
+
 func _on_tutorial_button_pressed() -> void:
 	next_scene = tutorial_scene
 	overlay.fade_out()
