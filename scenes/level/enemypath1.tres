@@ -1,6 +1,6 @@
 [gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://b7rgxxmt708ru"]
 
-[ext_resource type="Shader" path="res://scenes/level/enemypath1.gdshader" id="1_cwvgu"]
+[ext_resource type="Shader" uid="uid://mn1kk4mgkpvr" path="res://scenes/level/enemypath1.gdshader" id="1_cwvgu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_opkf8"]
 render_priority = 0

@@ -1,6 +1,6 @@
 extends CenterContainer
 
-signal game_exited
+@export_file("*.tscn") var main_menu_scene
 
 @onready var resume_button := %ResumeButton
 @onready var settings_button := %SettingsButton
@@ -29,8 +29,8 @@ func _settings() -> void:
 	back_button.grab_focus()
 
 func _exit() -> void:
-	game_exited.emit()
-	get_tree().quit()
+	get_tree().paused = false
+	get_tree().change_scene_to_file(main_menu_scene)
 
 func _pause_menu() -> void:
 	settings_container.visible = false
