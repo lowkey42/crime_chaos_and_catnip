@@ -70,12 +70,14 @@ public partial class Board : Node {
 	private readonly List<Unit> _units = [];
 
 	public override void _Ready() {
+		/*
 		if (_gridMap != null) {
 			foreach (var cell in _gridMap.GetUsedCells()) {
 				var p = _gridMap.ToGlobal(_gridMap.MapToLocal(cell) + _gridMap.CellSize);
 				_maxGridSize = _maxGridSize.Max(ToBoardPosition(p));
 			}
 		}
+		*/
 		
 		_cells = new Cell[_maxGridSize.X, _maxGridSize.Y];
 		for (var x = 0; x < _maxGridSize.X; x++)
