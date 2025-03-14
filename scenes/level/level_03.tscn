@@ -17,7 +17,6 @@
 [ext_resource type="Environment" uid="uid://bcp04kwm6bifu" path="res://environment.tres" id="15_aoegj"]
 [ext_resource type="PackedScene" uid="uid://dfvn827ve7r50" path="res://assets/3D/cars/lowpolycar-jeep2-downsized.glb" id="15_nesl0"]
 [ext_resource type="PackedScene" uid="uid://b4ghjeb173258" path="res://assets/3D/cars/lowpolycar-normal-downsized.glb" id="16_x5hun"]
-[ext_resource type="PackedScene" uid="uid://dgvf2ilb2hdy1" path="res://assets/3D/small things/foliage/panzerstatue.tscn" id="17_dketp"]
 [ext_resource type="PackedScene" uid="uid://cnyifj0b58f8d" path="res://assets/3D/small things/foliage/BuschKlein.glb" id="18_ijhy3"]
 [ext_resource type="PackedScene" uid="uid://bsq61q37gqwbk" path="res://assets/3D/small things/foliage/BaumGroß02.glb" id="19_avub8"]
 [ext_resource type="PackedScene" uid="uid://c2seirh1ng35j" path="res://assets/3D/small things/foliage/BuschKleinSway.tscn" id="20_aoegj"]
@@ -40,6 +39,7 @@
 [ext_resource type="PackedScene" uid="uid://c0rmks0q80knu" path="res://assets/3D/small things/straße/roadblock1.glb" id="37_b53ri"]
 [ext_resource type="PackedScene" uid="uid://bt1vnnnyustpv" path="res://assets/3D/small things/vent.glb" id="37_lmmpw"]
 [ext_resource type="PackedScene" uid="uid://cmlanued2imtr" path="res://assets/3D/small things/foliage/FlowerPot.glb" id="40_jwmdv"]
+[ext_resource type="PackedScene" uid="uid://bmp7sorugcf87" path="res://assets/3D/cars/tank.glb" id="40_ybf8u"]
 
 [sub_resource type="Curve3D" id="Curve3D_k7sxj"]
 _data = {
@@ -113,8 +113,6 @@ _maxGridSize = Vector2i(48, 48)
 _gridMap = NodePath("Visuals/6x6Gridmap")
 
 [node name="GridLines" parent="Board" instance=ExtResource("2_o1nda")]
-_colorLoot = Color(0.463841, 1, 0.893308, 0.901961)
-_colorOther = Color(0.989167, 1, 0.35, 0.901961)
 
 [node name="GameplaySetup" type="Node3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5)
@@ -833,9 +831,6 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -67.07
 [node name="lowpolycar-normal-downsized" parent="Board/Visuals" instance=ExtResource("16_x5hun")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -78.077, 0.1, -7)
 
-[node name="Panzerstatue" parent="Board/Visuals" instance=ExtResource("17_dketp")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -20.077, 0.1, -20)
-
 [node name="BuschKlein" parent="Board/Visuals" instance=ExtResource("18_ijhy3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.077, -0.273296, -18)
 
@@ -1406,3 +1401,6 @@ shadow_blur = 2.515
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="LightAndWorldEnvironment"]
 environment = ExtResource("15_aoegj")
+
+[node name="tank" parent="." instance=ExtResource("40_ybf8u")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 75.3709, -4.76837e-07, 51.7869)
