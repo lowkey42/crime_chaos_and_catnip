@@ -29,22 +29,13 @@ public partial class CameraControl : Node
 	private Vector3 _targetPosition;
 	private Vector3 _targetRotation;
 	[Export] public float LerpSpeed = 5.0f;
-
 	
 	private bool _isRightMouseButtonPressed;
 
 	
 	public override void _Ready() {
-		
-		
-		
 		_targetRotation = IsometricCamera.Rotation;
-
-		
-		
 	}
-
-
 
 	public override void _Input(InputEvent @event)
 	{
@@ -52,13 +43,11 @@ public partial class CameraControl : Node
 			switch (_currentCameraState) {
 				case CameraState.TopDown:
 					IsometricCamera.MakeCurrent();
-				
 					_currentCameraState = CameraState.Isometric;
 					break;
 				case CameraState.Isometric:
 					TopDownCamera.MakeCurrent();
 					_currentCameraState = CameraState.TopDown;
-					
 					break;
 				default:
 					throw new ArgumentOutOfRangeException();
@@ -112,8 +101,15 @@ public partial class CameraControl : Node
 				_isRightMouseButtonPressed = mouseEvent2.Pressed;
 				break;
 			case InputEventMouseMotion mouseMotionEvent when _isRightMouseButtonPressed: {
-				var rotationAmount = -mouseMotionEvent.Relative.X * 0.005f;
-				_targetRotation.Y += rotationAmount;
+
+				var yawAmount = -mouseMotionEvent.Relative.X * 0.005f;
+				_targetRotation.Y += yawAmount;
+
+				var pitchAmount = -mouseMotionEvent.Relative.Y * 0.005f;
+				var newPitch = Mathf.RadToDeg(_targetRotation.X) + Mathf.RadToDeg(pitchAmount);
+				newPitch = Mathf.Clamp(newPitch, -80f, -20f);
+				_targetRotation.X = Mathf.DegToRad(newPitch);
+
 				break;
 			}
 		}
@@ -125,8 +121,6 @@ public partial class CameraControl : Node
 		
 		if (_currentCameraState == CameraState.Isometric) {
 			
-			//Configures that the Camera moves on the borders of the screen.
-
 			var mousePos = GetViewport().GetMousePosition();
 			var screenSize = GetViewport().GetVisibleRect();
 
@@ -137,8 +131,6 @@ public partial class CameraControl : Node
 				} else if (mousePos.X >= screenSize.Size.X - EdgeSensitivity) {
 					movement.X += CameraSpeed * (float) delta;
 				}
-
-
 				if (mousePos.Y <= EdgeSensitivity) {
 					movement.Z -= CameraSpeed * (float) delta;
 				} else if (mousePos.Y >= screenSize.Size.Y - EdgeSensitivity) {
@@ -166,69 +158,69 @@ public partial class CameraControl : Node
 
 		//Moves the camera on the axis with WASD
 
-			if (Input.IsActionPressed("move_camera_down"))
-			{
-				movement.Z += 1;
-			}
-			if (Input.IsActionPressed("move_camera_up"))
-			{
-				movement.Z -= 1;
-			}
-			if (Input.IsActionPressed("move_camera_left"))
-			{
-				movement.X -= 1;
-			}
-			if (Input.IsActionPressed("move_camera_right"))
-			{
-				movement.X += 1;
-			}
+		if (Input.IsActionPressed("move_camera_down"))
+		{
+			movement.Z += 1;
+		}
+		if (Input.IsActionPressed("move_camera_up"))
+		{
+			movement.Z -= 1;
+		}
+		if (Input.IsActionPressed("move_camera_left"))
+		{
+			movement.X -= 1;
+		}
+		if (Input.IsActionPressed("move_camera_right"))
+		{
+			movement.X += 1;
+		}
 			
-			//Implements Zoom
-			if (Input.IsActionPressed("zoom_in"))
-			{
-				movement.Y += 1000;
+		//Implements Zoom
+		if (Input.IsActionPressed("zoom_in"))
+		{
+			movement.Y += 1000;
+		}
+
+		if (Input.IsActionPressed("zoom_out"))
+		{
+			movement.Y -= 1000;
+		}
+
+		var cameraTransform = IsometricCamera.GlobalTransform;
+
+		var movementDirection = movement.Normalized();
+		movementDirection.Y = 0;
+
+		var forward = cameraTransform.Basis.Z;
+		var right = cameraTransform.Basis.X;
+
+
+		forward.Y = 0;
+		right.Y = 0;
+
+		forward = forward.Normalized();
+		right = right.Normalized();
+
+		var localMovement = (right * movementDirection.X + forward * movementDirection.Z) * CameraSpeed *  _shiftFactor *(float)delta;
+
+		CameraRaycast.GlobalPosition = IsometricCamera.Position;
+		CameraRaycast.TargetPosition = movement.Normalized() * 1.5f;
+		CameraRaycast.Rotation = IsometricCamera.Rotation;
+		CameraRaycast.ForceRaycastUpdate();
+
+		if (!CameraRaycast.IsColliding()) {
+			if (_currentCameraState == CameraState.Isometric) {
+				IsometricCamera.Position += localMovement;
+				_targetPosition = IsometricCamera.Position;
+				IsometricCamera.Rotation = _targetRotation;
+			} else {
+				localMovement = new Vector3(movement.X, 0, movement.Z) * CameraSpeed * _shiftFactor * (float)delta;
+
+				TopDownCamera.Position += localMovement;
+				_targetPosition = TopDownCamera.Position;
 			}
-
-			if (Input.IsActionPressed("zoom_out"))
-			{
-				movement.Y -= 1000;
-			}
-
-			var cameraTransform = IsometricCamera.GlobalTransform;
-
-			var movementDirection = movement.Normalized();
-			movementDirection.Y = 0;
-
-			var forward = cameraTransform.Basis.Z;
-			var right = cameraTransform.Basis.X;
-
-
-			forward.Y = 0;
-			right.Y = 0;
-
-			forward = forward.Normalized();
-			right = right.Normalized();
-
-			var localMovement = (right * movementDirection.X + forward * movementDirection.Z) * CameraSpeed *  _shiftFactor *(float)delta;
-
-			CameraRaycast.GlobalPosition = IsometricCamera.Position;
-			CameraRaycast.TargetPosition = movement.Normalized() * 1.5f;
-			CameraRaycast.Rotation = IsometricCamera.Rotation;
-			CameraRaycast.ForceRaycastUpdate();
-
-			if (!CameraRaycast.IsColliding()) {
-				if (_currentCameraState == CameraState.Isometric) {
-					IsometricCamera.Position += localMovement;
-					_targetPosition = IsometricCamera.Position;
-					IsometricCamera.Rotation = _targetRotation;
-				} else {
-					localMovement = new Vector3(movement.X, 0, movement.Z) * CameraSpeed * _shiftFactor * (float)delta;
-
-					TopDownCamera.Position += localMovement;
-					_targetPosition = TopDownCamera.Position;
-				}
 				
-			}
+		}
 
 	}
 }
