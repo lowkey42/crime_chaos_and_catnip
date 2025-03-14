@@ -15,6 +15,8 @@ public partial class CardBase : Resource {
 	[Export] public PackedScene SpawnOnPlay { get; private set; }
 
 	[Export] public bool RequiresOrientation { get; private set; } = false;
+	
+	private PackedScene _particleEffect;
 
 	public virtual bool CanBePlayedAt(CardAccessibleState state) {
 		return !state.TargetCell.IsBlocked;
@@ -33,10 +35,8 @@ public partial class CardBase : Resource {
 			var particleEffect = GD.Load<PackedScene>("res://scenes/level/effekt_tests.tscn").Instantiate<Node3D>();
 			state.Board.AddChild(particleEffect);
 			var particlesList = particleEffect.GetChildren().OfType<GpuParticles3D>().ToList();
-			GD.Print("Particles in List: " + particlesList.Count);
 			foreach (var particle in particlesList) {
 				particle.GlobalPosition = state.TargetCell.Position + new Vector3(0, 0.5f,1);
-				GD.Print("Particle Names: " + particle.Name);
 				particle.Emitting = true; // Starte die Partikel-Emission
 			}
 		}
