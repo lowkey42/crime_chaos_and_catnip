@@ -67,22 +67,44 @@ public partial class CameraControl : Node
 
 
 		
-		if (@event is InputEventMouseButton mouseEvent && _currentCameraState == CameraState.Isometric) {
-			float zoomAmount = 0.5f;
-			Vector3 targetPosition = IsometricCamera.Position;
-			
-			switch ((int)mouseEvent.ButtonIndex) {
-				case 4:
-					targetPosition = new Vector3(IsometricCamera.Position.X, IsometricCamera.Position.Y - 0.5f, IsometricCamera.Position.Z);
-					break;
-				case 5:
-					targetPosition = new Vector3(IsometricCamera.Position.X, IsometricCamera.Position.Y + 0.5f, IsometricCamera.Position.Z);
-					break;
-				case 2:
-					break;
+		if (@event is InputEventMouseButton mouseEvent) {
+			if(_currentCameraState == CameraState.Isometric)
+			{
+				var zoomAmount = 1f;
+				var targetPosition = IsometricCamera.Position;
+				
+				switch ((int)mouseEvent.ButtonIndex) {
+					case 4:
+						targetPosition = new Vector3(IsometricCamera.Position.X, IsometricCamera.Position.Y - zoomAmount, IsometricCamera.Position.Z);
+						break;
+					case 5:
+						targetPosition = new Vector3(IsometricCamera.Position.X, IsometricCamera.Position.Y + zoomAmount, IsometricCamera.Position.Z);
+						break;
+					case 2:
+						break;
+				}
+				var tween = GetTree().CreateTween();
+				tween.TweenProperty(IsometricCamera, "position", targetPosition, 0.1f);
+			} else {
+				var zoomAmount = 1f;
+				var minZoom = 5f;
+				var maxZoom = 20f; 
+				var targetPosition = TopDownCamera.Position;
+				
+				switch ((int)mouseEvent.ButtonIndex) {
+					case 4:
+						targetPosition.Y = Mathf.Max(TopDownCamera.Position.Y - zoomAmount, minZoom);
+						break;
+					case 5:
+						targetPosition.Y = Mathf.Min(TopDownCamera.Position.Y + zoomAmount, maxZoom);
+						break;
+					case 2:
+						break;
+				}
+				var tween = GetTree().CreateTween();
+				tween.TweenProperty(TopDownCamera, "position", targetPosition, 0.1f);
+				
 			}
-			var tween = GetTree().CreateTween();
-			tween.TweenProperty(IsometricCamera, "position", targetPosition, 0.1f);
 		}
 		
 		switch (@event) {
