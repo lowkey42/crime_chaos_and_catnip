@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c8fvd606ep5u"]
+[gd_scene load_steps=14 format=3 uid="uid://c8fvd606ep5u"]
 
 [ext_resource type="Script" uid="uid://ducu2kng5aotl" path="res://gameplay/cards/HeldCard.cs" id="1_dxi6h"]
 [ext_resource type="Texture2D" uid="uid://cw4qn5ngn6ax5" path="res://gameplay/cards/instances/card_move_10.png" id="2_omqpp"]
@@ -8,6 +8,7 @@
 [ext_resource type="Material" uid="uid://btbfdgcacptlh" path="res://assets/2D/3deffectcard.tres" id="6_gopet"]
 [ext_resource type="Texture2D" uid="uid://cscqhobgos1k1" path="res://assets/2D/Cards/ActionCard.png" id="7_gy4tq"]
 [ext_resource type="Texture2D" uid="uid://dvi3cwd7y55ln" path="res://assets/2D/Cards/CardBackSprite.png" id="8_1s48i"]
+[ext_resource type="AudioStream" uid="uid://djfm5wa7ir82f" path="res://assets/Sound/card_draw.wav" id="9_1s48i"]
 
 [sub_resource type="Resource" id="Resource_7t26j"]
 script = ExtResource("3_esxd3")
@@ -157,7 +158,8 @@ libraries = {
 &"": SubResource("AnimationLibrary_2ertb")
 }
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="CardDrawSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_1s48i")
 
 [connection signal="MouseEntered" from="." to="DraggableSprite2D" method="_on_mouse_entered"]
 [connection signal="MouseExited" from="." to="DraggableSprite2D" method="_on_mouse_exited"]
