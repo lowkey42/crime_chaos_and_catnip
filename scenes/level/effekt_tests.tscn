@@ -1,6 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://cs33vv4b68ea0"]
+[gd_scene load_steps=14 format=3 uid="uid://cs33vv4b68ea0"]
 
-[ext_resource type="Texture2D" uid="uid://b2dp1unjsp24f" path="res://assets/2D/Particles/P_Smoke.png" id="1_iotom"]
+[ext_resource type="Texture2D" uid="uid://b84rlm1881bn" path="res://assets/2D/Particles/P_Smoke.png" id="1_iotom"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_x1tvs"]
 
@@ -27,17 +27,29 @@ cull_mode = 2
 shading_mode = 0
 vertex_color_use_as_albedo = true
 albedo_texture = ExtResource("1_iotom")
-billboard_mode = 1
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
 grow = true
 grow_amount = -5.0
-proximity_fade_enabled = true
-proximity_fade_distance = 0.01
 distance_fade_mode = 1
+distance_fade_max_distance = 0.1
+
+[sub_resource type="Gradient" id="Gradient_iotom"]
+offsets = PackedFloat32Array(0, 0.995455)
+colors = PackedColorArray(1, 1, 1, 1, 0.235294, 0.235294, 0.235294, 0.784314)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_x1tvs"]
+gradient = SubResource("Gradient_iotom")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_60isb"]
 lifetime_randomness = 0.1
+particle_flag_damping_as_friction = true
 emission_shape = 1
-emission_sphere_radius = 1.0
+emission_sphere_radius = 0.01
+angle_min = -720.0
+angle_max = 720.0
 direction = Vector3(0, 0, 0)
 spread = 180.0
 initial_velocity_min = -5.0
@@ -47,8 +59,32 @@ radial_accel_min = -3.0
 radial_accel_max = -3.0
 damping_min = 4.93
 damping_max = 5.281
+color_ramp = SubResource("GradientTexture1D_x1tvs")
 
 [sub_resource type="QuadMesh" id="QuadMesh_qgdl7"]
+
+[sub_resource type="Gradient" id="Gradient_4inwq"]
+offsets = PackedFloat32Array(0, 0.990909)
+colors = PackedColorArray(1, 1, 1, 1, 0.235294, 0.235294, 0.235294, 0.784314)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4mfqb"]
+gradient = SubResource("Gradient_4inwq")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_iotom"]
+lifetime_randomness = 0.1
+particle_flag_damping_as_friction = true
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_min = -5.0
+initial_velocity_max = -5.0
+gravity = Vector3(0, -1, 0)
+radial_accel_min = -3.0
+radial_accel_max = -3.0
+damping_min = 4.93
+damping_max = 5.29
+color_ramp = SubResource("GradientTexture1D_4mfqb")
 
 [node name="EffektTests" type="Node3D"]
 
@@ -57,7 +93,7 @@ damping_max = 5.281
 [node name="GPUParticles3D" type="GPUParticles3D" parent="Smoke_Effekt"]
 material_override = SubResource("StandardMaterial3D_4inwq")
 amount = 1
-lifetime = 3.5
+lifetime = 0.5
 fixed_fps = 60
 draw_order = 3
 process_material = SubResource("ParticleProcessMaterial_4mfqb")
@@ -65,22 +101,29 @@ draw_pass_1 = SubResource("QuadMesh_qvs5a")
 
 [node name="GPUParticles3D2" type="GPUParticles3D" parent="Smoke_Effekt"]
 material_override = SubResource("StandardMaterial3D_xcapn")
+transparency = 0.71
+visibility_range_begin_margin = 0.1
+visibility_range_end_margin = 2.0
+visibility_range_fade_mode = 1
 amount = 4
+lifetime = 0.6
 speed_scale = 0.5
 explosiveness = 0.5
 randomness = 0.22
 fixed_fps = 60
 draw_order = 3
+transform_align = 1
 process_material = SubResource("ParticleProcessMaterial_60isb")
 draw_pass_1 = SubResource("QuadMesh_qgdl7")
 
 [node name="GPUParticles3D3" type="GPUParticles3D" parent="Smoke_Effekt"]
 material_override = SubResource("StandardMaterial3D_xcapn")
 amount = 4
+lifetime = 0.4
 speed_scale = 0.5
 explosiveness = 0.5
 randomness = 0.22
 fixed_fps = 60
 draw_order = 3
-process_material = SubResource("ParticleProcessMaterial_60isb")
+process_material = SubResource("ParticleProcessMaterial_iotom")
 draw_pass_1 = SubResource("QuadMesh_qgdl7")
