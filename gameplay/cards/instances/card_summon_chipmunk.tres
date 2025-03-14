@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="CardSummon" load_steps=4 format=3 uid="uid://ih453nd7fsjl"]
 
-[ext_resource type="Texture2D" uid="uid://bkjf8p0874qdg" path="res://gameplay/cards/instances/card_summon_chipmunk.png" id="1_gaww7"]
+[ext_resource type="Texture2D" uid="uid://b3pmfau711til" path="res://assets/2D/Cards/Chipmunk.png" id="1_gaww7"]
 [ext_resource type="PackedScene" uid="uid://cwxr4sn5h2581" path="res://gameplay/board_objects/units/player_unit_chipmunk.tscn" id="2_gaww7"]
 [ext_resource type="Script" uid="uid://la07fs1sg4bg" path="res://gameplay/cards/CardSummon.cs" id="3_ky3li"]
 

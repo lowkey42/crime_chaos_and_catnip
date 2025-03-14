@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://cik30de5gaaah"]
+[gd_scene load_steps=29 format=3 uid="uid://cik30de5gaaah"]
 
 [ext_resource type="Script" uid="uid://dmeymco117qmu" path="res://scenes/ingame_scene.gd" id="1_objyc"]
 [ext_resource type="PackedScene" uid="uid://bkk87o2ooo6at" path="res://ui/overlays/fade_overlay.tscn" id="1_y6ebv"]
@@ -8,17 +8,15 @@
 [ext_resource type="Script" uid="uid://o5q4p0foouv3" path="res://gameplay/Gameplay.cs" id="6_juwkt"]
 [ext_resource type="PackedScene" uid="uid://c8fvd606ep5u" path="res://ui/held_card.tscn" id="6_vus8m"]
 [ext_resource type="Script" uid="uid://bt7r7nusxbpsv" path="res://gameplay/DeckEntry.cs" id="7_2vs8u"]
-[ext_resource type="Texture2D" uid="uid://bioa1ei2dbkq6" path="res://assets/2D/UI/cursedBanner.png" id="7_hr6f0"]
+[ext_resource type="Texture2D" uid="uid://c3kottbp6cs03" path="res://assets/2D/UI/reallyTheLastBanner.png" id="7_6ywyt"]
 [ext_resource type="Script" uid="uid://bp64cwdqrlygr" path="res://gameplay/Deck.cs" id="7_ilpo5"]
 [ext_resource type="Texture2D" uid="uid://dqkuipeee5xbf" path="res://assets/2D/Cards/DiscardPile.png" id="7_q7kwb"]
 [ext_resource type="Resource" uid="uid://cxk2dmo6atpcu" path="res://gameplay/cards/instances/card_summon_cat.tres" id="8_juwkt"]
 [ext_resource type="Script" uid="uid://cidnfcxxq2ctp" path="res://gameplay/PlayerHand.cs" id="10_etwux"]
 [ext_resource type="Resource" uid="uid://dqamkdeotg7vt" path="res://gameplay/cards/instances/card_summon_box.tres" id="12_l64ye"]
 [ext_resource type="Resource" uid="uid://cyl0bioig84qr" path="res://gameplay/cards/instances/card_summon_racoon.tres" id="13_rohyw"]
-[ext_resource type="Shader" uid="uid://ci55tqqowoikf" path="res://addons/outline.gdshader" id="13_th7mp"]
 [ext_resource type="Resource" uid="uid://ih453nd7fsjl" path="res://gameplay/cards/instances/card_summon_chipmunk.tres" id="14_hr6f0"]
 [ext_resource type="PackedScene" uid="uid://b4ufa4onh1vrb" path="res://camera/cameras.tscn" id="14_ilpo5"]
-[ext_resource type="Texture2D" uid="uid://cw4qn5ngn6ax5" path="res://gameplay/cards/instances/card_move_10.png" id="14_q7kwb"]
 [ext_resource type="Resource" uid="uid://bboevd7u8vn57" path="res://gameplay/cards/instances/card_action.tres" id="15_6ywyt"]
 [ext_resource type="Script" uid="uid://buu7cbc7wjijb" path="res://ui/GameOverScreen.cs" id="15_th7mp"]
 [ext_resource type="PackedScene" uid="uid://t31lv3om7t4f" path="res://scenes/level/level_02.tscn" id="16_th7mp"]
@@ -60,15 +58,6 @@ script = ExtResource("7_2vs8u")
 Card = ExtResource("15_6ywyt")
 Count = 10
 metadata/_custom_type_script = "uid://bt7r7nusxbpsv"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7t26j"]
-shader = ExtResource("13_th7mp")
-shader_parameter/color = Color(0.79096, 0.185889, 0.596654, 1)
-shader_parameter/width = 3.159
-shader_parameter/pattern = 0
-shader_parameter/inside = false
-shader_parameter/add_margins = true
-shader_parameter/number_of_images = Vector2(1, 1)
 
 [node name="IngameScene" type="Node2D"]
 script = ExtResource("1_objyc")
@@ -163,11 +152,12 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -253.0
+offset_top = -167.815
+offset_bottom = 42.185
 grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 2
-texture = ExtResource("7_hr6f0")
+texture = ExtResource("7_6ywyt")
 expand_mode = 5
 stretch_mode = 4
 
@@ -226,11 +216,6 @@ position = Vector2(75, 111)
 script = ExtResource("7_ilpo5")
 _cards = [SubResource("Resource_juwkt"), SubResource("Resource_ilpo5"), SubResource("Resource_fq0u6"), SubResource("Resource_fvcpb"), SubResource("Resource_dqase"), SubResource("Resource_amt0v")]
 _heldCardScene = ExtResource("6_vus8m")
-
-[node name="Background" type="Sprite2D" parent="Gameplay/HUD/BottomUI/MarginContainer/DeckContainer/Deck"]
-material = SubResource("ShaderMaterial_7t26j")
-scale = Vector2(0.15, 0.15)
-texture = ExtResource("14_q7kwb")
 
 [node name="RemainingCards" type="Label" parent="Gameplay/HUD/BottomUI/MarginContainer/DeckContainer"]
 layout_mode = 1

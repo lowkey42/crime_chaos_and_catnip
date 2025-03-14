@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cscqhobgos1k1"
-path="res://.godot/imported/ActionCard.png-3664cd2d3921591da3164a51a704cb34.ctex"
+uid="uid://b3pmfau711til"
+path="res://.godot/imported/Chipmunk.png-37e717a1bd3c0b2f87d7dd928d5707ad.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/2D/Cards/ActionCard.png"
-dest_files=["res://.godot/imported/ActionCard.png-3664cd2d3921591da3164a51a704cb34.ctex"]
+source_file="res://assets/2D/Cards/Chipmunk.png"
+dest_files=["res://.godot/imported/Chipmunk.png-37e717a1bd3c0b2f87d7dd928d5707ad.ctex"]
 
 [params]
 

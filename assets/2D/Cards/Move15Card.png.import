@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://byhnnwwbpmgdf"
-path="res://.godot/imported/UnitCard.png-3d676cfd4c7a39e0921c027cad94a263.ctex"
+uid="uid://cd7erqkrda0w7"
+path="res://.godot/imported/Move15Card.png-17163adb5755eff31b4441651458458b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/2D/Cards/UnitCard.png"
-dest_files=["res://.godot/imported/UnitCard.png-3d676cfd4c7a39e0921c027cad94a263.ctex"]
+source_file="res://assets/2D/Cards/Move15Card.png"
+dest_files=["res://.godot/imported/Move15Card.png-17163adb5755eff31b4441651458458b.ctex"]
 
 [params]
 
@@ -21,7 +21,7 @@ compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

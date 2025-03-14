@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cscqhobgos1k1"
-path="res://.godot/imported/ActionCard.png-3664cd2d3921591da3164a51a704cb34.ctex"
+uid="uid://cslaqvxyw5d3l"
+path="res://.godot/imported/RaccoonVariant3.png-fa12b5ac47febc3cd37fd8e20f944a05.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/2D/Cards/ActionCard.png"
-dest_files=["res://.godot/imported/ActionCard.png-3664cd2d3921591da3164a51a704cb34.ctex"]
+source_file="res://assets/2D/Cards/RaccoonVariant3.png"
+dest_files=["res://.godot/imported/RaccoonVariant3.png-fa12b5ac47febc3cd37fd8e20f944a05.ctex"]
 
 [params]
 
