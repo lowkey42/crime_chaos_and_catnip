@@ -14,7 +14,9 @@ config/name="Crime, Chaos & Catnip"
 config/version="0.0.1"
 run/main_scene="res://scenes/boot/godot/godot_bootsplash_scene.tscn"
 config/features=PackedStringArray("4.4", "C#")
-config/icon="res://icon.svg"
+config/icon="uid://b8qltk0t8mugn"
+config/macos_native_icon="res://assets/2D/Icons/DesktopIconWithoutBackground.icns"
+config/windows_native_icon="res://assets/2D/Icons/DesktopIconWithoutBackground.ico"
 
 [autoload]
 
