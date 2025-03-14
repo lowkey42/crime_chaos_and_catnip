@@ -1,0 +1,471 @@
+[gd_scene load_steps=14 format=3 uid="uid://jxjimmbyhk6o"]
+
+[ext_resource type="Script" uid="uid://b4tr0lmx326c7" path="res://gameplay/Board.cs" id="1_hx277"]
+[ext_resource type="PackedScene" uid="uid://b267dln8bmyc0" path="res://gridsystem/grid_lines.tscn" id="2_o1nda"]
+[ext_resource type="PackedScene" uid="uid://bwslpyd3dfv3r" path="res://gameplay/board_objects/exit.tscn" id="3_fu6u2"]
+[ext_resource type="PackedScene" uid="uid://mb4i47wd66wh" path="res://gameplay/board_objects/loot.tscn" id="5_5xxq8"]
+[ext_resource type="PackedScene" uid="uid://c5fw6hn22hi6k" path="res://gameplay/board_objects/loot_sources/loot_source_cat.tscn" id="6_xwmh0"]
+[ext_resource type="PackedScene" uid="uid://70upebyxhbou" path="res://gameplay/board_objects/loot_sources/loot_source_racoon.tscn" id="7_mcbxj"]
+[ext_resource type="PackedScene" uid="uid://r1l46im0nohs" path="res://gameplay/board_objects/units/enemy_unit_goose.tscn" id="8_613py"]
+[ext_resource type="PackedScene" uid="uid://ce37br2s4b6qe" path="res://gameplay/board_objects/loot_sources/loot_source_chipmunk.tscn" id="8_lmiw1"]
+[ext_resource type="MeshLibrary" uid="uid://crx7qq1oe5n3w" path="res://CityMeshLibrary.tres" id="11_dketp"]
+[ext_resource type="Script" uid="uid://c78jpbv3tl850" path="res://gameplay/board_objects/GridMapBoardCollision.cs" id="12_ijhy3"]
+[ext_resource type="MeshLibrary" uid="uid://b8tgjug4vkhw0" path="res://City_1x1_mesh_new.tres" id="13_avub8"]
+
+[sub_resource type="Curve3D" id="Curve3D_k7sxj"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -9, 0, 0, 0, 0, 0, 0, -2, 0, -9),
+"tilts": PackedFloat32Array(0, 0, 0)
+}
+point_count = 3
+
+[sub_resource type="Curve3D" id="Curve3D_hx277"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, -18, 0, 0, 0, 0, 0, 0, 11, 0, -18, 0, 0, 0, 0, 0, 0, 22, 0, -18, 0, 0, 0, 0, 0, 0, 11, 0, -18, 0, 0, 0, 0, 0, 0, 11, 0, -30),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0)
+}
+point_count = 6
+
+[node name="level_03" type="Node"]
+
+[node name="Board" type="Node3D" parent="." node_paths=PackedStringArray("GridLines", "_gridMap") groups=["Board"]]
+script = ExtResource("1_hx277")
+GridLines = NodePath("GridLines")
+_maxGridSize = Vector2i(48, 48)
+_gridMap = NodePath("Visuals/6x6Gridmap")
+
+[node name="GridLines" parent="Board" instance=ExtResource("2_o1nda")]
+
+[node name="GameplaySetup" type="Node3D" parent="Board"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5)
+
+[node name="Exit" parent="Board/GameplaySetup" instance=ExtResource("3_fu6u2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 57.5, 0, 101.5)
+
+[node name="Exit2" parent="Board/GameplaySetup" instance=ExtResource("3_fu6u2")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 27.5, 0, 60.5)
+
+[node name="Exit3" parent="Board/GameplaySetup" instance=ExtResource("3_fu6u2")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 72.5, 0, 33.5)
+
+[node name="ChipmunkLoot" type="Node" parent="Board/GameplaySetup"]
+
+[node name="LootSourceChipmunk" parent="Board/GameplaySetup/ChipmunkLoot" instance=ExtResource("8_lmiw1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39, 0, 80)
+
+[node name="LootSourceChipmunk20" parent="Board/GameplaySetup/ChipmunkLoot" instance=ExtResource("8_lmiw1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39, 0, 83)
+
+[node name="LootSourceChipmunk21" parent="Board/GameplaySetup/ChipmunkLoot" instance=ExtResource("8_lmiw1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42, 0, 82)
+
+[node name="LootSourceChipmunk2" parent="Board/GameplaySetup/ChipmunkLoot" instance=ExtResource("8_lmiw1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37, 0, 59)
+
+[node name="LootSourceChipmunk16" parent="Board/GameplaySetup/ChipmunkLoot" instance=ExtResource("8_lmiw1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 0, 70)
+
+[node name="LootSourceChipmunk17" parent="Board/GameplaySetup/ChipmunkLoot" instance=ExtResource("8_lmiw1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 88)
+
+[node name="LootSourceChipmunk18" parent="Board/GameplaySetup/ChipmunkLoot" instance=ExtResource("8_lmiw1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0, 87)
+
+[node name="LootSourceChipmunk3" parent="Board/GameplaySetup/ChipmunkLoot" instance=ExtResource("8_lmiw1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 0, 53)
+
+[node name="LootSourceChipmunk26" parent="Board/GameplaySetup/ChipmunkLoot" instance=ExtResource("8_lmiw1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54, 0, 53)
+
+[node name="LootSourceChipmunk4" parent="Board/GameplaySetup/ChipmunkLoot" instance=ExtResource("8_lmiw1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 88, 0, 87)
+
+[node name="LootSourceChipmunk22" parent="Board/GameplaySetup/ChipmunkLoot" instance=ExtResource("8_lmiw1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 98, 0, 69)
+
+[node name="LootSourceChipmunk23" parent="Board/GameplaySetup/ChipmunkLoot" instance=ExtResource("8_lmiw1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 102, 0, 71)
+
+[node name="LootSourceChipmunk5" parent="Board/GameplaySetup/ChipmunkLoot" instance=ExtResource("8_lmiw1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70, 0, 70)
+
+[node name="LootSourceChipmunk19" parent="Board/GameplaySetup/ChipmunkLoot" instance=ExtResource("8_lmiw1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68, 0, 72)
+
+[node name="LootSourceChipmunk6" parent="Board/GameplaySetup/ChipmunkLoot" instance=ExtResource("8_lmiw1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 61, 0, 42)
+
+[node name="LootSourceChipmunk7" parent="Board/GameplaySetup/ChipmunkLoot" instance=ExtResource("8_lmiw1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 81, 0, 27)
+
+[node name="LootSourceChipmunk24" parent="Board/GameplaySetup/ChipmunkLoot" instance=ExtResource("8_lmiw1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 83, 0, 29)
+
+[node name="LootSourceChipmunk8" parent="Board/GameplaySetup/ChipmunkLoot" instance=ExtResource("8_lmiw1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64, 0, 17)
+
+[node name="LootSourceChipmunk25" parent="Board/GameplaySetup/ChipmunkLoot" instance=ExtResource("8_lmiw1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 66, 0, 15)
+
+[node name="LootSourceChipmunk9" parent="Board/GameplaySetup/ChipmunkLoot" instance=ExtResource("8_lmiw1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34, 0, 28)
+
+[node name="LootSourceChipmunk10" parent="Board/GameplaySetup/ChipmunkLoot" instance=ExtResource("8_lmiw1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37, 0, 19)
+
+[node name="LootSourceChipmunk11" parent="Board/GameplaySetup/ChipmunkLoot" instance=ExtResource("8_lmiw1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0, 24)
+
+[node name="LootSourceChipmunk12" parent="Board/GameplaySetup/ChipmunkLoot" instance=ExtResource("8_lmiw1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29, 0, 12)
+
+[node name="LootSourceChipmunk13" parent="Board/GameplaySetup/ChipmunkLoot" instance=ExtResource("8_lmiw1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 17)
+
+[node name="LootSourceChipmunk14" parent="Board/GameplaySetup/ChipmunkLoot" instance=ExtResource("8_lmiw1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 0, 25)
+
+[node name="LootSourceChipmunk15" parent="Board/GameplaySetup/ChipmunkLoot" instance=ExtResource("8_lmiw1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41, 0, 14)
+
+[node name="Catnip" type="Node" parent="Board/GameplaySetup"]
+
+[node name="Loot" parent="Board/GameplaySetup/Catnip" instance=ExtResource("5_5xxq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 57.5, 0, 81.5)
+
+[node name="Loot2" parent="Board/GameplaySetup/Catnip" instance=ExtResource("5_5xxq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 95, 0, 101)
+
+[node name="Loot3" parent="Board/GameplaySetup/Catnip" instance=ExtResource("5_5xxq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 93, 0, 100)
+
+[node name="Loot4" parent="Board/GameplaySetup/Catnip" instance=ExtResource("5_5xxq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 95, 0, 99)
+
+[node name="Loot5" parent="Board/GameplaySetup/Catnip" instance=ExtResource("5_5xxq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 108, 0, 77)
+
+[node name="Loot6" parent="Board/GameplaySetup/Catnip" instance=ExtResource("5_5xxq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 108, 0, 75)
+
+[node name="Loot31" parent="Board/GameplaySetup/Catnip" instance=ExtResource("5_5xxq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 107, 0, 77)
+
+[node name="Loot7" parent="Board/GameplaySetup/Catnip" instance=ExtResource("5_5xxq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 93)
+
+[node name="Loot8" parent="Board/GameplaySetup/Catnip" instance=ExtResource("5_5xxq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 95)
+
+[node name="Loot9" parent="Board/GameplaySetup/Catnip" instance=ExtResource("5_5xxq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 93)
+
+[node name="Loot10" parent="Board/GameplaySetup/Catnip" instance=ExtResource("5_5xxq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 59)
+
+[node name="Loot11" parent="Board/GameplaySetup/Catnip" instance=ExtResource("5_5xxq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39, 0, 76)
+
+[node name="Loot32" parent="Board/GameplaySetup/Catnip" instance=ExtResource("5_5xxq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39, 0, 74)
+
+[node name="Loot12" parent="Board/GameplaySetup/Catnip" instance=ExtResource("5_5xxq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 10)
+
+[node name="Loot13" parent="Board/GameplaySetup/Catnip" instance=ExtResource("5_5xxq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 10)
+
+[node name="Loot14" parent="Board/GameplaySetup/Catnip" instance=ExtResource("5_5xxq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 13)
+
+[node name="Loot15" parent="Board/GameplaySetup/Catnip" instance=ExtResource("5_5xxq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 13)
+
+[node name="Loot16" parent="Board/GameplaySetup/Catnip" instance=ExtResource("5_5xxq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, 11)
+
+[node name="Loot17" parent="Board/GameplaySetup/Catnip" instance=ExtResource("5_5xxq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 0, 9)
+
+[node name="Loot18" parent="Board/GameplaySetup/Catnip" instance=ExtResource("5_5xxq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 0, 19)
+
+[node name="Loot19" parent="Board/GameplaySetup/Catnip" instance=ExtResource("5_5xxq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, 59)
+
+[node name="Loot20" parent="Board/GameplaySetup/Catnip" instance=ExtResource("5_5xxq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56, 0, 45)
+
+[node name="Loot21" parent="Board/GameplaySetup/Catnip" instance=ExtResource("5_5xxq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 66, 0, 46)
+
+[node name="Loot23" parent="Board/GameplaySetup/Catnip" instance=ExtResource("5_5xxq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 101, 0, 40)
+
+[node name="Loot24" parent="Board/GameplaySetup/Catnip" instance=ExtResource("5_5xxq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 98, 0, 39)
+
+[node name="Loot25" parent="Board/GameplaySetup/Catnip" instance=ExtResource("5_5xxq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, 41)
+
+[node name="Loot26" parent="Board/GameplaySetup/Catnip" instance=ExtResource("5_5xxq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 99, 0, 29)
+
+[node name="Loot27" parent="Board/GameplaySetup/Catnip" instance=ExtResource("5_5xxq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 99, 0, 27)
+
+[node name="Loot28" parent="Board/GameplaySetup/Catnip" instance=ExtResource("5_5xxq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 101, 0, 29)
+
+[node name="Loot29" parent="Board/GameplaySetup/Catnip" instance=ExtResource("5_5xxq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 101, 0, 27)
+
+[node name="Loot30" parent="Board/GameplaySetup/Catnip" instance=ExtResource("5_5xxq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, 26)
+
+[node name="Loot22" parent="Board/GameplaySetup/Catnip" instance=ExtResource("5_5xxq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 76, 0, 44)
+
+[node name="CatLoot" type="Node" parent="Board/GameplaySetup"]
+
+[node name="LootSourceCat" parent="Board/GameplaySetup/CatLoot" instance=ExtResource("6_xwmh0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54.5, 0, 73.5)
+
+[node name="LootSourceCat12" parent="Board/GameplaySetup/CatLoot" instance=ExtResource("6_xwmh0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36, 0, 96)
+
+[node name="LootSourceCat15" parent="Board/GameplaySetup/CatLoot" instance=ExtResource("6_xwmh0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 0, 77)
+
+[node name="LootSourceCat16" parent="Board/GameplaySetup/CatLoot" instance=ExtResource("6_xwmh0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 0, 77)
+
+[node name="LootSourceCat17" parent="Board/GameplaySetup/CatLoot" instance=ExtResource("6_xwmh0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31, 0, 69)
+
+[node name="LootSourceCat18" parent="Board/GameplaySetup/CatLoot" instance=ExtResource("6_xwmh0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0, 57)
+
+[node name="LootSourceCat19" parent="Board/GameplaySetup/CatLoot" instance=ExtResource("6_xwmh0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, 42)
+
+[node name="LootSourceCat21" parent="Board/GameplaySetup/CatLoot" instance=ExtResource("6_xwmh0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 0, 42)
+
+[node name="LootSourceCat22" parent="Board/GameplaySetup/CatLoot" instance=ExtResource("6_xwmh0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35, 0, 42)
+
+[node name="LootSourceCat23" parent="Board/GameplaySetup/CatLoot" instance=ExtResource("6_xwmh0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35, 0, 42)
+
+[node name="LootSourceCat24" parent="Board/GameplaySetup/CatLoot" instance=ExtResource("6_xwmh0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46, 0, 36)
+
+[node name="LootSourceCat25" parent="Board/GameplaySetup/CatLoot" instance=ExtResource("6_xwmh0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 69, 0, 24)
+
+[node name="LootSourceCat26" parent="Board/GameplaySetup/CatLoot" instance=ExtResource("6_xwmh0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86, 0, 24)
+
+[node name="LootSourceCat27" parent="Board/GameplaySetup/CatLoot" instance=ExtResource("6_xwmh0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 106, 0, 20)
+
+[node name="LootSourceCat20" parent="Board/GameplaySetup/CatLoot" instance=ExtResource("6_xwmh0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 56)
+
+[node name="LootSourceCat13" parent="Board/GameplaySetup/CatLoot" instance=ExtResource("6_xwmh0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36, 0, 96)
+
+[node name="LootSourceCat14" parent="Board/GameplaySetup/CatLoot" instance=ExtResource("6_xwmh0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47, 0, 96)
+
+[node name="LootSourceCat10" parent="Board/GameplaySetup/CatLoot" instance=ExtResource("6_xwmh0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 65, 0, 96)
+
+[node name="LootSourceCat11" parent="Board/GameplaySetup/CatLoot" instance=ExtResource("6_xwmh0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 71, 0, 92)
+
+[node name="LootSourceCat3" parent="Board/GameplaySetup/CatLoot" instance=ExtResource("6_xwmh0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79, 0, 73)
+
+[node name="LootSourceCat4" parent="Board/GameplaySetup/CatLoot" instance=ExtResource("6_xwmh0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79, 0, 64)
+
+[node name="LootSourceCat8" parent="Board/GameplaySetup/CatLoot" instance=ExtResource("6_xwmh0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 101, 0, 78)
+
+[node name="LootSourceCat7" parent="Board/GameplaySetup/CatLoot" instance=ExtResource("6_xwmh0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 84, 0, 58)
+
+[node name="LootSourceCat6" parent="Board/GameplaySetup/CatLoot" instance=ExtResource("6_xwmh0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 92, 0, 68)
+
+[node name="LootSourceCat5" parent="Board/GameplaySetup/CatLoot" instance=ExtResource("6_xwmh0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 98, 0, 58)
+
+[node name="LootSourceCat2" parent="Board/GameplaySetup/CatLoot" instance=ExtResource("6_xwmh0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54, 0, 64)
+
+[node name="LootSourceCat9" parent="Board/GameplaySetup/CatLoot" instance=ExtResource("6_xwmh0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 68)
+
+[node name="RacoonLoot" type="Node" parent="Board/GameplaySetup"]
+
+[node name="LootSourceRacoon" parent="Board/GameplaySetup/RacoonLoot" instance=ExtResource("7_mcbxj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55.5, 0, 96.5)
+
+[node name="LootSourceRacoon2" parent="Board/GameplaySetup/RacoonLoot" instance=ExtResource("7_mcbxj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 63)
+
+[node name="LootSourceRacoon3" parent="Board/GameplaySetup/RacoonLoot" instance=ExtResource("7_mcbxj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 66)
+
+[node name="LootSourceRacoon4" parent="Board/GameplaySetup/RacoonLoot" instance=ExtResource("7_mcbxj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 39)
+
+[node name="LootSourceRacoon5" parent="Board/GameplaySetup/RacoonLoot" instance=ExtResource("7_mcbxj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34, 0, 42)
+
+[node name="LootSourceRacoon6" parent="Board/GameplaySetup/RacoonLoot" instance=ExtResource("7_mcbxj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52, 0, 36)
+
+[node name="LootSourceRacoon7" parent="Board/GameplaySetup/RacoonLoot" instance=ExtResource("7_mcbxj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38, 0, 21)
+
+[node name="LootSourceRacoon8" parent="Board/GameplaySetup/RacoonLoot" instance=ExtResource("7_mcbxj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, 25)
+
+[node name="LootSourceRacoon9" parent="Board/GameplaySetup/RacoonLoot" instance=ExtResource("7_mcbxj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 0, 10)
+
+[node name="LootSourceRacoon10" parent="Board/GameplaySetup/RacoonLoot" instance=ExtResource("7_mcbxj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 0, 19)
+
+[node name="LootSourceRacoon11" parent="Board/GameplaySetup/RacoonLoot" instance=ExtResource("7_mcbxj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 0, 19)
+
+[node name="LootSourceRacoon12" parent="Board/GameplaySetup/RacoonLoot" instance=ExtResource("7_mcbxj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 74, 0, 10)
+
+[node name="LootSourceRacoon13" parent="Board/GameplaySetup/RacoonLoot" instance=ExtResource("7_mcbxj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 78, 0, 10)
+
+[node name="LootSourceRacoon14" parent="Board/GameplaySetup/RacoonLoot" instance=ExtResource("7_mcbxj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 78, 0, 14)
+
+[node name="LootSourceRacoon15" parent="Board/GameplaySetup/RacoonLoot" instance=ExtResource("7_mcbxj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, 20)
+
+[node name="LootSourceRacoon16" parent="Board/GameplaySetup/RacoonLoot" instance=ExtResource("7_mcbxj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, 20)
+
+[node name="LootSourceRacoon17" parent="Board/GameplaySetup/RacoonLoot" instance=ExtResource("7_mcbxj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 78, 0, 27)
+
+[node name="LootSourceRacoon18" parent="Board/GameplaySetup/RacoonLoot" instance=ExtResource("7_mcbxj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 84, 0, 45)
+
+[node name="LootSourceRacoon19" parent="Board/GameplaySetup/RacoonLoot" instance=ExtResource("7_mcbxj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 98, 0, 43)
+
+[node name="LootSourceRacoon20" parent="Board/GameplaySetup/RacoonLoot" instance=ExtResource("7_mcbxj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 102, 0, 43)
+
+[node name="LootSourceRacoon21" parent="Board/GameplaySetup/RacoonLoot" instance=ExtResource("7_mcbxj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 98, 0, 56)
+
+[node name="LootSourceRacoon22" parent="Board/GameplaySetup/RacoonLoot" instance=ExtResource("7_mcbxj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 92, 0, 66)
+
+[node name="LootSourceRacoon23" parent="Board/GameplaySetup/RacoonLoot" instance=ExtResource("7_mcbxj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79, 0, 65)
+
+[node name="LootSourceRacoon24" parent="Board/GameplaySetup/RacoonLoot" instance=ExtResource("7_mcbxj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 80, 0, 79)
+
+[node name="LootSourceRacoon25" parent="Board/GameplaySetup/RacoonLoot" instance=ExtResource("7_mcbxj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 80, 0, 87)
+
+[node name="LootSourceRacoon26" parent="Board/GameplaySetup/RacoonLoot" instance=ExtResource("7_mcbxj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 91, 0, 96)
+
+[node name="LootSourceRacoon27" parent="Board/GameplaySetup/RacoonLoot" instance=ExtResource("7_mcbxj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 93, 0, 78)
+
+[node name="LootSourceRacoon28" parent="Board/GameplaySetup/RacoonLoot" instance=ExtResource("7_mcbxj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 0, 81)
+
+[node name="LootSourceRacoon29" parent="Board/GameplaySetup/RacoonLoot" instance=ExtResource("7_mcbxj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54, 0, 67)
+
+[node name="Gooses" type="Node" parent="Board/GameplaySetup"]
+
+[node name="EnemyUnitGoose" parent="Board/GameplaySetup/Gooses" instance=ExtResource("8_613py")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29, 0, 94)
+
+[node name="EnemyPath" type="Path3D" parent="Board/GameplaySetup/Gooses"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29, 0, 94)
+curve = SubResource("Curve3D_k7sxj")
+
+[node name="EnemyUnitGoose2" parent="Board/GameplaySetup/Gooses" instance=ExtResource("8_613py")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 82, 0, 94)
+
+[node name="EnemyPath2" type="Path3D" parent="Board/GameplaySetup/Gooses"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 83, 0, 94)
+curve = SubResource("Curve3D_hx277")
+
+[node name="Goose_Pathes" type="Node" parent="Board/GameplaySetup"]
+
+[node name="Visuals" type="Node3D" parent="Board"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 96.077, -0.1, 72)
+
+[node name="6x6Gridmap" type="GridMap" parent="Board/Visuals"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
+mesh_library = ExtResource("11_dketp")
+cell_size = Vector3(6, 6, 6)
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(65529, 5, 1441795, 65529, 4, 1441792, 65529, 3, 1441793, 65520, 5, 0, 2, 5, 0, 65520, 3, 0, 65520, 2, 11, 65520, 65530, 11, 65520, 65529, 0, 65520, 65528, 11, 2, 6, 1441803, 1, 6, 0, 0, 6, 1441803, 65535, 6, 0, 65534, 6, 1441803, 65533, 6, 0, 65532, 6, 1441803, 65531, 6, 0, 65530, 6, 1441803, 65529, 6, 0, 65528, 6, 1441803, 65527, 6, 0, 65526, 6, 1441803, 65525, 6, 0, 65524, 6, 1441803, 65523, 6, 0, 65522, 6, 1441803, 65521, 6, 0, 65520, 6, 1441803, 65520, 4, 1441803, 65520, 1, 0, 65520, 0, 11, 65520, 65535, 0, 65520, 65534, 11, 65520, 65533, 0, 65520, 65532, 11, 65520, 65531, 0, 65520, 65527, 0, 65520, 65526, 11, 65520, 65525, 0, 65520, 65524, 11, 2, 4, 11, 2, 3, 0, 2, 2, 11, 2, 1, 0, 2, 0, 0, 2, 65535, 0, 2, 65534, 11, 2, 65533, 0, 2, 65532, 11, 2, 65531, 0, 2, 65530, 11, 2, 65529, 0, 2, 65528, 11, 2, 65527, 0, 2, 65526, 11, 2, 65525, 0, 2, 65524, 11, 1, 65524, 0, 0, 65524, 1441803, 65535, 65524, 0, 65534, 65524, 1441803, 65533, 65524, 0, 65532, 65524, 1441803, 65531, 65524, 0, 65530, 65524, 1441803, 65529, 65524, 0, 65528, 65524, 1441792, 65527, 65524, 0, 65526, 65524, 1441803, 65525, 65524, 0, 65524, 65524, 1441803, 65523, 65524, 0, 65522, 65524, 1441803, 65521, 65524, 0, 65528, 4, 1048588, 65530, 4, 1048588, 65527, 4, 1048582, 65525, 4, 1048582, 65526, 4, 1048588, 65531, 4, 1048582, 65524, 4, 1048582, 65528, 5, 655366, 65535, 65535, 1441792, 65535, 0, 131076, 65521, 65525, 11, 65521, 65526, 11, 65521, 65527, 11, 65521, 65528, 11, 65522, 65528, 11, 65522, 65529, 11, 65523, 65529, 11, 65524, 65529, 11, 65525, 65529, 11, 65525, 65528, 11, 65526, 65528, 11, 65527, 65528, 11, 65527, 65527, 11, 65527, 65526, 11, 65527, 65525, 11, 65526, 65525, 11, 65525, 65525, 11, 65524, 65525, 11, 65523, 65525, 11, 65522, 65525, 11, 65522, 65526, 11, 65522, 65527, 11, 65523, 65527, 11, 65523, 65528, 11, 65524, 65528, 11, 65524, 65527, 11, 65523, 65526, 11, 65524, 65526, 11, 65525, 65526, 11, 65526, 65526, 11, 65526, 65527, 11, 65525, 65527, 11, 65528, 3, 0, 65527, 3, 0, 65526, 3, 0, 65530, 3, 0, 65531, 3, 0, 65532, 3, 0, 65533, 3, 4, 65533, 2, 1441792, 65533, 1, 1441792, 65533, 0, 655364, 65534, 0, 655360, 0, 0, 655360, 1, 0, 655360, 65532, 65535, 1048576, 65532, 65534, 1441792, 65532, 65533, 655364, 65533, 65533, 2, 65531, 65533, 1441794, 65531, 65532, 1048580, 65531, 65531, 655362, 65533, 65531, 1048578, 65533, 65532, 1441796, 65532, 65531, 4, 65529, 2, 1441792, 65529, 1, 1441792, 65529, 0, 1048578, 65528, 0, 4, 65528, 65535, 1441792, 65528, 65534, 1048579, 65528, 65533, 1441803, 65528, 65532, 1441803, 65529, 65532, 1441803, 65530, 65532, 1441803, 65527, 65532, 1441803, 65526, 65532, 1441803, 65526, 0, 655363, 65527, 0, 655360, 65525, 3, 655360, 65524, 3, 4, 65524, 2, 1441792, 65524, 1, 1441792, 65524, 0, 1441792, 65524, 65535, 1310720, 65523, 65534, 524288, 65522, 65534, 1441794, 65522, 65533, 1048580, 65522, 65532, 1441792, 65522, 65531, 1441792, 65522, 65530, 655362, 65523, 65530, 655360, 65524, 65530, 655360, 65525, 65530, 655360, 65526, 65531, 1441795, 65526, 65530, 1048580, 65526, 65529, 655362, 65528, 65529, 2, 65527, 65529, 0, 65528, 65528, 1441792, 65528, 65527, 1441796, 65528, 65526, 1441792, 65528, 65525, 1441792, 65521, 65533, 655360, 65532, 65530, 1441792, 65532, 65529, 1048580, 65532, 65528, 1441792, 65532, 65527, 1048577, 65531, 65527, 655360, 65530, 65527, 655360, 65529, 65527, 655360, 65533, 65527, 655360, 65534, 65527, 655360, 65535, 65527, 655360, 0, 65527, 655364, 0, 65528, 1441795, 1, 65527, 655360, 65532, 65526, 1048576, 65532, 65525, 1048579, 65534, 3, 0, 65535, 3, 1048578, 65535, 4, 1441795, 65527, 65531, 1441803, 65528, 65531, 1441803, 65529, 65531, 1441803, 65530, 65531, 1441803, 65529, 65533, 1441803, 65527, 65533, 1441803, 65526, 65533, 1441803, 65535, 65534, 655362, 0, 65534, 2, 0, 65533, 1441792, 0, 65532, 1048580, 65535, 65532, 655360, 65534, 65532, 655360, 0, 65531, 1048576, 0, 65530, 1048579, 65523, 3, 655360, 65521, 3, 655360, 65522, 3, 655360, 65529, 65530, 1441803, 65530, 65530, 1441803, 65525, 65533, 1441803, 65525, 65532, 1441803, 65524, 65534, 1310724, 65534, 2, 11, 0, 65535, 11, 65533, 65528, 11, 65526, 1, 11, 65531, 65535, 11, 65530, 65526, 11, 65522, 2, 11, 65523, 65535, 11, 65532, 0, 1441794, 65531, 65529, 655363, 65524, 65533, 1179651)
+}
+script = ExtResource("12_ijhy3")
+_nonBlockingItems = PackedInt32Array(0, 1, 2, 3, 4, 11)
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="6x6Gridmap_Ground" type="GridMap" parent="Board/Visuals"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+mesh_library = ExtResource("11_dketp")
+cell_size = Vector3(6, 6, 6)
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(65530, 5, 655369, 65533, 65526, 851979)
+}
+
+[node name="1x1Gridmap" type="GridMap" parent="Board/Visuals"]
+mesh_library = ExtResource("13_avub8")
+cell_size = Vector3(1, 1, 1)
+cell_center_y = false
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="Environment" type="Node3D" parent="Board/Visuals"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5)
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.913522, 0.392651, 0.106315, -0.191347, 0.184137, 0.964095, 0.358976, -0.901065, 0.243346, 50.7857, 76.3174, -75.6462)
+light_color = Color(0.378, 0.6216, 0.9, 1)
+light_energy = 0.8
+light_volumetric_fog_energy = 0.05
+light_angular_distance = 12.73
+light_specular = 0.01
+shadow_enabled = true
+shadow_opacity = 0.42
+shadow_blur = 2.515
+
+[node name="DirectionalLight3D3" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.913522, -0.392651, -0.106315, -0.191347, 0.184137, 0.964095, -0.358976, 0.901065, -0.243346, 50.7857, 76.3174, -75.6462)
+light_color = Color(0.184819, 0.427359, 0.691532, 1)
+light_indirect_energy = 0.4
+light_volumetric_fog_energy = 0.05
+light_angular_distance = 12.73
+light_specular = 0.01
+shadow_opacity = 0.42
+shadow_blur = 2.515
