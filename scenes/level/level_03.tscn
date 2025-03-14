@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://jxjimmbyhk6o"]
+[gd_scene load_steps=52 format=3 uid="uid://jxjimmbyhk6o"]
 
 [ext_resource type="Script" uid="uid://b4tr0lmx326c7" path="res://gameplay/Board.cs" id="1_hx277"]
 [ext_resource type="PackedScene" uid="uid://b267dln8bmyc0" path="res://gridsystem/grid_lines.tscn" id="2_o1nda"]
@@ -6,9 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://mb4i47wd66wh" path="res://gameplay/board_objects/loot.tscn" id="5_5xxq8"]
 [ext_resource type="PackedScene" uid="uid://c5fw6hn22hi6k" path="res://gameplay/board_objects/loot_sources/loot_source_cat.tscn" id="6_xwmh0"]
 [ext_resource type="PackedScene" uid="uid://70upebyxhbou" path="res://gameplay/board_objects/loot_sources/loot_source_racoon.tscn" id="7_mcbxj"]
-[ext_resource type="PackedScene" uid="uid://r1l46im0nohs" path="res://gameplay/board_objects/units/enemy_unit_goose.tscn" id="8_613py"]
+[ext_resource type="PackedScene" path="res://gameplay/board_objects/units/enemy_unit_goose.tscn" id="8_613py"]
 [ext_resource type="PackedScene" uid="uid://ce37br2s4b6qe" path="res://gameplay/board_objects/loot_sources/loot_source_chipmunk.tscn" id="8_lmiw1"]
 [ext_resource type="Material" uid="uid://b7rgxxmt708ru" path="res://scenes/level/enemypath1.tres" id="9_k7sxj"]
+[ext_resource type="PackedScene" uid="uid://d2vyc11ywfhv2" path="res://assets/3D/cars/Panzer.glb" id="9_v6qxp"]
+[ext_resource type="Script" uid="uid://b7wxndbdfd1m1" path="res://gameplay/board_objects/OrientToMovementDirection.cs" id="10_pcvp5"]
 [ext_resource type="MeshLibrary" uid="uid://crx7qq1oe5n3w" path="res://CityMeshLibrary.tres" id="11_dketp"]
 [ext_resource type="Script" uid="uid://c78jpbv3tl850" path="res://gameplay/board_objects/GridMapBoardCollision.cs" id="12_ijhy3"]
 [ext_resource type="MeshLibrary" uid="uid://b8tgjug4vkhw0" path="res://City_1x1_mesh_new.tres" id="13_avub8"]
@@ -19,7 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://b4ghjeb173258" path="res://assets/3D/cars/lowpolycar-normal-downsized.glb" id="16_x5hun"]
 [ext_resource type="PackedScene" uid="uid://cnyifj0b58f8d" path="res://assets/3D/small things/foliage/BuschKlein.glb" id="18_ijhy3"]
 [ext_resource type="PackedScene" uid="uid://bsq61q37gqwbk" path="res://assets/3D/small things/foliage/BaumGroß02.glb" id="19_avub8"]
-[ext_resource type="PackedScene" uid="uid://c2seirh1ng35j" path="res://assets/3D/small things/foliage/BuschKleinSway.tscn" id="20_aoegj"]
+[ext_resource type="PackedScene" path="res://assets/3D/small things/foliage/BuschKleinSway.tscn" id="20_aoegj"]
 [ext_resource type="PackedScene" uid="uid://cbjomocmnie7j" path="res://assets/3D/cars/Polizei1-downsized.glb" id="21_dketp"]
 [ext_resource type="PackedScene" uid="uid://go6gi32bplg6" path="res://assets/3D/cars/TAXI-downsized.glb" id="22_ijhy3"]
 [ext_resource type="PackedScene" uid="uid://c2jcqfkha8sw2" path="res://assets/3D/cars/lowpolycar-jeep1-downsized.glb" id="23_avub8"]
@@ -27,9 +29,9 @@
 [ext_resource type="PackedScene" uid="uid://bn6r0nr6uoqiy" path="res://assets/3D/houses/Leuchtfeld_02.glb" id="25_aoegj"]
 [ext_resource type="PackedScene" uid="uid://r5n51vbg0tgm" path="res://assets/3D/small things/straße/stopschild.glb" id="27_se6gf"]
 [ext_resource type="PackedScene" uid="uid://buq58r1wm7r11" path="res://assets/3D/small things/foliage/BaumGroß.glb" id="28_8hmpe"]
-[ext_resource type="PackedScene" uid="uid://c6ulyom0pcvtt" path="res://assets/3D/small things/foliage/BaumGroß02Sway.tscn" id="29_3hrod"]
-[ext_resource type="PackedScene" uid="uid://idqhht7f06eo" path="res://assets/3D/small things/foliage/BaumGroßSway.tscn" id="30_t0lqa"]
-[ext_resource type="PackedScene" uid="uid://fu6ntqu6yl1h" path="res://assets/3D/small things/foliage/BaumKleinSway.tscn" id="31_b53ri"]
+[ext_resource type="PackedScene" path="res://assets/3D/small things/foliage/BaumGroß02Sway.tscn" id="29_3hrod"]
+[ext_resource type="PackedScene" path="res://assets/3D/small things/foliage/BaumGroßSway.tscn" id="30_t0lqa"]
+[ext_resource type="PackedScene" path="res://assets/3D/small things/foliage/BaumKleinSway.tscn" id="31_b53ri"]
 [ext_resource type="PackedScene" uid="uid://cgamdttgbikux" path="res://assets/3D/small things/foliage/Blumengruppe_G.glb" id="32_ype1f"]
 [ext_resource type="PackedScene" uid="uid://lvmgeqtd3jwh" path="res://assets/3D/small things/foliage/Blumengruppe_K.glb" id="33_lmmpw"]
 [ext_resource type="PackedScene" uid="uid://btku7fnkvqksf" path="res://assets/3D/small things/foliage/Blumengruppe_M.glb" id="34_jwmdv"]
@@ -39,7 +41,7 @@
 [ext_resource type="PackedScene" uid="uid://c0rmks0q80knu" path="res://assets/3D/small things/straße/roadblock1.glb" id="37_b53ri"]
 [ext_resource type="PackedScene" uid="uid://bt1vnnnyustpv" path="res://assets/3D/small things/vent.glb" id="37_lmmpw"]
 [ext_resource type="PackedScene" uid="uid://cmlanued2imtr" path="res://assets/3D/small things/foliage/FlowerPot.glb" id="40_jwmdv"]
-[ext_resource type="PackedScene" uid="uid://bmp7sorugcf87" path="res://assets/3D/cars/tank.glb" id="40_ybf8u"]
+[ext_resource type="PackedScene" uid="uid://c1tm7q572kbxo" path="res://assets/3D/cars/tank.glb" id="40_ybf8u"]
 
 [sub_resource type="Curve3D" id="Curve3D_k7sxj"]
 _data = {
@@ -482,6 +484,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54, 0, 67)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29, 0, 94)
 _path = NodePath("../EnemyPath")
 
+[node name="Panzer" parent="Board/GameplaySetup/Gooses" instance=ExtResource("9_v6qxp")]
+
 [node name="EnemyPath" type="Path3D" parent="Board/GameplaySetup/Gooses"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29, 0, 94)
 curve = SubResource("Curve3D_k7sxj")
@@ -673,6 +677,11 @@ material = ExtResource("9_k7sxj")
 [node name="EnemyUnitGoose9" parent="Board/GameplaySetup/Gooses" node_paths=PackedStringArray("_path") instance=ExtResource("8_613py")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52, 0, 64)
 _path = NodePath("../EnemyPath9")
+
+[node name="Panzer2" parent="Board/GameplaySetup/Gooses/EnemyUnitGoose9" node_paths=PackedStringArray("_unit") instance=ExtResource("9_v6qxp")]
+auto_translate_mode = 2
+script = ExtResource("10_pcvp5")
+_unit = NodePath("..")
 
 [node name="EnemyPath9" type="Path3D" parent="Board/GameplaySetup/Gooses"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52, 0, 64)
@@ -1404,3 +1413,5 @@ environment = ExtResource("15_aoegj")
 
 [node name="tank" parent="." instance=ExtResource("40_ybf8u")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 75.3709, -4.76837e-07, 51.7869)
+
+[editable path="Board/GameplaySetup/Gooses/EnemyUnitGoose9/Panzer2"]
