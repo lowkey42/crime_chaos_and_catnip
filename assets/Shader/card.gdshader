@@ -5,6 +5,7 @@ uniform bool _isSpecularLight = false;
 uniform float _speularLightIntensity = 0.5;
 uniform float _speularLightPower = 3.0;
 uniform vec2 _mousePos;
+uniform float _intensity = 0.0;
 
 varying vec2 texCoord;
 varying float fragPerspective;
@@ -17,7 +18,8 @@ void vertex() {
     // Center the coordinates around the origin
     vec2 centeredCoord = texCoord - vec2(0.5, 0.5);
 	vec2 mouse_centered = ((_mousePos + 0.5/TEXTURE_PIXEL_SIZE) * TEXTURE_PIXEL_SIZE) * 2.0 - 1.0;
-	mouse_centered = clamp(mouse_centered, vec2(-1.0, -1.0), vec2(1.0, 1.0));
+	mouse_centered = clamp(-mouse_centered, vec2(-1.0, -1.0), vec2(1.0, 1.0));
+	mouse_centered *= _intensity;
 	mouseoffset = mouse_centered / 2.0;
 
     // Rotation matrices around the x, y, and z axes	
