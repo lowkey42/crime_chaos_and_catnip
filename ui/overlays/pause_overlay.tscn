@@ -1,55 +1,201 @@
-[gd_scene load_steps=3 format=3 uid="uid://jyv4g54adkmo"]
+[gd_scene load_steps=7 format=3 uid="uid://jyv4g54adkmo"]
 
 [ext_resource type="Script" uid="uid://jr7v1ccyfimr" path="res://ui/overlays/pause_overlay.gd" id="1_q2yda"]
 [ext_resource type="PackedScene" uid="uid://nbaodrlopo7y" path="res://ui/components/game_settings.tscn" id="2_n78uc"]
+[ext_resource type="Texture2D" uid="uid://btr36lcuuevyc" path="res://ui/tutorial.png" id="3_nk86g"]
 
-[node name="PauseOverlay" type="CenterContainer"]
+[sub_resource type="Gradient" id="Gradient_nk86g"]
+colors = PackedColorArray(1, 1, 1, 0.705882, 1, 1, 1, 0.705882)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_dypxm"]
+gradient = SubResource("Gradient_nk86g")
+width = 128
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nk86g"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0, 0, 0, 0.196078)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[node name="PauseOverlay" type="Control"]
+top_level = true
+z_index = 4096
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("1_q2yda")
 main_menu_scene = "uid://dv2y18ye8j7o0"
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture1D_dypxm")
+stretch_mode = 1
+
+[node name="Tutorial" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="TextureRect" type="TextureRect" parent="Tutorial"]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("3_nk86g")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="tutorial_movement" type="Label" parent="Tutorial/TextureRect"]
+layout_mode = 0
+offset_left = 224.0
+offset_top = 94.0
+offset_right = 359.0
+offset_bottom = 134.0
+text = "tutorial_movement"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+clip_text = true
+text_overrun_behavior = 1
+
+[node name="tutorial_unit" type="Label" parent="Tutorial/TextureRect"]
+layout_mode = 0
+offset_left = 224.0
+offset_top = 227.0
+offset_right = 359.0
+offset_bottom = 267.0
+text = "tutorial_unit"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+clip_text = true
+
+[node name="tutorial_action" type="Label" parent="Tutorial/TextureRect"]
+layout_mode = 0
+offset_left = 224.0
+offset_top = 361.0
+offset_right = 361.0
+offset_bottom = 401.0
+text = "tutorial_action"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+clip_text = true
+
+[node name="tutorial_loot" type="Label" parent="Tutorial/TextureRect"]
+layout_mode = 0
+offset_left = 224.0
+offset_top = 478.0
+offset_right = 359.0
+offset_bottom = 518.0
+text = "tutorial_loot"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+clip_text = true
+
+[node name="tutorial_enemy" type="Label" parent="Tutorial/TextureRect"]
+layout_mode = 0
+offset_left = 847.0
+offset_top = 92.0
+offset_right = 981.0
+offset_bottom = 132.0
+text = "tutorial_enemy"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+clip_text = true
+
+[node name="tutorial_lootable" type="Label" parent="Tutorial/TextureRect"]
+layout_mode = 0
+offset_left = 795.0
+offset_top = 207.0
+offset_right = 930.0
+offset_bottom = 247.0
+text = "tutorial_lootable"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+clip_text = true
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -76.5
+offset_top = -87.0
+offset_right = 76.5
+offset_bottom = 87.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_nk86g")
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="CenterContainer/PanelContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer3"]
+[node name="Label" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer3"]
 layout_mode = 2
 theme_type_variation = &"HeaderLarge"
 text = "game_paused"
 horizontal_alignment = 1
 
-[node name="SettingsContainer" type="VBoxContainer" parent="VBoxContainer3"]
+[node name="SettingsContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/VBoxContainer3"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 
-[node name="GameSettings" parent="VBoxContainer3/SettingsContainer" instance=ExtResource("2_n78uc")]
+[node name="GameSettings" parent="CenterContainer/PanelContainer/VBoxContainer3/SettingsContainer" instance=ExtResource("2_n78uc")]
 layout_mode = 2
 
-[node name="BackButton" type="Button" parent="VBoxContainer3/SettingsContainer"]
+[node name="BackButton" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer3/SettingsContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "return_to_menu"
 
-[node name="MenuContainer" type="VBoxContainer" parent="VBoxContainer3"]
+[node name="MenuContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/VBoxContainer3"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="ResumeButton" type="Button" parent="VBoxContainer3/MenuContainer"]
+[node name="ResumeButton" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer3/MenuContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "resume_game"
 
-[node name="SettingsButton" type="Button" parent="VBoxContainer3/MenuContainer"]
+[node name="SettingsButton" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer3/MenuContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "settings"
 
-[node name="ExitButton" type="Button" parent="VBoxContainer3/MenuContainer"]
+[node name="ExitButton" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer3/MenuContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "leave_game"

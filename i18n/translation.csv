@@ -16,11 +16,11 @@ settings_volume_sound,Sound Volume,Sound Lautstärke
 settings_language,Game Language,Spielsprache
 game_paused,Game paused,Spiel pausiert
 resume_game,Resume game,Weiterspielen
-build_your_deck,Build your Deck,Deck Zusammenstellen
-build_your_deck_tutorial,Your tutorial deck,Dein Tutorial Deck
+build_your_deck,Build your Deck,Deckbaustelle
+build_your_deck_tutorial,Your tutorial Deck,Dein Tutorial-Deck
 end_turn,End Turn,Zug Beenden
 end_game,End Game,Spiel Beenden
-gameover_message,The Goolice Has Arrived,Die Goolice ist Eingetroffen
+gameover_message,The Goolice Has Arrived,Die Goolice ist angerückt
 gameover_details,You've escaped with,Du bist entkommen mit
 turns,Turns,Zügen
 cards,Cards,Karten
@@ -32,3 +32,9 @@ move10_tooltip,Move up to 10 tiles,Bewege eine Einheit bis zu 10 Felder
 move15_tooltip,Move up to 15 tiles,Bewege eine Einheit bis zu 15 Felder
 action_tooltip,Attack and loot all fields around a unit,Plündere und greife alle Felder um eine Einheit an
 box_tooltip,Summon an all mighty box,Beschwöre eine Kiste
+tutorial_movement,Movement,Bewegung
+tutorial_unit,Unit,Einheit
+tutorial_action,Use / Attack,Aktion
+tutorial_loot,Loot,Loot
+tutorial_enemy,Enemy,Gegner
+tutorial_lootable,Bonus Loot,Bonus Loot
