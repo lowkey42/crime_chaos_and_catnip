@@ -297,10 +297,10 @@ public partial class Gameplay : Node {
 		var direction = (targetPosition - currentPosition);
 		var start = currentPosition + direction;
 		var end = currentPosition + direction;
-		var midPoint = start.Lerp(end, 0.5f) + new Vector3(0, 1, 0);
+		var midPoint = start.Lerp(end, 0.3f) + new Vector3(0, 1, 0);
 		var newTween = unit.CreateTween();
-		newTween.TweenProperty(unit, "global_position", midPoint, stepTime).SetTrans(Tween.TransitionType.Quad).SetEase(Tween.EaseType.In);
-		newTween.TweenProperty(unit, "global_position", end, stepTime).SetTrans(Tween.TransitionType.Quad).SetEase(Tween.EaseType.Out);
+		newTween.TweenProperty(unit, "global_position", midPoint, stepTime/1.8f).SetTrans(Tween.TransitionType.Quad).SetEase(Tween.EaseType.Out);
+		newTween.TweenProperty(unit, "global_position", end, stepTime/2.2f).SetTrans(Tween.TransitionType.Quad).SetEase(Tween.EaseType.Out);
 		tween.TweenSubtween(newTween);
 	}
 	
