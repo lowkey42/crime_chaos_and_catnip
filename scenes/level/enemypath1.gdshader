@@ -1,5 +1,5 @@
 shader_type spatial;
-render_mode unshaded, depth_draw_never;
+render_mode unshaded;
 
 uniform vec4 shine_color : source_color = vec4( 20.0, -200.0, -1.0, -1.0 );
 
@@ -49,15 +49,21 @@ mat3 rotation_matrix(float angle_x, float angle_y)
     return rotation_x(shine_angle_x) * rotation_y(shine_angle_y) * rotation_z(shine_angle_z);
 }
 
-void fragment( )
-{
-	vec3 vertex = ( INV_VIEW_MATRIX  * vec4( VERTEX, 1.0 ) ).xyz;
-	
+varying float view_vertex_z;
+
+void vertex() {
+	vec3 vertex = ( MODEL_MATRIX * vec4( VERTEX, 1.0 ) ).xyz;
+
     mat3 rotation = rotation_matrix(shine_angle_x, shine_angle_y);
     vertex = vertex * rotation;
-	
+
+	view_vertex_z = vertex.z;
+}
+
+void fragment( )
+{
 	float width = shine_width * 0.001 * cycle_interval;
-	float frequency = floor( sin( vertex.z * cycle_interval + TIME * shine_speed * cycle_interval ) + width);
+	float frequency = floor( sin( view_vertex_z * cycle_interval + TIME * shine_speed * cycle_interval ) + width);
 	ALBEDO = shine_color.rgb;
 	ALPHA = clamp( ( 1.0 - dot( NORMAL, VIEW ) ) * frequency * shine_color.a, 0.0, 1.0 );
 }
