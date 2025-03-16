@@ -106,13 +106,14 @@ _deck = NodePath("HUD/BottomUI/VBoxContainer/DeckContainer/Deck")
 _hand = NodePath("HUD/BottomUI/PlayerHand")
 _stepTime = 0.3
 
-[node name="HUD" type="CanvasLayer" parent="Gameplay" node_paths=PackedStringArray("_scoreLabel", "_remainingCardsLabel", "_turnCounterLabel", "_endTurnButton", "_gameplay", "_deck", "_rotationUi")]
+[node name="HUD" type="CanvasLayer" parent="Gameplay" node_paths=PackedStringArray("_scoreLabel", "_remainingCardsLabel", "_turnCounterLabel", "_endTurnButton", "_endGameButton", "_gameplay", "_deck", "_rotationUi")]
 follow_viewport_enabled = true
 script = ExtResource("5_pxehq")
 _scoreLabel = NodePath("TopUI/HBoxContainer/Score")
 _remainingCardsLabel = NodePath("BottomUI/VBoxContainer/DeckContainer/RemainingCardsContainer/RemainingCards")
 _turnCounterLabel = NodePath("TopUI/TurnCounter")
-_endTurnButton = NodePath("BottomUI/VBoxContainer/MarginContainer/Control/EndTurnButton")
+_endTurnButton = NodePath("BottomUI/VBoxContainer/EndTurnButton")
+_endGameButton = NodePath("BottomUI/VBoxContainer/EndGameButton")
 _gameplay = NodePath("..")
 _deck = NodePath("BottomUI/VBoxContainer/DeckContainer/Deck")
 _rotationUi = NodePath("CardDirectionControl")
@@ -248,24 +249,13 @@ offset_top = -225.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="Gameplay/HUD/BottomUI/VBoxContainer"]
+[node name="EndGameButton" type="Button" parent="Gameplay/HUD/BottomUI/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 4
+size_flags_vertical = 8
+text = "end_game"
 
-[node name="Control" type="Control" parent="Gameplay/HUD/BottomUI/VBoxContainer/MarginContainer"]
-custom_minimum_size = Vector2(0, 35)
+[node name="EndTurnButton" type="Button" parent="Gameplay/HUD/BottomUI/VBoxContainer"]
 layout_mode = 2
-
-[node name="EndTurnButton" type="Button" parent="Gameplay/HUD/BottomUI/VBoxContainer/MarginContainer/Control"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 size_flags_vertical = 8
 text = "end_turn"
 
@@ -823,7 +813,8 @@ process_mode = 2
 visible = false
 
 [connection signal="GameOver" from="Gameplay" to="Gameplay/GameOverOverlay" method="ShowOverlay"]
-[connection signal="pressed" from="Gameplay/HUD/BottomUI/VBoxContainer/MarginContainer/Control/EndTurnButton" to="Gameplay/HUD" method="TryEndTurn"]
+[connection signal="pressed" from="Gameplay/HUD/BottomUI/VBoxContainer/EndGameButton" to="Gameplay" method="EndGame"]
+[connection signal="pressed" from="Gameplay/HUD/BottomUI/VBoxContainer/EndTurnButton" to="Gameplay/HUD" method="TryEndTurn"]
 [connection signal="CardPlayed" from="Gameplay/HUD/BottomUI/PlayerHand" to="Gameplay/HUD" method="OnCardPlayed"]
 [connection signal="pressed" from="Gameplay/HUD/CardDirectionControl/GridContainer/ButtonNorth" to="Gameplay/HUD" method="RotateCardNorth"]
 [connection signal="pressed" from="Gameplay/HUD/CardDirectionControl/GridContainer/ButtonWest" to="Gameplay/HUD" method="RotateCardWest"]

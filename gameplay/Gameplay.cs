@@ -15,7 +15,6 @@ public partial class Gameplay : Node {
 		Drawing,
 		PlayingCards,
 		Acting,
-		LastTurn,
 		GameOver
 
 	}
@@ -96,7 +95,7 @@ public partial class Gameplay : Node {
 	}
 
 	public bool CanEndGame() {
-		return _currentState == State.LastTurn;
+		return _currentState == State.PlayingCards && _deck.RemainingCards==0;
 	}
 
 	public void EndGame() {
@@ -314,7 +313,7 @@ public partial class Gameplay : Node {
 		EmitSignalDrawing();
 
 		if (!await _hand.TryDrawCards(_deck)) { // game over, not enough cards
-			_currentState = State.LastTurn;
+			_currentState = State.PlayingCards;
 			EmitSignalLastTurn();
 			CanPlayCards = true;
 			return;

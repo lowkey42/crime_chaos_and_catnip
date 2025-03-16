@@ -12,6 +12,8 @@ public partial class Hud : CanvasLayer {
 
 	[Export] private Button _endTurnButton;
 
+	[Export] private Button _endGameButton;
+
 	[Export] private Gameplay _gameplay;
 
 	[Export] private Deck _deck;
@@ -28,7 +30,8 @@ public partial class Hud : CanvasLayer {
 		_scoreLabel.Text = _gameplay.Score.ToString();
 		_remainingCardsLabel.Text = _deck.RemainingCards.ToString();
 		
-		_endTurnButton.Text = _gameplay.CanEndGame() ? "end_game" : "end_turn";
+		_endGameButton.Visible = _gameplay.CanEndGame();
+		_endGameButton.Disabled = !_gameplay.CanEndTurn();
 		
 		_turnCounterLabel.Text = _gameplay.Turns.ToString();
 
@@ -38,10 +41,7 @@ public partial class Hud : CanvasLayer {
 	}
 	
 	public void TryEndTurn() {
-		if(_gameplay.CanEndGame()) 
-			_gameplay.EndGame();
-		else
-			_gameplay.EndTurn();
+		_gameplay.EndTurn();
 	}
 
 	private void OnCardPlayed(CardBase card, BoardObject spawn) {
