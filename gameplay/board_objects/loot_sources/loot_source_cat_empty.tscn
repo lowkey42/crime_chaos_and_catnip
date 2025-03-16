@@ -1,8 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://dlumv0jqe0i23"]
+[gd_scene load_steps=3 format=3 uid="uid://dlumv0jqe0i23"]
 
 [ext_resource type="PackedScene" uid="uid://b8no4lwu22gs7" path="res://assets/3D/small things/destructables/Briefkasten.glb" id="2_rj2nm"]
+[ext_resource type="PackedScene" uid="uid://ttc7n412cai0" path="res://particle_effects/fire.tscn" id="2_yc28t"]
 
 [node name="LootSourceCatEmpty" type="Node3D"]
 
 [node name="Briefkasten2" parent="." instance=ExtResource("2_rj2nm")]
 transform = Transform3D(0.101352, 0.994851, 0, -0.994851, 0.101352, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Fire" parent="." instance=ExtResource("2_yc28t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.984039, 0.359591, 0.0235393)
