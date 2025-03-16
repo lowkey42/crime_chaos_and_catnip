@@ -108,9 +108,8 @@ point_count = 5
 
 [node name="level_03" type="Node"]
 
-[node name="Board" type="Node3D" parent="." node_paths=PackedStringArray("GridLines", "_gridMap") groups=["Board"]]
+[node name="Board" type="Node3D" parent="." node_paths=PackedStringArray("_gridMap") groups=["Board"]]
 script = ExtResource("1_hx277")
-GridLines = NodePath("")
 _maxGridSize = Vector2i(48, 48)
 _gridMap = NodePath("Visuals/6x6Gridmap")
 
@@ -1420,5 +1419,15 @@ environment = ExtResource("15_aoegj")
 
 [node name="tank" parent="." instance=ExtResource("40_ybf8u")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 75.3709, -4.76837e-07, 51.7869)
+
+[connection signal="Killed" from="Board/GameplaySetup/Gooses/EnemyUnitGoose" to="Board/GameplaySetup/Gooses/EnemyPath/ENEMYPOLYGON" method="queue_free"]
+[connection signal="Killed" from="Board/GameplaySetup/Gooses/EnemyUnitGoose2" to="Board/GameplaySetup/Gooses/EnemyPath2/ENEMYPOLYGON" method="queue_free"]
+[connection signal="Killed" from="Board/GameplaySetup/Gooses/EnemyUnitGoose3" to="Board/GameplaySetup/Gooses/EnemyPath3/ENEMYPOLYGON" method="queue_free"]
+[connection signal="Killed" from="Board/GameplaySetup/Gooses/EnemyUnitGoose4" to="Board/GameplaySetup/Gooses/EnemyPath4/ENEMYPOLYGON" method="queue_free"]
+[connection signal="Killed" from="Board/GameplaySetup/Gooses/EnemyUnitGoose5" to="Board/GameplaySetup/Gooses/EnemyPath5/ENEMYPOLYGON" method="queue_free"]
+[connection signal="Killed" from="Board/GameplaySetup/Gooses/EnemyUnitGoose6" to="Board/GameplaySetup/Gooses/EnemyPath6/ENEMYPOLYGON" method="queue_free"]
+[connection signal="Killed" from="Board/GameplaySetup/Gooses/EnemyUnitGoose7" to="Board/GameplaySetup/Gooses/EnemyPath7/ENEMYPOLYGON" method="queue_free"]
+[connection signal="Killed" from="Board/GameplaySetup/Gooses/EnemyUnitGoose8" to="Board/GameplaySetup/Gooses/EnemyPath8/ENEMYPOLYGON" method="queue_free"]
+[connection signal="Killed" from="Board/GameplaySetup/Gooses/EnemyUnitGoose9" to="Board/GameplaySetup/Gooses/EnemyPath9/ENEMYPOLYGON" method="queue_free"]
 
 [editable path="Board/GameplaySetup/Gooses/EnemyUnitGoose9/Panzer2"]

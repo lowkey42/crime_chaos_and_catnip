@@ -490,3 +490,5 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 38.660
 
 [node name="stopschild" parent="." instance=ExtResource("24_fsmke")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.2385, 0, 90.1673)
+
+[connection signal="Killed" from="Board/GameplaySetup/Gooses/EnemyUnitGoose" to="Board/GameplaySetup/Gooses/EnemyPath/ENEMYPOLYGON" method="queue_free"]
