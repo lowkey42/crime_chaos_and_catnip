@@ -1,156 +1,77 @@
-[gd_scene load_steps=16 format=3 uid="uid://bftykp1mn7wp3"]
+[gd_scene load_steps=10 format=3 uid="uid://bftykp1mn7wp3"]
 
+[ext_resource type="Script" uid="uid://bcdpaxajll6ng" path="res://particle_effects/particle_helper.gd" id="1_burif"]
 [ext_resource type="Texture2D" uid="uid://b84rlm1881bn" path="res://assets/2D/Particles/P_Smoke.png" id="1_iotom"]
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_x1tvs"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4inwq"]
-render_priority = 2
-next_pass = SubResource("ParticleProcessMaterial_x1tvs")
-transparency = 1
-cull_mode = 2
-no_depth_test = true
-shading_mode = 0
-vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("1_iotom")
-texture_repeat = false
-billboard_mode = 1
-billboard_keep_scale = true
-grow_amount = -16.0
-point_size = 0.1
-
-[sub_resource type="Curve" id="Curve_iotom"]
-_data = [Vector2(0, 0.269959), 0.0, 0.0, 0, 0, Vector2(0.973333, 1), -0.386152, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_x1tvs"]
-curve = SubResource("Curve_iotom")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4mfqb"]
-lifetime_randomness = 0.05
-gravity = Vector3(0, 0, 0)
-scale_max = 4.75
-scale_curve = SubResource("CurveTexture_x1tvs")
-
-[sub_resource type="QuadMesh" id="QuadMesh_qvs5a"]
-uv2_padding = 0.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xcapn"]
 render_priority = 2
 transparency = 1
-cull_mode = 2
+depth_draw_mode = 2
 no_depth_test = true
 shading_mode = 0
 vertex_color_use_as_albedo = true
 albedo_texture = ExtResource("1_iotom")
 texture_repeat = false
 billboard_mode = 3
+billboard_keep_scale = true
 particles_anim_h_frames = 1
 particles_anim_v_frames = 1
 particles_anim_loop = false
-distance_fade_mode = 1
 distance_fade_max_distance = 0.1
 
 [sub_resource type="Gradient" id="Gradient_iotom"]
-offsets = PackedFloat32Array(0, 0.995455)
-colors = PackedColorArray(1, 1, 1, 1, 0.235294, 0.235294, 0.235294, 0.784314)
+offsets = PackedFloat32Array(0, 0.0712329, 0.208219, 0.526027, 1)
+colors = PackedColorArray(1, 1, 1, 0, 0.98, 0.98, 0.98, 1, 0.98, 0.98, 0.98, 1, 0.336617, 0.336604, 0.336607, 0.359813, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_x1tvs"]
 gradient = SubResource("Gradient_iotom")
+width = 512
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_60isb"]
+[sub_resource type="Curve" id="Curve_yj5hs"]
+_data = [Vector2(0, 0.165081), 0.0, 3.37601, 0, 0, Vector2(1, 0.907231), -0.341012, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_burif"]
+curve = SubResource("Curve_yj5hs")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7m86r"]
 lifetime_randomness = 0.1
 particle_flag_damping_as_friction = true
 emission_shape = 1
-emission_sphere_radius = 0.01
-angle_min = -720.0
-angle_max = 720.0
-direction = Vector3(0, 0, 0)
+emission_sphere_radius = 0.2
+angle_min = -45.0
+angle_max = 45.0
+direction = Vector3(0, 1, 0)
 spread = 180.0
-initial_velocity_min = -5.0
-initial_velocity_max = -5.0
-gravity = Vector3(0, 1, 0)
-radial_accel_min = -3.0
-radial_accel_max = -3.0
-damping_min = 4.93
-damping_max = 5.281
-color_ramp = SubResource("GradientTexture1D_x1tvs")
+initial_velocity_min = 14.0
+initial_velocity_max = 20.0
+gravity = Vector3(0, 5, 0)
+damping_min = 30.0
+damping_max = 40.0
+scale_curve = SubResource("CurveTexture_burif")
+color = Color(0.73, 0.73, 0.73, 1)
+alpha_curve = SubResource("GradientTexture1D_x1tvs")
 
 [sub_resource type="QuadMesh" id="QuadMesh_qgdl7"]
 
-[sub_resource type="Gradient" id="Gradient_4inwq"]
-offsets = PackedFloat32Array(0, 0.990909)
-colors = PackedColorArray(1, 1, 1, 1, 0.235294, 0.235294, 0.235294, 0.784314)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_4mfqb"]
-gradient = SubResource("Gradient_4inwq")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_iotom"]
-lifetime_randomness = 0.1
-particle_flag_damping_as_friction = true
-emission_shape = 1
-emission_sphere_radius = 1.0
-direction = Vector3(0, 0, 0)
-spread = 180.0
-initial_velocity_min = -5.0
-initial_velocity_max = -5.0
-gravity = Vector3(0, -1, 0)
-radial_accel_min = -3.0
-radial_accel_max = -3.0
-damping_min = 4.93
-damping_max = 5.29
-color_ramp = SubResource("GradientTexture1D_4mfqb")
-
 [node name="Spawn_Smoke" type="Node3D"]
-
-[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
-auto_translate_mode = 2
-transform = Transform3D(0.475, 0, 0, 0, 0.475, 0, 0, 0, 0.475, 0, 0, 0)
-top_level = true
-sorting_offset = 1.0
-material_override = SubResource("StandardMaterial3D_4inwq")
-cast_shadow = 0
-emitting = false
-amount = 1
-lifetime = 0.15
-one_shot = true
-speed_scale = 0.25
-fixed_fps = 60
-draw_order = 3
-transform_align = 1
-process_material = SubResource("ParticleProcessMaterial_4mfqb")
-draw_pass_1 = SubResource("QuadMesh_qvs5a")
+script = ExtResource("1_burif")
 
 [node name="GPUParticles3D2" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 material_override = SubResource("StandardMaterial3D_xcapn")
 transparency = 0.41
 cast_shadow = 0
 visibility_range_end_margin = 2.0
 visibility_range_fade_mode = 1
 emitting = false
-amount = 4
-lifetime = 0.3
+amount = 64
 one_shot = true
-preprocess = 0.19
-speed_scale = 0.5
-explosiveness = 0.7
-randomness = 0.07
+preprocess = 0.1
+explosiveness = 1.0
+randomness = 0.1
 fixed_fps = 60
 draw_order = 3
 transform_align = 1
-process_material = SubResource("ParticleProcessMaterial_60isb")
-draw_pass_1 = SubResource("QuadMesh_qgdl7")
-
-[node name="GPUParticles3D3" type="GPUParticles3D" parent="."]
-material_override = SubResource("StandardMaterial3D_xcapn")
-emitting = false
-amount = 4
-lifetime = 0.2
-one_shot = true
-speed_scale = 0.5
-explosiveness = 0.75
-randomness = 0.22
-fixed_fps = 60
-draw_order = 3
-process_material = SubResource("ParticleProcessMaterial_iotom")
+process_material = SubResource("ParticleProcessMaterial_7m86r")
 draw_pass_1 = SubResource("QuadMesh_qgdl7")

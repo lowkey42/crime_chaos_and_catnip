@@ -80,9 +80,7 @@ public partial class Unit : BoardObject {
 		if (_killEffectScene != null) {
 			var effect = _killEffectScene.Instantiate<Node3D>();
 			GetTree().Root.AddChild(effect); 
-			effect.GlobalPosition = GlobalPosition + new Vector3(0, 0.5f,1);
-			foreach (var particle in effect.GetChildren().OfType<GpuParticles3D>())
-				particle.Emitting = true;
+			effect.GlobalPosition = GlobalPosition;
 		}
 		
 		EmitSignalKilled();

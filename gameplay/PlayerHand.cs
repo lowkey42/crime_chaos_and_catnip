@@ -429,9 +429,7 @@ public partial class PlayerHand : Control {
 		    if (_playCardEffect != null) {
 			    var effect =  _playCardEffect.Instantiate<Node3D>();
 			    state.Board.AddChild(effect);
-			    effect.GlobalPosition = state.TargetCell.Position + new Vector3(0, 1f,0);
-			    foreach (var particle in effect.GetChildren().OfType<GpuParticles3D>())
-				    particle.Emitting = true;
+			    effect.GlobalPosition = state.TargetCell.Position;
 		    }
 		    
 		    var spawned = heldCard.Card.PlayAt(state);
