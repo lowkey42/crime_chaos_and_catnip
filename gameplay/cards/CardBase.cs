@@ -31,14 +31,6 @@ public partial class CardBase : Resource {
 				pc.Card = this;
 			state.Board.AddChild(spawned);
 			spawned.GlobalPosition = state.TargetCell.Position;
-			
-			var particleEffect = GD.Load<PackedScene>("res://scenes/level/effekt_tests.tscn").Instantiate<Node3D>();
-			state.Board.AddChild(particleEffect);
-			var particlesList = particleEffect.GetChildren().OfType<GpuParticles3D>().ToList();
-			foreach (var particle in particlesList) {
-				particle.GlobalPosition = state.TargetCell.Position + new Vector3(0, 1f,0);
-				particle.Emitting = true; // Starte die Partikel-Emission
-			}
 		}
 		
 		OnPlayed(state);

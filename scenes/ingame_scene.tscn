@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://cik30de5gaaah"]
+[gd_scene load_steps=50 format=3 uid="uid://cik30de5gaaah"]
 
 [ext_resource type="Script" uid="uid://dmeymco117qmu" path="res://scenes/ingame_scene.gd" id="1_objyc"]
 [ext_resource type="PackedScene" uid="uid://bkk87o2ooo6at" path="res://ui/overlays/fade_overlay.tscn" id="1_y6ebv"]
@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://b4ufa4onh1vrb" path="res://camera/cameras.tscn" id="14_ilpo5"]
 [ext_resource type="Resource" uid="uid://bboevd7u8vn57" path="res://gameplay/cards/instances/card_action.tres" id="15_6ywyt"]
 [ext_resource type="Script" uid="uid://buu7cbc7wjijb" path="res://ui/GameOverScreen.cs" id="15_th7mp"]
+[ext_resource type="PackedScene" uid="uid://bftykp1mn7wp3" path="res://particle_effects/dust.tscn" id="19_q6vb2"]
 [ext_resource type="Texture2D" uid="uid://cnr7n55dq2r1a" path="res://assets/2D/GameOverScreen/GameOverBackground.png" id="22_6ywyt"]
 [ext_resource type="PackedScene" uid="uid://jxjimmbyhk6o" path="res://scenes/level/level_03.tscn" id="23_6ywyt"]
 [ext_resource type="Texture2D" uid="uid://c0hsgr0i34axs" path="res://assets/2D/Icons/Icon_CatnipBag.png" id="23_fq0u6"]
@@ -320,6 +321,7 @@ _maxCardCount = 8
 _maxCardAtTurnEnd = 99
 _hoverOffset = 25.0
 _animationDurationReposition = 0.2
+_playCardEffect = ExtResource("19_q6vb2")
 _damp = 20.0
 
 [node name="CardDirectionControl" type="Control" parent="Gameplay/HUD"]
@@ -792,9 +794,6 @@ text = "continue"
 
 [node name="Board" parent="Gameplay/Level/level_03" index="0"]
 _maxGridSize = Vector2i(55, 55)
-
-[node name="GridLines" parent="Gameplay/Level/level_03/Board" index="0"]
-_colorExit = Color(1, 1, 1, 1)
 
 [node name="Cameras" parent="." instance=ExtResource("14_ilpo5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43, 0, 111.27)

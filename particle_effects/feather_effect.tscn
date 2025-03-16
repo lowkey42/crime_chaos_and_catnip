@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://e6jb20q2ugqu"]
+[gd_scene load_steps=5 format=3 uid="uid://chrk0lv3t1rfu"]
 
 [ext_resource type="Texture2D" uid="uid://cux00r02y82un" path="res://assets/2D/Particles/P_Feather.png" id="1_mlek3"]
 
@@ -36,3 +36,5 @@ explosiveness = 1.0
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_ccjfi")
 draw_pass_1 = SubResource("QuadMesh_kxmjg")
+
+[connection signal="finished" from="GPUParticles3D" to="." method="queue_free"]

@@ -23,15 +23,11 @@ public partial class HeldCard : Node2D {
 	private bool _canDrop = false;
 	private Timer _dropTimer;
 
-	private ShaderMaterial _glowMaterial;
-
 
 	public override void _Ready() {
 		base._Ready();
 
 		_sprite?.SetTexture(Card?.CardSprite);
-
-		_glowMaterial = GD.Load<ShaderMaterial>("res://assets/Shader/card_glow.tres");
 
 		_dropTimer = new Timer();
 		AddChild(_dropTimer);

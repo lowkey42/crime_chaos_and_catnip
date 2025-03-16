@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Godot;
 
 namespace CrimeChaosAndCatnip;
@@ -28,6 +29,8 @@ public partial class Unit : BoardObject {
 	[Export] private Label _lootLabel;
 	
 	[Export] private PackedScene _lootScene;
+	
+	[Export] private PackedScene _killEffectScene;
 
 	public override bool BlocksField => false;
 
@@ -72,6 +75,14 @@ public partial class Unit : BoardObject {
 			GetParent().AddChild(droppedLoot);
 			droppedLoot.Position = Position;
 			CollectedLoot = 0;
+		}
+
+		if (_killEffectScene != null) {
+			var effect = _killEffectScene.Instantiate<Node3D>();
+			GetTree().Root.AddChild(effect); 
+			effect.GlobalPosition = GlobalPosition + new Vector3(0, 0.5f,1);
+			foreach (var particle in effect.GetChildren().OfType<GpuParticles3D>())
+				particle.Emitting = true;
 		}
 		
 		EmitSignalKilled();

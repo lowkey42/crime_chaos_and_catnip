@@ -1,6 +1,7 @@
 #nullable enable
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Godot;
 
@@ -35,7 +36,8 @@ public partial class PlayerHand : Control {
 	[Export] private float _animationDuration = 0.3f;
 	[Export] private float _animationDurationStagger = 0.15f;
 	[Export] private float _animationDurationReposition = 0.05f;
-	
+
+	[Export] private PackedScene? _playCardEffect;
 
 	private Board? _board;
 
@@ -423,6 +425,15 @@ public partial class PlayerHand : Control {
 	    var state = GetCardAccessibleState(boardPosition);
 	    if (state != null) {
 		    TotalPlayedCards++;
+
+		    if (_playCardEffect != null) {
+			    var effect =  _playCardEffect.Instantiate<Node3D>();
+			    state.Board.AddChild(effect);
+			    effect.GlobalPosition = state.TargetCell.Position + new Vector3(0, 1f,0);
+			    foreach (var particle in effect.GetChildren().OfType<GpuParticles3D>())
+				    particle.Emitting = true;
+		    }
+		    
 		    var spawned = heldCard.Card.PlayAt(state);
 		    EmitSignalCardPlayed(heldCard.Card, spawned);
 		    _heldCards.Remove(heldCard);
