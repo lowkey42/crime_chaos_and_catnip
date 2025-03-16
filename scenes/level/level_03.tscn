@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://mb4i47wd66wh" path="res://gameplay/board_objects/loot.tscn" id="5_5xxq8"]
 [ext_resource type="PackedScene" uid="uid://c5fw6hn22hi6k" path="res://gameplay/board_objects/loot_sources/loot_source_cat.tscn" id="6_xwmh0"]
 [ext_resource type="PackedScene" uid="uid://70upebyxhbou" path="res://gameplay/board_objects/loot_sources/loot_source_racoon.tscn" id="7_mcbxj"]
-[ext_resource type="PackedScene" path="res://gameplay/board_objects/units/enemy_unit_goose.tscn" id="8_613py"]
+[ext_resource type="PackedScene" uid="uid://r1l46im0nohs" path="res://gameplay/board_objects/units/enemy_unit_goose.tscn" id="8_613py"]
 [ext_resource type="PackedScene" uid="uid://ce37br2s4b6qe" path="res://gameplay/board_objects/loot_sources/loot_source_chipmunk.tscn" id="8_lmiw1"]
 [ext_resource type="Material" uid="uid://b7rgxxmt708ru" path="res://scenes/level/enemypath1.tres" id="9_k7sxj"]
 [ext_resource type="PackedScene" uid="uid://d2vyc11ywfhv2" path="res://assets/3D/cars/Panzer.glb" id="9_v6qxp"]
@@ -15,13 +15,13 @@
 [ext_resource type="Script" uid="uid://c78jpbv3tl850" path="res://gameplay/board_objects/GridMapBoardCollision.cs" id="12_ijhy3"]
 [ext_resource type="MeshLibrary" uid="uid://b8tgjug4vkhw0" path="res://City_1x1_mesh_new.tres" id="13_avub8"]
 [ext_resource type="PackedScene" uid="uid://dmyx5cmc44lkw" path="res://scenes/Entities/laterne_spot.tscn" id="13_hx277"]
-[ext_resource type="PackedScene" uid="uid://ra38srhbbg8h" path="res://scenes/level/light_and_world_environment.tscn" id="14_lmiw1"]
+[ext_resource type="PackedScene" path="res://scenes/level/light_and_world_environment.tscn" id="14_lmiw1"]
 [ext_resource type="Environment" uid="uid://bcp04kwm6bifu" path="res://environment.tres" id="15_aoegj"]
 [ext_resource type="PackedScene" uid="uid://dfvn827ve7r50" path="res://assets/3D/cars/lowpolycar-jeep2-downsized.glb" id="15_nesl0"]
 [ext_resource type="PackedScene" uid="uid://b4ghjeb173258" path="res://assets/3D/cars/lowpolycar-normal-downsized.glb" id="16_x5hun"]
 [ext_resource type="PackedScene" uid="uid://cnyifj0b58f8d" path="res://assets/3D/small things/foliage/BuschKlein.glb" id="18_ijhy3"]
 [ext_resource type="PackedScene" uid="uid://bsq61q37gqwbk" path="res://assets/3D/small things/foliage/BaumGroß02.glb" id="19_avub8"]
-[ext_resource type="PackedScene" path="res://assets/3D/small things/foliage/BuschKleinSway.tscn" id="20_aoegj"]
+[ext_resource type="PackedScene" uid="uid://c2seirh1ng35j" path="res://assets/3D/small things/foliage/BuschKleinSway.tscn" id="20_aoegj"]
 [ext_resource type="PackedScene" uid="uid://cbjomocmnie7j" path="res://assets/3D/cars/Polizei1-downsized.glb" id="21_dketp"]
 [ext_resource type="PackedScene" uid="uid://go6gi32bplg6" path="res://assets/3D/cars/TAXI-downsized.glb" id="22_ijhy3"]
 [ext_resource type="PackedScene" uid="uid://c2jcqfkha8sw2" path="res://assets/3D/cars/lowpolycar-jeep1-downsized.glb" id="23_avub8"]
@@ -29,9 +29,9 @@
 [ext_resource type="PackedScene" uid="uid://bn6r0nr6uoqiy" path="res://assets/3D/houses/Leuchtfeld_02.glb" id="25_aoegj"]
 [ext_resource type="PackedScene" uid="uid://r5n51vbg0tgm" path="res://assets/3D/small things/straße/stopschild.glb" id="27_se6gf"]
 [ext_resource type="PackedScene" uid="uid://buq58r1wm7r11" path="res://assets/3D/small things/foliage/BaumGroß.glb" id="28_8hmpe"]
-[ext_resource type="PackedScene" path="res://assets/3D/small things/foliage/BaumGroß02Sway.tscn" id="29_3hrod"]
-[ext_resource type="PackedScene" path="res://assets/3D/small things/foliage/BaumGroßSway.tscn" id="30_t0lqa"]
-[ext_resource type="PackedScene" path="res://assets/3D/small things/foliage/BaumKleinSway.tscn" id="31_b53ri"]
+[ext_resource type="PackedScene" uid="uid://c6ulyom0pcvtt" path="res://assets/3D/small things/foliage/BaumGroß02Sway.tscn" id="29_3hrod"]
+[ext_resource type="PackedScene" uid="uid://idqhht7f06eo" path="res://assets/3D/small things/foliage/BaumGroßSway.tscn" id="30_t0lqa"]
+[ext_resource type="PackedScene" uid="uid://fu6ntqu6yl1h" path="res://assets/3D/small things/foliage/BaumKleinSway.tscn" id="31_b53ri"]
 [ext_resource type="PackedScene" uid="uid://cgamdttgbikux" path="res://assets/3D/small things/foliage/Blumengruppe_G.glb" id="32_ype1f"]
 [ext_resource type="PackedScene" uid="uid://lvmgeqtd3jwh" path="res://assets/3D/small things/foliage/Blumengruppe_K.glb" id="33_lmmpw"]
 [ext_resource type="PackedScene" uid="uid://btku7fnkvqksf" path="res://assets/3D/small things/foliage/Blumengruppe_M.glb" id="34_jwmdv"]
@@ -45,63 +45,63 @@
 
 [sub_resource type="Curve3D" id="Curve3D_k7sxj"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -9, 0, 0, 0, 0, 0, 0, -2, 0, -9, 0, 0, 0, 0, 0, 0, -2, 0, -30, 0, 0, 0, 0, 0, 0, -13, 0, -30),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -10, 0, 0, 0, 0, 0, 0, -2, 0, -10, 0, 0, 0, 0, 0, 0, -2, 0, -30, 0, 0, 0, 0, 0, 0, -12, 0, -30),
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0)
 }
 point_count = 5
 
-[sub_resource type="Curve3D" id="Curve3D_hx277"]
+[sub_resource type="Curve3D" id="Curve3D_v6qxp"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, -18, 0, 0, 0, 0, 0, 0, 11, 0, -18, 0, 0, 0, 0, 0, 0, 22, 0, -18, 0, 0, 0, 0, 0, 0, 11, 0, -18, 0, 0, 0, 0, 0, 0, 11, 0, -30),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -18, 0, 0, 0, 0, 0, 0, 10, 0, -18, 0, 0, 0, 0, 0, 0, 22, 0, -18, 0, 0, 0, 0, 0, 0, 12, 0, -18, 0, 0, 0, 0, 0, 0, 12, 0, -30),
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0)
 }
 point_count = 6
 
-[sub_resource type="Curve3D" id="Curve3D_613py"]
+[sub_resource type="Curve3D" id="Curve3D_pcvp5"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, -7, 0, 0, 0, 0, 0, 0, 7, 0, -18, 0, 0, 0, 0, 0, 0, 27, 0, -18, 0, 0, 0, 0, 0, 0, 27, 0, -17, 0, 0, 0, 0, 0, 0, 6, 0, -17, 0, 0, 0, 0, 0, 0, 6, 0, 6, 0, 0, 0, 0, 0, 0, 19, 0, 6),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, -7, 0, 0, 0, 0, 0, 0, 8, 0, -18, 0, 0, 0, 0, 0, 0, 28, 0, -18, 0, 0, 0, 0, 0, 0, 28, 0, -16, 0, 0, 0, 0, 0, 0, 6, 0, -16, 0, 0, 0, 0, 0, 0, 6, 0, 6, 0, 0, 0, 0, 0, 0, 20, 0, 6),
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0)
 }
 point_count = 9
 
-[sub_resource type="Curve3D" id="Curve3D_o1nda"]
+[sub_resource type="Curve3D" id="Curve3D_jk4p6"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -29, 0, 0, 0, 0, 0, 0, -12, 0, -29, 0, 0, 0, 0, 0, 0, -12, 0, -14, 0, 0, 0, 0, 0, 0, -26, 0, -14, 0, 0, 0, 0, 0, 0, -26, 0, -37, 0, 0, 0, 0, 0, 0, 3, 0, -37),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -30, 0, 0, 0, 0, 0, 0, -12, 0, -30, 0, 0, 0, 0, 0, 0, -12, 0, -14, 0, 0, 0, 0, 0, 0, -26, 0, -14, 0, 0, 0, 0, 0, 0, -26, 0, -36, 0, 0, 0, 0, 0, 0, 2, 0, -36),
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0)
 }
 point_count = 7
 
-[sub_resource type="Curve3D" id="Curve3D_fu6u2"]
+[sub_resource type="Curve3D" id="Curve3D_cdgvt"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -13, 0, 0, 0, 0, 0, 0, 10, 0, -13, 0, 0, 0, 0, 0, 0, 10, 0, -11, 0, 0, 0, 0, 0, 0, 23, 0, -11, 0, 0, 0, 0, 0, 0, 23, 0, 12),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -14, 0, 0, 0, 0, 0, 0, 10, 0, -14, 0, 0, 0, 0, 0, 0, 10, 0, -12, 0, 0, 0, 0, 0, 0, 22, 0, -12, 0, 0, 0, 0, 0, 0, 22, 0, 12),
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0)
 }
 point_count = 6
 
-[sub_resource type="Curve3D" id="Curve3D_sntr5"]
+[sub_resource type="Curve3D" id="Curve3D_uhxq1"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 23, 0, 10, 0, 0, 0, 0, 0, 0, 23, 0, 12, 0, 0, 0, 0, 0, 0, -7, 0, 12, 0, 0, 0, 0, 0, 0, -7, 0, 11, 0, 0, 0, 0, 0, 0, 24, 0, 11, 0, 0, 0, 0, 0, 0, 24, 0, 14),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 22, 0, 10, 0, 0, 0, 0, 0, 0, 22, 0, 12, 0, 0, 0, 0, 0, 0, -8, 0, 12, 0, 0, 0, 0, 0, 0, -8, 0, 12, 0, 0, 0, 0, 0, 0, 24, 0, 12, 0, 0, 0, 0, 0, 0, 24, 0, 14),
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0)
 }
 point_count = 8
 
 [sub_resource type="Curve3D" id="Curve3D_5xxq8"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -6, 0, 0, 0, 0, 0, 0, 0, 0, -6, 0, 13, 0, 0, 0, 0, 0, 0, 7, 0, 13, 0, 0, 0, 0, 0, 0, 7, 0, 2, 0, 0, 0, 0, 0, 0, -5, 0, 2, 0, 0, 0, 0, 0, 0, -5, 0, 12, 0, 0, 0, 0, 0, 0, 6, 0, 12),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -8, 0, 0, 0, 0, 0, 0, 0, 0, -8, 0, 14, 0, 0, 0, 0, 0, 0, 6, 0, 14, 0, 0, 0, 0, 0, 0, 6, 0, 2, 0, 0, 0, 0, 0, 0, -6, 0, 2, 0, 0, 0, 0, 0, 0, -6, 0, 12, 0, 0, 0, 0, 0, 0, 0, 0, 12),
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0)
 }
 point_count = 8
 
 [sub_resource type="Curve3D" id="Curve3D_xwmh0"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 12, 0, 0, 0, 0, 0, 0, -12, 0, 12, 0, 0, 0, 0, 0, 0, -24, 0, 12, 0, 0, 0, 0, 0, 0, -24, 0, 18, 0, 0, 0, 0, 0, 0, 1, 0, 18, 0, 0, 0, 0, 0, 0, 1, 0, 4, 0, 0, 0, 0, 0, 0, 5, 0, 4),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 12, 0, 0, 0, 0, 0, 0, -12, 0, 12, 0, 0, 0, 0, 0, 0, -24, 0, 12, 0, 0, 0, 0, 0, 0, -24, 0, 18, 0, 0, 0, 0, 0, 0, 2, 0, 18, 0, 0, 0, 0, 0, 0, 2, 0, 4, 0, 0, 0, 0, 0, 0, 6, 0, 4),
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0)
 }
 point_count = 8
 
 [sub_resource type="Curve3D" id="Curve3D_mcbxj"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11, 0, 0, 0, 0, 0, 0, 7, 0, 11, 0, 0, 0, 0, 0, 0, 7, 0, 13, 0, 0, 0, 0, 0, 0, -10, 0, 13),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 12, 0, 0, 0, 0, 0, 0, 6, 0, 12, 0, 0, 0, 0, 0, 0, 6, 0, 12, 0, 0, 0, 0, 0, 0, -10, 0, 12),
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0)
 }
 point_count = 5
@@ -120,15 +120,15 @@ _gridMap = NodePath("Visuals/6x6Gridmap")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5)
 
 [node name="Exit" parent="Board/GameplaySetup" instance=ExtResource("3_fu6u2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 57.5, 0, 101.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 57, 0, 101)
 
 [node name="Exit2" parent="Board/GameplaySetup" instance=ExtResource("3_fu6u2")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 27.5, 0, 60.5)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 27, 0, 60)
 
 [node name="Exit3" parent="Board/GameplaySetup" instance=ExtResource("3_fu6u2")]
-transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 72.5, 0, 33.5)
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 72, 0, 33)
 
-[node name="ChipmunkLoot" type="Node" parent="Board/GameplaySetup"]
+[node name="ChipmunkLoot" type="Node3D" parent="Board/GameplaySetup"]
 
 [node name="LootSourceChipmunk" parent="Board/GameplaySetup/ChipmunkLoot" instance=ExtResource("8_lmiw1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39, 0, 80)
@@ -137,7 +137,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39, 0, 80)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39, 0, 83)
 
 [node name="LootSourceChipmunk21" parent="Board/GameplaySetup/ChipmunkLoot" instance=ExtResource("8_lmiw1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42, 0, 82)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41, 0, 82)
 
 [node name="LootSourceChipmunk2" parent="Board/GameplaySetup/ChipmunkLoot" instance=ExtResource("8_lmiw1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37, 0, 59)
@@ -146,34 +146,34 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37, 0, 59)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 0, 70)
 
 [node name="LootSourceChipmunk17" parent="Board/GameplaySetup/ChipmunkLoot" instance=ExtResource("8_lmiw1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 88)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, 87)
 
 [node name="LootSourceChipmunk18" parent="Board/GameplaySetup/ChipmunkLoot" instance=ExtResource("8_lmiw1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0, 87)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, 86)
 
 [node name="LootSourceChipmunk3" parent="Board/GameplaySetup/ChipmunkLoot" instance=ExtResource("8_lmiw1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 0, 53)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 0, 54)
 
 [node name="LootSourceChipmunk26" parent="Board/GameplaySetup/ChipmunkLoot" instance=ExtResource("8_lmiw1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54, 0, 53)
 
 [node name="LootSourceChipmunk4" parent="Board/GameplaySetup/ChipmunkLoot" instance=ExtResource("8_lmiw1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 88, 0, 87)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 87, 0, 87)
 
 [node name="LootSourceChipmunk22" parent="Board/GameplaySetup/ChipmunkLoot" instance=ExtResource("8_lmiw1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 98, 0, 69)
 
 [node name="LootSourceChipmunk23" parent="Board/GameplaySetup/ChipmunkLoot" instance=ExtResource("8_lmiw1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 102, 0, 71)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 101, 0, 71)
 
 [node name="LootSourceChipmunk5" parent="Board/GameplaySetup/ChipmunkLoot" instance=ExtResource("8_lmiw1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70, 0, 70)
 
 [node name="LootSourceChipmunk19" parent="Board/GameplaySetup/ChipmunkLoot" instance=ExtResource("8_lmiw1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68, 0, 72)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 69, 0, 73)
 
 [node name="LootSourceChipmunk6" parent="Board/GameplaySetup/ChipmunkLoot" instance=ExtResource("8_lmiw1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 61, 0, 42)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 61, 0, 41)
 
 [node name="LootSourceChipmunk7" parent="Board/GameplaySetup/ChipmunkLoot" instance=ExtResource("8_lmiw1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 81, 0, 27)
@@ -182,10 +182,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 81, 0, 27)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 83, 0, 29)
 
 [node name="LootSourceChipmunk8" parent="Board/GameplaySetup/ChipmunkLoot" instance=ExtResource("8_lmiw1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64, 0, 17)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 63, 0, 17)
 
 [node name="LootSourceChipmunk25" parent="Board/GameplaySetup/ChipmunkLoot" instance=ExtResource("8_lmiw1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 66, 0, 15)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 65, 0, 15)
 
 [node name="LootSourceChipmunk9" parent="Board/GameplaySetup/ChipmunkLoot" instance=ExtResource("8_lmiw1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34, 0, 28)
@@ -208,7 +208,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 0, 25)
 [node name="LootSourceChipmunk15" parent="Board/GameplaySetup/ChipmunkLoot" instance=ExtResource("8_lmiw1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41, 0, 14)
 
-[node name="Catnip" type="Node" parent="Board/GameplaySetup"]
+[node name="Catnip" type="Node3D" parent="Board/GameplaySetup"]
 
 [node name="Loot" parent="Board/GameplaySetup/Catnip" instance=ExtResource("5_5xxq8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 57.5, 0, 81.5)
@@ -306,36 +306,30 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, 26)
 [node name="Loot22" parent="Board/GameplaySetup/Catnip" instance=ExtResource("5_5xxq8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 76, 0, 44)
 
-[node name="CatLoot" type="Node" parent="Board/GameplaySetup"]
+[node name="CatLoot" type="Node3D" parent="Board/GameplaySetup"]
 
 [node name="LootSourceCat" parent="Board/GameplaySetup/CatLoot" instance=ExtResource("6_xwmh0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54.5, 0, 73.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54.5, 0, 72.5)
 
 [node name="LootSourceCat12" parent="Board/GameplaySetup/CatLoot" instance=ExtResource("6_xwmh0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36, 0, 96)
 
 [node name="LootSourceCat15" parent="Board/GameplaySetup/CatLoot" instance=ExtResource("6_xwmh0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 0, 77)
-
-[node name="LootSourceCat16" parent="Board/GameplaySetup/CatLoot" instance=ExtResource("6_xwmh0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 0, 77)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, 77)
 
 [node name="LootSourceCat17" parent="Board/GameplaySetup/CatLoot" instance=ExtResource("6_xwmh0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31, 0, 69)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 69)
 
 [node name="LootSourceCat18" parent="Board/GameplaySetup/CatLoot" instance=ExtResource("6_xwmh0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0, 57)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0, 58)
 
 [node name="LootSourceCat19" parent="Board/GameplaySetup/CatLoot" instance=ExtResource("6_xwmh0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, 42)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 42)
 
 [node name="LootSourceCat21" parent="Board/GameplaySetup/CatLoot" instance=ExtResource("6_xwmh0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 0, 42)
 
 [node name="LootSourceCat22" parent="Board/GameplaySetup/CatLoot" instance=ExtResource("6_xwmh0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35, 0, 42)
-
-[node name="LootSourceCat23" parent="Board/GameplaySetup/CatLoot" instance=ExtResource("6_xwmh0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35, 0, 42)
 
 [node name="LootSourceCat24" parent="Board/GameplaySetup/CatLoot" instance=ExtResource("6_xwmh0")]
@@ -348,10 +342,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 69, 0, 24)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86, 0, 24)
 
 [node name="LootSourceCat27" parent="Board/GameplaySetup/CatLoot" instance=ExtResource("6_xwmh0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 106, 0, 20)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 106, 0, 19)
 
 [node name="LootSourceCat20" parent="Board/GameplaySetup/CatLoot" instance=ExtResource("6_xwmh0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 56)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 60)
 
 [node name="LootSourceCat13" parent="Board/GameplaySetup/CatLoot" instance=ExtResource("6_xwmh0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36, 0, 96)
@@ -363,13 +357,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47, 0, 96)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 65, 0, 96)
 
 [node name="LootSourceCat11" parent="Board/GameplaySetup/CatLoot" instance=ExtResource("6_xwmh0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 71, 0, 92)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 71, 0, 91)
 
 [node name="LootSourceCat3" parent="Board/GameplaySetup/CatLoot" instance=ExtResource("6_xwmh0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79, 0, 73)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 78, 0, 73)
 
 [node name="LootSourceCat4" parent="Board/GameplaySetup/CatLoot" instance=ExtResource("6_xwmh0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79, 0, 64)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 78, 0, 64)
 
 [node name="LootSourceCat8" parent="Board/GameplaySetup/CatLoot" instance=ExtResource("6_xwmh0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 101, 0, 78)
@@ -378,21 +372,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 101, 0, 78)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 84, 0, 58)
 
 [node name="LootSourceCat6" parent="Board/GameplaySetup/CatLoot" instance=ExtResource("6_xwmh0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 92, 0, 68)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 91, 0, 68)
 
 [node name="LootSourceCat5" parent="Board/GameplaySetup/CatLoot" instance=ExtResource("6_xwmh0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 98, 0, 58)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 97, 0, 58)
 
 [node name="LootSourceCat2" parent="Board/GameplaySetup/CatLoot" instance=ExtResource("6_xwmh0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54, 0, 64)
 
 [node name="LootSourceCat9" parent="Board/GameplaySetup/CatLoot" instance=ExtResource("6_xwmh0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 68)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49, 0, 68)
 
-[node name="RacoonLoot" type="Node" parent="Board/GameplaySetup"]
+[node name="RacoonLoot" type="Node3D" parent="Board/GameplaySetup"]
 
 [node name="LootSourceRacoon" parent="Board/GameplaySetup/RacoonLoot" instance=ExtResource("7_mcbxj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55.5, 0, 96.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55, 0, 96)
 
 [node name="LootSourceRacoon2" parent="Board/GameplaySetup/RacoonLoot" instance=ExtResource("7_mcbxj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 63)
@@ -416,7 +410,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38, 0, 21)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, 25)
 
 [node name="LootSourceRacoon9" parent="Board/GameplaySetup/RacoonLoot" instance=ExtResource("7_mcbxj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 0, 10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 0, 11)
 
 [node name="LootSourceRacoon10" parent="Board/GameplaySetup/RacoonLoot" instance=ExtResource("7_mcbxj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 0, 19)
@@ -425,7 +419,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 0, 19)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 0, 19)
 
 [node name="LootSourceRacoon12" parent="Board/GameplaySetup/RacoonLoot" instance=ExtResource("7_mcbxj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 74, 0, 10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 73, 0, 10)
 
 [node name="LootSourceRacoon13" parent="Board/GameplaySetup/RacoonLoot" instance=ExtResource("7_mcbxj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 78, 0, 10)
@@ -434,37 +428,37 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 78, 0, 10)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 78, 0, 14)
 
 [node name="LootSourceRacoon15" parent="Board/GameplaySetup/RacoonLoot" instance=ExtResource("7_mcbxj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, 20)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, 19)
 
 [node name="LootSourceRacoon16" parent="Board/GameplaySetup/RacoonLoot" instance=ExtResource("7_mcbxj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, 20)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 99, 0, 19)
 
 [node name="LootSourceRacoon17" parent="Board/GameplaySetup/RacoonLoot" instance=ExtResource("7_mcbxj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 78, 0, 27)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 78, 0, 26)
 
 [node name="LootSourceRacoon18" parent="Board/GameplaySetup/RacoonLoot" instance=ExtResource("7_mcbxj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 84, 0, 45)
 
 [node name="LootSourceRacoon19" parent="Board/GameplaySetup/RacoonLoot" instance=ExtResource("7_mcbxj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 98, 0, 43)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 97, 0, 41)
 
 [node name="LootSourceRacoon20" parent="Board/GameplaySetup/RacoonLoot" instance=ExtResource("7_mcbxj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 102, 0, 43)
 
 [node name="LootSourceRacoon21" parent="Board/GameplaySetup/RacoonLoot" instance=ExtResource("7_mcbxj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 98, 0, 56)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 97, 0, 56)
 
 [node name="LootSourceRacoon22" parent="Board/GameplaySetup/RacoonLoot" instance=ExtResource("7_mcbxj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 92, 0, 66)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 91, 0, 66)
 
 [node name="LootSourceRacoon23" parent="Board/GameplaySetup/RacoonLoot" instance=ExtResource("7_mcbxj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79, 0, 65)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 78, 0, 65)
 
 [node name="LootSourceRacoon24" parent="Board/GameplaySetup/RacoonLoot" instance=ExtResource("7_mcbxj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 80, 0, 79)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79, 0, 79)
 
 [node name="LootSourceRacoon25" parent="Board/GameplaySetup/RacoonLoot" instance=ExtResource("7_mcbxj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 80, 0, 87)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79, 0, 85)
 
 [node name="LootSourceRacoon26" parent="Board/GameplaySetup/RacoonLoot" instance=ExtResource("7_mcbxj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 91, 0, 96)
@@ -478,19 +472,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 0, 81)
 [node name="LootSourceRacoon29" parent="Board/GameplaySetup/RacoonLoot" instance=ExtResource("7_mcbxj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54, 0, 67)
 
-[node name="Gooses" type="Node" parent="Board/GameplaySetup"]
+[node name="Gooses" type="Node3D" parent="Board/GameplaySetup"]
 
 [node name="EnemyUnitGoose" parent="Board/GameplaySetup/Gooses" node_paths=PackedStringArray("_path") instance=ExtResource("8_613py")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29, 0, 94)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 94)
 _path = NodePath("../EnemyPath")
 
 [node name="Panzer" parent="Board/GameplaySetup/Gooses" instance=ExtResource("9_v6qxp")]
 
 [node name="EnemyPath" type="Path3D" parent="Board/GameplaySetup/Gooses"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29, 0, 94)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 94)
 curve = SubResource("Curve3D_k7sxj")
 
 [node name="ENEMYPOLYGON" type="CSGPolygon3D" parent="Board/GameplaySetup/Gooses/EnemyPath"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, -0.5)
 polygon = PackedVector2Array(-0.5, 0, -0.5, 0.1, 0.5, 0.1, 0.5, 0)
 mode = 2
 path_node = NodePath("..")
@@ -511,10 +506,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 82, 0, 94)
 _path = NodePath("../EnemyPath2")
 
 [node name="EnemyPath2" type="Path3D" parent="Board/GameplaySetup/Gooses"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 83, 0, 94)
-curve = SubResource("Curve3D_hx277")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 82, 0, 94)
+curve = SubResource("Curve3D_v6qxp")
 
 [node name="ENEMYPOLYGON" type="CSGPolygon3D" parent="Board/GameplaySetup/Gooses/EnemyPath2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, -0.5)
 polygon = PackedVector2Array(-0.5, 0, -0.5, 0.1, 0.5, 0.1, 0.5, 0)
 mode = 2
 path_node = NodePath("..")
@@ -531,14 +527,15 @@ smooth_faces = true
 material = ExtResource("9_k7sxj")
 
 [node name="EnemyUnitGoose3" parent="Board/GameplaySetup/Gooses" node_paths=PackedStringArray("_path") instance=ExtResource("8_613py")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 58)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 58)
 _path = NodePath("../EnemyPath3")
 
 [node name="EnemyPath3" type="Path3D" parent="Board/GameplaySetup/Gooses"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 58)
-curve = SubResource("Curve3D_613py")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 58)
+curve = SubResource("Curve3D_pcvp5")
 
 [node name="ENEMYPOLYGON" type="CSGPolygon3D" parent="Board/GameplaySetup/Gooses/EnemyPath3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, -0.5)
 polygon = PackedVector2Array(-0.5, 0, -0.5, 0.1, 0.5, 0.1, 0.5, 0)
 mode = 2
 path_node = NodePath("..")
@@ -560,9 +557,10 @@ _path = NodePath("../EnemyPath4")
 
 [node name="EnemyPath4" type="Path3D" parent="Board/GameplaySetup/Gooses"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, 46)
-curve = SubResource("Curve3D_o1nda")
+curve = SubResource("Curve3D_jk4p6")
 
 [node name="ENEMYPOLYGON" type="CSGPolygon3D" parent="Board/GameplaySetup/Gooses/EnemyPath4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, -0.5)
 polygon = PackedVector2Array(-0.5, 0, -0.5, 0.1, 0.5, 0.1, 0.5, 0)
 mode = 2
 path_node = NodePath("..")
@@ -584,9 +582,10 @@ _path = NodePath("../EnemyPath5")
 
 [node name="EnemyPath5" type="Path3D" parent="Board/GameplaySetup/Gooses"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52, 0, 34)
-curve = SubResource("Curve3D_fu6u2")
+curve = SubResource("Curve3D_cdgvt")
 
 [node name="ENEMYPOLYGON" type="CSGPolygon3D" parent="Board/GameplaySetup/Gooses/EnemyPath5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, -0.5)
 polygon = PackedVector2Array(-0.5, 0, -0.5, 0.1, 0.5, 0.1, 0.5, 0)
 mode = 2
 path_node = NodePath("..")
@@ -603,14 +602,15 @@ smooth_faces = true
 material = ExtResource("9_k7sxj")
 
 [node name="EnemyUnitGoose6" parent="Board/GameplaySetup/Gooses" node_paths=PackedStringArray("_path") instance=ExtResource("8_613py")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 76, 0, 11)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 76, 0, 12)
 _path = NodePath("../EnemyPath6")
 
 [node name="EnemyPath6" type="Path3D" parent="Board/GameplaySetup/Gooses"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 76, 0, 11)
-curve = SubResource("Curve3D_sntr5")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 76, 0, 12)
+curve = SubResource("Curve3D_uhxq1")
 
 [node name="ENEMYPOLYGON" type="CSGPolygon3D" parent="Board/GameplaySetup/Gooses/EnemyPath6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, -0.5)
 polygon = PackedVector2Array(-0.5, 0, -0.5, 0.1, 0.5, 0.1, 0.5, 0)
 mode = 2
 path_node = NodePath("..")
@@ -627,14 +627,15 @@ smooth_faces = true
 material = ExtResource("9_k7sxj")
 
 [node name="EnemyUnitGoose7" parent="Board/GameplaySetup/Gooses" node_paths=PackedStringArray("_path") instance=ExtResource("8_613py")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 76, 0, 45)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 76, 0, 44)
 _path = NodePath("../EnemyPath7")
 
 [node name="EnemyPath7" type="Path3D" parent="Board/GameplaySetup/Gooses"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 76, 0, 45)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 76, 0, 44)
 curve = SubResource("Curve3D_5xxq8")
 
 [node name="ENEMYPOLYGON" type="CSGPolygon3D" parent="Board/GameplaySetup/Gooses/EnemyPath7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, -0.5)
 polygon = PackedVector2Array(-0.5, 0, -0.5, 0.1, 0.5, 0.1, 0.5, 0)
 mode = 2
 path_node = NodePath("..")
@@ -651,14 +652,15 @@ smooth_faces = true
 material = ExtResource("9_k7sxj")
 
 [node name="EnemyUnitGoose8" parent="Board/GameplaySetup/Gooses" node_paths=PackedStringArray("_path") instance=ExtResource("8_613py")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59, 0, 39)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58, 0, 40)
 _path = NodePath("../EnemyPath8")
 
 [node name="EnemyPath8" type="Path3D" parent="Board/GameplaySetup/Gooses"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59, 0, 39)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58, 0, 40)
 curve = SubResource("Curve3D_xwmh0")
 
 [node name="ENEMYPOLYGON" type="CSGPolygon3D" parent="Board/GameplaySetup/Gooses/EnemyPath8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, -0.5)
 polygon = PackedVector2Array(-0.5, 0, -0.5, 0.1, 0.5, 0.1, 0.5, 0)
 mode = 2
 path_node = NodePath("..")
@@ -688,6 +690,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52, 0, 64)
 curve = SubResource("Curve3D_mcbxj")
 
 [node name="ENEMYPOLYGON" type="CSGPolygon3D" parent="Board/GameplaySetup/Gooses/EnemyPath9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, -0.5)
 polygon = PackedVector2Array(-0.5, 0, -0.5, 0.1, 0.5, 0.1, 0.5, 0)
 mode = 2
 path_node = NodePath("..")
@@ -706,7 +709,7 @@ material = ExtResource("9_k7sxj")
 [node name="Goose_Pathes" type="Node" parent="Board/GameplaySetup"]
 
 [node name="Visuals" type="Node3D" parent="Board"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 96.077, -0.1, 72)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 96, -0.1, 72)
 
 [node name="6x6Gridmap" type="GridMap" parent="Board/Visuals"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
@@ -828,17 +831,114 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.3838, 0.100001, 6.12176)
 [node name="Latnere_spot28" parent="Board/Visuals" instance=ExtResource("13_hx277")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.2336, 0.1, 5.85502)
 
-[node name="lowpolycar-jeep2-downsized" parent="Board/Visuals" instance=ExtResource("15_nesl0")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -48.077, 0.1, 21)
-
 [node name="lowpolycar-jeep2-downsized5" parent="Board/Visuals" instance=ExtResource("15_nesl0")]
-transform = Transform3D(-0.199957, 0, -0.00413963, 0, 0.2, 0, 0.00413963, 0, -0.199957, -32.0135, 9.40412, 10.1198)
+transform = Transform3D(-0.199957, 0, -0.00413963, 0, 0.2, 0, 0.00413963, 0, -0.199957, -31.5135, 9.40412, 10.6198)
 
-[node name="lowpolycar-jeep2-downsized2" parent="Board/Visuals" instance=ExtResource("15_nesl0")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -67.077, 0.1, 5)
+[node name="trafficcone2" parent="Board/Visuals" instance=ExtResource("36_ype1f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.9528, 0.1, 19.6509)
 
-[node name="lowpolycar-normal-downsized" parent="Board/Visuals" instance=ExtResource("16_x5hun")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -78.077, 0.1, -7)
+[node name="trafficcone3" parent="Board/Visuals" instance=ExtResource("36_ype1f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.0709, 0.1, 19.9208)
+
+[node name="trafficcone4" parent="Board/Visuals" instance=ExtResource("36_ype1f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.2925, 0.1, 25.3258)
+
+[node name="trafficcone5" parent="Board/Visuals" instance=ExtResource("36_ype1f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -82.1518, 0.1, 18.8014)
+
+[node name="trafficcone6" parent="Board/Visuals" instance=ExtResource("36_ype1f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -70.2825, 0.1, -10.7695)
+
+[node name="trafficcone7" parent="Board/Visuals" instance=ExtResource("36_ype1f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -70.1673, 0.1, -28.5424)
+
+[node name="trafficcone8" parent="Board/Visuals" instance=ExtResource("36_ype1f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.286, 0.1, -46.5521)
+
+[node name="trafficcone9" parent="Board/Visuals" instance=ExtResource("36_ype1f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.9202, 0.1, -35.0904)
+
+[node name="trafficcone10" parent="Board/Visuals" instance=ExtResource("36_ype1f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.1353, 0.1, -53.8231)
+
+[node name="trafficcone11" parent="Board/Visuals" instance=ExtResource("36_ype1f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.02374, 0.1, -46.808)
+
+[node name="trafficcone12" parent="Board/Visuals" instance=ExtResource("36_ype1f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.22913, 0.1, -31.3366)
+
+[node name="trafficcone13" parent="Board/Visuals" instance=ExtResource("36_ype1f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.37498, 0.1, -5.32137)
+
+[node name="collision" type="Node3D" parent="Board/Visuals"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5)
+
+[node name="lowpolycar-jeep2-downsized" parent="Board/Visuals/collision" instance=ExtResource("15_nesl0")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -49.5, 0.1, 19.5)
+
+[node name="lowpolycar-jeep2-downsized2" parent="Board/Visuals/collision" instance=ExtResource("15_nesl0")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -66.8, 0.1, 5)
+
+[node name="lowpolycar-normal-downsized" parent="Board/Visuals/collision" instance=ExtResource("16_x5hun")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -78, 0.1, -6.5)
+
+[node name="lowpolycar-normal-downsized2" parent="Board/Visuals/collision" instance=ExtResource("16_x5hun")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5, 0.1, 16.5)
+
+[node name="Polizei1-downsized" parent="Board/Visuals/collision" instance=ExtResource("21_dketp")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6, 0.1, 2)
+
+[node name="lowpolycar-normal-downsized3" parent="Board/Visuals/collision" instance=ExtResource("16_x5hun")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.5, 0.1, -20.5)
+
+[node name="lowpolycar-jeep2-downsized3" parent="Board/Visuals/collision" instance=ExtResource("15_nesl0")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -15, 0.1, -28)
+_margin = 0.4
+
+[node name="TAXI-downsized" parent="Board/Visuals/collision" instance=ExtResource("22_ijhy3")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -18.5, 0.1, -43.5)
+
+[node name="lowpolycar-jeep1-downsized" parent="Board/Visuals/collision" instance=ExtResource("23_avub8")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 14, 0.1, -51)
+
+[node name="lowpolycar-jeep2-downsized4" parent="Board/Visuals/collision" instance=ExtResource("15_nesl0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.3, 0.1, -59.5)
+
+[node name="lowpolycar-normal-downsized4" parent="Board/Visuals/collision" instance=ExtResource("16_x5hun")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -67, 0.1, -34.5)
+
+[node name="lowpolycar-jeep1-downsized2" parent="Board/Visuals/collision" instance=ExtResource("23_avub8")]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -52, 0.1, 1)
+
+[node name="roadblock1" parent="Board/Visuals/collision" instance=ExtResource("37_b53ri")]
+transform = Transform3D(0.0336436, 0, -0.999434, 0, 1, 0, 0.999434, 0, 0.0336436, -90, 0.1, 23)
+
+[node name="roadblock2" parent="Board/Visuals/collision" instance=ExtResource("37_b53ri")]
+transform = Transform3D(0.0336436, 0, -0.999434, 0, 1, 0, 0.999434, 0, 0.0336436, -90, 0.1, 20)
+
+[node name="roadblock3" parent="Board/Visuals/collision" instance=ExtResource("37_b53ri")]
+transform = Transform3D(0.0426777, 0, -0.999089, 0, 1, 0, 0.999089, 0, 0.0426777, 15.7935, 0.1, 2.72279)
+
+[node name="roadblock4" parent="Board/Visuals/collision" instance=ExtResource("37_b53ri")]
+transform = Transform3D(0.0245718, 0, -0.999698, 0, 1, 0, 0.999698, 0, 0.0245718, 15.918, 0.1, 5.0948)
+
+[node name="roadblock5" parent="Board/Visuals/collision" instance=ExtResource("37_b53ri")]
+transform = Transform3D(0.00532322, 0, -0.999986, 0, 1, 0, 0.999986, 0, 0.00532322, 16.738, 0.1, -48.7744)
+
+[node name="roadblock6" parent="Board/Visuals/collision" instance=ExtResource("37_b53ri")]
+transform = Transform3D(0.00532322, 0, -0.999986, 0, 1, 0, 0.999986, 0, 0.00532322, 16.738, 0.1, -50.9517)
+
+[node name="roadblock7" parent="Board/Visuals/collision" instance=ExtResource("37_b53ri")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.0024, 0.1, -66.4743)
+
+[node name="roadblock8" parent="Board/Visuals/collision" instance=ExtResource("37_b53ri")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.9273, 0.1, -66.4752)
+
+[node name="roadblock9" parent="Board/Visuals/collision" instance=ExtResource("37_b53ri")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -90, 0.1, -13)
+
+[node name="roadblock10" parent="Board/Visuals/collision" instance=ExtResource("37_b53ri")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -90, 0.1, -16)
 
 [node name="BuschKlein" parent="Board/Visuals" instance=ExtResource("18_ijhy3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.077, -0.273296, -18)
@@ -851,33 +951,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.7266, 0.1, -21.57)
 
 [node name="BuschKlein2" parent="Board/Visuals" instance=ExtResource("20_aoegj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.9398, -0.288474, -17.6255)
-
-[node name="lowpolycar-normal-downsized2" parent="Board/Visuals" instance=ExtResource("16_x5hun")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.5727, 0.1, 16.9733)
-
-[node name="Polizei1-downsized" parent="Board/Visuals" instance=ExtResource("21_dketp")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5.923, 0.1, 3)
-
-[node name="lowpolycar-normal-downsized3" parent="Board/Visuals" instance=ExtResource("16_x5hun")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.077, 0.1, -21)
-
-[node name="lowpolycar-jeep2-downsized3" parent="Board/Visuals" instance=ExtResource("15_nesl0")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -15.077, 0.1, -27)
-
-[node name="TAXI-downsized" parent="Board/Visuals" instance=ExtResource("22_ijhy3")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -19.077, 0.1, -43)
-
-[node name="lowpolycar-jeep1-downsized" parent="Board/Visuals" instance=ExtResource("23_avub8")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 13.923, 0.1, -51)
-
-[node name="lowpolycar-jeep2-downsized4" parent="Board/Visuals" instance=ExtResource("15_nesl0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.077, 0.1, -59)
-
-[node name="lowpolycar-normal-downsized4" parent="Board/Visuals" instance=ExtResource("16_x5hun")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -67.077, 0.1, -33)
-
-[node name="lowpolycar-jeep1-downsized2" parent="Board/Visuals" instance=ExtResource("23_avub8")]
-transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -51.077, 0.1, 3)
 
 [node name="Leuchtfeld_01" parent="Board/Visuals" instance=ExtResource("24_avub8")]
 transform = Transform3D(-4.37114e-08, 0, -1.61265, 0, 1.15821, 0, 1, 0, -7.04911e-08, -24.5701, 5.10975, -29.3227)
@@ -1231,72 +1304,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.1936, -0.166245, 15.336)
 
 [node name="BuschKlein26" parent="Board/Visuals" instance=ExtResource("18_ijhy3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.1562, -0.210953, 16.6601)
-
-[node name="roadblock1" parent="Board/Visuals" instance=ExtResource("37_b53ri")]
-transform = Transform3D(0.0336436, 0, -0.999434, 0, 1, 0, 0.999434, 0, 0.0336436, -90.1123, 0.1, 23.3619)
-
-[node name="roadblock2" parent="Board/Visuals" instance=ExtResource("37_b53ri")]
-transform = Transform3D(0.0336436, 0, -0.999434, 0, 1, 0, 0.999434, 0, 0.0336436, -90.1512, 0.1, 20.8061)
-
-[node name="roadblock3" parent="Board/Visuals" instance=ExtResource("37_b53ri")]
-transform = Transform3D(0.0426777, 0, -0.999089, 0, 1, 0, 0.999089, 0, 0.0426777, 15.7935, 0.1, 2.72279)
-
-[node name="roadblock4" parent="Board/Visuals" instance=ExtResource("37_b53ri")]
-transform = Transform3D(0.0245718, 0, -0.999698, 0, 1, 0, 0.999698, 0, 0.0245718, 15.918, 0.1, 5.0948)
-
-[node name="roadblock5" parent="Board/Visuals" instance=ExtResource("37_b53ri")]
-transform = Transform3D(0.00532322, 0, -0.999986, 0, 1, 0, 0.999986, 0, 0.00532322, 16.738, 0.1, -48.7744)
-
-[node name="roadblock6" parent="Board/Visuals" instance=ExtResource("37_b53ri")]
-transform = Transform3D(0.00532322, 0, -0.999986, 0, 1, 0, 0.999986, 0, 0.00532322, 16.738, 0.1, -50.9517)
-
-[node name="roadblock7" parent="Board/Visuals" instance=ExtResource("37_b53ri")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.0024, 0.1, -66.4743)
-
-[node name="roadblock8" parent="Board/Visuals" instance=ExtResource("37_b53ri")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.9273, 0.1, -66.4752)
-
-[node name="roadblock9" parent="Board/Visuals" instance=ExtResource("37_b53ri")]
-transform = Transform3D(0.0881641, 0, -0.996106, 0, 1, 0, 0.996106, 0, 0.0881641, -90.1226, 0.1, -12.8086)
-
-[node name="roadblock10" parent="Board/Visuals" instance=ExtResource("37_b53ri")]
-transform = Transform3D(0.0881641, 0, -0.996106, 0, 1, 0, 0.996106, 0, 0.0881641, -90.2943, 0.1, -15.0413)
-
-[node name="trafficcone2" parent="Board/Visuals" instance=ExtResource("36_ype1f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.4528, 0.1, 19.1509)
-
-[node name="trafficcone3" parent="Board/Visuals" instance=ExtResource("36_ype1f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.5709, 0.1, 19.4208)
-
-[node name="trafficcone4" parent="Board/Visuals" instance=ExtResource("36_ype1f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.7925, 0.1, 24.8258)
-
-[node name="trafficcone5" parent="Board/Visuals" instance=ExtResource("36_ype1f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -82.6518, 0.1, 18.3014)
-
-[node name="trafficcone6" parent="Board/Visuals" instance=ExtResource("36_ype1f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -70.7825, 0.1, -11.2695)
-
-[node name="trafficcone7" parent="Board/Visuals" instance=ExtResource("36_ype1f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -70.6673, 0.1, -29.0424)
-
-[node name="trafficcone8" parent="Board/Visuals" instance=ExtResource("36_ype1f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.786, 0.1, -47.0521)
-
-[node name="trafficcone9" parent="Board/Visuals" instance=ExtResource("36_ype1f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.4202, 0.1, -35.5904)
-
-[node name="trafficcone10" parent="Board/Visuals" instance=ExtResource("36_ype1f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.6353, 0.1, -54.3231)
-
-[node name="trafficcone11" parent="Board/Visuals" instance=ExtResource("36_ype1f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.52374, 0.1, -47.308)
-
-[node name="trafficcone12" parent="Board/Visuals" instance=ExtResource("36_ype1f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.72913, 0.1, -31.8366)
-
-[node name="trafficcone13" parent="Board/Visuals" instance=ExtResource("36_ype1f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.87498, 0.1, -5.82137)
 
 [node name="BaumGroß8" parent="Board/Visuals" instance=ExtResource("28_8hmpe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.99314, -0.255617, -4.4676)

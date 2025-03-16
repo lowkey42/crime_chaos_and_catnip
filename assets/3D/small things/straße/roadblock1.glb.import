@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/roadblock1.glb-cd377c1a46e152972e35f589105d36
 
 [params]
 
-nodes/root_type=""
+nodes/root_type="BoardCollision"
 nodes/root_name=""
 nodes/apply_root_scale=true
 nodes/root_scale=1.0

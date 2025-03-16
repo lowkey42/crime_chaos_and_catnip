@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bd5na6m5iarth"]
+[gd_scene load_steps=26 format=3 uid="uid://be6uoqhwioqjw"]
 
 [ext_resource type="Script" uid="uid://b4tr0lmx326c7" path="res://gameplay/Board.cs" id="1_yv78t"]
 [ext_resource type="PackedScene" uid="uid://b267dln8bmyc0" path="res://gridsystem/grid_lines.tscn" id="2_0x2iv"]
@@ -27,7 +27,7 @@
 
 [sub_resource type="Curve3D" id="Curve3D_k7sxj"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, -24.3649, 0, 0, 0, 0, 0, 0, 11, 0, -24, 0, 0, 0, 0, 0, 0, 11.5, 0, 0.0232162, 0, 0, 0, 0, 0, 0, -13.5, 0, 0.0232162),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -24, 0, 0, 0, 0, 0, 0, 12, 0, -24, 0, 0, 0, 0, 0, 0, 12, 0, 0, 0, 0, 0, 0, 0, 0, -14, 0, 0),
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0)
 }
 point_count = 5
@@ -46,12 +46,12 @@ _gridMap = NodePath("Visuals/6x6Gridmap")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5)
 
 [node name="Exit" parent="Board/GameplaySetup" instance=ExtResource("3_7ek2h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.7608, 0, 102.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 0, 103)
 
 [node name="Exit2" parent="Board/GameplaySetup" instance=ExtResource("3_7ek2h")]
-transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 14.5, 0, 69.431)
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 12, 0, 70)
 
-[node name="ChipmunkLoot" type="Node" parent="Board/GameplaySetup"]
+[node name="ChipmunkLoot" type="Node3D" parent="Board/GameplaySetup"]
 
 [node name="LootSourceChipmunk" parent="Board/GameplaySetup/ChipmunkLoot" instance=ExtResource("4_jo6rq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 0, 80)
@@ -104,7 +104,25 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70, 0, 70)
 [node name="LootSourceChipmunk19" parent="Board/GameplaySetup/ChipmunkLoot" instance=ExtResource("4_jo6rq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68, 0, 72)
 
-[node name="Catnip" type="Node" parent="Board/GameplaySetup"]
+[node name="roadblock1" parent="Board/GameplaySetup" instance=ExtResource("6_2o5d2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.995, -9.53674e-07, 121.91)
+
+[node name="roadblock4" parent="Board/GameplaySetup" instance=ExtResource("6_2o5d2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.995, -9.53674e-07, 121.91)
+
+[node name="roadblock5" parent="Board/GameplaySetup" instance=ExtResource("6_2o5d2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.995, -9.53674e-07, 121.91)
+
+[node name="roadblock6" parent="Board/GameplaySetup" instance=ExtResource("6_2o5d2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.995, -9.53674e-07, 121.91)
+
+[node name="roadblock2" parent="Board/GameplaySetup" instance=ExtResource("6_2o5d2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.995, -9.53674e-07, 121.91)
+
+[node name="roadblock3" parent="Board/GameplaySetup" instance=ExtResource("6_2o5d2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.995, -9.53674e-07, 121.91)
+
+[node name="Catnip" type="Node3D" parent="Board/GameplaySetup"]
 
 [node name="Loot" parent="Board/GameplaySetup/Catnip" instance=ExtResource("5_viiq4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.5, 0, 93.5)
@@ -136,16 +154,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.5, 0, 92.5)
 [node name="Loot8" parent="Board/GameplaySetup/Catnip" instance=ExtResource("5_viiq4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.5, 0, 70.5)
 
-[node name="roadblock1" parent="Board/GameplaySetup/Catnip" instance=ExtResource("6_2o5d2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.995, -9.53674e-07, 121.91)
-
-[node name="roadblock2" parent="Board/GameplaySetup/Catnip" instance=ExtResource("6_2o5d2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.995, -9.53674e-07, 121.91)
-
-[node name="roadblock3" parent="Board/GameplaySetup/Catnip" instance=ExtResource("6_2o5d2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.995, -9.53674e-07, 121.91)
-
-[node name="CatLoot" type="Node" parent="Board/GameplaySetup"]
+[node name="CatLoot" type="Node3D" parent="Board/GameplaySetup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
 
 [node name="LootSourceCat" parent="Board/GameplaySetup/CatLoot" instance=ExtResource("6_5t83n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.5, 0, 91.5)
@@ -165,7 +175,8 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 20.068
 [node name="LootSourceCat6" parent="Board/GameplaySetup/CatLoot" instance=ExtResource("6_5t83n")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 18.9739, 0, 67.8319)
 
-[node name="RacoonLoot" type="Node" parent="Board/GameplaySetup"]
+[node name="RacoonLoot" type="Node3D" parent="Board/GameplaySetup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -1)
 
 [node name="LootSourceRacoon" parent="Board/GameplaySetup/RacoonLoot" instance=ExtResource("7_vgfgf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.5, 0, 96.5)
@@ -203,17 +214,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5, 0, 96.5)
 [node name="LootSourceRacoon12" parent="Board/GameplaySetup/RacoonLoot" instance=ExtResource("7_vgfgf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5, 0, 91.5)
 
-[node name="Gooses" type="Node" parent="Board/GameplaySetup"]
+[node name="Gooses" type="Node3D" parent="Board/GameplaySetup"]
 
 [node name="EnemyUnitGoose" parent="Board/GameplaySetup/Gooses" node_paths=PackedStringArray("_path") instance=ExtResource("8_8853i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29, 0, 94)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28, 0, 94)
 _path = NodePath("../EnemyPath")
 
 [node name="EnemyPath" type="Path3D" parent="Board/GameplaySetup/Gooses"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29, 0, 94)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28, 0, 94)
 curve = SubResource("Curve3D_k7sxj")
 
 [node name="ENEMYPOLYGON" type="CSGPolygon3D" parent="Board/GameplaySetup/Gooses/EnemyPath"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, -0.5)
 polygon = PackedVector2Array(-0.5, 0, -0.5, 0.1, 0.5, 0.1, 0.5, 0)
 mode = 2
 path_node = NodePath("..")
@@ -231,8 +243,22 @@ material = ExtResource("9_6ae3s")
 
 [node name="Goose_Pathes" type="Node" parent="Board/GameplaySetup"]
 
+[node name="collision" type="Node3D" parent="Board"]
+
+[node name="Taxi_Light" parent="Board/collision" instance=ExtResource("15_6ae3s")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 33, 0, 72)
+
+[node name="Polizei1-downsized" parent="Board/collision" instance=ExtResource("16_cos8q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 0, 89)
+
+[node name="lowpolycar_normal_light" parent="Board/collision" instance=ExtResource("17_q37oi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 0, 111)
+
+[node name="lowpolycar_normal_light2" parent="Board/collision" instance=ExtResource("17_q37oi")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 40, 0, 107)
+
 [node name="Visuals" type="Node3D" parent="Board"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 96.077, -0.1, 72)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 96, -0.1, 72)
 
 [node name="6x6Gridmap" type="GridMap" parent="Board/Visuals"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.5, 1)
@@ -411,18 +437,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.9998, 0, 100.571)
 
 [node name="Latnere_spot4" parent="Latnernen" instance=ExtResource("14_0x2iv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.9998, 0, 79.5707)
-
-[node name="Taxi_Light" parent="." instance=ExtResource("15_6ae3s")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 32, 0, 72)
-
-[node name="Polizei1-downsized" parent="." instance=ExtResource("16_cos8q")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.2018, 0, 88.9878)
-
-[node name="lowpolycar_normal_light" parent="." instance=ExtResource("17_q37oi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.7572, 0, 111.426)
-
-[node name="lowpolycar_normal_light2" parent="." instance=ExtResource("17_q37oi")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 42.0035, 0, 107.295)
 
 [node name="Blumengruppe_G" parent="." instance=ExtResource("18_2o5d2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.3959, 0, 85.3009)

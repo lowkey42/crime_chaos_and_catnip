@@ -834,4 +834,5 @@ visible = false
 [connection signal="pressed" from="Gameplay/DeckSelect/PanelContainer/VBoxContainer/Button" to="Gameplay/DeckSelect" method="StartGame"]
 
 [editable path="Gameplay/Level/level_03"]
+[editable path="Gameplay/Level/level_03/Board/GameplaySetup/Gooses/EnemyUnitGoose9/Panzer2"]
 [editable path="Cameras"]

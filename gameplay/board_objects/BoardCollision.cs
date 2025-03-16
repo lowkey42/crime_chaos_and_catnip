@@ -5,7 +5,7 @@ namespace CrimeChaosAndCatnip;
 [GlobalClass]
 public partial class BoardCollision : Node3D {
 
-	[Export] private float _margin = 0.1f;
+	[Export] private float _margin = 0.3f;
 	
 	private Board _board;
 	

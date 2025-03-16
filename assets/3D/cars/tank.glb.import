@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/tank.glb-1d55e64451f4b48cf9e3c77a9b8d331d.scn
 
 [params]
 
-nodes/root_type=""
+nodes/root_type="BoardCollision"
 nodes/root_name=""
 nodes/apply_root_scale=true
 nodes/root_scale=1.0

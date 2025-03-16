@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/Polizei1-light.gltf-6b7d14ef7532987991825953e
 
 [params]
 
-nodes/root_type=""
+nodes/root_type="BoardCollision"
 nodes/root_name=""
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
@@ -32,6 +32,29 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-_subresources={}
+_subresources={
+"materials": {
+"Auto_008": {
+"use_external/enabled": true,
+"use_external/path": "res://scenes/Decoration/textures/Auto_008.tres"
+},
+"Glas_005": {
+"use_external/enabled": true,
+"use_external/path": "res://scenes/Decoration/textures/Glas_005.tres"
+},
+"Räder_006": {
+"use_external/enabled": true,
+"use_external/path": "res://scenes/Decoration/textures/Räder_006.tres"
+},
+"Scheinwerfer_003": {
+"use_external/enabled": true,
+"use_external/path": "res://scenes/Decoration/textures/Scheinwerfer_003.tres"
+},
+"Scheinwerfer_004": {
+"use_external/enabled": true,
+"use_external/path": "res://scenes/Decoration/textures/Scheinwerfer_004.tres"
+}
+}
+}
 gltf/naming_version=1
 gltf/embedded_image_handling=1

@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://beajb2etuvbjt"]
+
+[ext_resource type="Texture2D" uid="uid://dr2iuqg2morrs" path="res://scenes/Decoration/textures/Scheinwerfer_004_emission2.png" id="1_fpel1"]
+
+[resource]
+resource_name = "Auto_008"
+cull_mode = 2
+albedo_texture = ExtResource("1_fpel1")

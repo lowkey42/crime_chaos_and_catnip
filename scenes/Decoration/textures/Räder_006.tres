@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://c6bdrv3uysj1e"]
+
+[ext_resource type="Texture2D" uid="uid://cbkglqjw0cvuu" path="res://scenes/Decoration/textures/Scheinwerfer_004_emission.png" id="1_eg7l0"]
+
+[resource]
+resource_name = "Räder_006"
+cull_mode = 2
+shading_mode = 0
+albedo_texture = ExtResource("1_eg7l0")
