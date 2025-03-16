@@ -22,6 +22,7 @@ end_turn,End Turn,Zug Beenden
 end_game,End Game,Spiel Beenden
 gameover_message,The Goolice Has Arrived,Die Goolice ist angerückt
 gameover_details,You've escaped with,Du bist entkommen mit
+gameover_within,within,innerhalb von
 turns,Turns,Zügen
 cards,Cards,Karten
 raccoon_tooltip,"Summon a raccoon, that can plunder trashcans","Beschwöre einen Waschbär, der Mülleimer plündern kann"
