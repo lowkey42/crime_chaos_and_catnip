@@ -41,6 +41,7 @@
 [ext_resource type="PackedScene" uid="uid://c0rmks0q80knu" path="res://assets/3D/small things/straße/roadblock1.glb" id="37_b53ri"]
 [ext_resource type="PackedScene" uid="uid://bt1vnnnyustpv" path="res://assets/3D/small things/vent.glb" id="37_lmmpw"]
 [ext_resource type="PackedScene" uid="uid://cmlanued2imtr" path="res://assets/3D/small things/foliage/FlowerPot.glb" id="40_jwmdv"]
+[ext_resource type="PackedScene" uid="uid://d0bfmdhqif368" path="res://moon.glb" id="40_pcvp5"]
 [ext_resource type="PackedScene" uid="uid://c1tm7q572kbxo" path="res://assets/3D/cars/tank.glb" id="40_ybf8u"]
 
 [sub_resource type="Curve3D" id="Curve3D_k7sxj"]
@@ -105,6 +106,12 @@ _data = {
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0)
 }
 point_count = 5
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_jk4p6"]
+dof_blur_far_enabled = true
+dof_blur_far_distance = 34.24
+
+[sub_resource type="Compositor" id="Compositor_cdgvt"]
 
 [node name="level_03" type="Node"]
 
@@ -958,7 +965,7 @@ transform = Transform3D(-4.37114e-08, 0, -1.61265, 0, 1.15821, 0, 1, 0, -7.04911
 transform = Transform3D(-4.37114e-08, 0, -1.61265, 0, 1.15821, 0, 1, 0, -7.04911e-08, -27.4182, 7.95059, -29.3227)
 
 [node name="Leuchtfeld_03" parent="Board/Visuals" instance=ExtResource("25_aoegj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -96.077, 0.1, -72)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -96.077, -0.9, -72)
 
 [node name="Leuchtfeld_04" parent="Board/Visuals" instance=ExtResource("25_aoegj")]
 transform = Transform3D(-0.0124089, 0, -0.999923, 0, 1, 0, 0.999923, 0, -0.0124089, -42.5335, 5.10177, 18.8677)
@@ -988,7 +995,7 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -18.65
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.56203, 5.74044, 23.2006)
 
 [node name="Leuchtfeld_12" parent="Board/Visuals" instance=ExtResource("25_aoegj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.1431, 7.91309, 17.3195)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.108, 7.913, 17.319)
 
 [node name="Leuchtfeld_13" parent="Board/Visuals" instance=ExtResource("25_aoegj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.4296, 2.72329, 8.70836)
@@ -1015,10 +1022,10 @@ transform = Transform3D(1, 0, 0, 0, 0.836673, 0, 0, 0, 0.706823, -16.0005, 4.098
 transform = Transform3D(-4.37114e-08, 0, -1.01112, 0, 1.0242, 0, 1, 0, -4.41976e-08, -9.44798, 5.11695, -46.8743)
 
 [node name="Leuchtfeld_22" parent="Board/Visuals" instance=ExtResource("25_aoegj")]
-transform = Transform3D(-4.37114e-08, 0, -1.01112, 0, 1.0242, 0, 1, 0, -4.41976e-08, -9.40663, 7.93898, -53.1431)
+transform = Transform3D(-4.37114e-08, 0, -1.01112, 0, 1.0242, 0, 1, 0, -4.41976e-08, -9.407, 7.939, -53.133)
 
 [node name="Leuchtfeld_23" parent="Board/Visuals" instance=ExtResource("25_aoegj")]
-transform = Transform3D(1, 0, 0, 0, 1.0242, 0, 0, 0, 1.01112, -23.1431, 7.92369, -60.6638)
+transform = Transform3D(1, 0, 0, 0, 1.0242, 0, 0, 0, 1.01112, -23.114, 7.924, -60.664)
 
 [node name="Leuchtfeld_21" parent="Board/Visuals" instance=ExtResource("25_aoegj")]
 transform = Transform3D(-4.37114e-08, 0, -1.01112, 0, 1.0242, 0, 1, 0, -4.41976e-08, 11.6703, 4.9382, -46.9994)
@@ -1045,14 +1052,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.937963, -71.5623, 5.73606, 17.
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.937963, -65.0003, 5.04426, 2.26949)
 
 [node name="Leuchtfeld_28" parent="Board/Visuals" instance=ExtResource("25_aoegj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.937963, -64.857, 7.95907, -9.42018)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.937963, -64.882, 7.959, -9.42)
 
 [node name="Leuchtfeld_29" parent="Board/Visuals" instance=ExtResource("25_aoegj")]
 transform = Transform3D(-4.37114e-08, 0, 0.937963, 0, 2.03441, 0, -1, 0, -4.09997e-08, -72.5443, 4.48596, -12.0214)
 metadata/_edit_group_ = true
 
 [node name="Leuchtfeld_30" parent="Board/Visuals" instance=ExtResource("25_aoegj")]
-transform = Transform3D(-4.37114e-08, 0, 1.00978, 0, 1.77032, 0, -1, 0, -4.41387e-08, -72.5235, 7.88111, -12.0214)
+transform = Transform3D(-4.37114e-08, 0, 1.00978, 0, 1.59329, 0, -1, 0, -4.41387e-08, -72.5235, 7.58111, -12.0214)
 metadata/_edit_group_ = true
 
 [node name="Leuchtfeld_31" parent="Board/Visuals" instance=ExtResource("25_aoegj")]
@@ -1391,6 +1398,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.895, 3.12561, -45.7158)
 [node name="FlowerPot23" parent="Board/Visuals" instance=ExtResource("40_jwmdv")]
 transform = Transform3D(0.0613622, 0, -0.998116, 0, 1, 0, 0.998116, 0, 0.0613622, -0.646294, 4.71384, -53.3741)
 
+[node name="moon" parent="Board/Visuals" instance=ExtResource("40_pcvp5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.475, 40, -23)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Board/Visuals/moon"]
+visible = false
+light_color = Color(0.288607, 0.366079, 0.398119, 1)
+light_energy = 0.87
+light_indirect_energy = 0.381
+light_volumetric_fog_energy = 0.558
+light_specular = 0.0
+light_bake_mode = 1
+shadow_enabled = true
+shadow_normal_bias = 0.085
+shadow_opacity = 0.5
+shadow_blur = 1.435
+
 [node name="LightAndWorldEnvironment" parent="." instance=ExtResource("14_lmiw1")]
 
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="LightAndWorldEnvironment"]
@@ -1406,9 +1429,9 @@ shadow_blur = 2.515
 
 [node name="DirectionalLight3D3" type="DirectionalLight3D" parent="LightAndWorldEnvironment"]
 transform = Transform3D(-0.913522, -0.392651, -0.106315, -0.191347, 0.184137, 0.964095, -0.358976, 0.901065, -0.243346, 50.7857, 76.3174, -75.6462)
-light_color = Color(0.184819, 0.427359, 0.691532, 1)
-light_indirect_energy = 0.4
-light_volumetric_fog_energy = 0.05
+light_color = Color(0.260345, 0.523537, 0.815707, 1)
+light_indirect_energy = 0.01
+light_volumetric_fog_energy = 0.404
 light_angular_distance = 12.73
 light_specular = 0.01
 shadow_opacity = 0.42
