@@ -7,9 +7,9 @@ void fragment() {
 	float fog = noise.r*0.8 + noise.g*0.4;
 	fog = mix(fog, (1.0-fog) * noiseUV.b, 0.4);
 
-	float cutoff = smoothstep(0.1, 0.9, UV.y);
+	float cutoff = smoothstep(0.1, 1.0, UV.y);
 
-	vec3 color = mix(vec3(0.2, 0.2, 0.3), vec3(0.6, 0.6, 0.6), cutoff);
+	vec3 color = mix(vec3(0.8, 0.2, 0.8), vec3(1.0, 0.6, 1.0), cutoff);
 
 	float alpha = fog * mix(0.0, 1.0, cutoff) + mix(0.0, 0.7, cutoff)*1.8;
 
