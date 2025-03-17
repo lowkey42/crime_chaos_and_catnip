@@ -10,222 +10,200 @@ public partial class CameraControl : Node3D
 		TopDown,
 	}
 
-	[Export] public Vector3 BaseCameraMove;
-	[Export] public float RotationDegree;
-
-	[Export] public Camera3D IsometricCamera;
-	[Export] public Camera3D TopDownCamera;
+	[Export] public Node3D MinBoundsOverride;
+	[Export] public Node3D MaxBoundsOverride;
+	
+	[Export] public Camera3D Camera;
+	[Export] public Node3D Elevation;
+	
 	[Export] public float CameraSpeed = 10.0f;
-
 	[Export] public float RotationSpeed = 5.0f;
+	[Export] public float MouseRotationSpeed = 5.0f;
 	[Export] public float EdgeSensitivity = 100.0f;
 	private float _shiftFactor = 3.0f;
+	
+	[Export] public float ZoomSpeed = 5.0f;
+	[Export] public float ZoomMin = 4.0f;
+	[Export] public float ZoomMax = 30.0f;
+	
+	[Export] public float ElevationMin = 10.0f;
+	[Export] public float ElevationMax = 85.0f;
 
 	[Export] public bool EnableMouseCameraMovement = true;
 	
 	private CameraState _currentCameraState = CameraState.Isometric;
-
-	private Vector3 _targetPosition;
-	private Vector3 _targetRotation;
-	[Export] public float LerpSpeed = 5.0f;
 	
-	private bool _isRightMouseButtonPressed;
-
 	private Board _board;
+
+	private bool _isInWindow = true;
+	private Vector2 _lastMousePosition;
+	private Vector3? _dragPosition;
+	
+	private float _lastManualElevation;
+	private bool _animatingElevation = false;
+
+	private float _zoomVelocity;
 
 	
 	public override void _Ready() {
 		_board = Board.GetBoard(this);
-		
-		_targetRotation = IsometricCamera.Rotation;
 	}
 
-	public override void _Input(InputEvent @event)
-	{
-		if (@event.IsActionPressed("toggle_isometric")) {
+	public override void _Notification(int what) {
+		base._Notification(what);
+		if (what == NotificationWMMouseEnter)
+			_isInWindow = true;
+		if (what == NotificationWMMouseExit)
+			_isInWindow = false;
+	}
+
+	public override void _Process(double delta) {
+		var dt = (float) delta;
+
+		if (!_animatingElevation && Input.IsActionJustReleased("toggle_isometric")) {
 			switch (_currentCameraState) {
 				case CameraState.TopDown:
-					IsometricCamera.MakeCurrent();
+					_animatingElevation = true;
 					_currentCameraState = CameraState.Isometric;
 					break;
 				case CameraState.Isometric:
-					TopDownCamera.MakeCurrent();
+					_lastManualElevation = Elevation.Rotation.X;
+					_animatingElevation = true;
 					_currentCameraState = CameraState.TopDown;
 					break;
 				default:
 					throw new ArgumentOutOfRangeException();
 			}
 		}
-
-
 		
-		if (@event is InputEventMouseButton mouseEvent) {
-			if(_currentCameraState == CameraState.Isometric)
-			{
-				var zoomAmount = 1f;
-				var targetPosition = IsometricCamera.Position;
-				
-				switch ((int)mouseEvent.ButtonIndex) {
-					case 4:
-						targetPosition = new Vector3(IsometricCamera.Position.X, IsometricCamera.Position.Y - zoomAmount, IsometricCamera.Position.Z);
-						break;
-					case 5:
-						targetPosition = new Vector3(IsometricCamera.Position.X, IsometricCamera.Position.Y + zoomAmount, IsometricCamera.Position.Z);
-						break;
-					case 2:
-						break;
-				}
-				var tween = GetTree().CreateTween();
-				tween.TweenProperty(IsometricCamera, "position", targetPosition, 0.1f);
-			} else {
-				var zoomAmount = 1f;
-				var minZoom = 5f;
-				var maxZoom = 20f; 
-				var targetPosition = TopDownCamera.Position;
-				
-				switch ((int)mouseEvent.ButtonIndex) {
-					case 4:
-						targetPosition.Y = Mathf.Max(TopDownCamera.Position.Y - zoomAmount, minZoom);
-						break;
-					case 5:
-						targetPosition.Y = Mathf.Min(TopDownCamera.Position.Y + zoomAmount, maxZoom);
-						break;
-					case 2:
-						break;
-				}
-				var tween = GetTree().CreateTween();
-				tween.TweenProperty(TopDownCamera, "position", targetPosition, 0.1f);
-				
+		if (_animatingElevation) {
+			switch (_currentCameraState) {
+				case CameraState.TopDown:
+					Elevation.Rotation = Elevation.Rotation with {
+						X = Mathf.MoveToward(Elevation.Rotation.X, Mathf.DegToRad(-85f), Mathf.DegToRad(90f) * dt)
+					};
+					if(Mathf.Abs(Elevation.RotationDegrees.X - -85f) < 0.1f)
+						_animatingElevation = false;
+					break;
+				case CameraState.Isometric:
+					Elevation.Rotation = Elevation.Rotation with {
+						X = Mathf.MoveToward(Elevation.Rotation.X, _lastManualElevation, Mathf.DegToRad(90f) * dt)
+					};
+					if(Mathf.Abs(Elevation.Rotation.X - _lastManualElevation) < 0.01f)
+						_animatingElevation = false;
+					break;
+				default:
+					throw new ArgumentOutOfRangeException();
 			}
+
+			return; // ignore input
 		}
 		
-		switch (@event) {
-			case InputEventMouseButton { ButtonIndex: MouseButton.Right } mouseEvent2:
-				_isRightMouseButtonPressed = mouseEvent2.Pressed;
-				break;
-			case InputEventMouseMotion mouseMotionEvent when _isRightMouseButtonPressed: {
-
-				var yawAmount = -mouseMotionEvent.Relative.X * 0.005f;
-				_targetRotation.Y += yawAmount;
-
-				var pitchAmount = -mouseMotionEvent.Relative.Y * 0.005f;
-				var newPitch = Mathf.RadToDeg(_targetRotation.X) + Mathf.RadToDeg(pitchAmount);
-				newPitch = Mathf.Clamp(newPitch, -80f, -20f);
-				_targetRotation.X = Mathf.DegToRad(newPitch);
-
-				break;
-			}
-		}
-	}
-
-	public override void _Process(double delta)
-	{
 		var movement = Vector3.Zero;
 		
-		if (_currentCameraState == CameraState.Isometric) {
+		var mousePos = GetViewport().GetMousePosition();
+		var mouseDisplacement = _lastMousePosition - mousePos;
+		_lastMousePosition = mousePos;
+		
+		// mouse rotate / elevation
+		if (Input.IsActionPressed("camera_rotate")) {
+			if(mouseDisplacement.Length() > 0.1f)
+				_currentCameraState = CameraState.Isometric;
 			
-			var mousePos = GetViewport().GetMousePosition();
-			var screenSize = GetViewport().GetVisibleRect();
-
-			if(EnableMouseCameraMovement)
-			{
-				if (mousePos.X <= EdgeSensitivity) {
-					movement.X -= CameraSpeed * (float) delta;
-				} else if (mousePos.X >= screenSize.Size.X - EdgeSensitivity) {
-					movement.X += CameraSpeed * (float) delta;
-				}
-				if (mousePos.Y <= EdgeSensitivity) {
-					movement.Z -= CameraSpeed * (float) delta;
-				} else if (mousePos.Y >= screenSize.Size.Y - EdgeSensitivity) {
-					movement.Z += CameraSpeed * (float) delta;
-				}
-			}
-			if (Input.IsActionPressed("rotate_camera_right"))
-			{
-				_targetRotation.Y -= (float) (Mathf.DegToRad(RotationSpeed) * delta);
-			}
-
-			if (Input.IsActionPressed("rotate_camera_left"))
-			{
-				_targetRotation.Y += (float) (Mathf.DegToRad(RotationSpeed) * delta);
-			}
-
+			RotationDegrees = RotationDegrees with {Y = RotationDegrees.Y + mouseDisplacement.X * MouseRotationSpeed * dt};
+			Elevation.RotationDegrees = Elevation.RotationDegrees with {X = Mathf.Clamp(Elevation.RotationDegrees.X + mouseDisplacement.Y * MouseRotationSpeed * dt, -ElevationMax, -ElevationMin)};
 		}
 		
-		if (Input.IsActionPressed("speedup_movement")) {
+		if (Input.IsActionPressed("rotate_camera_right"))
+			RotationDegrees = RotationDegrees with {Y = RotationDegrees.Y + RotationSpeed * dt};
+		if (Input.IsActionPressed("rotate_camera_left"))
+			RotationDegrees = RotationDegrees with {Y = RotationDegrees.Y - RotationSpeed * dt};
+
+		
+		if (Input.IsActionPressed("camera_pan") && !HeldCard.AnyDragged) {
+			var ground = CalculateGroundPosition();
+			_dragPosition ??= ground;
+			if (_dragPosition != null && ground != null)
+				GlobalPosition += _dragPosition.Value - ground.Value;
+		} else
+			_dragPosition = null;
+	
+		if(EnableMouseCameraMovement && _isInWindow) {
+			var screenSize = GetViewport().GetVisibleRect();
+			if (mousePos.X <= EdgeSensitivity) {
+				movement.X -= 1;
+			} else if (mousePos.X >= screenSize.Size.X - EdgeSensitivity) {
+				movement.X += 1;
+			}
+			if (mousePos.Y <= EdgeSensitivity) {
+				movement.Z -= 1;
+			} else if (mousePos.Y >= screenSize.Size.Y - EdgeSensitivity) {
+				movement.Z += 1;
+			}
+		}
+	
+		if (Input.IsActionPressed("speedup_movement"))
 			_shiftFactor = 1.0f;
-		}
-		else if (Input.IsActionJustReleased("speedup_movement")){
+		else if (Input.IsActionJustReleased("speedup_movement"))
 			_shiftFactor = 3.0f;
-		}
-
+	
 		//Moves the camera on the axis with WASD
-
 		if (Input.IsActionPressed("move_camera_down"))
-		{
 			movement.Z += 1;
-		}
 		if (Input.IsActionPressed("move_camera_up"))
-		{
 			movement.Z -= 1;
-		}
 		if (Input.IsActionPressed("move_camera_left"))
-		{
 			movement.X -= 1;
-		}
 		if (Input.IsActionPressed("move_camera_right"))
-		{
 			movement.X += 1;
-		}
+	
+		if (movement.LengthSquared() > 1f)
+			movement = movement.Normalized();
+
+		var velocity = movement * CameraSpeed * _shiftFactor;
+		GlobalPosition += velocity.Rotated(Vector3.Up, Camera.GlobalRotation.Y) * dt;
+
 			
 		//Implements Zoom
-		if (Input.IsActionPressed("zoom_in"))
-		{
-			movement.Y += 1000;
-		}
+		if (Input.IsActionJustReleased("zoom_in"))
+			_zoomVelocity = -1;
+		if (Input.IsActionJustReleased("zoom_out"))
+			_zoomVelocity = 1;
 
-		if (Input.IsActionPressed("zoom_out"))
-		{
-			movement.Y -= 1000;
-		}
+		if (Mathf.Abs(_zoomVelocity) > 0.0001f) {
+			var newZoom = Mathf.Clamp(Camera.Position.Z + ZoomSpeed * _zoomVelocity * dt, ZoomMin, ZoomMax);
+			var groundPosition = CalculateGroundPosition();
 
-		var cameraTransform = IsometricCamera.GlobalTransform;
+			Camera.Position = Camera.Position with {Z = newZoom};
+			if (groundPosition != null) { // offset camera to zoom towards cursor
+				GlobalPosition += groundPosition.Value - (CalculateGroundPosition() ?? groundPosition.Value);
+			}
 
-		var movementDirection = movement.Normalized();
-		movementDirection.Y = 0;
-
-		var forward = cameraTransform.Basis.Z;
-		var right = cameraTransform.Basis.X;
-
-
-		forward.Y = 0;
-		right.Y = 0;
-
-		forward = forward.Normalized();
-		right = right.Normalized();
-
-		var localMovement = (right * movementDirection.X + forward * movementDirection.Z) * CameraSpeed *  _shiftFactor *(float)delta;
-
-		if (_currentCameraState == CameraState.Isometric) {
-			IsometricCamera.Position += localMovement;
-			_targetPosition = IsometricCamera.Position;
-			IsometricCamera.Rotation = _targetRotation;
-		} else {
-			localMovement = new Vector3(movement.X, 0, movement.Z) * CameraSpeed * _shiftFactor * (float)delta;
-
-			TopDownCamera.Position += localMovement;
-			_targetPosition = TopDownCamera.Position;
+			_zoomVelocity *= 0.8f;
 		}
 
 		ConfineCamera();
 	}
 
+	private Vector3? CalculateGroundPosition() {
+		var mousePos = GetViewport().GetMousePosition();
+		return Plane.PlaneXZ.IntersectsRay(Camera.ProjectRayOrigin(mousePos), Camera.ProjectRayNormal(mousePos));
+	}
+	
 	private void ConfineCamera() {
 		if (_board == null) 
 			return;
 		
 		var planeConfines = _board.BoardWorldDimensions();
-		GlobalPosition = GlobalPosition.Clamp(new Vector3(planeConfines.Position.X, 1f, planeConfines.Position.Y),
-			new Vector3(planeConfines.End.X, 1f, planeConfines.End.Y));
+
+		var min = new Vector3(planeConfines.Position.X, 1f, planeConfines.Position.Y);
+		if (MinBoundsOverride != null)
+			min = MinBoundsOverride.GlobalPosition;
+
+		var max = new Vector3(planeConfines.End.X, 1f, planeConfines.End.Y);
+		if (MaxBoundsOverride != null)
+			max = MaxBoundsOverride.GlobalPosition;
+		
+		GlobalPosition = GlobalPosition.Clamp(min, max);
 	}
 }

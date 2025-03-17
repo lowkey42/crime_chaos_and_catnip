@@ -2,19 +2,19 @@
 
 [ext_resource type="Script" uid="uid://bf661tpm2k0ry" path="res://camera/CameraControl.cs" id="1_a2eoo"]
 
-[node name="Cameras" type="Node3D" node_paths=PackedStringArray("IsometricCamera", "TopDownCamera", "CameraRaycast")]
+[node name="Cameras" type="Node3D" node_paths=PackedStringArray("Camera", "Elevation")]
 script = ExtResource("1_a2eoo")
-BaseCameraMove = Vector3(0, -10, 10)
-RotationDegree = 40.0
-IsometricCamera = NodePath("FreeCamera")
-TopDownCamera = NodePath("TopDownCamera")
+Camera = NodePath("Elevation/Camera")
+Elevation = NodePath("Elevation")
+CameraSpeed = 7.0
 RotationSpeed = 90.0
-EdgeSensitivity = 5.0
-CameraRaycast = NodePath("")
+MouseRotationSpeed = 12.0
+EdgeSensitivity = 20.0
+ZoomSpeed = 30.0
 
-[node name="FreeCamera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.819152, 0.573576, 0, -0.573576, 0.819152, -2, 10, 20)
+[node name="Elevation" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.770513, 0.637424, 0, -0.637424, 0.770513, 0, 0, 0)
+
+[node name="Camera" type="Camera3D" parent="Elevation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
 current = true
-
-[node name="TopDownCamera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.173648, 0.984808, 0, -0.984808, 0.173648, -2, 22, 10)

@@ -6,8 +6,8 @@
 [node name="Exit" type="Node3D"]
 
 [node name="LKW2" parent="." instance=ExtResource("2_ggbsf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.6)
-_margin = 0.9
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.74041)
+_margin = 0.5
 
 [node name="Node3D" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
@@ -19,5 +19,9 @@ script = ExtResource("1_bxko7")
 [node name="Node3D3" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
 script = ExtResource("1_bxko7")
+
+[connection signal="Interacted" from="Node3D" to="LKW2/AnimationPlayer" method="play" binds= ["Door Closing"]]
+[connection signal="Interacted" from="Node3D2" to="LKW2/AnimationPlayer" method="play" binds= ["Door Closing"]]
+[connection signal="Interacted" from="Node3D3" to="LKW2/AnimationPlayer" method="play" binds= ["Door Closing"]]
 
 [editable path="LKW2"]

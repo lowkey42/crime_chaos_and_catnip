@@ -800,19 +800,10 @@ unique_name_in_owner = true
 process_mode = 2
 visible = false
 
-[node name="Cameras" parent="." instance=ExtResource("39_xqbwa")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43, 0, 111.27)
-
-[node name="FreeCamera" parent="Cameras" index="0"]
-transform = Transform3D(1, 0, 0, 0, 0.819152, 0.573576, 0, -0.573576, 0.819152, -32, 10, -36)
-
-[node name="TopDownCamera" parent="Cameras" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.173648, 0.984808, 0, -0.984808, 0.173648, -18, 22, -45)
-
-[node name="CameraConfiner" parent="Cameras" index="4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53.3202, 0, -16.6543)
-MinLimit = Vector3(-30, 0, -30)
-MaxLimit = Vector3(20, 30, 10)
+[node name="Cameras" parent="." node_paths=PackedStringArray("MinBoundsOverride", "MaxBoundsOverride") instance=ExtResource("39_xqbwa")]
+transform = Transform3D(-0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, -0.5, 17, 0, 70.27)
+MinBoundsOverride = NodePath("../CameraBoundsMin")
+MaxBoundsOverride = NodePath("../CameraBoundsMax")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("40_7xpn7")
@@ -820,6 +811,12 @@ volume_db = -10.788
 autoplay = true
 bus = &"Music"
 playback_type = 1
+
+[node name="CameraBoundsMin" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 64)
+
+[node name="CameraBoundsMax" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48, 0, 122)
 
 [connection signal="GameOver" from="Gameplay" to="Gameplay/GameOverOverlay" method="ShowOverlay"]
 [connection signal="pressed" from="Gameplay/HUD/BottomUI/VBoxContainer/EndGameButton" to="Gameplay" method="CanEndGame"]
@@ -831,5 +828,3 @@ playback_type = 1
 [connection signal="pressed" from="Gameplay/HUD/CardDirectionControl/GridContainer/ButtonSouth" to="Gameplay/HUD" method="RotateCardSouth"]
 [connection signal="pressed" from="Gameplay/GameOverOverlay/VBoxContainer/ContinueButton" to="Gameplay/GameOverOverlay" method="Continue"]
 [connection signal="pressed" from="Gameplay/DeckSelect/PanelContainer/VBoxContainer/Button" to="Gameplay/DeckSelect" method="StartGame"]
-
-[editable path="Cameras"]

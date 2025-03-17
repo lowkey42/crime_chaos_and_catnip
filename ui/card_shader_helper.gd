@@ -3,7 +3,7 @@ extends TextureRect
 var is_mouse_inside = false
 
 var mouse_pos := Vector2.ZERO
-var intensity := 0
+var intensity := 0.0
 
 func _process(delta: float) -> void:
 	var mouse_position = get_global_mouse_position()

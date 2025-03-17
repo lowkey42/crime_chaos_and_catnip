@@ -5,6 +5,8 @@ namespace CrimeChaosAndCatnip;
 [GlobalClass]
 public partial class HeldCard : Node2D {
 
+	public static bool AnyDragged { get; private set; }
+	
 	[Signal]
 	public delegate void MouseEnteredEventHandler();
 
@@ -98,6 +100,7 @@ public partial class HeldCard : Node2D {
 	public void OnDropped() {
 		Scale = Vector2.One;
 		_grabbed = false;
+		AnyDragged = false;
 		GetParentOrNull<PlayerHand>().MarkHoveredForbidden(false);
 		
 		if (!_canDrop)
@@ -127,6 +130,7 @@ public partial class HeldCard : Node2D {
 	private void OnGrabbed() {
 		Unhighlight();
 		_grabbed = true;
+		AnyDragged = true;
 		_canDrop = false;
 		_dropTimer.Start();
 	}

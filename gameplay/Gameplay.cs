@@ -138,7 +138,7 @@ public partial class Gameplay : Node {
 					continue; // ignore units outside board area
 
 				// check if the unit is controlled by the player and the cell is an exit
-				if (unit is PlayerUnit playerUnit && cell.Objects.Any(obj => obj is Exit)) {
+				if (unit is PlayerUnit playerUnit && cell.Objects.Any(obj => obj is Exit && obj.TryInteract(unit).HasFlag(BoardObject.InteractResult.Interacted))) {
 					Score += playerUnit.CollectedLoot;
 					EmitSignalUnitExited(playerUnit.CollectedLoot);
 					unit.QueueFree();
