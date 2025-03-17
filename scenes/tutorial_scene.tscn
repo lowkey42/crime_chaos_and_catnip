@@ -1,9 +1,10 @@
-[gd_scene load_steps=50 format=3 uid="uid://c3phd16gft4yj"]
+[gd_scene load_steps=51 format=3 uid="uid://c3phd16gft4yj"]
 
 [ext_resource type="Script" uid="uid://dmeymco117qmu" path="res://scenes/ingame_scene.gd" id="1_vbxd6"]
 [ext_resource type="PackedScene" uid="uid://bkk87o2ooo6at" path="res://ui/overlays/fade_overlay.tscn" id="2_2a5f1"]
 [ext_resource type="PackedScene" uid="uid://jyv4g54adkmo" path="res://ui/overlays/pause_overlay.tscn" id="3_xk5md"]
 [ext_resource type="Script" uid="uid://o5q4p0foouv3" path="res://gameplay/Gameplay.cs" id="4_5dw38"]
+[ext_resource type="Script" uid="uid://bug8t124nnxcv" path="res://ui/UnitPanel.cs" id="4_xk5md"]
 [ext_resource type="Script" uid="uid://8vkdkrdt2rgh" path="res://ui/Hud.cs" id="5_l4klo"]
 [ext_resource type="Texture2D" uid="uid://rusjs0rxefdl" path="res://assets/2D/MainMenu/MainMenu.png" id="6_dj7kl"]
 [ext_resource type="Texture2D" uid="uid://c0hsgr0i34axs" path="res://assets/2D/Icons/Icon_CatnipBag.png" id="7_ncaew"]
@@ -117,6 +118,19 @@ _endGameButton = NodePath("BottomUI/VBoxContainer/EndGameButton")
 _gameplay = NodePath("..")
 _deck = NodePath("BottomUI/VBoxContainer/DeckContainer/Deck")
 _rotationUi = NodePath("CardDirectionControl")
+
+[node name="UnitPanel" type="ScrollContainer" parent="Gameplay/HUD" node_paths=PackedStringArray("_container", "_camera")]
+offset_right = 80.0
+offset_bottom = 500.0
+horizontal_scroll_mode = 0
+script = ExtResource("4_xk5md")
+_container = NodePath("VBoxContainer")
+_camera = NodePath("../../../Cameras")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Gameplay/HUD/UnitPanel"]
+layout_mode = 2
+size_flags_vertical = 6
+alignment = 1
 
 [node name="BottomBackground2" type="TextureRect" parent="Gameplay/HUD"]
 visible = false

@@ -38,12 +38,19 @@ public partial class CameraControl : Node3D
 	private bool _isInWindow = true;
 	private Vector2 _lastMousePosition;
 	private Vector3? _dragPosition;
+	private bool _rotateActionPressed = false;
+	private bool _rotateActionPan = false;
 	
 	private float _lastManualElevation;
 	private bool _animatingElevation = false;
 
 	private float _zoomVelocity;
 
+	private Vector3? _targetPosition;
+	
+	public void FocusPosition(Vector3 globalTargetPosition) {
+		_targetPosition = globalTargetPosition with {Y = GlobalPosition.Y};
+	}
 	
 	public override void _Ready() {
 		_board = Board.GetBoard(this);
@@ -57,9 +64,33 @@ public partial class CameraControl : Node3D
 			_isInWindow = false;
 	}
 
+	public override void _UnhandledInput(InputEvent @event) {
+		if (@event.IsActionPressed("camera_rotate"))
+			_rotateActionPressed = true;
+		if (@event.IsActionReleased("camera_rotate"))
+			_rotateActionPressed = false;
+		
+		if (@event.IsActionPressed("camera_pan"))
+			_rotateActionPan = true;
+		if (@event.IsActionReleased("camera_pan"))
+			_rotateActionPan = false;
+		
+		if (@event.IsActionPressed("zoom_in"))
+			_zoomVelocity = -1;
+		if (@event.IsActionPressed("zoom_out"))
+			_zoomVelocity = 1;
+	}
+
 	public override void _Process(double delta) {
 		var dt = (float) delta;
 
+		if (_targetPosition != null) {
+			GlobalPosition = GlobalPosition.MoveToward(_targetPosition.Value, 40f * dt);
+			if ((GlobalPosition - _targetPosition.Value).LengthSquared() < 0.1f)
+				_targetPosition = null;
+			return;
+		}
+		
 		if (!_animatingElevation && Input.IsActionJustReleased("toggle_isometric")) {
 			switch (_currentCameraState) {
 				case CameraState.TopDown:
@@ -106,7 +137,7 @@ public partial class CameraControl : Node3D
 		_lastMousePosition = mousePos;
 		
 		// mouse rotate / elevation
-		if (Input.IsActionPressed("camera_rotate")) {
+		if (_rotateActionPressed) {
 			if(mouseDisplacement.Length() > 0.1f)
 				_currentCameraState = CameraState.Isometric;
 			
@@ -120,7 +151,7 @@ public partial class CameraControl : Node3D
 			RotationDegrees = RotationDegrees with {Y = RotationDegrees.Y - RotationSpeed * dt};
 
 		
-		if (Input.IsActionPressed("camera_pan") && !HeldCard.AnyDragged) {
+		if (_rotateActionPan && !HeldCard.AnyDragged) {
 			var ground = CalculateGroundPosition();
 			_dragPosition ??= ground;
 			if (_dragPosition != null && ground != null)
@@ -165,11 +196,6 @@ public partial class CameraControl : Node3D
 
 			
 		//Implements Zoom
-		if (Input.IsActionJustReleased("zoom_in"))
-			_zoomVelocity = -1;
-		if (Input.IsActionJustReleased("zoom_out"))
-			_zoomVelocity = 1;
-
 		if (Mathf.Abs(_zoomVelocity) > 0.0001f) {
 			var newZoom = Mathf.Clamp(Camera.Position.Z + ZoomSpeed * _zoomVelocity * dt, ZoomMin, ZoomMax);
 			var groundPosition = CalculateGroundPosition();

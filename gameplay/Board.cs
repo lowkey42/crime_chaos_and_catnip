@@ -15,6 +15,12 @@ public partial class Board : Node {
 	
 	[Signal]
 	public delegate void BoardChangedEventHandler(Vector2I boardPosition);
+	
+	[Signal]
+	public delegate void UnitAddedEventHandler(Unit unit);
+	
+	[Signal]
+	public delegate void UnitRemovedEventHandler(Unit unit);
 
 	[Export] public GridLines? GridLines { get; private set; }
 	
@@ -137,8 +143,11 @@ public partial class Board : Node {
 			return;
 		AddSorted(obj, cell);
 
-		if(obj is Unit unit)
+		if (obj is Unit unit) {
 			_units.Add(unit);
+			EmitSignalUnitAdded(unit);
+		}
+
 		EmitSignalBoardChanged(boardPosition);
 	}
 
@@ -157,8 +166,11 @@ public partial class Board : Node {
 		ValidateBoardPosition(boardPosition);
 		Debug.Assert(_cells != null, nameof(_cells) + " != null");
 		_cells[boardPosition.X, boardPosition.Y].Objects.Remove(obj);
-		if(obj is Unit unit)
+		if (obj is Unit unit) {
 			_units.Remove(unit);
+			EmitSignalUnitRemoved(unit);
+		}
+
 		EmitSignalBoardChanged(boardPosition);
 	}
 

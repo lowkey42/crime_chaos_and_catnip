@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://casfaekb7a2ra"]
+
+[ext_resource type="Texture2D" uid="uid://bcqbrlewcy26u" path="res://assets/2D/Framed Characters/ChipmunkBag.png" id="1_t77ft"]
+[ext_resource type="Script" uid="uid://c3j6v5dpsj7u3" path="res://ui/UnitButton.cs" id="1_v43sh"]
+[ext_resource type="Texture2D" uid="uid://bxeod08v668tw" path="res://assets/2D/Framed Characters/ChipmunkMunch.png" id="2_v43sh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5dw38"]
+bg_color = Color(1, 1, 0.79, 0.8)
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.8, 0.545, 0.8, 0.8)
+corner_radius_top_right = 90
+corner_radius_bottom_right = 90
+corner_detail = 16
+expand_margin_top = 1.0
+expand_margin_right = 2.0
+expand_margin_bottom = 1.0
+shadow_size = 2
+shadow_offset = Vector2(2, 2)
+
+[node name="UnitButton" type="MarginContainer"]
+theme_override_constants/margin_left = -4
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 5
+script = ExtResource("1_v43sh")
+
+[node name="Panel" type="PanelContainer" parent="."]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5dw38")
+
+[node name="UnitIcon" type="TextureButton" parent="Panel"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture_normal = ExtResource("1_t77ft")
+texture_hover = ExtResource("2_v43sh")
+ignore_texture_size = true
+stretch_mode = 5
+
+[connection signal="pressed" from="Panel/UnitIcon" to="." method="OnPressed"]

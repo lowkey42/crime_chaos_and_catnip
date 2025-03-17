@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://dt5k6hmjrqseu"]
+[gd_scene load_steps=8 format=3 uid="uid://dt5k6hmjrqseu"]
 
 [ext_resource type="PackedScene" uid="uid://i7vhx0eef663" path="res://gameplay/board_objects/units/unit_base.tscn" id="1_liq0q"]
 [ext_resource type="Script" uid="uid://b5kn405hfgmsm" path="res://gameplay/board_objects/units/PlayerUnit.cs" id="2_m8yle"]
+[ext_resource type="PackedScene" uid="uid://ber2ubidgr7i8" path="res://ui/unit_button_raccoon.tscn" id="3_6snjx"]
 [ext_resource type="Texture2D" uid="uid://dy2mjbxcursal" path="res://assets/2D/Framed Characters/RaccoonBags.png" id="3_eii2c"]
 [ext_resource type="PackedScene" uid="uid://mb4i47wd66wh" path="res://gameplay/board_objects/loot.tscn" id="3_m8yle"]
 
@@ -23,6 +24,7 @@ viewport_path = NodePath("LootSubViewport")
 [node name="PlayerUnitRacoon" node_paths=PackedStringArray("_lootLabel") instance=ExtResource("1_liq0q")]
 script = ExtResource("2_m8yle")
 _lootType = 3
+ButtonScene = ExtResource("3_6snjx")
 _lootLabel = NodePath("LootSubViewport/Control/Panel/Label")
 _lootScene = ExtResource("3_m8yle")
 

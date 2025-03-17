@@ -9,7 +9,7 @@ Elevation = NodePath("Elevation")
 CameraSpeed = 7.0
 RotationSpeed = 90.0
 MouseRotationSpeed = 12.0
-EdgeSensitivity = 20.0
+EdgeSensitivity = 10.0
 ZoomSpeed = 30.0
 
 [node name="Elevation" type="Node3D" parent="."]

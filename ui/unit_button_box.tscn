@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cg237jfc7qvyd"]
+
+[ext_resource type="PackedScene" uid="uid://casfaekb7a2ra" path="res://ui/unit_button.tscn" id="1_n7300"]
+[ext_resource type="Texture2D" uid="uid://cv7qtdxytt7b4" path="res://assets/2D/Icons/CardIcon_Box_border.png" id="2_k8s17"]
+
+[node name="UnitButton" instance=ExtResource("1_n7300")]
+
+[node name="UnitIcon" parent="Panel" index="0"]
+texture_normal = ExtResource("2_k8s17")
+texture_hover = ExtResource("2_k8s17")

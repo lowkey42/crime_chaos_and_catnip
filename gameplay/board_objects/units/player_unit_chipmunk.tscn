@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cwxr4sn5h2581"]
+[gd_scene load_steps=8 format=3 uid="uid://cwxr4sn5h2581"]
 
 [ext_resource type="PackedScene" uid="uid://i7vhx0eef663" path="res://gameplay/board_objects/units/unit_base.tscn" id="1_ejybd"]
 [ext_resource type="Script" uid="uid://b5kn405hfgmsm" path="res://gameplay/board_objects/units/PlayerUnit.cs" id="2_iid7b"]
 [ext_resource type="Texture2D" uid="uid://bxeod08v668tw" path="res://assets/2D/Framed Characters/ChipmunkMunch.png" id="3_ejybd"]
 [ext_resource type="PackedScene" uid="uid://mb4i47wd66wh" path="res://gameplay/board_objects/loot.tscn" id="3_iid7b"]
+[ext_resource type="PackedScene" uid="uid://bh2j0431rsgvv" path="res://ui/unit_button_chipmunk.tscn" id="3_mvy00"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iid7b"]
 transparency = 1
@@ -23,6 +24,7 @@ viewport_path = NodePath("LootSubViewport")
 [node name="PlayerUnitChipmunk" node_paths=PackedStringArray("_lootLabel") instance=ExtResource("1_ejybd")]
 script = ExtResource("2_iid7b")
 _lootType = 2
+ButtonScene = ExtResource("3_mvy00")
 _lootLabel = NodePath("LootSubViewport/Control/Panel/Label")
 _lootScene = ExtResource("3_iid7b")
 

@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://bh2j0431rsgvv"]
+
+[ext_resource type="PackedScene" uid="uid://casfaekb7a2ra" path="res://ui/unit_button.tscn" id="1_h4nar"]
+
+[node name="UnitButton" instance=ExtResource("1_h4nar")]

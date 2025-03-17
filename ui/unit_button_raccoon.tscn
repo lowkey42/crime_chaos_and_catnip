@@ -1,0 +1,13 @@
+[gd_scene load_steps=5 format=3 uid="uid://ber2ubidgr7i8"]
+
+[ext_resource type="PackedScene" uid="uid://casfaekb7a2ra" path="res://ui/unit_button.tscn" id="1_6l483"]
+[ext_resource type="Texture2D" uid="uid://dy2mjbxcursal" path="res://assets/2D/Framed Characters/RaccoonBags.png" id="2_0rdji"]
+[ext_resource type="Texture2D" uid="uid://dod46lkl2ilo6" path="res://assets/2D/Framed Characters/RaccoonTrashStuck.png" id="3_3qlt3"]
+[ext_resource type="Texture2D" uid="uid://cqk0e8t15fbe2" path="res://assets/2D/Framed Characters/RaccoonBombTrash.png" id="4_10gud"]
+
+[node name="UnitButton" instance=ExtResource("1_6l483")]
+
+[node name="UnitIcon" parent="Panel" index="0"]
+texture_normal = ExtResource("2_0rdji")
+texture_pressed = ExtResource("3_3qlt3")
+texture_hover = ExtResource("4_10gud")

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bidjrbf74mmxu"]
+
+[ext_resource type="PackedScene" uid="uid://casfaekb7a2ra" path="res://ui/unit_button.tscn" id="1_uuybh"]
+[ext_resource type="Texture2D" uid="uid://nj8mv30ic1wx" path="res://assets/2D/Framed Characters/Siamesecat.png" id="2_vcxli"]
+
+[node name="UnitButton" instance=ExtResource("1_uuybh")]
+
+[node name="UnitIcon" parent="Panel" index="0"]
+texture_normal = ExtResource("2_vcxli")
+texture_pressed = ExtResource("2_vcxli")
+texture_hover = ExtResource("2_vcxli")
