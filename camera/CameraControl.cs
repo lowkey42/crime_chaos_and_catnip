@@ -1,8 +1,9 @@
 using Godot;
 using System;
+using CrimeChaosAndCatnip;
 
 
-public partial class CameraControl : Node
+public partial class CameraControl : Node3D
 {
 	private enum CameraState {
 		Isometric,
@@ -21,8 +22,6 @@ public partial class CameraControl : Node
 	private float _shiftFactor = 3.0f;
 
 	[Export] public bool EnableMouseCameraMovement = true;
-
-	[Export] public RayCast3D CameraRaycast;
 	
 	private CameraState _currentCameraState = CameraState.Isometric;
 
@@ -32,8 +31,12 @@ public partial class CameraControl : Node
 	
 	private bool _isRightMouseButtonPressed;
 
+	private Board _board;
+
 	
 	public override void _Ready() {
+		_board = Board.GetBoard(this);
+		
 		_targetRotation = IsometricCamera.Rotation;
 	}
 
@@ -203,24 +206,26 @@ public partial class CameraControl : Node
 
 		var localMovement = (right * movementDirection.X + forward * movementDirection.Z) * CameraSpeed *  _shiftFactor *(float)delta;
 
-		CameraRaycast.GlobalPosition = IsometricCamera.Position;
-		CameraRaycast.TargetPosition = movement.Normalized() * 1.5f;
-		CameraRaycast.Rotation = IsometricCamera.Rotation;
-		CameraRaycast.ForceRaycastUpdate();
+		if (_currentCameraState == CameraState.Isometric) {
+			IsometricCamera.Position += localMovement;
+			_targetPosition = IsometricCamera.Position;
+			IsometricCamera.Rotation = _targetRotation;
+		} else {
+			localMovement = new Vector3(movement.X, 0, movement.Z) * CameraSpeed * _shiftFactor * (float)delta;
 
-		if (!CameraRaycast.IsColliding()) {
-			if (_currentCameraState == CameraState.Isometric) {
-				IsometricCamera.Position += localMovement;
-				_targetPosition = IsometricCamera.Position;
-				IsometricCamera.Rotation = _targetRotation;
-			} else {
-				localMovement = new Vector3(movement.X, 0, movement.Z) * CameraSpeed * _shiftFactor * (float)delta;
-
-				TopDownCamera.Position += localMovement;
-				_targetPosition = TopDownCamera.Position;
-			}
-				
+			TopDownCamera.Position += localMovement;
+			_targetPosition = TopDownCamera.Position;
 		}
 
+		ConfineCamera();
+	}
+
+	private void ConfineCamera() {
+		if (_board == null) 
+			return;
+		
+		var planeConfines = _board.BoardWorldDimensions();
+		GlobalPosition = GlobalPosition.Clamp(new Vector3(planeConfines.Position.X, 1f, planeConfines.Position.Y),
+			new Vector3(planeConfines.End.X, 1f, planeConfines.End.Y));
 	}
 }

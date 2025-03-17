@@ -58,7 +58,7 @@ public partial class Hud : CanvasLayer {
 	private void PositionRotationUi() {
 		var camera = GetViewport().GetCamera3D();
 		_rotationUi.GlobalPosition = camera.UnprojectPosition(_cardSpawn.GlobalPosition);
-		_rotationUi.RotationDegrees = camera.RotationDegrees.Y;
+		_rotationUi.RotationDegrees = camera.GlobalRotationDegrees.Y;
 	}
 
 	public void RotateCardEast() {

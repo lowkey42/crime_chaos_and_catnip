@@ -108,6 +108,15 @@ public partial class Board : Node {
 		return new Vector2I((int) (position.X/CellSize + 0.5f), (int) (position.Z/CellSize + 0.5f));
 	}
 
+	public Rect2 BoardWorldDimensions() {
+		if(_cells==null)
+			throw new NullReferenceException("_cells is null because _Ready() hasn't been called, yet");
+		
+		var p = _cells[0, 0].Position;
+		var s = _cells[_cells.GetLength(0) - 1, _cells.GetLength(1) - 1].Position - p;
+		return new Rect2(new Vector2(p.X, p.Z), new Vector2(s.X, s.Z));
+	}
+	
 	public Vector2I? ToNullableBoardPosition(Vector3 position) {
 		var boardPosition = ToBoardPosition(position);
 		return TryGetCell(boardPosition) != null ? boardPosition : null;

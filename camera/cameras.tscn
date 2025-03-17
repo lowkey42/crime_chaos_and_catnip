@@ -1,9 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://b4ufa4onh1vrb"]
+[gd_scene load_steps=2 format=3 uid="uid://b4ufa4onh1vrb"]
 
 [ext_resource type="Script" uid="uid://bf661tpm2k0ry" path="res://camera/CameraControl.cs" id="1_a2eoo"]
-[ext_resource type="Script" uid="uid://b45f4jckgte3b" path="res://camera/CameraConfiner.cs" id="2_o13qt"]
 
-[node name="Cameras" type="Node3D"]
+[node name="Cameras" type="Node3D" node_paths=PackedStringArray("IsometricCamera", "TopDownCamera", "CameraRaycast")]
+script = ExtResource("1_a2eoo")
+BaseCameraMove = Vector3(0, -10, 10)
+RotationDegree = 40.0
+IsometricCamera = NodePath("FreeCamera")
+TopDownCamera = NodePath("TopDownCamera")
+RotationSpeed = 90.0
+EdgeSensitivity = 5.0
+CameraRaycast = NodePath("")
 
 [node name="FreeCamera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.819152, 0.573576, 0, -0.573576, 0.819152, -2, 10, 20)
@@ -11,23 +18,3 @@ current = true
 
 [node name="TopDownCamera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.173648, 0.984808, 0, -0.984808, 0.173648, -2, 22, 10)
-
-[node name="CameraControl" type="Node" parent="." node_paths=PackedStringArray("IsometricCamera", "TopDownCamera", "CameraRaycast")]
-script = ExtResource("1_a2eoo")
-BaseCameraMove = Vector3(0, -10, 10)
-RotationDegree = 40.0
-IsometricCamera = NodePath("../FreeCamera")
-TopDownCamera = NodePath("../TopDownCamera")
-RotationSpeed = 90.0
-EdgeSensitivity = 5.0
-EnableMouseCameraMovement = false
-CameraRaycast = NodePath("../RayCast3D")
-
-[node name="RayCast3D" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.02089, 0)
-target_position = Vector3(0, 0, 0)
-
-[node name="CameraConfiner" type="Node3D" parent="." node_paths=PackedStringArray("Camera", "Camera2")]
-script = ExtResource("2_o13qt")
-Camera = NodePath("../FreeCamera")
-Camera2 = NodePath("../TopDownCamera")
