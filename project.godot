@@ -10,14 +10,14 @@ config_version=5
 
 [application]
 
-config/name="Crime, Chaos & Catnip"
-config/version="0.0.1"
+config/name="Chaos, Crime & Catnip"
+config/version="1.0.0.0"
 run/main_scene="uid://dv2y18ye8j7o0"
 config/features=PackedStringArray("4.4", "C#")
 boot_splash/image="uid://crjy2ilj38owb"
-config/icon="uid://b8qltk0t8mugn"
+config/icon="uid://bsu7avh84cs0g"
 config/macos_native_icon="res://assets/2D/Icons/DesktopIconWithoutBackground.icns"
-config/windows_native_icon="res://assets/2D/Icons/DesktopIconWithoutBackground.ico"
+config/windows_native_icon="res://icon.ico"
 
 [autoload]
 
