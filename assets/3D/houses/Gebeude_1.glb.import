@@ -33,6 +33,12 @@ animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={
+"materials": {
+"Material.003": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/3D/houses/Material.003.tres"
+}
+},
 "nodes": {
 "PATH:Haus1": {
 "generate/occluder": 1,

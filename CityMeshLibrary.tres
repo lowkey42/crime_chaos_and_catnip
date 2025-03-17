@@ -125,9 +125,11 @@ image = SubResource("Image_bofh1")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qhkou"]
 resource_name = "Material.001"
-cull_mode = 2
+transparency = 4
 albedo_texture = ExtResource("3_k7gou")
 roughness = 0.5
+distance_fade_mode = 1
+distance_fade_max_distance = 1.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_75qkc"]
 _surfaces = [{
@@ -227,9 +229,11 @@ image = SubResource("Image_botvr")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fnh0b"]
 resource_name = "Material.001"
-cull_mode = 2
+transparency = 4
 albedo_texture = ExtResource("5_f378y")
 roughness = 0.5
+distance_fade_mode = 1
+distance_fade_max_distance = 1.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_kkmvf"]
 _surfaces = [{
@@ -277,9 +281,11 @@ image = SubResource("Image_d4ku7")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nvq3b"]
 resource_name = "Material.001"
-cull_mode = 2
+transparency = 4
 albedo_texture = ExtResource("6_m0tuy")
 roughness = 0.5
+distance_fade_mode = 1
+distance_fade_max_distance = 1.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_bmrdg"]
 _surfaces = [{
@@ -329,9 +335,11 @@ image = SubResource("Image_46g8l")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_283cx"]
 resource_name = "Material.001"
-cull_mode = 2
+transparency = 4
 albedo_texture = ExtResource("7_0tbnd")
 roughness = 0.5
+distance_fade_mode = 1
+distance_fade_max_distance = 1.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_txv40"]
 _surfaces = [{
@@ -381,9 +389,11 @@ image = SubResource("Image_vo0aw")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c5p1b"]
 resource_name = "Pipes"
-cull_mode = 2
+transparency = 4
 albedo_texture = ExtResource("8_m0tuy")
 roughness = 0.889091
+distance_fade_mode = 1
+distance_fade_max_distance = 1.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_f6k8n"]
 _surfaces = [{
@@ -433,9 +443,11 @@ image = SubResource("Image_5y0rd")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tt6yg"]
 resource_name = "Pipes"
-cull_mode = 2
+transparency = 4
 albedo_texture = ExtResource("9_0tbnd")
 roughness = 0.889091
+distance_fade_mode = 1
+distance_fade_max_distance = 1.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_tl2ja"]
 _surfaces = [{
@@ -786,9 +798,11 @@ image = SubResource("Image_r1vgb")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6t0w3"]
 resource_name = "Material.003"
-cull_mode = 2
+transparency = 4
 albedo_texture = ExtResource("7_m0tuy")
 roughness = 0.5
+distance_fade_mode = 1
+distance_fade_max_distance = 1.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_dr1y0"]
 _surfaces = [{
@@ -839,9 +853,11 @@ data = PackedVector3Array(-2.92145, 0.0808891, 2.8203, -2.92145, 9.01199, -2.842
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ly4ln"]
 resource_name = "Material.004"
-cull_mode = 2
+transparency = 4
 albedo_texture = ExtResource("8_0tbnd")
 roughness = 0.5
+distance_fade_mode = 1
+distance_fade_max_distance = 1.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_tsbac"]
 _surfaces = [{
@@ -895,9 +911,11 @@ image = SubResource("Image_dcugf")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fn5w6"]
 resource_name = "Material.005"
-cull_mode = 2
+transparency = 4
 albedo_texture = ExtResource("9_bofh1")
 roughness = 0.5
+distance_fade_mode = 1
+distance_fade_max_distance = 1.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_7c5na"]
 _surfaces = [{
@@ -951,9 +969,11 @@ image = SubResource("Image_dgtue")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ixeao"]
 resource_name = "Material.002"
-cull_mode = 2
+transparency = 4
 albedo_texture = ExtResource("10_bjfsb")
 roughness = 0.5
+distance_fade_mode = 1
+distance_fade_max_distance = 1.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_duw5v"]
 _surfaces = [{
@@ -1007,9 +1027,11 @@ image = SubResource("Image_5lstf")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jrfg3"]
 resource_name = "Material.001"
-cull_mode = 2
+transparency = 4
 albedo_texture = ExtResource("11_botvr")
 roughness = 0.5
+distance_fade_mode = 1
+distance_fade_max_distance = 1.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_7yyd3"]
 _surfaces = [{

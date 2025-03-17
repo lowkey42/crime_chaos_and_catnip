@@ -33,6 +33,12 @@ animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={
+"materials": {
+"Material.001": {
+"use_external/enabled": true,
+"use_external/path": "uid://bkm7e64wjcq7r"
+}
+},
 "nodes": {
 "PATH:Cube_008": {
 "generate/navmesh": 1
