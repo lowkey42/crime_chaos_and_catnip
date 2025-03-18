@@ -1,0 +1,21 @@
+[gd_resource type="FogMaterial" load_steps=3 format=3 uid="uid://5dinyu2er5ng"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_104ws"]
+frequency = 0.02
+fractal_octaves = 8
+
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_qjnmd"]
+width = 128
+height = 128
+depth = 128
+seamless = true
+seamless_blend_skirt = 0.25
+noise = SubResource("FastNoiseLite_104ws")
+
+[resource]
+density = 0.4
+albedo = Color(0.6408, 0.654, 0.72, 1)
+emission = Color(0.207, 0.24265, 0.3, 1)
+height_falloff = 4.14105
+edge_fade = 0.0659755
+density_texture = SubResource("NoiseTexture3D_qjnmd")

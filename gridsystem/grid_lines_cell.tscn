@@ -15,6 +15,7 @@ shader_parameter/grid_color = Color(1, 1, 1, 1)
 shader_parameter/animation_amount = 0.1
 shader_parameter/animation_overshoot = 0.0
 shader_parameter/animation_speed = 4.0
+shader_parameter/emission_strength = 0.0
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_bqnmx"]
 size = Vector2(100, 100)

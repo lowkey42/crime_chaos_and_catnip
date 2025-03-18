@@ -8,5 +8,12 @@
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.573222, 0, 0.712664)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Laterne2"]
-transform = Transform3D(1, 0, 0, 0, 0.0734123, 0.997302, 0, -0.997302, 0.0734123, 0, 4.23995, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 4.5, 0)
+light_color = Color(1, 0.875, 0.5, 1)
 light_energy = 2.0
+light_indirect_energy = 2.0
+light_bake_mode = 1
+spot_range = 8.0
+spot_attenuation = 0.6
+spot_angle = 30.0
+spot_angle_attenuation = 0.7

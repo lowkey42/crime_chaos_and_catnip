@@ -32,6 +32,25 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-_subresources={}
+_subresources={
+"materials": {
+"Auto.010": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/3D/cars/Auto.010.tres"
+},
+"Glas.008": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/3D/cars/Glas.008.tres"
+},
+"Räder.008": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/3D/cars/Räder.008.tres"
+},
+"Scheinwerfer.006": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/3D/cars/Scheinwerfer.006.tres"
+}
+}
+}
 gltf/naming_version=1
 gltf/embedded_image_handling=1

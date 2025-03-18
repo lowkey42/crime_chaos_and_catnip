@@ -122,6 +122,7 @@ public partial class GridLines : Node3D {
 		cellColor *= boardPosition == _hoveredCell ? _hoverColorIntensity : 1f;
 
 		material.SetShaderParameter("grid_color", cellColor);
+		material.SetShaderParameter("emission_strength", GetCellEmission(cell));
 		material.SetShaderParameter("fade_distance", GetCellLineThickness(cell));
 		material.SetShaderParameter("animation_amount", GetCellAnimationAmount(cell));
 		material.SetShaderParameter("animation_speed", GetCellAnimationSpeed(cell));
@@ -139,6 +140,17 @@ public partial class GridLines : Node3D {
 		if (cell.Objects.Any(obj => obj is Loot or LootSource)) return _colorLoot;
 		if (cell.Objects.Count > 0) return _colorOther;
 		return _colorEmpty;
+	}
+	
+	private float GetCellEmission(Board.Cell cell) {
+		if (HoverForbidden && cell.BoardPosition == _hoveredCell)
+			return 0.5f;
+
+		if (cell.Objects.Any(obj => obj is Exit)) return 4f;
+		if (cell.Objects.Any(obj => obj is PlayerUnit)) return 3f;
+		if (cell.Objects.Any(obj => obj is EnemyUnit)) return 3f;
+		if (cell.Objects.Any(obj => obj is Loot or LootSource)) return 2f;
+		return 0f;
 	}
 
 	private float GetCellLineThickness(Board.Cell cell) {

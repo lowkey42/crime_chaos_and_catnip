@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://cik30de5gaaah"]
+[gd_scene load_steps=52 format=3 uid="uid://cik30de5gaaah"]
 
 [ext_resource type="Script" uid="uid://dmeymco117qmu" path="res://scenes/ingame_scene.gd" id="1_objyc"]
 [ext_resource type="PackedScene" uid="uid://bkk87o2ooo6at" path="res://ui/overlays/fade_overlay.tscn" id="1_y6ebv"]
@@ -42,6 +42,7 @@
 [ext_resource type="Texture2D" uid="uid://bm2ysskf2vab6" path="res://assets/2D/Cards/Move10Card.png" id="31_2fmb7"]
 [ext_resource type="Texture2D" uid="uid://b3pmfau711til" path="res://assets/2D/Cards/Chipmunk.png" id="31_lbq3s"]
 [ext_resource type="Texture2D" uid="uid://cd7erqkrda0w7" path="res://assets/2D/Cards/Move15Card.png" id="32_x526a"]
+[ext_resource type="Shader" uid="uid://ciq8c7d41epqr" path="res://assets/Shader/volumetric_fog.gdshader" id="43_qjnmd"]
 
 [sub_resource type="Resource" id="Resource_juwkt"]
 script = ExtResource("7_2vs8u")
@@ -94,6 +95,18 @@ corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i6xv3"]
+shader = ExtResource("43_qjnmd")
+shader_parameter/base_density = 0.25
+shader_parameter/base_color = Color(0.92, 0.94, 1, 1)
+shader_parameter/fade_out_height = 2.0
+shader_parameter/fade_out_distance = 3.0
+shader_parameter/noise_amounts = Vector3(0.2, 0.4, 0.4)
+shader_parameter/noise_scales = Vector3(2, 4, 5)
+shader_parameter/noise_velocity1 = Vector3(-0.2, 0.2, 0)
+shader_parameter/noise_velocity2 = Vector3(0.5, -0.2, -0.4)
+shader_parameter/noise_velocity3 = Vector3(0.2, 0.5, 0.3)
 
 [node name="IngameScene" type="Node2D"]
 script = ExtResource("1_objyc")
@@ -795,6 +808,23 @@ text = "continue"
 [node name="Board" parent="Gameplay/Level/level_03" index="0"]
 _maxGridSize = Vector2i(55, 55)
 
+[node name="DirectionalLight3D2" parent="Gameplay/Level/level_03/LightAndWorldEnvironment" index="0"]
+light_color = Color(0.469, 0.5999, 0.7, 1)
+light_energy = 0.35
+light_indirect_energy = 2.0
+light_angular_distance = 8.0
+light_bake_mode = 1
+
+[node name="DirectionalLight3D3" parent="Gameplay/Level/level_03/LightAndWorldEnvironment" index="1"]
+transform = Transform3D(-0.357293, -0.927921, -0.106315, -0.191347, 0.184137, -0.964095, 0.914182, -0.324121, -0.243346, 50.7857, 76.3174, -75.6462)
+light_color = Color(0.16, 0.273333, 0.5, 1)
+light_energy = 0.5
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+light_bake_mode = 1
+directional_shadow_mode = 0
+sky_mode = 1
+
 [node name="Cameras" parent="." node_paths=PackedStringArray("MinBoundsOverride", "MaxBoundsOverride") instance=ExtResource("14_ilpo5")]
 transform = Transform3D(-1, 0, 5.96046e-08, 0, 1, 0, -5.96046e-08, 0, -1, 57, 0, 100.27)
 MinBoundsOverride = NodePath("../CameraBoundsMin")
@@ -823,6 +853,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0700965, 0, 5.31789)
 
 [node name="CameraBoundsMax" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 114, 0, 105)
+
+[node name="FogVolume" type="FogVolume" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62, 2, 64)
+size = Vector3(200, 5, 200)
+material = SubResource("ShaderMaterial_i6xv3")
 
 [connection signal="GameOver" from="Gameplay" to="Gameplay/GameOverOverlay" method="ShowOverlay"]
 [connection signal="pressed" from="Gameplay/HUD/BottomUI/VBoxContainer/EndGameButton" to="Gameplay" method="EndGame"]
