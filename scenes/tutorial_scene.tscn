@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://c3phd16gft4yj"]
+[gd_scene load_steps=50 format=3 uid="uid://c3phd16gft4yj"]
 
 [ext_resource type="Script" uid="uid://dmeymco117qmu" path="res://scenes/ingame_scene.gd" id="1_vbxd6"]
 [ext_resource type="PackedScene" uid="uid://bkk87o2ooo6at" path="res://ui/overlays/fade_overlay.tscn" id="2_2a5f1"]
@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://8vkdkrdt2rgh" path="res://ui/Hud.cs" id="5_l4klo"]
 [ext_resource type="Texture2D" uid="uid://rusjs0rxefdl" path="res://assets/2D/MainMenu/MainMenu.png" id="6_dj7kl"]
 [ext_resource type="Texture2D" uid="uid://c0hsgr0i34axs" path="res://assets/2D/Icons/Icon_CatnipBag.png" id="7_ncaew"]
-[ext_resource type="Shader" uid="uid://dh223vyipyq2p" path="res://assets/Shader/ui_fog.gdshader" id="8_qt3cc"]
+[ext_resource type="Material" uid="uid://b76lfodrmlq54" path="res://ui/hud_background.tres" id="7_xk5md"]
 [ext_resource type="Texture2D" uid="uid://dopsa0435c4ye" path="res://assets/2D/noise.png" id="9_g35y0"]
 [ext_resource type="Texture2D" uid="uid://dqkuipeee5xbf" path="res://assets/2D/Cards/DiscardPile.png" id="10_wdbcs"]
 [ext_resource type="Script" uid="uid://bp64cwdqrlygr" path="res://gameplay/Deck.cs" id="11_vjvfh"]
@@ -42,9 +42,6 @@
 [ext_resource type="PackedScene" uid="uid://be6uoqhwioqjw" path="res://scenes/level/TutorialLevel.tscn" id="38_vbxd6"]
 [ext_resource type="PackedScene" uid="uid://b4ufa4onh1vrb" path="res://camera/cameras.tscn" id="39_xqbwa"]
 [ext_resource type="AudioStream" uid="uid://8ibx4iua14ac" path="res://assets/Sound/CCC Ingame Loop.wav" id="40_7xpn7"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_fvcpb"]
-shader = ExtResource("8_qt3cc")
 
 [sub_resource type="Resource" id="Resource_juwkt"]
 script = ExtResource("13_c6p3c")
@@ -215,7 +212,7 @@ mouse_filter = 2
 [node name="BottomBackground" type="TextureRect" parent="Gameplay/HUD/BottomUI/Control"]
 texture_filter = 4
 texture_repeat = 2
-material = SubResource("ShaderMaterial_fvcpb")
+material = ExtResource("7_xk5md")
 custom_minimum_size = Vector2(0, 180)
 layout_mode = 1
 anchors_preset = 15

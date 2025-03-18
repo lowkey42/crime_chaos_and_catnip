@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://b76lfodrmlq54"]
+
+[ext_resource type="Shader" uid="uid://dh223vyipyq2p" path="res://assets/Shader/ui_fog.gdshader" id="1_grob4"]
+
+[resource]
+shader = ExtResource("1_grob4")
+shader_parameter/color_light_bottom = Color(0.65, 0.5525, 0.63375, 1)
+shader_parameter/color_light_top = Color(0.75, 0.75, 0.75, 1)
+shader_parameter/color_dark_bottom = Color(0.25, 0.1, 0.225, 0.862745)
+shader_parameter/color_dark_top = Color(0.14, 0.042, 0.123667, 0.588235)
+shader_parameter/speed_1 = Vector2(-0.051, 0.032)
+shader_parameter/speed_2 = Vector2(0.00508, 0.039)
+shader_parameter/turbulence = 0.13
