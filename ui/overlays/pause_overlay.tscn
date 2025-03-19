@@ -48,10 +48,17 @@ texture = SubResource("GradientTexture1D_dypxm")
 stretch_mode = 1
 
 [node name="Tutorial" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(1280, 807.5)
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -403.75
+offset_right = 640.0
+offset_bottom = 403.75
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -61,18 +68,31 @@ theme_override_constants/margin_right = 100
 theme_override_constants/margin_bottom = 100
 
 [node name="TextureRect" type="TextureRect" parent="Tutorial"]
+custom_minimum_size = Vector2(1080, 607.5)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 mouse_filter = 2
 texture = ExtResource("3_nk86g")
-expand_mode = 5
+expand_mode = 1
 stretch_mode = 5
 
-[node name="tutorial_movement" type="Label" parent="Tutorial/TextureRect"]
+[node name="Control" type="Control" parent="Tutorial/TextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="tutorial_movement" type="Label" parent="Tutorial/TextureRect/Control"]
 layout_mode = 0
-offset_left = 224.0
-offset_top = 94.0
-offset_right = 359.0
-offset_bottom = 134.0
+offset_left = -316.0
+offset_top = -209.75
+offset_right = -181.0
+offset_bottom = -169.75
 text = "tutorial_movement"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -80,60 +100,60 @@ autowrap_mode = 1
 clip_text = true
 text_overrun_behavior = 1
 
-[node name="tutorial_unit" type="Label" parent="Tutorial/TextureRect"]
+[node name="tutorial_unit" type="Label" parent="Tutorial/TextureRect/Control"]
 layout_mode = 0
-offset_left = 224.0
-offset_top = 227.0
-offset_right = 359.0
-offset_bottom = 267.0
+offset_left = -316.0
+offset_top = -76.75
+offset_right = -181.0
+offset_bottom = -36.75
 text = "tutorial_unit"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 1
 clip_text = true
 
-[node name="tutorial_action" type="Label" parent="Tutorial/TextureRect"]
+[node name="tutorial_action" type="Label" parent="Tutorial/TextureRect/Control"]
 layout_mode = 0
-offset_left = 224.0
-offset_top = 361.0
-offset_right = 361.0
-offset_bottom = 401.0
+offset_left = -316.0
+offset_top = 57.25
+offset_right = -179.0
+offset_bottom = 97.25
 text = "tutorial_action"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 1
 clip_text = true
 
-[node name="tutorial_loot" type="Label" parent="Tutorial/TextureRect"]
+[node name="tutorial_loot" type="Label" parent="Tutorial/TextureRect/Control"]
 layout_mode = 0
-offset_left = 224.0
-offset_top = 478.0
-offset_right = 359.0
-offset_bottom = 518.0
+offset_left = -316.0
+offset_top = 174.25
+offset_right = -181.0
+offset_bottom = 214.25
 text = "tutorial_loot"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 1
 clip_text = true
 
-[node name="tutorial_enemy" type="Label" parent="Tutorial/TextureRect"]
+[node name="tutorial_enemy" type="Label" parent="Tutorial/TextureRect/Control"]
 layout_mode = 0
-offset_left = 847.0
-offset_top = 92.0
-offset_right = 981.0
-offset_bottom = 132.0
+offset_left = 307.0
+offset_top = -211.75
+offset_right = 441.0
+offset_bottom = -171.75
 text = "tutorial_enemy"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 1
 clip_text = true
 
-[node name="tutorial_lootable" type="Label" parent="Tutorial/TextureRect"]
+[node name="tutorial_lootable" type="Label" parent="Tutorial/TextureRect/Control"]
 layout_mode = 0
-offset_left = 795.0
-offset_top = 207.0
-offset_right = 930.0
-offset_bottom = 247.0
+offset_left = 255.0
+offset_top = -96.75
+offset_right = 390.0
+offset_bottom = -56.75
 text = "tutorial_lootable"
 horizontal_alignment = 1
 vertical_alignment = 1
