@@ -38,8 +38,7 @@ public partial class CardAction : CardBase {
 		}
 		
 		
-		return BoardObject.InteractResult.Interacted | BoardObject.InteractResult.BlockFurtherInteraction |
-		       BoardObject.InteractResult.RemoveSelf;
+		return BoardObject.InteractResult.Interacted | BoardObject.InteractResult.RemoveSelf;
 	}
 
 }
