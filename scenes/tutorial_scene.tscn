@@ -104,16 +104,18 @@ _deck = NodePath("HUD/BottomUI/VBoxContainer/DeckContainer/Deck")
 _hand = NodePath("HUD/BottomUI/PlayerHand")
 _stepTime = 0.3
 
-[node name="HUD" type="CanvasLayer" parent="Gameplay" node_paths=PackedStringArray("_scoreLabel", "_remainingCardsLabel", "_turnCounterLabel", "_endTurnButton", "_endGameButton", "_gameplay", "_deck", "_rotationUi")]
+[node name="HUD" type="CanvasLayer" parent="Gameplay" node_paths=PackedStringArray("_scoreLabel", "_remainingCardsLabel", "_turnCounterLabel", "_cardCounterLabel", "_endTurnButton", "_endGameButton", "_gameplay", "_deck", "_hand", "_rotationUi")]
 follow_viewport_enabled = true
 script = ExtResource("5_l4klo")
 _scoreLabel = NodePath("TopUI/HBoxContainer/Score")
 _remainingCardsLabel = NodePath("BottomUI/VBoxContainer/DeckContainer/RemainingCardsContainer/RemainingCards")
-_turnCounterLabel = NodePath("TopUI/TurnCounter")
+_turnCounterLabel = NodePath("TopUI/Counter/TurnCounter")
+_cardCounterLabel = NodePath("TopUI/Counter/CardCounter")
 _endTurnButton = NodePath("BottomUI/VBoxContainer/EndTurnButton")
 _endGameButton = NodePath("BottomUI/VBoxContainer/EndGameButton")
 _gameplay = NodePath("..")
 _deck = NodePath("BottomUI/VBoxContainer/DeckContainer/Deck")
+_hand = NodePath("BottomUI/PlayerHand")
 _rotationUi = NodePath("CardDirectionControl")
 
 [node name="UnitPanel" type="ScrollContainer" parent="Gameplay/HUD" node_paths=PackedStringArray("_container", "_camera")]
@@ -150,20 +152,6 @@ anchors_preset = 10
 anchor_right = 1.0
 grow_horizontal = 2
 
-[node name="TurnCounter" type="Label" parent="Gameplay/HUD/TopUI"]
-custom_minimum_size = Vector2(40, 40)
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -40.0
-offset_bottom = 28.0
-grow_horizontal = 0
-theme_override_font_sizes/font_size = 30
-text = "1"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="HBoxContainer" type="HBoxContainer" parent="Gameplay/HUD/TopUI"]
 layout_mode = 1
 anchors_preset = 5
@@ -188,6 +176,48 @@ stretch_mode = 4
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "1234"
+
+[node name="Counter" type="HBoxContainer" parent="Gameplay/HUD/TopUI"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -218.0
+offset_bottom = 40.0
+grow_horizontal = 0
+alignment = 2
+
+[node name="TurnCounter" type="Label" parent="Gameplay/HUD/TopUI/Counter"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "1"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="TurnLabel" type="Label" parent="Gameplay/HUD/TopUI/Counter"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "turns"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CardCounter" type="Label" parent="Gameplay/HUD/TopUI/Counter"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "1"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="CardLabel" type="Label" parent="Gameplay/HUD/TopUI/Counter"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "cards"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="BottomUI" type="Control" parent="Gameplay/HUD"]
 layout_mode = 3

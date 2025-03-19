@@ -10,6 +10,8 @@ public partial class Hud : CanvasLayer {
 
 	[Export] private Label _turnCounterLabel;
 
+	[Export] private Label _cardCounterLabel;
+
 	[Export] private Button _endTurnButton;
 
 	[Export] private Button _endGameButton;
@@ -17,6 +19,8 @@ public partial class Hud : CanvasLayer {
 	[Export] private Gameplay _gameplay;
 
 	[Export] private Deck _deck;
+	
+	[Export] private PlayerHand _hand;
 
 	[Export] private Control _rotationUi;
 
@@ -34,6 +38,7 @@ public partial class Hud : CanvasLayer {
 		_endGameButton.Disabled = !_gameplay.CanEndTurn();
 		
 		_turnCounterLabel.Text = _gameplay.Turns.ToString();
+		_cardCounterLabel.Text = _hand.TotalPlayedCards.ToString();
 
 		if (_cardSpawn != null) {
 			PositionRotationUi();
